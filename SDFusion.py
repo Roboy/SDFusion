@@ -158,8 +158,7 @@ def jointSDF(joi,name_parent,name_child):
         jointInfo = planarJoint(joi)
     elif jType == 6:
         jointInfo = ballJoint(joi)
-        #jointType = "ball"
-        jointType = "fixed"
+        jointType = "ball"
 
     name = joi.name
     joint = ET.Element("joint", name=name, type=jointType)
