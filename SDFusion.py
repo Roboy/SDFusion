@@ -2,6 +2,7 @@ import adsk.core, adsk.fusion, traceback
 import os.path, sys
 import xml.etree.ElementTree as ET
 import math
+import lxml.etree as etree
 
 # transform fusion transformation matrix to gazebo frame
 def gazeboMatrix(m):
@@ -359,6 +360,13 @@ def run(context):
         
         # write XML tree to SDF file
         tree.write(filename)
+
+        x = etree.parse("model.sdf")
+        string = etree.tostring(x, pretty_print = True)
+
+        file = open("model.sdf", "w")
+        file.write(string)
+        file.close()
         
         ui.messageBox('SDF file written to "' + filename + '"')
 
