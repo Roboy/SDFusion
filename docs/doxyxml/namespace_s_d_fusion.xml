@@ -1,0 +1,517 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="namespace_s_d_fusion" kind="namespace" language="Python">
+    <compoundname>SDFusion</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="namespace_s_d_fusion_1a219cbf2c1ee20eacce22fdbe69577f13" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>SDFusion.design</definition>
+        <argsstring></argsstring>
+        <name>design</name>
+        <initializer>= None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/anna/Documents/roboy/SDFusion/SDFusion.py" line="19" column="1" bodyfile="/home/anna/Documents/roboy/SDFusion/SDFusion.py" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_s_d_fusion_1a1e4586d14850ae4cf526680a3c49cc6a" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string SDFusion.fileDir</definition>
+        <argsstring></argsstring>
+        <name>fileDir</name>
+        <initializer>= &quot;C:/Users/techtalentsVR1/Documents/roboy/fusion/SDFusion&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/anna/Documents/roboy/SDFusion/SDFusion.py" line="20" column="1" bodyfile="/home/anna/Documents/roboy/SDFusion/SDFusion.py" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_s_d_fusion_1ad9e4c1058db739b42d4d16eac4dd9736" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string SDFusion.modelName</definition>
+        <argsstring></argsstring>
+        <name>modelName</name>
+        <initializer>= &quot;Roboy&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/anna/Documents/roboy/SDFusion/SDFusion.py" line="21" column="1" bodyfile="/home/anna/Documents/roboy/SDFusion/SDFusion.py" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespace_s_d_fusion_1aef9425fa7b96797687dc0c651f925025" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>SDFusion.rootOcc</definition>
+        <argsstring></argsstring>
+        <name>rootOcc</name>
+        <initializer>= None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/anna/Documents/roboy/SDFusion/SDFusion.py" line="22" column="1" bodyfile="/home/anna/Documents/roboy/SDFusion/SDFusion.py" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespace_s_d_fusion_1ad9d58eb8474af5abcc947ecabc2fbae8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def SDFusion.gazeboMatrix</definition>
+        <argsstring>(self)</argsstring>
+        <name>gazeboMatrix</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+<para>Transforms a matrix from Fusion 360 to Gazebo. </para>        </briefdescription>
+        <detaileddescription>
+<para>This transforms a matrix given in the Fusion 360 coordinate system to one in the Gazebo cooridnate system.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>self</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a matrix given wrt the Fusion 360 coordinate system </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the matrix wrt the Gazebo coordinate system </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/anna/Documents/roboy/SDFusion/SDFusion.py" line="31" column="1" bodyfile="/home/anna/Documents/roboy/SDFusion/SDFusion.py" bodystart="31" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_s_d_fusion_1a983bd2c7c97b3edcce7845316040159c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def SDFusion.vectorToString</definition>
+        <argsstring>(x, y, z)</argsstring>
+        <name>vectorToString</name>
+        <param>
+          <type>x</type>
+          <defname>x</defname>
+        </param>
+        <param>
+          <type>y</type>
+          <defname>y</defname>
+        </param>
+        <param>
+          <type>z</type>
+          <defname>z</defname>
+        </param>
+        <briefdescription>
+<para>Converts three double values to string. </para>        </briefdescription>
+        <detaileddescription>
+<para>This function converts three double values to a string separated by spaces.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the first double value </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the second double value </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>z</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the third double value </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the string of these values </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/anna/Documents/roboy/SDFusion/SDFusion.py" line="48" column="1" bodyfile="/home/anna/Documents/roboy/SDFusion/SDFusion.py" bodystart="48" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_s_d_fusion_1a4e40458cec59a5cd416972fffa69172e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def SDFusion.sdfPoseVector</definition>
+        <argsstring>(vector)</argsstring>
+        <name>sdfPoseVector</name>
+        <param>
+          <type>vector</type>
+          <defname>vector</defname>
+        </param>
+        <briefdescription>
+<para>Builds SDF pose node from vector. </para>        </briefdescription>
+        <detaileddescription>
+<para>This function builds the SDF pose node for every joint.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vector</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the vector pointing to the origin of the joint. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the SDF pose node </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/anna/Documents/roboy/SDFusion/SDFusion.py" line="58" column="1" bodyfile="/home/anna/Documents/roboy/SDFusion/SDFusion.py" bodystart="58" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_s_d_fusion_1ac565f1d7528daf578e2a19343b3af871" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def SDFusion.sdfPoseMatrix</definition>
+        <argsstring>(matrix)</argsstring>
+        <name>sdfPoseMatrix</name>
+        <param>
+          <type>matrix</type>
+          <defname>matrix</defname>
+        </param>
+        <briefdescription>
+<para>Builds SDF pose node from matrix. </para>        </briefdescription>
+        <detaileddescription>
+<para>This function builds the SDF pose node for every link.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>matrix</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the transformation matrix of the link </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the SDF pose node </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/anna/Documents/roboy/SDFusion/SDFusion.py" line="75" column="1" bodyfile="/home/anna/Documents/roboy/SDFusion/SDFusion.py" bodystart="75" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_s_d_fusion_1ad910e028274986c446803119ff722a11" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def SDFusion.sdfInertial</definition>
+        <argsstring>(physics)</argsstring>
+        <name>sdfInertial</name>
+        <param>
+          <type>physics</type>
+          <defname>physics</defname>
+        </param>
+        <briefdescription>
+<para>Builds SDF inertial node from physical properties. </para>        </briefdescription>
+        <detaileddescription>
+<para>This function builds the SDF inertial node for every link.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>physics</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the physical properties of a link </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the SDF inertial node </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/anna/Documents/roboy/SDFusion/SDFusion.py" line="103" column="1" bodyfile="/home/anna/Documents/roboy/SDFusion/SDFusion.py" bodystart="103" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_s_d_fusion_1a030d7bfb204eb03dcc75c739b2032f4d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def SDFusion.sdfMom</definition>
+        <argsstring>(tag, value)</argsstring>
+        <name>sdfMom</name>
+        <param>
+          <type>tag</type>
+          <defname>tag</defname>
+        </param>
+        <param>
+          <type>value</type>
+          <defname>value</defname>
+        </param>
+        <briefdescription>
+<para>Builds SDF node for one moment of inertia. </para>        </briefdescription>
+        <detaileddescription>
+<para>This helper function builds the SDF node for one moment of inertia.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the tag of the XML node </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the text of the XML node </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the SDF moment of inertia node </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/anna/Documents/roboy/SDFusion/SDFusion.py" line="125" column="1" bodyfile="/home/anna/Documents/roboy/SDFusion/SDFusion.py" bodystart="125" bodyend="130"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_s_d_fusion_1a887b4378aceeb4817399fe0dfe81fc28" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def SDFusion.sdfInertia</definition>
+        <argsstring>(physics)</argsstring>
+        <name>sdfInertia</name>
+        <param>
+          <type>physics</type>
+          <defname>physics</defname>
+        </param>
+        <briefdescription>
+<para>Builds SDF inertia node from physical properties. </para>        </briefdescription>
+        <detaileddescription>
+<para>This function builds the SDF inertia node for every link.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>physics</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the physical properties of a link </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the SDF inertia node </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/anna/Documents/roboy/SDFusion/SDFusion.py" line="137" column="1" bodyfile="/home/anna/Documents/roboy/SDFusion/SDFusion.py" bodystart="137" bodyend="147"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_s_d_fusion_1a55da14e942487b28a87d13316ad69485" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def SDFusion.linkSDF</definition>
+        <argsstring>(lin)</argsstring>
+        <name>linkSDF</name>
+        <param>
+          <type>lin</type>
+          <defname>lin</defname>
+        </param>
+        <briefdescription>
+<para>Builds SDF link node. </para>        </briefdescription>
+        <detaileddescription>
+<para>This function builds the SDF link node for every link.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>lin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the link to be exported </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the SDF link node </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/anna/Documents/roboy/SDFusion/SDFusion.py" line="154" column="1" bodyfile="/home/anna/Documents/roboy/SDFusion/SDFusion.py" bodystart="154" bodyend="189"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_s_d_fusion_1afd26be0b30aee26c5e9317502c303faa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def SDFusion.jointSDF</definition>
+        <argsstring>(joi, name_parent, name_child)</argsstring>
+        <name>jointSDF</name>
+        <param>
+          <type>joi</type>
+          <defname>joi</defname>
+        </param>
+        <param>
+          <type>name_parent</type>
+          <defname>name_parent</defname>
+        </param>
+        <param>
+          <type>name_child</type>
+          <defname>name_child</defname>
+        </param>
+        <briefdescription>
+<para>Builds SDF joint node. </para>        </briefdescription>
+        <detaileddescription>
+<para>This function builds the SDF joint node for every joint type.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>joi</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the joint </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>name_parent</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the name of the parent link </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>name_child</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the name of the child link </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the SDF joint node </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/anna/Documents/roboy/SDFusion/SDFusion.py" line="198" column="1" bodyfile="/home/anna/Documents/roboy/SDFusion/SDFusion.py" bodystart="198" bodyend="237"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_s_d_fusion_1a7a30d112a08dc438704b99988e910fd1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def SDFusion.revoluteJoint</definition>
+        <argsstring>(joi)</argsstring>
+        <name>revoluteJoint</name>
+        <param>
+          <type>joi</type>
+          <defname>joi</defname>
+        </param>
+        <briefdescription>
+<para>Builds SDF axis node for revolute joints. </para>        </briefdescription>
+        <detaileddescription>
+<para>This function builds the SDF axis node for revolute joint.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>joi</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>one revolute joint object </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a list of information nodes (here one axis node) for the revolute joint </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/anna/Documents/roboy/SDFusion/SDFusion.py" line="245" column="1" bodyfile="/home/anna/Documents/roboy/SDFusion/SDFusion.py" bodystart="245" bodyend="274"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_s_d_fusion_1af510d43ccec0def809fcb4728eca6150" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def SDFusion.exportToSTL</definition>
+        <argsstring>(occ, linkName)</argsstring>
+        <name>exportToSTL</name>
+        <param>
+          <type>occ</type>
+          <defname>occ</defname>
+        </param>
+        <param>
+          <type>linkName</type>
+          <defname>linkName</defname>
+        </param>
+        <briefdescription>
+<para>Plain STL export. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>occ</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the occurrence to be exported </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>linkName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the name of the created STL file </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/anna/Documents/roboy/SDFusion/SDFusion.py" line="279" column="1" bodyfile="/home/anna/Documents/roboy/SDFusion/SDFusion.py" bodystart="279" bodyend="286"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_s_d_fusion_1a3c688c19bdb6661859c089c11fb24e84" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def SDFusion.rigidGroupToSTL</definition>
+        <argsstring>(rig)</argsstring>
+        <name>rigidGroupToSTL</name>
+        <param>
+          <type>rig</type>
+          <defname>rig</defname>
+        </param>
+        <briefdescription>
+<para>Exports a rigid group to STL. </para>        </briefdescription>
+        <detaileddescription>
+<para>Transforms a matrix from Fusion 360 to Gazebo.</para><para>This exports a rigid group as one STL file. For this all components of the rigidGroup are copied to a new component.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rig</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the rigid group to be exported </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a new occurrence which is used to export the relevant information to SDFormat </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/anna/Documents/roboy/SDFusion/SDFusion.py" line="296" column="1" bodyfile="/home/anna/Documents/roboy/SDFusion/SDFusion.py" bodystart="296" bodyend="311"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_s_d_fusion_1aca49eb8bcd2a11b732fb0d327534314e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def SDFusion.occurrenceToSTL</definition>
+        <argsstring>(occ)</argsstring>
+        <name>occurrenceToSTL</name>
+        <param>
+          <type>occ</type>
+          <defname>occ</defname>
+        </param>
+        <briefdescription>
+<para>Exports an single occurrence to STL. </para>        </briefdescription>
+        <detaileddescription>
+<para>This exports a single Fusion occurence as an STL file.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>occ</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the occurrence that needs to be exported. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a new occurrence which is used to export the relevant information to SDFormat </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/anna/Documents/roboy/SDFusion/SDFusion.py" line="319" column="1" bodyfile="/home/anna/Documents/roboy/SDFusion/SDFusion.py" bodystart="319" bodyend="332"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_s_d_fusion_1ae1ae019691620803c53824f885012ed2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def SDFusion.clearName</definition>
+        <argsstring>(name)</argsstring>
+        <name>clearName</name>
+        <param>
+          <type>name</type>
+          <defname>name</defname>
+        </param>
+        <briefdescription>
+<para>Clear filenames of unwanted characters. </para>        </briefdescription>
+        <detaileddescription>
+<para>This function replaces all &apos;:&apos; with underscores and deletes spaces in filenames. to one in the Gazebo cooridnate system.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a filename </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the filename without &apos;:&apos; and spaces </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/anna/Documents/roboy/SDFusion/SDFusion.py" line="340" column="1" bodyfile="/home/anna/Documents/roboy/SDFusion/SDFusion.py" bodystart="340" bodyend="344"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_s_d_fusion_1a3543f5250b401f0b56e6e822b7b1cc78" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def SDFusion.run</definition>
+        <argsstring>(context)</argsstring>
+        <name>run</name>
+        <param>
+          <type>context</type>
+          <defname>context</defname>
+        </param>
+        <briefdescription>
+<para>Exports a robot model from Fusion 360 to SDFormat. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/anna/Documents/roboy/SDFusion/SDFusion.py" line="346" column="1" bodyfile="/home/anna/Documents/roboy/SDFusion/SDFusion.py" bodystart="346" bodyend="416"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This is an exporter for Autodesk Fusion 360 models to SDFormat. </para>    </briefdescription>
+    <detaileddescription>
+<para>This can be loaded as an addon in Fusion 360. It exports all rigid groups of the robot model as links to STL and creates nodes in the SDF file for them. It creates SDF nodes for all joints of the robot model. Supported joint types are: &quot;fixed&quot;, &quot;revolute&quot;, and &quot;ball&quot;. </para>    </detaileddescription>
+    <location file="/home/anna/Documents/roboy/SDFusion/SDFusion.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="sw__documentation__template_2_r_e_a_d_m_e_8md" kind="file" language="Markdown">
+    <compoundname>README.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>Welcome<sp/>to<sp/>the<sp/>Roboy<sp/>sw_documentation_template</highlight></codeline>
+<codeline><highlight class="normal">[![Documentation<sp/>Status](http://readthedocs.org/projects/roboy-sw-documentation-template/badge/?version=lite)](http://roboy-sw-documentation-template.readthedocs.io/en/lite/?badge=lite)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Template<sp/>for<sp/>documenting<sp/>software<sp/>requirements<sp/>and<sp/>software<sp/>architectures</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Getting<sp/>started</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Install</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>Git<sp/>clone<sp/>this<sp/>repo<sp/>into<sp/>your<sp/>project<sp/>folder</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Remove<sp/>the<sp/>.git<sp/>folder:<sp/>`rm<sp/>-rf<sp/>.git`</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Install<sp/>the<sp/>dependencies:<sp/>`pip<sp/>install<sp/>-r<sp/>.../sw_documentation_template/documentation/requirements.txt`</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Adapt<sp/>the<sp/>Doxyfile<sp/>in<sp/>./documentation/Doxyfile<sp/>to:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>Name<sp/>the<sp/>project<sp/>correctly:<sp/>i.e.<sp/>`PROJECT_NAME=<sp/>&quot;Software<sp/>Documentation<sp/>Template&quot;`</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>Point<sp/>to<sp/>the<sp/>correct<sp/>all<sp/>of<sp/>your<sp/>source<sp/>and<sp/>include<sp/>folders:<sp/>i.e.<sp/>`INPUT=<sp/>../src<sp/>../include`</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Adapt<sp/>the<sp/>conf.py<sp/>in<sp/>./documentation/conf.py<sp/>to:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>Name<sp/>the<sp/>project<sp/>and<sp/>author<sp/>correctly:<sp/>starting<sp/>here:<sp/>`project<sp/>=<sp/>u&apos;Software<sp/>Documentation<sp/>Template&apos;`</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>Look<sp/>through<sp/>other<sp/>settings<sp/>such<sp/>as:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>`htmlhelp_basename`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Build</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Its<sp/>a<sp/>sphinx<sp/>project<sp/>containing<sp/>a<sp/>doxygen<sp/>setup,<sp/>just<sp/>run</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>cd<sp/>documentation</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>doxygen</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>cd<sp/>..</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>make<sp/>clean<sp/>html</highlight></codeline>
+<codeline><highlight class="normal">to<sp/>generate<sp/>the<sp/>output.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Open<sp/>the<sp/>index.html<sp/>file<sp/>in<sp/>the<sp/>./documentation/build<sp/>folder</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Deploy</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Log<sp/>into<sp/>the<sp/>Roboy<sp/>READTHEDOCS<sp/>at<sp/>http://readthedocs.io/<sp/>and<sp/>add<sp/>your<sp/>repo<sp/>there.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Acknowledgement</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>template<sp/>is<sp/>based<sp/>on<sp/>http://arc42.de/template/index.html</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>License</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Its<sp/>licensed<sp/>as<sp/>&apos;very<sp/>much<sp/>resembles<sp/>the<sp/>Creative<sp/>Commons<sp/>Attribution<sp/>License&apos;:<sp/>http://arc42.de/template/licence.html</highlight></codeline>
+    </programlisting>
+    <location file="/home/anna/Documents/roboy/SDFusion/sw_documentation_template/README.md"/>
+  </compounddef>
+</doxygen>

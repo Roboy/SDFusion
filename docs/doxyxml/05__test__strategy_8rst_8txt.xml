@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="05__test__strategy_8rst_8txt" kind="file" language="C++">
+    <compoundname>05_test_strategy.rst.txt</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">Test<sp/>Strategy</highlight></codeline>
+<codeline lineno="2"><highlight class="normal">================</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal">..<sp/>todo::</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><sp/><sp/>If<sp/>you<sp/>have<sp/>any<sp/>tests<sp/>describe:</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/>-<sp/>Where<sp/>the<sp/>tests<sp/>are<sp/>kept.</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/>-<sp/>How<sp/>the<sp/>tests<sp/>are<sp/>invoked.</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/>-<sp/>What<sp/>you<sp/>can/need<sp/>to<sp/>test<sp/>manually.</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal">..<sp/>_system-tests:</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">System<sp/>Tests</highlight></codeline>
+<codeline lineno="14"><highlight class="normal">---------------</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal">..<sp/>_integration-tests:</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal">Integration<sp/>Tests</highlight></codeline>
+<codeline lineno="19"><highlight class="normal">------------------</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal">..<sp/>_unit-tests:</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">Unit<sp/>Tests</highlight></codeline>
+<codeline lineno="24"><highlight class="normal">---------------</highlight></codeline>
+    </programlisting>
+    <location file="build/html/_sources/development/05_test_strategy.rst.txt"/>
+  </compounddef>
+</doxygen>

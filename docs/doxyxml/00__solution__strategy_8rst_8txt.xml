@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="00__solution__strategy_8rst_8txt" kind="file" language="C++">
+    <compoundname>00_solution_strategy.rst.txt</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="00__solution__strategy_8rst_8txt_1a9e00f5214ef01fa912409468ce6eac7e" prot="public" static="no" mutable="no">
+        <type>Solution</type>
+        <definition>Solution Strategy</definition>
+        <argsstring></argsstring>
+        <name>Strategy</name>
+        <initializer>=================
+
+.. todo::
+  Describe your solution strategy.
+
+  **Contents.**
+
+  A short summary and explanation of the fundamental solution ideas and
+  strategies.
+
+  **Motivation.**
+
+  An architecture is often based upon some key solution ideas or
+  strategies. These ideas should be familiar to everyone involved into the
+  architecture.
+
+  **Form.**
+
+  Diagrams and / or text</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/development/00_solution_strategy.rst.txt" line="1" column="1" bodyfile="build/html/_sources/development/00_solution_strategy.rst.txt" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="00__solution__strategy_8rst_8txt_1a6af70af0e9aefd811dc3f750063757ec" prot="public" static="no" mutable="no">
+        <type>Solution as appropriate Keep it</type>
+        <definition>Solution as appropriate Keep it short</definition>
+        <argsstring></argsstring>
+        <name>short</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/development/00_solution_strategy.rst.txt" line="20" column="1" bodyfile="build/html/_sources/development/00_solution_strategy.rst.txt" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">Solution<sp/>Strategy</highlight></codeline>
+<codeline lineno="2"><highlight class="normal">=================</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal">..<sp/>todo::</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><sp/><sp/>Describe<sp/>your<sp/>solution<sp/>strategy.</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/>**Contents.**</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/>A<sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/>summary<sp/>and<sp/>explanation<sp/>of<sp/>the<sp/>fundamental<sp/>solution<sp/>ideas<sp/>and</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/>strategies.</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/>**Motivation.**</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/>An<sp/>architecture<sp/>is<sp/>often<sp/>based<sp/>upon<sp/>some<sp/>key<sp/>solution<sp/>ideas<sp/>or</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/>strategies.<sp/>These<sp/>ideas<sp/>should<sp/>be<sp/>familiar<sp/>to<sp/>everyone<sp/>involved<sp/>into<sp/>the</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/>architecture.</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/>**Form.**</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/>Diagrams<sp/>and<sp/>/<sp/>or<sp/>text,<sp/>as<sp/>appropriate.<sp/>Keep<sp/>it<sp/>short,<sp/>i.e.<sp/>1<sp/>or<sp/>2<sp/>pages</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/>at<sp/>most!</highlight></codeline>
+    </programlisting>
+    <location file="build/html/_sources/development/00_solution_strategy.rst.txt"/>
+  </compounddef>
+</doxygen>

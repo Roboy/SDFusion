@@ -1,0 +1,216 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="07__runtime__view_8rst_8txt" kind="file" language="C++">
+    <compoundname>07_runtime_view.rst.txt</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="07__runtime__view_8rst_8txt_1ac7e0eb9a19589824a0e47dc48a1563ee" prot="public" static="no" mutable="no">
+        <type>_runtime_view</type>
+        <definition>_runtime_view __pad0__</definition>
+        <argsstring></argsstring>
+        <name>__pad0__</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/development/07_runtime_view.rst.txt" line="1" column="1" bodyfile="build/html/_sources/development/07_runtime_view.rst.txt" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="07__runtime__view_8rst_8txt_1a050e1269cfaea319599efe7b92089ef7" prot="public" static="no" mutable="no">
+        <type>_runtime_view</type>
+        <definition>_runtime_view tasks</definition>
+        <argsstring></argsstring>
+        <name>tasks</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/development/07_runtime_view.rst.txt" line="16" column="1" bodyfile="build/html/_sources/development/07_runtime_view.rst.txt" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="07__runtime__view_8rst_8txt_1a0b2866591435951afafec53f430836db" prot="public" static="no" mutable="no">
+        <type>_runtime_view</type>
+        <definition>_runtime_view activities</definition>
+        <argsstring></argsstring>
+        <name>activities</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/development/07_runtime_view.rst.txt" line="16" column="1" bodyfile="build/html/_sources/development/07_runtime_view.rst.txt" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="07__runtime__view_8rst_8txt_1a6285dc1793f0969f2b8745f0f8a22341" prot="public" static="no" mutable="no">
+        <type>_runtime_view</type>
+        <definition>_runtime_view threads</definition>
+        <argsstring></argsstring>
+        <name>threads</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/development/07_runtime_view.rst.txt" line="17" column="1" bodyfile="build/html/_sources/development/07_runtime_view.rst.txt" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="07__runtime__view_8rst_8txt_1a18e255f97bce55a5fbf26141a4e774cd" prot="public" static="no" mutable="no">
+        <type>_runtime_view … Select interesting runtime scenarios such</type>
+        <definition>_runtime_view … Select interesting runtime scenarios such as</definition>
+        <argsstring></argsstring>
+        <name>as</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/development/07_runtime_view.rst.txt" line="19" column="1" bodyfile="build/html/_sources/development/07_runtime_view.rst.txt" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="07__runtime__view_8rst_8txt_1ab354d10c0cc7ff971c1c14030bd7ceae" prot="public" static="no" mutable="no">
+        <type>_runtime_view … Select interesting runtime scenarios such</type>
+        <definition>_runtime_view … Select interesting runtime scenarios such controlled</definition>
+        <argsstring></argsstring>
+        <name>controlled</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/development/07_runtime_view.rst.txt" line="25" column="1" bodyfile="build/html/_sources/development/07_runtime_view.rst.txt" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="07__runtime__view_8rst_8txt_1ad1c4fef23644de73b2b836a83a125aba" prot="public" static="no" mutable="no">
+        <type>_runtime_view … Select interesting runtime scenarios such and stopped How do the system’s components co operate with external and pre existing components How is the system workflows is their **architectural relevancy **It is **not **important to describe a large number of scenarios You should rather document a representative selection Candidates</type>
+        <definition>_runtime_view … Select interesting runtime scenarios such and stopped How do the system’s components co operate with external and pre existing components How is the system workflows is their** architectural relevancy** It is** not** important to describe a large number of scenarios You should rather document a representative selection Candidates are</definition>
+        <argsstring></argsstring>
+        <name>are</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/development/07_runtime_view.rst.txt" line="41" column="1" bodyfile="build/html/_sources/development/07_runtime_view.rst.txt" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="07__runtime__view_8rst_8txt_1abb61aaf9d87892381178d878ec31c84a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>_runtime_view … Select interesting runtime scenarios such and stopped How do the system’s components co operate with external and pre existing components How is the system</type>
+        <definition>_runtime_view … Select interesting runtime scenarios such and stopped How do the system’s components co operate with external and pre existing components How is the system started</definition>
+        <argsstring>(covering e.g.required start scripts, dependencies on external systems, databases, communications systems, etc.)?**Note **The main criterion for the choice of possible scenarios(sequences</argsstring>
+        <name>started</name>
+        <param>
+          <type>covering e.g.required start</type>
+          <declname>scripts</declname>
+        </param>
+        <param>
+          <type>dependencies on external</type>
+          <declname>systems</declname>
+        </param>
+        <param>
+          <type>databases</type>
+        </param>
+        <param>
+          <type>communications</type>
+          <declname>systems</declname>
+        </param>
+        <param>
+          <type>etc.</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/development/07_runtime_view.rst.txt" line="30" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">..<sp/>_runtime_view:</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal">Runtime<sp/>View</highlight></codeline>
+<codeline lineno="4"><highlight class="normal">============</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal">..<sp/>todo::</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/>Add<sp/>a<sp/>runtime<sp/>view<sp/>of<sp/>i.e.<sp/>the<sp/>startup<sp/>of<sp/>your<sp/>code.</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/>This<sp/>should<sp/>help<sp/>people<sp/>understand<sp/>how<sp/>your<sp/>code<sp/>operates<sp/>and<sp/>where<sp/>to<sp/>look<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>something<sp/>is<sp/>not<sp/>working.</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/>**Contents.**</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/>alternative<sp/>terms:</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/>-<sp/><sp/>Dynamic<sp/>view</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/>-<sp/><sp/>Process<sp/>view</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/>-<sp/><sp/>Workflow<sp/>view</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/>This<sp/>view<sp/>describes<sp/>the<sp/>behavior<sp/>and<sp/>interaction<sp/>of<sp/>the<sp/>system’s</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/>building<sp/>blocks<sp/>as<sp/>runtime<sp/>elements<sp/>(processes,<sp/>tasks,<sp/>activities,</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/>threads,<sp/>…).</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/>Select<sp/>interesting<sp/>runtime<sp/>scenarios<sp/>such<sp/>as:</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/>-<sp/><sp/>How<sp/>are<sp/>the<sp/>most<sp/>important<sp/>use<sp/>cases<sp/>executed<sp/>by<sp/>the<sp/>architectural</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>building<sp/>blocks?</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/>-<sp/><sp/>Which<sp/>instances<sp/>of<sp/>architectural<sp/>building<sp/>blocks<sp/>are<sp/>created<sp/>at</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>runtime<sp/>and<sp/>how<sp/>are<sp/>they<sp/>started,<sp/>controlled,<sp/>and<sp/>stopped.</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/>-<sp/><sp/>How<sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"><sp/>the<sp/>system’s<sp/>components<sp/>co-operate<sp/>with<sp/>external<sp/>and</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>pre-existing<sp/>components?</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/>-<sp/><sp/>How<sp/>is<sp/>the<sp/>system<sp/>started<sp/>(covering<sp/>e.g.<sp/>required<sp/>start<sp/>scripts,</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>dependencies<sp/>on<sp/>external<sp/>systems,<sp/>databases,<sp/>communications<sp/>systems,</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>etc.)?</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>**Note**</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>The<sp/>main<sp/>criterion<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>the<sp/>choice<sp/>of<sp/>possible<sp/>scenarios<sp/>(sequences,</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>workflows)<sp/>is<sp/>their<sp/>**architectural<sp/>relevancy**.<sp/>It<sp/>is<sp/>**not**</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>important<sp/>to<sp/>describe<sp/>a<sp/>large<sp/>number<sp/>of<sp/>scenarios.<sp/>You<sp/>should<sp/>rather</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>document<sp/>a<sp/>representative<sp/>selection.</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>Candidates<sp/>are:</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>1.<sp/>The<sp/>top<sp/>3<sp/>–<sp/>5<sp/>use<sp/>cases</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>2.<sp/>System<sp/>startup</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>3.<sp/>The<sp/>system’s<sp/>behavior<sp/>on<sp/>its<sp/>most<sp/>important<sp/>external<sp/>interfaces</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>4.<sp/>The<sp/>system’s<sp/>behavior<sp/>in<sp/>the<sp/>most<sp/>important<sp/>error<sp/>situations</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>**Motivation.**</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>Especially<sp/>for<sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal">-oriented<sp/>architectures<sp/>it<sp/>is<sp/>not<sp/>sufficient<sp/>to</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>specify<sp/>the<sp/>building<sp/>blocks<sp/>with<sp/>their<sp/>interfaces,<sp/>but<sp/>also<sp/>how</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>instances<sp/>of<sp/>building<sp/>blocks<sp/>interact<sp/>during<sp/>runtime.</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>**Form.**</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>Document<sp/>the<sp/>chosen<sp/>scenarios<sp/>using<sp/>UML<sp/>sequence,<sp/>activity<sp/>or</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>communications<sp/>diagrams.<sp/>Enumerated<sp/>lists<sp/>are<sp/>sometimes<sp/>feasible.</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>Using<sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/>diagrams<sp/>you<sp/>can<sp/>depict<sp/>snapshots<sp/>of<sp/>existing<sp/>runtime</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>objects<sp/>as<sp/>well<sp/>as<sp/>instantiated<sp/>relationships.<sp/>The<sp/>UML<sp/>allows<sp/>to</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>distinguish<sp/>between<sp/>active<sp/>and<sp/>passive<sp/>objects.</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal">Runtime<sp/>Scenario<sp/>1</highlight></codeline>
+<codeline lineno="67"><highlight class="normal">------------------</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal">..<sp/>figure::<sp/>images/IS-O_sequence.*</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/>:alt:<sp/>Demo<sp/>Sequence<sp/>diagram</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/>**UML-type<sp/>sequence<sp/>diagram**<sp/>-<sp/>Shows<sp/>how<sp/>components<sp/>interact<sp/>with<sp/>each<sp/>other<sp/>during<sp/>runtime.</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal">Runtime<sp/>Scenario<sp/>2</highlight></codeline>
+<codeline lineno="76"><highlight class="normal">------------------</highlight></codeline>
+<codeline lineno="77"><highlight class="normal">...</highlight></codeline>
+    </programlisting>
+    <location file="build/html/_sources/development/07_runtime_view.rst.txt"/>
+  </compounddef>
+</doxygen>

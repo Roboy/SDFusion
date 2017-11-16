@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="nutshell_8h" kind="file" language="C++">
+    <compoundname>nutshell.h</compoundname>
+    <innerclass refid="class_nutshell" prot="public">Nutshell</innerclass>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="group__nuttygroup_1ga35b4830c768cfb6224b39e511d219433" prot="public" static="no">
+        <name>@0</name>
+        <enumvalue id="group__nuttygroup_1gga35b4830c768cfb6224b39e511d219433a1607b69d49af7846eb7ddc253a196eb2" prot="public">
+          <name>YellowRoller</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__nuttygroup_1gga35b4830c768cfb6224b39e511d219433aa2fa89c5677f600fa2eaccb7fd196b11" prot="public">
+          <name>RedRoller</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__nuttygroup_1gga35b4830c768cfb6224b39e511d219433abc5c6db6b8898d4789327d752636bc7f" prot="public">
+          <name>GreenRoller</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/anna/Documents/roboy/SDFusion/sw_documentation_template/src/nutshell.h" line="54" column="1" bodyfile="/home/anna/Documents/roboy/SDFusion/sw_documentation_template/src/nutshell.h" bodystart="54" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="enum" id="group__nuttygroup2_1gab0472ba248c9be786e0c5a235e513e60" prot="public" static="no">
+        <name>@1</name>
+        <enumvalue id="group__nuttygroup2_1ggab0472ba248c9be786e0c5a235e513e60a6ea408ea56e8b710aa240004af7580c1" prot="public">
+          <name>Chocolate</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__nuttygroup2_1ggab0472ba248c9be786e0c5a235e513e60a0586e7aba8ea4ccece756d604afa8292" prot="public">
+          <name>Mossy</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__nuttygroup2_1ggab0472ba248c9be786e0c5a235e513e60a8a9408132a8f0f5a2ffba2f7ad75ced9" prot="public">
+          <name>CremeFraiche</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/anna/Documents/roboy/SDFusion/sw_documentation_template/src/nutshell.h" line="61" column="1" bodyfile="/home/anna/Documents/roboy/SDFusion/sw_documentation_template/src/nutshell.h" bodystart="61" bodyend="61"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>An overly extended example of how to use breathe. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="19" refid="class_nutshell" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_nutshell" kindref="compound">Nutshell</ref><sp/>{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="22"></codeline>
+<codeline lineno="23" refid="class_nutshell_1ae42034231cf912d095d57cbeed6cda79" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="class_nutshell_1ae42034231cf912d095d57cbeed6cda79" kindref="member">Tool</ref><sp/>{</highlight></codeline>
+<codeline lineno="24" refid="class_nutshell_1ae42034231cf912d095d57cbeed6cda79ad6ed1c9289f0734f74d197b967effb2c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_nutshell_1ae42034231cf912d095d57cbeed6cda79ad6ed1c9289f0734f74d197b967effb2c" kindref="member">kHammer</ref><sp/>=<sp/>0,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="25" refid="class_nutshell_1ae42034231cf912d095d57cbeed6cda79ad32e3ec374a927a0b6edf29d51e6fcf9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_nutshell_1ae42034231cf912d095d57cbeed6cda79ad32e3ec374a927a0b6edf29d51e6fcf9" kindref="member">kNutCrackers</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="26" refid="class_nutshell_1ae42034231cf912d095d57cbeed6cda79a1c6cc79780165c195ff7cb7384aba51a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_nutshell_1ae42034231cf912d095d57cbeed6cda79a1c6cc79780165c195ff7cb7384aba51a" kindref="member">kNinjaThrowingStars</ref><sp/></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><ref refid="class_nutshell_1a68edae1c44c7a85b889b0cf88e79939f" kindref="member">Nutshell</ref>();</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><ref refid="class_nutshell_1aa7e84b812e4489584093a76da864297e" kindref="member">~Nutshell</ref>();</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_nutshell_1a57fc2641156575ef8d655b6c90a1a17d" kindref="member">crack</ref>(<ref refid="class_nutshell_1ae42034231cf912d095d57cbeed6cda79" kindref="member">Tool</ref><sp/>tool);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_nutshell_1a510c746ef3f7c1b54139124afa657b66" kindref="member">isCracked</ref>();</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="47" refid="class_nutshell_1a144928f8a485dbe64a4db63c2ca5a200" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_nutshell_1a144928f8a485dbe64a4db63c2ca5a200" kindref="member">m_isCracked</ref>;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal">};<sp/></highlight><highlight class="comment">//<sp/>end<sp/>of<sp/>nuttygroup</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/>:<sp/>Steamroller<sp/>{<sp/>YellowRoller,<sp/>RedRoller,<sp/>GreenRoller<sp/>};</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/>:<sp/>Mousse<sp/>{<sp/>Chocolate,<sp/>Mossy,<sp/>CremeFraiche<sp/>};<sp/></highlight><highlight class="comment">//<sp/>end<sp/>of<sp/>nuttygroup2</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/anna/Documents/roboy/SDFusion/sw_documentation_template/src/nutshell.h"/>
+  </compounddef>
+</doxygen>

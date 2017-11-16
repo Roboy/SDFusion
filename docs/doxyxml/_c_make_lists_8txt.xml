@@ -1,0 +1,211 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="_c_make_lists_8txt" kind="file" language="C++">
+    <compoundname>CMakeLists.txt</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">cmake_minimum_required(VERSION<sp/>2.8.3)</highlight></codeline>
+<codeline lineno="2"><highlight class="normal">project(sw_documentation_template)</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Add<sp/>support<sp/>for<sp/>C++11,<sp/>supported<sp/>in<sp/>ROS<sp/>Kinetic<sp/>and<sp/>newer</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>add_definitions(-std=c++11)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Find<sp/>catkin<sp/>macros<sp/>and<sp/>libraries</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>if<sp/>COMPONENTS<sp/>list<sp/>like<sp/>find_package(catkin<sp/>REQUIRED<sp/>COMPONENTS<sp/>xyz)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>is<sp/>used,<sp/>also<sp/>find<sp/>other<sp/>catkin<sp/>packages</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal">find_package(catkin<sp/>REQUIRED<sp/>COMPONENTS</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/>roscpp</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/>std_msgs</highlight></codeline>
+<codeline lineno="13"><highlight class="normal">)</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>System<sp/>dependencies<sp/>are<sp/>found<sp/>with<sp/>CMake&apos;s<sp/>conventions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>find_package(Boost<sp/>REQUIRED<sp/>COMPONENTS<sp/>system)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Uncomment<sp/>this<sp/>if<sp/>the<sp/>package<sp/>has<sp/>a<sp/>setup.py.<sp/>This<sp/>macro<sp/>ensures</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>modules<sp/>and<sp/>global<sp/>scripts<sp/>declared<sp/>therein<sp/>get<sp/>installed</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>See<sp/>http://ros.org/doc/api/catkin/html/user_guide/setup_dot_py.html</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>catkin_python_setup()</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">################################################</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Declare<sp/>ROS<sp/>messages,<sp/>services<sp/>and<sp/>actions<sp/>##</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">################################################</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>To<sp/>declare<sp/>and<sp/>build<sp/>messages,<sp/>services<sp/>or<sp/>actions<sp/>from<sp/>within<sp/>this</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>package,<sp/>follow<sp/>these<sp/>steps:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>*<sp/>Let<sp/>MSG_DEP_SET<sp/>be<sp/>the<sp/>set<sp/>of<sp/>packages<sp/>whose<sp/>message<sp/>types<sp/>you<sp/>use<sp/>in</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/><sp/><sp/>your<sp/>messages/services/actions<sp/>(e.g.<sp/>std_msgs,<sp/>actionlib_msgs,<sp/>...).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>*<sp/>In<sp/>the<sp/>file<sp/>package.xml:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/><sp/><sp/>*<sp/>add<sp/>a<sp/>build_depend<sp/>tag<sp/>for<sp/>&quot;message_generation&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/><sp/><sp/>*<sp/>add<sp/>a<sp/>build_depend<sp/>and<sp/>a<sp/>run_depend<sp/>tag<sp/>for<sp/>each<sp/>package<sp/>in<sp/>MSG_DEP_SET</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/><sp/><sp/>*<sp/>If<sp/>MSG_DEP_SET<sp/>isn&apos;t<sp/>empty<sp/>the<sp/>following<sp/>dependency<sp/>has<sp/>been<sp/>pulled<sp/>in</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/><sp/><sp/><sp/><sp/>but<sp/>can<sp/>be<sp/>declared<sp/>for<sp/>certainty<sp/>nonetheless:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/><sp/><sp/><sp/><sp/>*<sp/>add<sp/>a<sp/>run_depend<sp/>tag<sp/>for<sp/>&quot;message_runtime&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>*<sp/>In<sp/>this<sp/>file<sp/>(CMakeLists.txt):</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/><sp/><sp/>*<sp/>add<sp/>&quot;message_generation&quot;<sp/>and<sp/>every<sp/>package<sp/>in<sp/>MSG_DEP_SET<sp/>to</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/><sp/><sp/><sp/><sp/>find_package(catkin<sp/>REQUIRED<sp/>COMPONENTS<sp/>...)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/><sp/><sp/>*<sp/>add<sp/>&quot;message_runtime&quot;<sp/>and<sp/>every<sp/>package<sp/>in<sp/>MSG_DEP_SET<sp/>to</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/><sp/><sp/><sp/><sp/>catkin_package(CATKIN_DEPENDS<sp/>...)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/><sp/><sp/>*<sp/>uncomment<sp/>the<sp/>add_*_files<sp/>sections<sp/>below<sp/>as<sp/>needed</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/><sp/><sp/><sp/><sp/>and<sp/>list<sp/>every<sp/>.msg/.srv/.action<sp/>file<sp/>to<sp/>be<sp/>processed</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/><sp/><sp/>*<sp/>uncomment<sp/>the<sp/>generate_messages<sp/>entry<sp/>below</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/><sp/><sp/>*<sp/>add<sp/>every<sp/>package<sp/>in<sp/>MSG_DEP_SET<sp/>to<sp/>generate_messages(DEPENDENCIES<sp/>...)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Generate<sp/>messages<sp/>in<sp/>the<sp/>&apos;msg&apos;<sp/>folder</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>add_message_files(</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>FILES</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>Message1.msg</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>Message2.msg</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Generate<sp/>services<sp/>in<sp/>the<sp/>&apos;srv&apos;<sp/>folder</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>add_service_files(</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>FILES</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>Service1.srv</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>Service2.srv</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Generate<sp/>actions<sp/>in<sp/>the<sp/>&apos;action&apos;<sp/>folder</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>add_action_files(</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>FILES</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>Action1.action</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>Action2.action</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Generate<sp/>added<sp/>messages<sp/>and<sp/>services<sp/>with<sp/>any<sp/>dependencies<sp/>listed<sp/>here</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>generate_messages(</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>DEPENDENCIES</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>std_msgs</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="preprocessor">################################################</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Declare<sp/>ROS<sp/>dynamic<sp/>reconfigure<sp/>parameters<sp/>##</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="preprocessor">################################################</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>To<sp/>declare<sp/>and<sp/>build<sp/>dynamic<sp/>reconfigure<sp/>parameters<sp/>within<sp/>this</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>package,<sp/>follow<sp/>these<sp/>steps:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>*<sp/>In<sp/>the<sp/>file<sp/>package.xml:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/><sp/><sp/>*<sp/>add<sp/>a<sp/>build_depend<sp/>and<sp/>a<sp/>run_depend<sp/>tag<sp/>for<sp/>&quot;dynamic_reconfigure&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>*<sp/>In<sp/>this<sp/>file<sp/>(CMakeLists.txt):</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/><sp/><sp/>*<sp/>add<sp/>&quot;dynamic_reconfigure&quot;<sp/>to</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/><sp/><sp/><sp/><sp/>find_package(catkin<sp/>REQUIRED<sp/>COMPONENTS<sp/>...)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/><sp/><sp/>*<sp/>uncomment<sp/>the<sp/>&quot;generate_dynamic_reconfigure_options&quot;<sp/>section<sp/>below</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/><sp/><sp/><sp/><sp/>and<sp/>list<sp/>every<sp/>.cfg<sp/>file<sp/>to<sp/>be<sp/>processed</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Generate<sp/>dynamic<sp/>reconfigure<sp/>parameters<sp/>in<sp/>the<sp/>&apos;cfg&apos;<sp/>folder</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>generate_dynamic_reconfigure_options(</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>cfg/DynReconf1.cfg</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>cfg/DynReconf2.cfg</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="preprocessor">###################################</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>catkin<sp/>specific<sp/>configuration<sp/>##</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="preprocessor">###################################</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>The<sp/>catkin_package<sp/>macro<sp/>generates<sp/>cmake<sp/>config<sp/>files<sp/>for<sp/>your<sp/>package</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Declare<sp/>things<sp/>to<sp/>be<sp/>passed<sp/>to<sp/>dependent<sp/>projects</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>INCLUDE_DIRS:<sp/>uncomment<sp/>this<sp/>if<sp/>you<sp/>package<sp/>contains<sp/>header<sp/>files</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>LIBRARIES:<sp/>libraries<sp/>you<sp/>create<sp/>in<sp/>this<sp/>project<sp/>that<sp/>dependent<sp/>projects<sp/>also<sp/>need</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>CATKIN_DEPENDS:<sp/>catkin_packages<sp/>dependent<sp/>projects<sp/>also<sp/>need</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>DEPENDS:<sp/>system<sp/>dependencies<sp/>of<sp/>this<sp/>project<sp/>that<sp/>dependent<sp/>projects<sp/>also<sp/>need</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal">catkin_package(</highlight></codeline>
+<codeline lineno="105"><highlight class="normal">#<sp/><sp/>INCLUDE_DIRS<sp/>include</highlight></codeline>
+<codeline lineno="106"><highlight class="normal">#<sp/><sp/>LIBRARIES<sp/>sw_documentation_template</highlight></codeline>
+<codeline lineno="107"><highlight class="normal">#<sp/><sp/>CATKIN_DEPENDS<sp/>roscpp<sp/>std_msgs</highlight></codeline>
+<codeline lineno="108"><highlight class="normal">#<sp/><sp/>DEPENDS<sp/>system_lib</highlight></codeline>
+<codeline lineno="109"><highlight class="normal">)</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight><highlight class="preprocessor">###########</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Build<sp/>##</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="preprocessor">###########</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Specify<sp/>additional<sp/>locations<sp/>of<sp/>header<sp/>files</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Your<sp/>package<sp/>locations<sp/>should<sp/>be<sp/>listed<sp/>before<sp/>other<sp/>locations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>include_directories(include)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal">include_directories(</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/>${catkin_INCLUDE_DIRS}</highlight></codeline>
+<codeline lineno="120"><highlight class="normal">)</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal">##<sp/>Declare<sp/>a<sp/>C++<sp/>library</highlight></codeline>
+<codeline lineno="123"><highlight class="normal">#<sp/>add_library(${PROJECT_NAME}</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>src/${PROJECT_NAME}/sw_documentation_template.cpp</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Add<sp/>cmake<sp/>target<sp/>dependencies<sp/>of<sp/>the<sp/>library</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>as<sp/>an<sp/>example,<sp/>code<sp/>may<sp/>need<sp/>to<sp/>be<sp/>generated<sp/>before<sp/>libraries</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>either<sp/>from<sp/>message<sp/>generation<sp/>or<sp/>dynamic<sp/>reconfigure</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>add_dependencies(${PROJECT_NAME}<sp/>${${PROJECT_NAME}_EXPORTED_TARGETS}<sp/>${catkin_EXPORTED_TARGETS})</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Declare<sp/>a<sp/>C++<sp/>executable</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>With<sp/>catkin_make<sp/>all<sp/>packages<sp/>are<sp/>built<sp/>within<sp/>a<sp/>single<sp/>CMake<sp/>context</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>The<sp/>recommended<sp/>prefix<sp/>ensures<sp/>that<sp/>target<sp/>names<sp/>across<sp/>packages<sp/>don&apos;t<sp/>collide</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>add_executable(${PROJECT_NAME}_node<sp/>src/sw_documentation_template_node.cpp)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Rename<sp/>C++<sp/>executable<sp/>without<sp/>prefix</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>The<sp/>above<sp/>recommended<sp/>prefix<sp/>causes<sp/>long<sp/>target<sp/>names,<sp/>the<sp/>following<sp/>renames<sp/>the</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>target<sp/>back<sp/>to<sp/>the<sp/>shorter<sp/>version<sp/>for<sp/>ease<sp/>of<sp/>user<sp/>use</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>e.g.<sp/>&quot;rosrun<sp/>someones_pkg<sp/>node&quot;<sp/>instead<sp/>of<sp/>&quot;rosrun<sp/>someones_pkg<sp/>someones_pkg_node&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>set_target_properties(${PROJECT_NAME}_node<sp/>PROPERTIES<sp/>OUTPUT_NAME<sp/>node<sp/>PREFIX<sp/>&quot;&quot;)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Add<sp/>cmake<sp/>target<sp/>dependencies<sp/>of<sp/>the<sp/>executable</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>same<sp/>as<sp/>for<sp/>the<sp/>library<sp/>above</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>add_dependencies(${PROJECT_NAME}_node<sp/>${${PROJECT_NAME}_EXPORTED_TARGETS}<sp/>${catkin_EXPORTED_TARGETS})</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Specify<sp/>libraries<sp/>to<sp/>link<sp/>a<sp/>library<sp/>or<sp/>executable<sp/>target<sp/>against</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>target_link_libraries(${PROJECT_NAME}_node</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>${catkin_LIBRARIES}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight><highlight class="preprocessor">#############</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Install<sp/>##</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight><highlight class="preprocessor">#############</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>all<sp/>install<sp/>targets<sp/>should<sp/>use<sp/>catkin<sp/>DESTINATION<sp/>variables</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>See<sp/>http://ros.org/doc/api/catkin/html/adv_user_guide/variables.html</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Mark<sp/>executable<sp/>scripts<sp/>(Python<sp/>etc.)<sp/>for<sp/>installation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>in<sp/>contrast<sp/>to<sp/>setup.py,<sp/>you<sp/>can<sp/>choose<sp/>the<sp/>destination</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>install(PROGRAMS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>scripts/my_python_script</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>DESTINATION<sp/>${CATKIN_PACKAGE_BIN_DESTINATION}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Mark<sp/>executables<sp/>and/or<sp/>libraries<sp/>for<sp/>installation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>install(TARGETS<sp/>${PROJECT_NAME}<sp/>${PROJECT_NAME}_node</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>ARCHIVE<sp/>DESTINATION<sp/>${CATKIN_PACKAGE_LIB_DESTINATION}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>LIBRARY<sp/>DESTINATION<sp/>${CATKIN_PACKAGE_LIB_DESTINATION}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>RUNTIME<sp/>DESTINATION<sp/>${CATKIN_PACKAGE_BIN_DESTINATION}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Mark<sp/>cpp<sp/>header<sp/>files<sp/>for<sp/>installation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>install(DIRECTORY<sp/>include/${PROJECT_NAME}/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>DESTINATION<sp/>${CATKIN_PACKAGE_INCLUDE_DESTINATION}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>FILES_MATCHING<sp/>PATTERN<sp/>&quot;*.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>PATTERN<sp/>&quot;.svn&quot;<sp/>EXCLUDE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Mark<sp/>other<sp/>files<sp/>for<sp/>installation<sp/>(e.g.<sp/>launch<sp/>and<sp/>bag<sp/>files,<sp/>etc.)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>install(FILES</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>#<sp/>myfile1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>#<sp/>myfile2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>DESTINATION<sp/>${CATKIN_PACKAGE_SHARE_DESTINATION}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"></highlight><highlight class="preprocessor">#############</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Testing<sp/>##</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="189"><highlight class="normal"></highlight><highlight class="preprocessor">#############</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Add<sp/>gtest<sp/>based<sp/>cpp<sp/>test<sp/>target<sp/>and<sp/>link<sp/>libraries</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>catkin_add_gtest(${PROJECT_NAME}-test<sp/>test/test_sw_documentation_template.cpp)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>if(TARGET<sp/>${PROJECT_NAME}-test)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/>target_link_libraries(${PROJECT_NAME}-test<sp/>${PROJECT_NAME})</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>endif()</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight></codeline>
+<codeline lineno="197"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Add<sp/>folders<sp/>to<sp/>be<sp/>run<sp/>by<sp/>python<sp/>nosetests</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>catkin_add_nosetests(test)</highlight></codeline>
+    </programlisting>
+    <location file="/home/anna/Documents/roboy/SDFusion/sw_documentation_template/CMakeLists.txt"/>
+  </compounddef>
+</doxygen>

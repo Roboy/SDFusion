@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="08__deployment__view_8rst_8txt" kind="file" language="C++">
+    <compoundname>08_deployment_view.rst.txt</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="08__deployment__view_8rst_8txt_1a9c5288b80db1c153852ca9ac1b7f6037" prot="public" static="no" mutable="no">
+        <type>_deployment_view</type>
+        <definition>_deployment_view __pad1__</definition>
+        <argsstring></argsstring>
+        <name>__pad1__</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/development/08_deployment_view.rst.txt" line="1" column="1" bodyfile="build/html/_sources/development/08_deployment_view.rst.txt" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="08__deployment__view_8rst_8txt_1ae63bb04b99833e0b0add517106e37879" prot="public" static="no" mutable="no">
+        <type>_deployment_view</type>
+        <definition>_deployment_view processors</definition>
+        <argsstring></argsstring>
+        <name>processors</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/development/08_deployment_view.rst.txt" line="13" column="1" bodyfile="build/html/_sources/development/08_deployment_view.rst.txt" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="08__deployment__view_8rst_8txt_1a8c95f2ac2ef02dc3599aced62d87e26b" prot="public" static="no" mutable="no">
+        <type>_deployment_view network topologies and</type>
+        <definition>_deployment_view network topologies and channels</definition>
+        <argsstring></argsstring>
+        <name>channels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/development/08_deployment_view.rst.txt" line="13" column="1" bodyfile="build/html/_sources/development/08_deployment_view.rst.txt" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">..<sp/>_deployment_view:</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal">Deployment<sp/>View</highlight></codeline>
+<codeline lineno="4"><highlight class="normal">===============</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal">..<sp/>todo::</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/>Add<sp/>a<sp/>deployment<sp/>diagram.</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/>**Contents.**</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/>This<sp/>view<sp/>describes<sp/>the<sp/>environment<sp/>within<sp/>which<sp/>the<sp/>system<sp/>is<sp/>executed.</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/>It<sp/>describes<sp/>the<sp/>geographic<sp/>distribution<sp/>of<sp/>the<sp/>system<sp/>or<sp/>the<sp/>structure</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/>of<sp/>the<sp/>hardware<sp/>components<sp/>that<sp/>execute<sp/>the<sp/>software.<sp/>It<sp/>documents</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/>workstations,<sp/>processors,<sp/>network<sp/>topologies<sp/>and<sp/>channels,<sp/>as<sp/>well<sp/>as</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/>other<sp/>elements<sp/>of<sp/>the<sp/>physical<sp/>system<sp/>environment.</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/>**Motivation.**</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/>Software<sp/>is<sp/>not<sp/>much<sp/>use<sp/>without<sp/>hardware.<sp/>These<sp/>models<sp/>should<sp/>enable<sp/>the</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">operator</highlight><highlight class="normal"><sp/>to<sp/>properly<sp/>install<sp/>the<sp/>software.</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/>You<sp/>can<sp/>separate<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>into<sp/>different<sp/>levels...</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal">..<sp/>_deployment_overview:</highlight></codeline>
+<codeline lineno="25"><highlight class="normal">..<sp/>figure::<sp/>images/uml_siva_deployment_diagram.*</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/>:alt:<sp/>Deployment<sp/>diagram<sp/>shows<sp/>which<sp/>part<sp/>of<sp/>software<sp/>runs<sp/>on<sp/>which<sp/>machine<sp/>or<sp/>device</highlight></codeline>
+    </programlisting>
+    <location file="build/html/_sources/development/08_deployment_view.rst.txt"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="1__getting__started_8rst_8txt" kind="file" language="C++">
+    <compoundname>1_getting_started.rst.txt</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="1__getting__started_8rst_8txt_1ab50d2d44a5365724449626e88bb6970b" prot="public" static="no" mutable="no">
+        <type>Getting</type>
+        <definition>Getting started</definition>
+        <argsstring></argsstring>
+        <name>started</name>
+        <initializer>===============
+
+Make sure that your robot model is specified correctly before running the script
+
+To run the script in Fusion</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/Usage/1_getting_started.rst.txt" line="1" column="1" bodyfile="build/html/_sources/Usage/1_getting_started.rst.txt" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">Getting<sp/>started</highlight></codeline>
+<codeline lineno="2"><highlight class="normal">===============</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal">Make<sp/>sure<sp/>that<sp/>your<sp/>robot<sp/>model<sp/>is<sp/>specified<sp/>correctly<sp/>before<sp/>running<sp/>the<sp/>script</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal">To<sp/>run<sp/>the<sp/>script<sp/>in<sp/>Fusion,<sp/>run<sp/>the<sp/>Script<sp/>and<sp/>Add-Ins<sp/>command<sp/>and<sp/>select<sp/>the<sp/><ref refid="namespace_s_d_fusion" kindref="compound">SDFusion</ref><sp/>script.<sp/>Click<sp/>the<sp/></highlight><highlight class="stringliteral">&quot;Run&quot;</highlight><highlight class="normal"><sp/>button.</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal">The<sp/>script<sp/>automatically<sp/>exports<sp/>robot<sp/>links<sp/>and<sp/>joints<sp/>(and<sp/>joint<sp/>limits)<sp/>to<sp/>SDFormat<sp/>and<sp/>creates<sp/>the<sp/>required<sp/>mesh<sp/>files.</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal">For<sp/>large<sp/>robot<sp/>models<sp/>the<sp/>script<sp/>takes<sp/>several<sp/>minutes<sp/>to<sp/>finish<sp/>and<sp/>Fusion<sp/>will<sp/>freeze<sp/>during<sp/>that<sp/>time.</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal">When<sp/>the<sp/>scipt<sp/>is<sp/>finished<sp/>a<sp/>success<sp/>dialog<sp/>is<sp/>shown<sp/>in<sp/>Fusion.<sp/>You<sp/>now<sp/>find<sp/>your<sp/>files<sp/>in<sp/>the<sp/>desired<sp/>location.</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal">..<sp/>todo::</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/>model<sp/>requirements:<sp/>rigid<sp/>groups,<sp/>joints</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/>SDF<sp/>location</highlight></codeline>
+    </programlisting>
+    <location file="build/html/_sources/Usage/1_getting_started.rst.txt"/>
+  </compounddef>
+</doxygen>

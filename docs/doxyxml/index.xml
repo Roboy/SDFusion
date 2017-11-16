@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.11">
+  <compound refid="namespace_s_d_fusion" kind="namespace"><name>SDFusion</name>
+    <member refid="namespace_s_d_fusion_1a219cbf2c1ee20eacce22fdbe69577f13" kind="variable"><name>design</name></member>
+    <member refid="namespace_s_d_fusion_1a1e4586d14850ae4cf526680a3c49cc6a" kind="variable"><name>fileDir</name></member>
+    <member refid="namespace_s_d_fusion_1ad9e4c1058db739b42d4d16eac4dd9736" kind="variable"><name>modelName</name></member>
+    <member refid="namespace_s_d_fusion_1aef9425fa7b96797687dc0c651f925025" kind="variable"><name>rootOcc</name></member>
+    <member refid="namespace_s_d_fusion_1ad9d58eb8474af5abcc947ecabc2fbae8" kind="function"><name>gazeboMatrix</name></member>
+    <member refid="namespace_s_d_fusion_1a983bd2c7c97b3edcce7845316040159c" kind="function"><name>vectorToString</name></member>
+    <member refid="namespace_s_d_fusion_1a4e40458cec59a5cd416972fffa69172e" kind="function"><name>sdfPoseVector</name></member>
+    <member refid="namespace_s_d_fusion_1ac565f1d7528daf578e2a19343b3af871" kind="function"><name>sdfPoseMatrix</name></member>
+    <member refid="namespace_s_d_fusion_1ad910e028274986c446803119ff722a11" kind="function"><name>sdfInertial</name></member>
+    <member refid="namespace_s_d_fusion_1a030d7bfb204eb03dcc75c739b2032f4d" kind="function"><name>sdfMom</name></member>
+    <member refid="namespace_s_d_fusion_1a887b4378aceeb4817399fe0dfe81fc28" kind="function"><name>sdfInertia</name></member>
+    <member refid="namespace_s_d_fusion_1a55da14e942487b28a87d13316ad69485" kind="function"><name>linkSDF</name></member>
+    <member refid="namespace_s_d_fusion_1afd26be0b30aee26c5e9317502c303faa" kind="function"><name>jointSDF</name></member>
+    <member refid="namespace_s_d_fusion_1a7a30d112a08dc438704b99988e910fd1" kind="function"><name>revoluteJoint</name></member>
+    <member refid="namespace_s_d_fusion_1af510d43ccec0def809fcb4728eca6150" kind="function"><name>exportToSTL</name></member>
+    <member refid="namespace_s_d_fusion_1a3c688c19bdb6661859c089c11fb24e84" kind="function"><name>rigidGroupToSTL</name></member>
+    <member refid="namespace_s_d_fusion_1aca49eb8bcd2a11b732fb0d327534314e" kind="function"><name>occurrenceToSTL</name></member>
+    <member refid="namespace_s_d_fusion_1ae1ae019691620803c53824f885012ed2" kind="function"><name>clearName</name></member>
+    <member refid="namespace_s_d_fusion_1a3543f5250b401f0b56e6e822b7b1cc78" kind="function"><name>run</name></member>
+  </compound>
+  <compound refid="_s_d_fusion_8py" kind="file"><name>SDFusion.py</name>
+  </compound>
+</doxygenindex>

@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="5__design__decisions_8rst_8txt" kind="file" language="C++">
+    <compoundname>5_design_decisions.rst.txt</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="5__design__decisions_8rst_8txt_1a5c7c7b54e25a474199292aa5c9a7dd29" prot="public" static="no" mutable="no">
+        <type>Design</type>
+        <definition>Design Decisions</definition>
+        <argsstring></argsstring>
+        <name>Decisions</name>
+        <initializer>================
+
+This can document decisions on the design of the software.
+
+.. todo::
+  If you want to use it</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/ScopeContext/5_design_decisions.rst.txt" line="1" column="1" bodyfile="build/html/_sources/ScopeContext/5_design_decisions.rst.txt" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">Design<sp/>Decisions</highlight></codeline>
+<codeline lineno="2"><highlight class="normal">================</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal">This<sp/>can<sp/>document<sp/>decisions<sp/>on<sp/>the<sp/>design<sp/>of<sp/>the<sp/>software.</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal">..<sp/>todo::</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/>If<sp/>you<sp/>want<sp/>to<sp/>use<sp/>it,<sp/>keep<sp/>track<sp/>of<sp/>decisions<sp/>that<sp/>someone<sp/>further<sp/>developing<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>software<sp/>or<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>it<sp/>in<sp/>the<sp/>future<sp/>might<sp/>want<sp/>to<sp/>know<sp/>about.</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/>This<sp/>might<sp/>save<sp/>them<sp/>time<sp/>or<sp/>clarify<sp/>expectations.</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/>You<sp/>can<sp/>put<sp/>them<sp/>as<sp/>a<sp/>list,<sp/>or<sp/>whatever.</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/>*Things<sp/>to<sp/>consider:*</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/>-<sp/><sp/>What<sp/>exactly<sp/>is<sp/>the<sp/>challenge?</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/>-<sp/><sp/>Why<sp/>is<sp/>it<sp/>relevant<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>the<sp/>architecture?</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/>-<sp/><sp/>What<sp/>consequences<sp/>does<sp/>the<sp/>decision<sp/>have?</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/>-<sp/><sp/>Which<sp/>constraints<sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"><sp/>you<sp/>have<sp/>to<sp/>keep<sp/>in<sp/>mind?</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/>-<sp/><sp/>What<sp/>factors<sp/>influence<sp/>the<sp/>decision?</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/>-<sp/><sp/>Which<sp/>assumption<sp/>have<sp/>you<sp/>made?</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/>-<sp/><sp/>How<sp/>can<sp/>you<sp/>check<sp/>those<sp/>assumptions?</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/>-<sp/><sp/>Which<sp/>risks<sp/>are<sp/>you<sp/>facing?</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/>-<sp/><sp/>Which<sp/>alternative<sp/>options<sp/>did<sp/>you<sp/>consider?</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/>-<sp/><sp/>How<sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"><sp/>you<sp/>judge<sp/>each<sp/>one?</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/>-<sp/><sp/>Which<sp/>alternatives<sp/>are<sp/>you<sp/>excluding<sp/>deliberately?</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/>-<sp/><sp/>Who<sp/>(</highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>not<sp/>you)<sp/>has<sp/>decided?</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/>-<sp/><sp/>How<sp/>has<sp/>the<sp/>decision<sp/>been<sp/>justified?</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/>-<sp/><sp/>When<sp/>did<sp/>you<sp/>decide?</highlight></codeline>
+    </programlisting>
+    <location file="build/html/_sources/ScopeContext/5_design_decisions.rst.txt"/>
+  </compounddef>
+</doxygen>

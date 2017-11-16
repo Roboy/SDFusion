@@ -1,0 +1,238 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="index_8rst_8txt" kind="file" language="C++">
+    <compoundname>index.rst.txt</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="index_8rst_8txt_1ad8003d4e5ec65c54f9cfb07eb34e0dea" prot="public" static="no" mutable="no">
+        <type>Software Documentation template master</type>
+        <definition>Software Documentation template master file</definition>
+        <argsstring></argsstring>
+        <name>file</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/index.rst.txt" line="1" column="1" bodyfile="build/html/_sources/index.rst.txt" bodystart="1" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="index_8rst_8txt_1a4d80336d8681d8e67c2d1d0c0bbb6c71" prot="public" static="no" mutable="no">
+        <type>Software Documentation template master created by sphinx quickstart on Fri</type>
+        <definition>Software Documentation template master created by sphinx quickstart on Fri Jul</definition>
+        <argsstring></argsstring>
+        <name>Jul</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/index.rst.txt" line="2" column="1" bodyfile="build/html/_sources/index.rst.txt" bodystart="1" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="index_8rst_8txt_1aaac2aa42813397252d0f054dfa0e2339" prot="public" static="no" mutable="no">
+        <type>Software Documentation template master created by sphinx quickstart on Fri but it should at least contain the root toctree directive Welcome to</type>
+        <definition>Software Documentation template master created by sphinx quickstart on Fri but it should at least contain the root toctree directive Welcome to SDFusion</definition>
+        <argsstring></argsstring>
+        <name>SDFusion</name>
+        <initializer>===========================================================
+
+This project provides an exporter for Autodesk Fusion 360 robot models to SDFormat. This SDF file can then be used to simulate the robot model ín Gazebo</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/index.rst.txt" line="6" column="1" bodyfile="build/html/_sources/index.rst.txt" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="index_8rst_8txt_1a050db92a88935d719a53d5f3aa5c8f81" prot="public" static="no" mutable="no">
+        <type>Software Documentation template master created by sphinx quickstart on Fri but it should at least contain the root toctree directive Welcome to an open source robot simulator Simulation is an important aspect in</type>
+        <definition>Software Documentation template master created by sphinx quickstart on Fri but it should at least contain the root toctree directive Welcome to an open source robot simulator Simulation is an important aspect in robotics</definition>
+        <argsstring></argsstring>
+        <name>robotics</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/index.rst.txt" line="9" column="1" bodyfile="build/html/_sources/index.rst.txt" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="index_8rst_8txt_1ae2aaa24f6520ad262189a3e67d0bc7f2" prot="public" static="no" mutable="no">
+        <type>Software Documentation template master created by sphinx quickstart on Fri but it should at least contain the root toctree directive Welcome to an open source robot simulator Simulation is an important aspect in as it enables multiple people to work with one robot at the same</type>
+        <definition>Software Documentation template master created by sphinx quickstart on Fri but it should at least contain the root toctree directive Welcome to an open source robot simulator Simulation is an important aspect in as it enables multiple people to work with one robot at the same time</definition>
+        <argsstring></argsstring>
+        <name>time</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/index.rst.txt" line="9" column="1" bodyfile="build/html/_sources/index.rst.txt" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="index_8rst_8txt_1a8e186e9e0068fc140288194f57d79be1" prot="public" static="no" mutable="no">
+        <type>Software Documentation template master created by sphinx quickstart on Fri but it should at least contain the root toctree directive Welcome to an open source robot simulator Simulation is an important aspect in as it enables multiple people to work with one robot at the same as well as giving researchers the freedom to test new controls without damaging the robot The exporter itself is a python</type>
+        <definition>Software Documentation template master created by sphinx quickstart on Fri but it should at least contain the root toctree directive Welcome to an open source robot simulator Simulation is an important aspect in as it enables multiple people to work with one robot at the same as well as giving researchers the freedom to test new controls without damaging the robot The exporter itself is a python script</definition>
+        <argsstring></argsstring>
+        <name>script</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/index.rst.txt" line="11" column="1" bodyfile="build/html/_sources/index.rst.txt" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="index_8rst_8txt_1aeec0edfb490ededa1592209e531fb4f6" prot="public" static="no" mutable="no">
+        <type>Software Documentation template master created by sphinx quickstart on Fri but it should at least contain the root toctree directive Welcome to an open source robot simulator Simulation is an important aspect in as it enables multiple people to work with one robot at the same as well as giving researchers the freedom to test new controls without damaging the robot The exporter itself is a python which needs to be loaded into Autdesk Fusion and executed</type>
+        <definition>Software Documentation template master created by sphinx quickstart on Fri but it should at least contain the root toctree directive Welcome to an open source robot simulator Simulation is an important aspect in as it enables multiple people to work with one robot at the same as well as giving researchers the freedom to test new controls without damaging the robot The exporter itself is a python which needs to be loaded into Autdesk Fusion and executed _background_prerequisits</definition>
+        <argsstring></argsstring>
+        <name>_background_prerequisits</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/index.rst.txt" line="13" column="1" bodyfile="build/html/_sources/index.rst.txt" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="index_8rst_8txt_1a4f2e39cd740f3634f0555d1092152f62" prot="public" static="no" mutable="no">
+        <type>Software Documentation template master created by sphinx quickstart on Fri but it should at least contain the root toctree directive Welcome to an open source robot simulator Simulation is an important aspect in as it enables multiple people to work with one robot at the same as well as giving researchers the freedom to test new controls without damaging the robot The exporter itself is a python which needs to be loaded into Autdesk Fusion and executed opposed to the concept of constraining motion that most other CAD programs use **</type>
+        <definition>Software Documentation template master created by sphinx quickstart on Fri but it should at least contain the root toctree directive Welcome to an open source robot simulator Simulation is an important aspect in as it enables multiple people to work with one robot at the same as well as giving researchers the freedom to test new controls without damaging the robot The exporter itself is a python which needs to be loaded into Autdesk Fusion and executed opposed to the concept of constraining motion that most other CAD programs use** Develop</definition>
+        <argsstring></argsstring>
+        <name>Develop</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/index.rst.txt" line="22" column="1" bodyfile="build/html/_sources/index.rst.txt" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="index_8rst_8txt_1a2b8b55da883028ee8cfa1645c0f7dc24" prot="public" static="no" mutable="no">
+        <type>Software Documentation template master created by sphinx quickstart on Fri but it should at least contain the root toctree directive Welcome to an open source robot simulator Simulation is an important aspect in as it enables multiple people to work with one robot at the same as well as giving researchers the freedom to test new controls without damaging the robot The exporter itself is a python which needs to be loaded into Autdesk Fusion and executed opposed to the concept of constraining motion that most other CAD programs use the SDFormat and the Autodesk Fusion API Furthermore you need a basic understanding of how CAD programs work internally Additionally you need to know about robot</type>
+        <definition>Software Documentation template master created by sphinx quickstart on Fri but it should at least contain the root toctree directive Welcome to an open source robot simulator Simulation is an important aspect in as it enables multiple people to work with one robot at the same as well as giving researchers the freedom to test new controls without damaging the robot The exporter itself is a python which needs to be loaded into Autdesk Fusion and executed opposed to the concept of constraining motion that most other CAD programs use the SDFormat and the Autodesk Fusion API Furthermore you need a basic understanding of how CAD programs work internally Additionally you need to know about robot links</definition>
+        <argsstring></argsstring>
+        <name>links</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/index.rst.txt" line="24" column="1" bodyfile="build/html/_sources/index.rst.txt" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="index_8rst_8txt_1ae77ba5f7fbe6e9b2ea473c5211420dfa" prot="public" static="no" mutable="no">
+        <type>Software Documentation template master created by sphinx quickstart on Fri but it should at least contain the root toctree directive Welcome to an open source robot simulator Simulation is an important aspect in as it enables multiple people to work with one robot at the same as well as giving researchers the freedom to test new controls without damaging the robot The exporter itself is a python which needs to be loaded into Autdesk Fusion and executed opposed to the concept of constraining motion that most other CAD programs use the SDFormat and the Autodesk Fusion API Furthermore you need a basic understanding of how CAD programs work internally Additionally you need to know about robot</type>
+        <definition>Software Documentation template master created by sphinx quickstart on Fri but it should at least contain the root toctree directive Welcome to an open source robot simulator Simulation is an important aspect in as it enables multiple people to work with one robot at the same as well as giving researchers the freedom to test new controls without damaging the robot The exporter itself is a python which needs to be loaded into Autdesk Fusion and executed opposed to the concept of constraining motion that most other CAD programs use the SDFormat and the Autodesk Fusion API Furthermore you need a basic understanding of how CAD programs work internally Additionally you need to know about robot joints</definition>
+        <argsstring></argsstring>
+        <name>joints</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/index.rst.txt" line="24" column="1" bodyfile="build/html/_sources/index.rst.txt" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">..<sp/>Software<sp/>Documentation<sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>master<sp/>file,<sp/>created<sp/>by</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"><sp/><sp/><sp/>sphinx-quickstart<sp/>on<sp/>Fri<sp/>Jul<sp/>29<sp/>19:44:29<sp/>2016.</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"><sp/><sp/><sp/>You<sp/>can<sp/>adapt<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>file<sp/>completely<sp/>to<sp/>your<sp/>liking,<sp/>but<sp/>it<sp/>should<sp/>at<sp/>least</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"><sp/><sp/><sp/>contain<sp/>the<sp/>root<sp/>`toctree`<sp/>directive.</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal">Welcome<sp/>to<sp/><ref refid="namespace_s_d_fusion" kindref="compound">SDFusion</ref>!</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">===========================================================</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal">This<sp/>project<sp/>provides<sp/>an<sp/>exporter<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>Autodesk<sp/>Fusion<sp/>360<sp/>robot<sp/>models<sp/>to<sp/>SDFormat.<sp/>This<sp/>SDF<sp/>file<sp/>can<sp/>then<sp/>be<sp/>used<sp/>to<sp/>simulate<sp/>the<sp/>robot<sp/>model<sp/>ín<sp/>Gazebo,<sp/>an<sp/>open<sp/>source<sp/>robot<sp/>simulator.<sp/>Simulation<sp/>is<sp/>an<sp/>important<sp/>aspect<sp/>in<sp/>robotics,<sp/>as<sp/>it<sp/>enables<sp/>multiple<sp/>people<sp/>to<sp/>work<sp/>with<sp/>one<sp/>robot<sp/>at<sp/>the<sp/>same<sp/>time,<sp/>as<sp/>well<sp/>as<sp/>giving<sp/>researchers<sp/>the<sp/>freedom<sp/>to<sp/>test<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>controls<sp/>without<sp/>damaging<sp/>the<sp/>robot.</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal">The<sp/>exporter<sp/>itself<sp/>is<sp/>a<sp/>python<sp/>script,<sp/>which<sp/>needs<sp/>to<sp/>be<sp/>loaded<sp/>into<sp/>Autdesk<sp/>Fusion<sp/>360<sp/>and<sp/>executed.</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">..<sp/>_background_prerequisits:</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">Relevant<sp/>Background<sp/>Information<sp/>and<sp/>Pre-Requisits</highlight></codeline>
+<codeline lineno="16"><highlight class="normal">--------------------------------------------------</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal">**Use:**</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">To<sp/>use<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>script<sp/>you<sp/>need<sp/>a<sp/>machine<sp/>running<sp/>Windows<sp/>with<sp/>Autodesk<sp/>Fusion<sp/>360<sp/>installed.<sp/>Furthermore<sp/>your<sp/>robot<sp/>model<sp/>needs<sp/>to<sp/>be<sp/>in<sp/>Fusion<sp/>and<sp/>you<sp/>need<sp/>to<sp/>modify<sp/>it<sp/>as<sp/>specified<sp/>here.<sp/>Please<sp/>make<sp/>yourself<sp/>familiar<sp/>with<sp/>the<sp/>concept<sp/>of<sp/>joints<sp/>that<sp/>Autodesk<sp/>Fusion<sp/>uses,<sp/>opposed<sp/>to<sp/>the<sp/>concept<sp/>of<sp/>constraining<sp/>motion<sp/>that<sp/>most<sp/>other<sp/>CAD<sp/>programs<sp/>use.</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal">**Develop:**</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal">To<sp/>develop<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>script<sp/>further<sp/>you<sp/>need<sp/>to<sp/>be<sp/>familiar<sp/>with<sp/>python,<sp/>the<sp/>SDFormat<sp/>and<sp/>the<sp/>Autodesk<sp/>Fusion<sp/>API.<sp/>Furthermore<sp/>you<sp/>need<sp/>a<sp/>basic<sp/>understanding<sp/>of<sp/>how<sp/>CAD<sp/>programs<sp/>work<sp/>internally.<sp/>Additionally<sp/>you<sp/>need<sp/>to<sp/>know<sp/>about<sp/>robot<sp/>links,<sp/>joints,<sp/>kinematic<sp/>chains<sp/>and<sp/>rotation<sp/>matrices.</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal">Helpful<sp/>Links:</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal">-<sp/>Autodesk<sp/>Fusion<sp/>360<sp/><sp/><sp/><sp/><sp/><sp/><sp/>http:</highlight><highlight class="comment">//www.autodesk.de/products/fusion-360/overview</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal">-<sp/>SDFormat<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>http:</highlight><highlight class="comment">//sdformat.org/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal">-<sp/>Gazebo<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>http:</highlight><highlight class="comment">//gazebosim.org/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal">..<sp/>todo::</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/>insert<sp/>link<sp/>model<sp/>specification</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/>install<sp/>script<sp/>link</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/>fusion<sp/>api<sp/>link</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/>fusion<sp/>joint<sp/>links</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/>Link<sp/>to<sp/>relevant<sp/>documents<sp/>or<sp/>create<sp/>a<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>page<sp/>and<sp/>add<sp/>them<sp/>there.</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal">..<sp/>_requirements_overview:</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal">Requirements<sp/>Overview</highlight></codeline>
+<codeline lineno="48"><highlight class="normal">---------------------</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal">The<sp/>**software<sp/>requirements**<sp/>define<sp/>the<sp/>system<sp/>from<sp/>a<sp/>blackbox/interfaces<sp/>perspective.<sp/>They<sp/>are<sp/>split<sp/>into<sp/>the<sp/>following<sp/>sections:</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal">-<sp/>**User<sp/>Interfaces**<sp/>-<sp/>:ref:`user-interfaces`</highlight></codeline>
+<codeline lineno="53"><highlight class="normal">-<sp/>**Technical<sp/>Interfaces**<sp/>-<sp/>:ref:`technical-interfaces`</highlight></codeline>
+<codeline lineno="54"><highlight class="normal">-<sp/>**Runtime<sp/>Interfaces<sp/>and<sp/>Constraints**<sp/>-<sp/>:ref:`runtime_interfaces`</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal">TODO:</highlight></codeline>
+<codeline lineno="58"><highlight class="normal">======</highlight></codeline>
+<codeline lineno="59"><highlight class="normal">..<sp/>todolist::</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal">Contents:</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal">..<sp/>_usage:</highlight></codeline>
+<codeline lineno="64"><highlight class="normal">..<sp/>toctree::</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/>:maxdepth:<sp/>1</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/>:glob:</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/>:caption:<sp/>Usage<sp/>and<sp/>Installation</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/>Usage</highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="70"><highlight class="comment"></highlight></codeline>
+<codeline lineno="71"><highlight class="comment">..<sp/>_ScopeContext:</highlight></codeline>
+<codeline lineno="72"><highlight class="comment">..<sp/>toctree::</highlight></codeline>
+<codeline lineno="73"><highlight class="comment"><sp/><sp/>:maxdepth:<sp/>1</highlight></codeline>
+<codeline lineno="74"><highlight class="comment"><sp/><sp/>:glob:</highlight></codeline>
+<codeline lineno="75"><highlight class="comment"><sp/><sp/>:caption:<sp/>Interfaces<sp/>and<sp/>Scope</highlight></codeline>
+<codeline lineno="76"><highlight class="comment"></highlight></codeline>
+<codeline lineno="77"><highlight class="comment"><sp/><sp/>ScopeContext/*</highlight></codeline>
+<codeline lineno="78"><highlight class="comment"></highlight></codeline>
+<codeline lineno="79"><highlight class="comment">..<sp/>_development:</highlight></codeline>
+<codeline lineno="80"><highlight class="comment">..<sp/>toctree::</highlight></codeline>
+<codeline lineno="81"><highlight class="comment"><sp/><sp/>:maxdepth:<sp/>1</highlight></codeline>
+<codeline lineno="82"><highlight class="comment"><sp/><sp/>:glob:</highlight></codeline>
+<codeline lineno="83"><highlight class="comment"><sp/><sp/>:caption:<sp/>Development</highlight></codeline>
+<codeline lineno="84"><highlight class="comment"></highlight></codeline>
+<codeline lineno="85"><highlight class="comment"><sp/><sp/>development/*</highlight></codeline>
+<codeline lineno="86"><highlight class="comment"></highlight></codeline>
+<codeline lineno="87"><highlight class="comment">..<sp/>toctree::</highlight></codeline>
+<codeline lineno="88"><highlight class="comment"><sp/><sp/><sp/>:maxdepth:<sp/>1</highlight></codeline>
+<codeline lineno="89"><highlight class="comment"></highlight></codeline>
+<codeline lineno="90"><highlight class="comment"><sp/><sp/><sp/>about-arc42</highlight></codeline>
+    </programlisting>
+    <location file="build/html/_sources/index.rst.txt"/>
+  </compounddef>
+</doxygen>

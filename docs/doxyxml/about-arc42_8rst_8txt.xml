@@ -1,0 +1,239 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="about-arc42_8rst_8txt" kind="file" language="C++">
+    <compoundname>about-arc42.rst.txt</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="about-arc42_8rst_8txt_1a4edc492a53a610fc44755e1b4dc885c0" prot="public" static="no" mutable="no">
+        <type>About</type>
+        <definition>About arc42</definition>
+        <argsstring></argsstring>
+        <name>arc42</name>
+        <initializer>===========
+This information should stay in every repository as per their license: http:
+
+arc42</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/about-arc42.rst.txt" line="1" column="1" bodyfile="build/html/_sources/about-arc42.rst.txt" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="about-arc42_8rst_8txt_1a8f853a475311155d06685c598277f20f" prot="public" static="no" mutable="no">
+        <type>About the Template for documentation of software and system architecture By Dr Gernot</type>
+        <definition>About the Template for documentation of software and system architecture By Dr Gernot Starke</definition>
+        <argsstring></argsstring>
+        <name>Starke</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/about-arc42.rst.txt" line="8" column="1" bodyfile="build/html/_sources/about-arc42.rst.txt" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="about-arc42_8rst_8txt_1a3866edcad63a0f95d80ee6be84770bd9" prot="public" static="no" mutable="no">
+        <type>About the Template for documentation of software and system architecture By Dr Gernot Dr Peter Hruschka and contributors Template</type>
+        <definition>About the Template for documentation of software and system architecture By Dr Gernot Dr Peter Hruschka and contributors Template Revision</definition>
+        <argsstring></argsstring>
+        <name>Revision</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/about-arc42.rst.txt" line="10" column="1" bodyfile="build/html/_sources/about-arc42.rst.txt" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="about-arc42_8rst_8txt_1ac548e46ed80e0d9020556827098dd589" prot="public" static="no" mutable="no">
+        <type>About the Template for documentation of software and system architecture By Dr Gernot Dr Peter Hruschka and contributors Template Juni © We acknowledge that this document uses material from the arc architecture</type>
+        <definition>About the Template for documentation of software and system architecture By Dr Gernot Dr Peter Hruschka and contributors Template Juni © We acknowledge that this document uses material from the arc architecture template</definition>
+        <argsstring></argsstring>
+        <name>template</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/about-arc42.rst.txt" line="13" column="1" bodyfile="build/html/_sources/about-arc42.rst.txt" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="about-arc42_8rst_8txt_1aae34286bf92e113a7f57991881a49fda" prot="public" static="no" mutable="no">
+        <type>About the Template for documentation of software and system architecture By Dr Gernot Dr Peter Hruschka and contributors Template Juni © We acknowledge that this document uses material from the arc architecture</type>
+        <definition>About the Template for documentation of software and system architecture By Dr Gernot Dr Peter Hruschka and contributors Template Juni © We acknowledge that this document uses material from the arc architecture http</definition>
+        <argsstring></argsstring>
+        <name>http</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/about-arc42.rst.txt" line="13" column="1" bodyfile="build/html/_sources/about-arc42.rst.txt" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="about-arc42_8rst_8txt_1ae77a3bad376ee8bc78a95d2f3af3ed3c" prot="public" static="no" mutable="no">
+        <type>About the Template for documentation of software and system architecture By Dr Gernot Dr Peter Hruschka and contributors Template Juni © We acknowledge that this document uses material from the arc architecture Auflage Starke Hruschka Gernot Starke und Peter</type>
+        <definition>About the Template for documentation of software and system architecture By Dr Gernot Dr Peter Hruschka and contributors Template Juni © We acknowledge that this document uses material from the arc architecture Auflage Starke Hruschka Gernot Starke und Peter Hruschka</definition>
+        <argsstring></argsstring>
+        <name>Hruschka</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/about-arc42.rst.txt" line="32" column="1" bodyfile="build/html/_sources/about-arc42.rst.txt" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="about-arc42_8rst_8txt_1a4e23bea04bf1e66b6d637e8760cbbc00" prot="public" static="no" mutable="no">
+        <type>About the Template for documentation of software and system architecture By Dr Gernot Dr Peter Hruschka and contributors Template Juni © We acknowledge that this document uses material from the arc architecture Auflage Starke Hruschka Gernot Starke und Peter Auflage Zörner Softwarearchitekturen dokumentieren und</type>
+        <definition>About the Template for documentation of software and system architecture By Dr Gernot Dr Peter Hruschka and contributors Template Juni © We acknowledge that this document uses material from the arc architecture Auflage Starke Hruschka Gernot Starke und Peter Auflage Zörner Softwarearchitekturen dokumentieren und kommunizieren</definition>
+        <argsstring></argsstring>
+        <name>kommunizieren</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/about-arc42.rst.txt" line="35" column="1" bodyfile="build/html/_sources/about-arc42.rst.txt" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="about-arc42_8rst_8txt_1a30c2069d10d2aa70ce2b5909f7dc3472" prot="public" static="no" mutable="no">
+        <type>About the Template for documentation of software and system architecture By Dr Gernot Dr Peter Hruschka and contributors Template Juni © We acknowledge that this document uses material from the arc architecture Auflage Starke Hruschka Gernot Starke und Peter Auflage Zörner Softwarearchitekturen dokumentieren und Carl Hanser</type>
+        <definition>About the Template for documentation of software and system architecture By Dr Gernot Dr Peter Hruschka and contributors Template Juni © We acknowledge that this document uses material from the arc architecture Auflage Starke Hruschka Gernot Starke und Peter Auflage Zörner Softwarearchitekturen dokumentieren und Carl Hanser Verlag</definition>
+        <argsstring></argsstring>
+        <name>Verlag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/about-arc42.rst.txt" line="36" column="1" bodyfile="build/html/_sources/about-arc42.rst.txt" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">About<sp/>arc42</highlight></codeline>
+<codeline lineno="2"><highlight class="normal">===========</highlight></codeline>
+<codeline lineno="3"><highlight class="normal">This<sp/>information<sp/>should<sp/>stay<sp/>in<sp/>every<sp/>repository<sp/>as<sp/>per<sp/>their<sp/>license:<sp/>http:</highlight><highlight class="comment">//www.arc42.de/template/licence.html</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">arc42,<sp/>the<sp/>Template<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>documentation<sp/>of<sp/>software<sp/>and<sp/>system</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">architecture.</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal">By<sp/>Dr.<sp/>Gernot<sp/>Starke,<sp/>Dr.<sp/>Peter<sp/>Hruschka<sp/>and<sp/>contributors.</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal">Template<sp/>Revision:<sp/>6.5<sp/>EN<sp/>(based<sp/>on<sp/>asciidoc),<sp/>Juni<sp/>2014</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal">©<sp/>We<sp/>acknowledge<sp/>that<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>document<sp/>uses<sp/>material<sp/>from<sp/>the<sp/>arc<sp/>42</highlight></codeline>
+<codeline lineno="13"><highlight class="normal">architecture<sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">,<sp/>http:</highlight><highlight class="comment">//www.arc42.de.<sp/>Created<sp/>by<sp/>Dr.<sp/>Peter</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal">Hruschka<sp/>&amp;<sp/>Dr.<sp/>Gernot<sp/>Starke.<sp/>For<sp/>additional<sp/>contributors<sp/>see</highlight></codeline>
+<codeline lineno="15"><highlight class="normal">http:</highlight><highlight class="comment">//arc42.de/sonstiges/contributors.html</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>**Note**</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>This<sp/>version<sp/>of<sp/>the<sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>contains<sp/>some<sp/>help<sp/>and<sp/>explanations.<sp/>It</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>is<sp/>used<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>familiarization<sp/>with<sp/>arc42<sp/>and<sp/>the<sp/>understanding<sp/>of<sp/>the</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>concepts.<sp/>For<sp/>documentation<sp/>of<sp/>your<sp/>own<sp/>system<sp/>you<sp/>use<sp/>better<sp/>the</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>*plain*<sp/>version.</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">Literature<sp/>and<sp/>references</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">--------------------------</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal">Starke-2014</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>Gernot<sp/>Starke:<sp/>Effektive<sp/>Softwarearchitekturen<sp/>-<sp/>Ein<sp/>praktischer</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>Leitfaden.<sp/>Carl<sp/>Hanser<sp/>Verlag,<sp/>6,<sp/>Auflage<sp/>2014.</highlight></codeline>
+<codeline lineno="31"><highlight class="normal">Starke-Hruschka-2011</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>Gernot<sp/>Starke<sp/>und<sp/>Peter<sp/>Hruschka:<sp/>Softwarearchitektur<sp/>kompakt.</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>Springer<sp/>Akademischer<sp/>Verlag,<sp/>2.<sp/>Auflage<sp/>2011.</highlight></codeline>
+<codeline lineno="34"><highlight class="normal">Zörner-2013</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>Softwarearchitekturen<sp/>dokumentieren<sp/>und<sp/>kommunizieren,<sp/>Carl<sp/>Hanser</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>Verlag,<sp/>2012</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal">Examples</highlight></codeline>
+<codeline lineno="39"><highlight class="normal">--------------------------</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal">-<sp/><sp/>`HTML<sp/>Sanity</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/>Checker<sp/>&lt;http:</highlight><highlight class="comment">//aim42.github.io/htmlSanityCheck/hsc_arc42.html&gt;`__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal">-<sp/><sp/>`DocChess<sp/>&lt;http:</highlight><highlight class="comment">//www.dokchess.de/dokchess/arc42/&gt;`__<sp/>(german)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal">-<sp/><sp/>`Gradle<sp/>&lt;http:</highlight><highlight class="comment">//www.embarc.de/arc42-starschnitt-gradle/&gt;`__<sp/>(german)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal">-<sp/><sp/>`MaMa</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/>CRM<sp/>&lt;http:</highlight><highlight class="comment">//confluence.arc42.org/display/arc42beispielmamacrm&gt;`__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/>(german)</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal">-<sp/><sp/>`Financial<sp/>Data</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/>Migration<sp/>&lt;http://confluence.arc42.org/display/migrationEg/Financial+Data+Migration&gt;`__</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/>(german)</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal">Acknowledgements<sp/>and<sp/>collaborations</highlight></codeline>
+<codeline lineno="57"><highlight class="normal">----------------------------------------------------</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal">arc42<sp/>originally<sp/>envisioned<sp/>by<sp/>`Dr.<sp/>Peter</highlight></codeline>
+<codeline lineno="60"><highlight class="normal">Hruschka<sp/>&lt;http:</highlight><highlight class="comment">//b-agile.de&gt;`__<sp/>and<sp/>`Dr.<sp/>Gernot</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal">Starke<sp/>&lt;http:</highlight><highlight class="comment">//gernotstarke.de&gt;`__.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal">Sources</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>We<sp/>maintain<sp/>arc42<sp/>in<sp/>*asciidoc*<sp/>format<sp/>at<sp/>the<sp/>moment,<sp/>hosted<sp/>in</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>`GitHub<sp/>under<sp/>the</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>aim42-Organisation<sp/>&lt;https:</highlight><highlight class="comment">//github.com/aim42/aim42&gt;`__.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal">Issues</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>We<sp/>maintain<sp/>a<sp/>list<sp/>of<sp/>`open<sp/>topics<sp/>and</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>bugs<sp/>&lt;https:</highlight><highlight class="comment">//github.com/arc42/arc42-template/issues&gt;`__.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal">We<sp/>are<sp/>looking<sp/>forward<sp/>to<sp/>your<sp/>corrections<sp/>and<sp/>clarifications!<sp/>Please</highlight></codeline>
+<codeline lineno="72"><highlight class="normal">fork<sp/>the<sp/>repository<sp/>mentioned<sp/>over<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>lines<sp/>and<sp/>send<sp/>us<sp/>a<sp/>*pull</highlight></codeline>
+<codeline lineno="73"><highlight class="normal">request*!</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal">Collaborators</highlight></codeline>
+<codeline lineno="76"><highlight class="normal">--------------------------</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal">We<sp/>are<sp/>very<sp/>thankful<sp/>and<sp/>acknowledge<sp/>the<sp/>support<sp/>and<sp/>help<sp/>provided<sp/>by</highlight></codeline>
+<codeline lineno="79"><highlight class="normal">all<sp/>active<sp/>and<sp/>former<sp/>collaborators,<sp/>uncountable<sp/>(anonymous)<sp/>advisors,</highlight></codeline>
+<codeline lineno="80"><highlight class="normal">bug<sp/>finders<sp/>and<sp/>users<sp/>of<sp/>this<sp/>method.</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal">Currently<sp/>active</highlight></codeline>
+<codeline lineno="83"><highlight class="normal">~~~~~~~~~~~~~~~~</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal">-<sp/><sp/>Gernot<sp/>Starke</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal">-<sp/><sp/>Stefan<sp/>Zörner</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal">-<sp/><sp/>Markus<sp/>Schärtel</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal">-<sp/><sp/>Ralf<sp/>D.<sp/>Müller</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal">-<sp/><sp/>Peter<sp/>Hruschka</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal">-<sp/><sp/>Jürgen<sp/>Krey</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal">Former<sp/>collaborators</highlight></codeline>
+<codeline lineno="98"><highlight class="normal">~~~~~~~~~~~~~~~~~~~~</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal">(in<sp/>alphabetical<sp/>order)</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal">-<sp/><sp/>Anne<sp/>Aloysius</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal">-<sp/><sp/>Matthias<sp/>Bohlen</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal">-<sp/><sp/>Karl<sp/>Eilebrecht</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal">-<sp/><sp/>Manfred<sp/>Ferken</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal">-<sp/><sp/>Phillip<sp/>Ghadir</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal">-<sp/><sp/>Carsten<sp/>Klein</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal">-<sp/><sp/>Prof.<sp/>Arne<sp/>Koschel</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal">-<sp/><sp/>Axel<sp/>Scheithauer</highlight></codeline>
+    </programlisting>
+    <location file="build/html/_sources/about-arc42.rst.txt"/>
+  </compounddef>
+</doxygen>

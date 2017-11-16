@@ -1,0 +1,186 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="2__architecture__constraints_8rst_8txt" kind="file" language="C++">
+    <compoundname>2_architecture_constraints.rst.txt</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="2__architecture__constraints_8rst_8txt_1ab13c0db57cffda6883233c49626a762c" prot="public" static="no" mutable="no">
+        <type>Architecture</type>
+        <definition>Architecture and why Should they not use tool x or operating system y You can use the table as or just put a list Altera All code is highly specific to the Altera FPGA Intel has bought Altera and aims to integrate their SoC with FPGAs We are on the right horse Intel Only the intel real sense can sense it csv table::Software Altera All code is highly specific to the Altera FPGA Intel has bought Altera and aims to integrate their SoC with FPGAs We are on the right horse Intel Only the intel real sense can sense it csv table::Operating System Windows or Due to the Intel RealSense SDK only being supported on we are stuck with Windows csv table::Programming Constraints</definition>
+        <argsstring></argsstring>
+        <name>Constraints</name>
+        <initializer>========================
+
+.. todo::
+  Describe what constraints someone further developing this software should adhere to</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/ScopeContext/2_architecture_constraints.rst.txt" line="1" column="1" bodyfile="build/html/_sources/ScopeContext/2_architecture_constraints.rst.txt" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="2__architecture__constraints_8rst_8txt_1acd0a1ef04d6516cc51b911b4c546f383" prot="public" static="no" mutable="no">
+        <type>Architecture and why Should they not use tool x or operating system y You can use the table as</type>
+        <definition>Architecture and why Should they not use tool x or operating system y You can use the table as below</definition>
+        <argsstring></argsstring>
+        <name>below</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/ScopeContext/2_architecture_constraints.rst.txt" line="6" column="1" bodyfile="build/html/_sources/ScopeContext/2_architecture_constraints.rst.txt" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="2__architecture__constraints_8rst_8txt_1a46bc3d261bb56564f85078f946441064" prot="public" static="no" mutable="no">
+        <type>Architecture and why Should they not use tool x or operating system y You can use the table as or just put a list</type>
+        <definition>Architecture and why Should they not use tool x or operating system y You can use the table as or just put a list _runtime_interfaces</definition>
+        <argsstring></argsstring>
+        <name>_runtime_interfaces</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/ScopeContext/2_architecture_constraints.rst.txt" line="8" column="1" bodyfile="build/html/_sources/ScopeContext/2_architecture_constraints.rst.txt" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="2__architecture__constraints_8rst_8txt_1acb11def03f722a1b1fbe58dcbd512dc7" prot="public" static="no" mutable="no">
+        <type>Architecture and why Should they not use tool x or operating system y You can use the table as or just put a list</type>
+        <definition>Architecture and why Should they not use tool x or operating system y You can use the table as or just put a list Altera All code is highly specific to the Altera FPGA Intel has bought Altera and aims to integrate their SoC with FPGAs We are on the right horse Intel Only the intel real sense can sense it csv table::Software Altera All code is highly specific to the Altera FPGA Intel has bought Altera and aims to integrate their SoC with FPGAs We are on the right horse Intel Only the intel real sense can sense it csv table::Operating System Windows or Due to the Intel RealSense SDK only being supported on we are stuck with Windows csv table::Programming Description</definition>
+        <argsstring></argsstring>
+        <name>Description</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/ScopeContext/2_architecture_constraints.rst.txt" line="24" column="1" bodyfile="build/html/_sources/ScopeContext/2_architecture_constraints.rst.txt" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="2__architecture__constraints_8rst_8txt_1a3bc6611b11461d5286dbb054fc067356" prot="public" static="no" mutable="no">
+        <type>Architecture and why Should they not use tool x or operating system y You can use the table as or just put a list Altera</type>
+        <definition>Architecture and why Should they not use tool x or operating system y You can use the table as or just put a list Altera All code is highly specific to the Altera FPGA Intel has bought Altera and aims to integrate their SoC with FPGAs We are on the right horse Intel Only the intel real sense can sense it csv table::Software Altera FPGA</definition>
+        <argsstring></argsstring>
+        <name>FPGA</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/ScopeContext/2_architecture_constraints.rst.txt" line="27" column="1" bodyfile="build/html/_sources/ScopeContext/2_architecture_constraints.rst.txt" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="2__architecture__constraints_8rst_8txt_1a835ee2f6b1754317f7e12ee614683df3" prot="public" static="no" mutable="no">
+        <type>Architecture and why Should they not use tool x or operating system y You can use the table as or just put a list Altera All code is highly specific to the Altera FPGA Intel has bought Altera and aims to integrate their SoC with FPGAs We are on the right horse Intel</type>
+        <definition>Architecture and why Should they not use tool x or operating system y You can use the table as or just put a list Altera All code is highly specific to the Altera FPGA Intel has bought Altera and aims to integrate their SoC with FPGAs We are on the right horse Intel Only the intel real sense can sense it csv table::Software Altera All code is highly specific to the Altera FPGA Intel has bought Altera and aims to integrate their SoC with FPGAs We are on the right horse Intel RealSense</definition>
+        <argsstring></argsstring>
+        <name>RealSense</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/ScopeContext/2_architecture_constraints.rst.txt" line="28" column="1" bodyfile="build/html/_sources/ScopeContext/2_architecture_constraints.rst.txt" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="2__architecture__constraints_8rst_8txt_1a3419931e1844da8773d6c9cb0e4f0ab4" prot="public" static="no" mutable="no">
+        <type>Architecture and why Should they not use tool x or operating system y You can use the table as or just put a list Altera All code is highly specific to the Altera FPGA Intel has bought Altera and aims to integrate their SoC with FPGAs We are on the right horse Intel Only the intel real sense can sense it csv table::Software Altera All code is highly specific to the Altera FPGA Intel has bought Altera and aims to integrate their SoC with FPGAs We are on the right horse Intel Only the intel real sense can sense it csv table::Operating System Windows or</type>
+        <definition>Architecture and why Should they not use tool x or operating system y You can use the table as or just put a list Altera All code is highly specific to the Altera FPGA Intel has bought Altera and aims to integrate their SoC with FPGAs We are on the right horse Intel Only the intel real sense can sense it csv table:: Software Altera All code is highly specific to the Altera FPGA Intel has bought Altera and aims to integrate their SoC with FPGAs We are on the right horse Intel Only the intel real sense can sense it csv table:: Operating System Windows or higher</definition>
+        <argsstring></argsstring>
+        <name>higher</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/ScopeContext/2_architecture_constraints.rst.txt" line="41" column="1" bodyfile="build/html/_sources/ScopeContext/2_architecture_constraints.rst.txt" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="2__architecture__constraints_8rst_8txt_1a490e5de79d9b12d9dccb3f73e4126402" prot="public" static="no" mutable="no">
+        <type>Architecture and why Should they not use tool x or operating system y You can use the table as or just put a list Altera All code is highly specific to the Altera FPGA Intel has bought Altera and aims to integrate their SoC with FPGAs We are on the right horse Intel Only the intel real sense can sense it csv table::Software Altera All code is highly specific to the Altera FPGA Intel has bought Altera and aims to integrate their SoC with FPGAs We are on the right horse Intel Only the intel real sense can sense it csv table::Operating System Windows or Due to the Intel RealSense SDK only being supported on</type>
+        <definition>Architecture and why Should they not use tool x or operating system y You can use the table as or just put a list Altera All code is highly specific to the Altera FPGA Intel has bought Altera and aims to integrate their SoC with FPGAs We are on the right horse Intel Only the intel real sense can sense it csv table:: Software Altera All code is highly specific to the Altera FPGA Intel has bought Altera and aims to integrate their SoC with FPGAs We are on the right horse Intel Only the intel real sense can sense it csv table:: Operating System Windows or Due to the Intel RealSense SDK only being supported on Windows</definition>
+        <argsstring></argsstring>
+        <name>Windows</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/ScopeContext/2_architecture_constraints.rst.txt" line="41" column="1" bodyfile="build/html/_sources/ScopeContext/2_architecture_constraints.rst.txt" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="2__architecture__constraints_8rst_8txt_1a620e605e57fc5f899d245a226782ddf8" prot="public" static="no" mutable="no">
+        <type>Architecture and why Should they not use tool x or operating system y You can use the table as or just put a list Altera All code is highly specific to the Altera FPGA Intel has bought Altera and aims to integrate their SoC with FPGAs We are on the right horse Intel Only the intel real sense can sense it csv table::Software Altera All code is highly specific to the Altera FPGA Intel has bought Altera and aims to integrate their SoC with FPGAs We are on the right horse Intel Only the intel real sense can sense it csv table::Operating System Windows or Due to the Intel RealSense SDK only being supported on we are stuck with Windows csv table::Programming</type>
+        <definition>Architecture and why Should they not use tool x or operating system y You can use the table as or just put a list Altera All code is highly specific to the Altera FPGA Intel has bought Altera and aims to integrate their SoC with FPGAs We are on the right horse Intel Only the intel real sense can sense it csv table:: Software Altera All code is highly specific to the Altera FPGA Intel has bought Altera and aims to integrate their SoC with FPGAs We are on the right horse Intel Only the intel real sense can sense it csv table:: Operating System Windows or Due to the Intel RealSense SDK only being supported on we are stuck with Windows csv table:: Programming CouchDB</definition>
+        <argsstring></argsstring>
+        <name>CouchDB</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/ScopeContext/2_architecture_constraints.rst.txt" line="47" column="1" bodyfile="build/html/_sources/ScopeContext/2_architecture_constraints.rst.txt" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">Architecture<sp/>Constraints</highlight></codeline>
+<codeline lineno="2"><highlight class="normal">========================</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal">..<sp/>todo::</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><sp/><sp/>Describe<sp/>what<sp/>constraints<sp/>someone<sp/>further<sp/>developing<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>software<sp/>should<sp/>adhere<sp/>to,<sp/>and<sp/>why.</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/>Should<sp/>they<sp/>not<sp/>use<sp/>tool<sp/>x<sp/>or<sp/>operating<sp/>system<sp/>y...<sp/>You<sp/>can<sp/>use<sp/>the<sp/>table<sp/>as<sp/>below,<sp/>or<sp/>just<sp/>put<sp/>a<sp/>list.</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal">..<sp/>_runtime_interfaces:</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal">Technical<sp/>Constraints<sp/>/<sp/>Runtime<sp/>Interface<sp/>Requirements</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">------------------------------------------------------</highlight></codeline>
+<codeline lineno="12"><highlight class="normal">..<sp/>todo::</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/>List<sp/>all<sp/>technical<sp/>constraints<sp/>in<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>section.<sp/>This<sp/>category<sp/>covers<sp/>runtime<sp/></highlight><highlight class="keyword">interface<sp/></highlight><highlight class="normal">requirements<sp/>and<sp/>constraints<sp/>such<sp/>as:</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/>-<sp/>Hard-<sp/>and<sp/>software<sp/>infrastructure</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/>-<sp/>Applied<sp/>technologies</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>Operating<sp/>systems</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>Middleware</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>Databases</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>Programming<sp/>languages</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">..<sp/>csv-table::<sp/>Hardware<sp/>Constraints</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/>:header:<sp/>&quot;Constraint<sp/>Name&quot;,<sp/>&quot;Description&quot;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/>:widths:<sp/>20,<sp/>60</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/>&quot;Altera<sp/>FPGA&quot;,<sp/>&quot;All<sp/>code<sp/>is<sp/>highly<sp/>specific<sp/>to<sp/>the<sp/>Altera<sp/>FPGA.<sp/>Intel<sp/>has<sp/>bought<sp/>Altera<sp/>and<sp/>aims<sp/>to<sp/>integrate<sp/>their<sp/>SoC<sp/>with<sp/>FPGAs.<sp/>We<sp/>are<sp/>on<sp/>the<sp/>right<sp/>horse!&quot;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/>&quot;Intel<sp/>RealSense&quot;,<sp/>&quot;Only<sp/>the<sp/>intel<sp/>real<sp/>sense<sp/>can<sp/>sense<sp/>it..&quot;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal">..<sp/>csv-table::<sp/>Software<sp/>Constraints</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/>:header:<sp/>&quot;Constraint<sp/>Name&quot;,<sp/>&quot;Description&quot;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/>:widths:<sp/>20,<sp/>60</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/>&quot;Altera<sp/>FPGA&quot;,<sp/>&quot;All<sp/>code<sp/>is<sp/>highly<sp/>specific<sp/>to<sp/>the<sp/>Altera<sp/>FPGA.<sp/>Intel<sp/>has<sp/>bought<sp/>Altera<sp/>and<sp/>aims<sp/>to<sp/>integrate<sp/>their<sp/>SoC<sp/>with<sp/>FPGAs.<sp/>We<sp/>are<sp/>on<sp/>the<sp/>right<sp/>horse!&quot;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/>&quot;Intel<sp/>RealSense&quot;,<sp/>&quot;Only<sp/>the<sp/>intel<sp/>real<sp/>sense<sp/>can<sp/>sense<sp/>it...&quot;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal">..<sp/>csv-table::<sp/>Operating<sp/>System<sp/>Constraints</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/>:header:<sp/>&quot;Constraint<sp/>Name&quot;,<sp/>&quot;Description&quot;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/>:widths:<sp/>20,<sp/>60</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/>&quot;Windows<sp/>8<sp/>or<sp/>higher&quot;,<sp/>&quot;Due<sp/>to<sp/>the<sp/>Intel<sp/>RealSense<sp/>SDK<sp/>only<sp/>being<sp/>supported<sp/>on<sp/>Windows,<sp/>we<sp/>are<sp/>stuck<sp/>with<sp/>Windows&quot;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal">..<sp/>csv-table::<sp/>Programming<sp/>Constraints</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/>:header:<sp/>&quot;Constraint<sp/>Name&quot;,<sp/>&quot;Description&quot;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/>:widths:<sp/>20,<sp/>60</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/>&quot;CouchDB&quot;,<sp/>&quot;We<sp/>have<sp/>to<sp/>use<sp/>the<sp/>CouchDB<sp/>because<sp/>the<sp/>type<sp/>of<sp/>data<sp/>we<sp/>have<sp/>to<sp/>store<sp/>changes<sp/>at<sp/>runtime...&quot;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal">..<sp/>_conventions:</highlight></codeline>
+    </programlisting>
+    <location file="build/html/_sources/ScopeContext/2_architecture_constraints.rst.txt"/>
+  </compounddef>
+</doxygen>

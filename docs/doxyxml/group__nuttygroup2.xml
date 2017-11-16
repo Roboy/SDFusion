@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="group__nuttygroup2" kind="group">
+    <compoundname>nuttygroup2</compoundname>
+    <title>Second Nutty Group</title>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="group__nuttygroup2_1gab0472ba248c9be786e0c5a235e513e60" prot="public" static="no">
+        <name>@1</name>
+        <enumvalue id="group__nuttygroup2_1ggab0472ba248c9be786e0c5a235e513e60a6ea408ea56e8b710aa240004af7580c1" prot="public">
+          <name>Chocolate</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__nuttygroup2_1ggab0472ba248c9be786e0c5a235e513e60a0586e7aba8ea4ccece756d604afa8292" prot="public">
+          <name>Mossy</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__nuttygroup2_1ggab0472ba248c9be786e0c5a235e513e60a8a9408132a8f0f5a2ffba2f7ad75ced9" prot="public">
+          <name>CremeFraiche</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/anna/Documents/roboy/SDFusion/sw_documentation_template/src/nutshell.h" line="61" column="1" bodyfile="/home/anna/Documents/roboy/SDFusion/sw_documentation_template/src/nutshell.h" bodystart="61" bodyend="61"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The group for all nutjobs. </para>    </briefdescription>
+    <detaileddescription>
+<para>More documentation for the second group.</para>    </detaileddescription>
+  </compounddef>
+</doxygen>

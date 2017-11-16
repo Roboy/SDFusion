@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="1__conventions_8rst_8txt" kind="file" language="C++">
+    <compoundname>1_conventions.rst.txt</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="1__conventions_8rst_8txt_1a5112cec2ee1b5d952875b5feabfd62c8" prot="public" static="no" mutable="no">
+        <type>Conventions We follow the coding</type>
+        <definition>Conventions We follow the coding guidelines</definition>
+        <argsstring></argsstring>
+        <name>guidelines</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/ScopeContext/1_conventions.rst.txt" line="3" column="1" bodyfile="build/html/_sources/ScopeContext/1_conventions.rst.txt" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="1__conventions_8rst_8txt_1a0d9cc87bb6b1888528ebf149f0824b5d" prot="public" static="no" mutable="no">
+        <type>Conventions We follow the coding if you differ from the ones below csv table::Coding</type>
+        <definition>Conventions We follow the coding if you differ from the ones below csv table:: Coding Guidelines</definition>
+        <argsstring></argsstring>
+        <name>Guidelines</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/ScopeContext/1_conventions.rst.txt" line="8" column="1" bodyfile="build/html/_sources/ScopeContext/1_conventions.rst.txt" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="1__conventions_8rst_8txt_1a4a835d7fb23b649238dc7aa5a43993eb" prot="public" static="no" mutable="no">
+        <type>Conventions We follow the coding if you differ from the ones below csv table::Coding</type>
+        <definition>Conventions We follow the coding if you differ from the ones below csv table:: Coding Guideline</definition>
+        <argsstring></argsstring>
+        <name>Guideline</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/ScopeContext/1_conventions.rst.txt" line="9" column="1" bodyfile="build/html/_sources/ScopeContext/1_conventions.rst.txt" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="1__conventions_8rst_8txt_1adfa32d77cb1e2775bba926e3f8654ca2" prot="public" static="no" mutable="no">
+        <type>Conventions We follow the coding if you differ from the ones below csv table::Coding</type>
+        <definition>Conventions We follow the coding if you differ from the ones below csv table:: Coding Tools</definition>
+        <argsstring></argsstring>
+        <name>Tools</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/ScopeContext/1_conventions.rst.txt" line="9" column="1" bodyfile="build/html/_sources/ScopeContext/1_conventions.rst.txt" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="1__conventions_8rst_8txt_1a9307062d56dd4e70325fe47cc48b51b7" prot="public" static="no" mutable="no">
+        <type>Conventions We follow the coding if you differ from the ones below csv table::Coding</type>
+        <definition>Conventions We follow the coding if you differ from the ones below csv table:: Coding Python</definition>
+        <argsstring></argsstring>
+        <name>Python</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/ScopeContext/1_conventions.rst.txt" line="12" column="1" bodyfile="build/html/_sources/ScopeContext/1_conventions.rst.txt" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="1__conventions_8rst_8txt_1a9c9abcd1b427382c394e84ae23e6d71c" prot="public" static="no" mutable="no">
+        <type>Conventions We follow the coding if you differ from the ones below csv table::Coding</type>
+        <definition>Conventions We follow the coding if you differ from the ones below csv table:: Coding https</definition>
+        <argsstring></argsstring>
+        <name>https</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/ScopeContext/1_conventions.rst.txt" line="12" column="1" bodyfile="build/html/_sources/ScopeContext/1_conventions.rst.txt" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">Conventions</highlight></codeline>
+<codeline lineno="2"><highlight class="normal">-----------</highlight></codeline>
+<codeline lineno="3"><highlight class="normal">We<sp/>follow<sp/>the<sp/>coding<sp/>guidelines:</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">..<sp/>todo::</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/>Define<sp/>what<sp/>coding<sp/>guideline<sp/>they<sp/>should<sp/>use,<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>you<sp/>differ<sp/>from<sp/>the<sp/>ones<sp/>below.</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal">..<sp/>csv-table::<sp/>Coding<sp/>Guidelines</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/>:header:<sp/></highlight><highlight class="stringliteral">&quot;Language&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Guideline&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Tools&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/>:widths:<sp/>20,<sp/>30,<sp/>30</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;Python&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;https://www.python.org/dev/peps/pep-0008/&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;C++&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;http://wiki.ros.org/CppStyleGuide&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;clang-format:<sp/>https://github.com/davetcoleman/roscpp_code_format&quot;</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="build/html/_sources/ScopeContext/1_conventions.rst.txt"/>
+  </compounddef>
+</doxygen>

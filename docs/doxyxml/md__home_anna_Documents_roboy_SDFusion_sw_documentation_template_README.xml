@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="md__home_anna_Documents_roboy_SDFusion_sw_documentation_template_README" kind="page">
+    <compoundname>md__home_anna_Documents_roboy_SDFusion_sw_documentation_template_README</compoundname>
+    <title>Welcome to the Roboy sw_documentation_template</title>
+    <detaileddescription>
+<para><ulink url="http://roboy-sw-documentation-template.readthedocs.io/en/lite/?badge=lite"></ulink></para><para>Template for documenting software requirements and software architectures</para><para><heading level="2">Getting started</heading>
+</para><para><heading level="3">Install</heading>
+</para><para><itemizedlist>
+<listitem><para>Git clone this repo into your project folder</para></listitem><listitem><para>Remove the .git folder: <computeroutput>rm -rf .git</computeroutput></para></listitem><listitem><para>Install the dependencies: <computeroutput>pip install -r .../sw_documentation_template/documentation/requirements.txt</computeroutput></para></listitem><listitem><para>Adapt the Doxyfile in ./documentation/Doxyfile to:<itemizedlist>
+<listitem><para>Name the project correctly: i.e. <computeroutput>PROJECT_NAME= &quot;Software Documentation Template&quot;</computeroutput></para></listitem><listitem><para>Point to the correct all of your source and include folders: i.e. <computeroutput>INPUT= ../src ../include</computeroutput></para></listitem></itemizedlist>
+</para></listitem><listitem><para>Adapt the conf.py in ./documentation/conf.py to:<itemizedlist>
+<listitem><para>Name the project and author correctly: starting here: <computeroutput>project = u&apos;Software Documentation Template&apos;</computeroutput></para></listitem><listitem><para>Look through other settings such as:<itemizedlist>
+<listitem><para><computeroutput>htmlhelp_basename</computeroutput></para></listitem></itemizedlist>
+</para></listitem></itemizedlist>
+</para></listitem></itemizedlist>
+</para><para><heading level="3">Build</heading>
+</para><para>Its a sphinx project containing a doxygen setup, just run<itemizedlist>
+<listitem><para>cd documentation</para></listitem><listitem><para>doxygen</para></listitem><listitem><para>cd ..</para></listitem><listitem><para>make clean html to generate the output.</para></listitem></itemizedlist>
+</para><para>Open the index.html file in the ./documentation/build folder</para><para><heading level="3">Deploy</heading>
+</para><para>Log into the Roboy READTHEDOCS at <ulink url="http://readthedocs.io/">http://readthedocs.io/</ulink> and add your repo there.</para><para><heading level="2">Acknowledgement</heading>
+</para><para>The template is based on <ulink url="http://arc42.de/template/index.html">http://arc42.de/template/index.html</ulink></para><para><heading level="2">License</heading>
+</para><para>Its licensed as &apos;very much resembles the Creative Commons Attribution License&apos;: <ulink url="http://arc42.de/template/licence.html">http://arc42.de/template/licence.html</ulink> </para>    </detaileddescription>
+  </compounddef>
+</doxygen>

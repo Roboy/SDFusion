@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="4__user__interface_8rst_8txt" kind="file" language="C++">
+    <compoundname>4_user_interface.rst.txt</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="4__user__interface_8rst_8txt_1a9cd8d97f9a00f686cf2eebc6fcf151dd" prot="public" static="no" mutable="no">
+        <type>_user</type>
+        <definition>_user interfaces</definition>
+        <argsstring></argsstring>
+        <name>interfaces</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/ScopeContext/4_user_interface.rst.txt" line="1" column="1" bodyfile="build/html/_sources/ScopeContext/4_user_interface.rst.txt" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="4__user__interface_8rst_8txt_1afa8b2e9c262bbb5ee10f4e58bc414c26" prot="public" static="no" mutable="no">
+        <type>_user and especially if you have a UI or</type>
+        <definition>_user and especially if you have a UI or GUI</definition>
+        <argsstring></argsstring>
+        <name>GUI</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/ScopeContext/4_user_interface.rst.txt" line="8" column="1" bodyfile="build/html/_sources/ScopeContext/4_user_interface.rst.txt" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="4__user__interface_8rst_8txt_1a31e64e6094318ed8a6870bfcf20d5857" prot="public" static="no" mutable="no">
+        <type>_user and especially if you have a UI or describe how it can be used A good way of doing</type>
+        <definition>_user and especially if you have a UI or describe how it can be used A good way of doing this</definition>
+        <argsstring></argsstring>
+        <name>this</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/ScopeContext/4_user_interface.rst.txt" line="9" column="1" bodyfile="build/html/_sources/ScopeContext/4_user_interface.rst.txt" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="4__user__interface_8rst_8txt_1a009b5c0e35e4400fb345fa99bb49b1b4" prot="public" static="no" mutable="no">
+        <type>_user and especially if you have a UI or describe how it can be used A good way of doing is by building a state transition diagram aka the Dynamic UI Behaviuour and a mockup picture of every screen the user can see aka Static UI Don t overdo it _dynamic UI</type>
+        <definition>_user and especially if you have a UI or describe how it can be used A good way of doing is by building a state transition diagram aka the Dynamic UI Behaviuour and a mockup picture of every screen the user can see aka Static UI Don t overdo it _dynamic UI requirements</definition>
+        <argsstring></argsstring>
+        <name>requirements</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/ScopeContext/4_user_interface.rst.txt" line="16" column="1" bodyfile="build/html/_sources/ScopeContext/4_user_interface.rst.txt" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">..<sp/>_user-interfaces:</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal">User<sp/>Interfaces</highlight></codeline>
+<codeline lineno="4"><highlight class="normal">---------------</highlight></codeline>
+<codeline lineno="5"><highlight class="normal">How<sp/>does<sp/>a<sp/>user<sp/>interact<sp/>with<sp/>the<sp/>system.</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal">..<sp/>todo::</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/>If<sp/>you<sp/>have<sp/>a<sp/>user<sp/>interacting<sp/>with<sp/>the<sp/>finished<sp/>system,<sp/>and<sp/>especially<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>you<sp/>have<sp/>a<sp/>UI<sp/>or<sp/>GUI,<sp/>describe<sp/>how<sp/>it<sp/>can<sp/>be<sp/>used.</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/>A<sp/>good<sp/>way<sp/>of<sp/>doing<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">,<sp/>is<sp/>by<sp/>building<sp/>a</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/>-<sp/>state<sp/>transition<sp/>diagram<sp/>aka<sp/>the<sp/></highlight><highlight class="stringliteral">&apos;Dynamic<sp/>UI<sp/>Behaviuour&apos;</highlight><highlight class="normal"><sp/>and</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/>-<sp/>a<sp/>mockup/picture<sp/>of<sp/>every<sp/>screen<sp/>the<sp/>user<sp/>can<sp/>see<sp/>-<sp/>aka<sp/></highlight><highlight class="stringliteral">&apos;Static<sp/>UI&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/>Don</highlight><highlight class="stringliteral">&apos;t<sp/>overdo<sp/>it...</highlight></codeline>
+<codeline lineno="15"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="16"><highlight class="stringliteral">..<sp/>_dynamic-UI-requirements:</highlight></codeline>
+<codeline lineno="17"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="18"><highlight class="stringliteral">Dynamic<sp/>UI<sp/>Behaviour</highlight></codeline>
+<codeline lineno="19"><highlight class="stringliteral">^^^^^^^^^^^^^^^^^^^^</highlight></codeline>
+<codeline lineno="20"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="21"><highlight class="stringliteral">..<sp/>figure::<sp/>images/flow_replace_me.*</highlight></codeline>
+<codeline lineno="22"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="23"><highlight class="stringliteral"><sp/><sp/>Diagram<sp/>showing<sp/>the<sp/>dynamic<sp/>behaviour<sp/>of<sp/>the<sp/>user<sp/>interface<sp/>i.e.<sp/>State<sp/>diagram</highlight></codeline>
+<codeline lineno="24"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="25"><highlight class="stringliteral">..<sp/>_static-UI-requirements:</highlight></codeline>
+<codeline lineno="26"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="27"><highlight class="stringliteral">Static<sp/>UI</highlight></codeline>
+<codeline lineno="28"><highlight class="stringliteral">^^^^^^^^^</highlight></codeline>
+<codeline lineno="29"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="30"><highlight class="stringliteral">..<sp/>figure::<sp/>images/wireframe_kit_free_11.*</highlight></codeline>
+<codeline lineno="31"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="32"><highlight class="stringliteral"><sp/><sp/>Mock-up<sp/>screens<sp/>of<sp/>the<sp/>individual<sp/>views/screens<sp/>of<sp/>the<sp/>GUI<sp/>i.e.<sp/>Wireframes,<sp/>whiteboard<sp/>sketches</highlight></codeline>
+    </programlisting>
+    <location file="build/html/_sources/ScopeContext/4_user_interface.rst.txt"/>
+  </compounddef>
+</doxygen>

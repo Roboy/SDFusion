@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="0__system__scope__and__context_8rst_8txt" kind="file" language="C++">
+    <compoundname>0_system_scope_and_context.rst.txt</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">Context</highlight></codeline>
+<codeline lineno="2"><highlight class="normal">--------</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal">..<sp/>todo::</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><sp/><sp/>Create<sp/>a<sp/>black<sp/>box<sp/>view<sp/>of<sp/>your<sp/>software<sp/>within<sp/>its<sp/>intendend<sp/>environment.</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/>Identify<sp/>all</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/>neighboring<sp/>systems<sp/>and<sp/>specify<sp/>all<sp/>logical<sp/>business<sp/>data<sp/>that<sp/>is</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/>exchanged<sp/>with<sp/>the<sp/>system<sp/>under<sp/>development.</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/>List<sp/>of<sp/>all<sp/>(a-l-l)<sp/>neighboring<sp/>systems.</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/>**Motivation.**</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/>Understanding<sp/>the<sp/>information<sp/>exchange<sp/>with<sp/>neighboring<sp/>systems<sp/>(i.e.</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/>all<sp/>input<sp/>flows<sp/>and<sp/>all<sp/>output<sp/>flows).</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal">..<sp/>_context_within_environment:</highlight></codeline>
+<codeline lineno="19"><highlight class="normal">..<sp/>figure::<sp/>images/uml_system_context.*</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/>:alt:<sp/>Bulding<sp/>blocks<sp/>overview</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/>UML<sp/>System<sp/>Context</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/>**UML-type<sp/>context<sp/>diagram**<sp/>-<sp/>shows<sp/>the<sp/>birds<sp/>eye<sp/>view<sp/>of<sp/>the<sp/>system<sp/>(black<sp/>box)<sp/>described<sp/>by<sp/>this<sp/>architecture<sp/>within<sp/>the<sp/>ecosystem<sp/>it<sp/>is<sp/>to<sp/>be<sp/>placed<sp/>in.<sp/>Shows<sp/>orbit<sp/>level<sp/>interfaces<sp/>on<sp/>the<sp/>user<sp/>interaction<sp/>and<sp/>component<sp/>scope.</highlight></codeline>
+    </programlisting>
+    <location file="build/html/_sources/ScopeContext/0_system_scope_and_context.rst.txt"/>
+  </compounddef>
+</doxygen>

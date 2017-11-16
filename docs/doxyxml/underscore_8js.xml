@@ -1,0 +1,1147 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="underscore_8js" kind="file" language="Javascript">
+    <compoundname>underscore.js</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="underscore_8js_1a4b28d4aa90dcb1209e289611a604bfbe" prot="public" static="no" mutable="no">
+        <type>else r</type>
+        <definition>else r _</definition>
+        <argsstring></argsstring>
+        <name>_</name>
+        <initializer>=b</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="10" column="1" bodyfile="build/html/_static/underscore.js" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a76595d95e1519d598549a881f24bc055" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b VERSION</definition>
+        <argsstring></argsstring>
+        <name>VERSION</name>
+        <initializer>=&quot;1.3.1&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="10" column="1" bodyfile="build/html/_static/underscore.js" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1aab858032a95af802114b255fac6f45f2" prot="public" static="no" mutable="no">
+        <type>var</type>
+        <definition>var j</definition>
+        <argsstring></argsstring>
+        <name>j</name>
+        <initializer>=b.each=
+b.forEach=function(a,c,d){if(a!=null)if(w&amp;&amp;a.forEach===w)a.forEach(c,d);else if(a.length===+a.length)for(var e=0,f=a.length;e&lt;f;e++){if(e in a&amp;&amp;c.call(d,a[e],e,a)===n)break}else for(e in a)if(b.has(a,e)&amp;&amp;c.call(d,a[e],e,a)===n)break}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="10" column="1" bodyfile="build/html/_static/underscore.js" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1ac5a9750bad09b1dcf137ad443ade8221" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b map</definition>
+        <argsstring></argsstring>
+        <name>map</name>
+        <initializer>=b.collect=function(a,c,b){var e=[];if(a==null)return e;if(x&amp;&amp;a.map===x)return a.map(c,b);j(a,function(a,g,h){e[e.length]=c.call(b,a,g,h)});if(a.length===+a.length)e.length=a.length;return e}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="11" column="1" bodyfile="build/html/_static/underscore.js" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a90b002cc070dad3774ec7fffd1023c58" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b reduce</definition>
+        <argsstring></argsstring>
+        <name>reduce</name>
+        <initializer>=b.foldl=b.inject=function(a,c,d,e){var f=arguments.length&gt;2;a==
+null&amp;&amp;(a=[]);if(y&amp;&amp;a.reduce===y)return e&amp;&amp;(c=b.bind(c,e)),f?a.reduce(c,d):a.reduce(c);j(a,function(a,b,i){f?d=c.call(e,d,a,b,i):(d=a,f=true)});if(!f)throw new TypeError(&quot;Reduce of empty array with no initial value&quot;);return d}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="11" column="1" bodyfile="build/html/_static/underscore.js" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1ae76b761b23840b6bbfea03f62c652944" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b reduceRight</definition>
+        <argsstring></argsstring>
+        <name>reduceRight</name>
+        <initializer>=b.foldr=function(a,c,d,e){var f=arguments.length&gt;2;a==null&amp;&amp;(a=[]);if(z&amp;&amp;a.reduceRight===z)return e&amp;&amp;(c=b.bind(c,e)),f?a.reduceRight(c,d):a.reduceRight(c);var g=b.toArray(a).reverse();e&amp;&amp;!f&amp;&amp;(c=b.bind(c,e));return f?b.reduce(g,c,d,e):b.reduce(g,c)}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="12" column="1" bodyfile="build/html/_static/underscore.js" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a93ad9f230c504e1291baa4c34d0eef25" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b find</definition>
+        <argsstring></argsstring>
+        <name>find</name>
+        <initializer>=b.detect=
+function(a,c,b){var e;E(a,function(a,g,h){if(c.call(b,a,g,h))return e=a,true});return e}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="12" column="1" bodyfile="build/html/_static/underscore.js" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a3b9fcc0ddef81bbffc25293b11b366ad" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b filter</definition>
+        <argsstring></argsstring>
+        <name>filter</name>
+        <initializer>=b.select=function(a,c,b){var e=[];if(a==null)return e;if(A&amp;&amp;a.filter===A)return a.filter(c,b);j(a,function(a,g,h){c.call(b,a,g,h)&amp;&amp;(e[e.length]=a)});return e}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="13" column="1" bodyfile="build/html/_static/underscore.js" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1ac968af6186f26346cc538d732f47dbc3" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b reject</definition>
+        <argsstring></argsstring>
+        <name>reject</name>
+        <initializer>=function(a,c,b){var e=[];if(a==null)return e;j(a,function(a,g,h){c.call(b,a,g,h)||(e[e.length]=a)});return e}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="13" column="1" bodyfile="build/html/_static/underscore.js" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1ae38bdb5a85bd7a52b96d8d7d00014e87" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b every</definition>
+        <argsstring></argsstring>
+        <name>every</name>
+        <initializer>=b.all=function(a,c,b){var e=true;if(a==null)return e;if(B&amp;&amp;a.every===B)return a.every(c,b);j(a,function(a,g,h){if(!(e=
+e&amp;&amp;c.call(b,a,g,h)))return n});return e}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="13" column="1" bodyfile="build/html/_static/underscore.js" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1ae406f8d6be3dab2e4d9b41c963380c36" prot="public" static="no" mutable="no">
+        <type>var</type>
+        <definition>var E</definition>
+        <argsstring></argsstring>
+        <name>E</name>
+        <initializer>=b.some=b.any=function(a,c,d){c||(c=b.identity);var e=false;if(a==null)return e;if(C&amp;&amp;a.some===C)return a.some(c,d);j(a,function(a,b,h){if(e||(e=c.call(d,a,b,h)))return n});return!!e}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="14" column="1" bodyfile="build/html/_static/underscore.js" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1af4d2b5868c70c43431af0b10347baa79" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b include</definition>
+        <argsstring></argsstring>
+        <name>include</name>
+        <initializer>=b.contains=function(a,c){var b=false;if(a==null)return b;return p&amp;&amp;a.indexOf===p?a.indexOf(c)!=-1:b=E(a,function(a){return a===c})}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="14" column="1" bodyfile="build/html/_static/underscore.js" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1ae4d93d99b0121f1731bfdc0b8d22ccf6" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b invoke</definition>
+        <argsstring></argsstring>
+        <name>invoke</name>
+        <initializer>=function(a,c){var d=i.call(arguments,2);return b.map(a,function(a){return(b.isFunction(c)?c||a:a[c]).apply(a,d)})}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="14" column="1" bodyfile="build/html/_static/underscore.js" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1af8e00fb51ee78e00faf6395453b960ac" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b pluck</definition>
+        <argsstring></argsstring>
+        <name>pluck</name>
+        <initializer>=
+function(a,c){return b.map(a,function(a){return a[c]})}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="14" column="1" bodyfile="build/html/_static/underscore.js" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a7a169801e449ed2092e89963bbd0aa30" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b max</definition>
+        <argsstring></argsstring>
+        <name>max</name>
+        <initializer>=function(a,c,d){if(!c&amp;&amp;b.isArray(a))return Math.max.apply(Math,a);if(!c&amp;&amp;b.isEmpty(a))return-Infinity;var e={computed:-Infinity};j(a,function(a,b,h){b=c?c.call(d,a,b,h):a;b&gt;=e.computed&amp;&amp;(e={value:a,computed:b})});return e.value}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="15" column="1" bodyfile="build/html/_static/underscore.js" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1af8e4b82eb7b6e642f79a3e6157781195" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b min</definition>
+        <argsstring></argsstring>
+        <name>min</name>
+        <initializer>=function(a,c,d){if(!c&amp;&amp;b.isArray(a))return Math.min.apply(Math,a);if(!c&amp;&amp;b.isEmpty(a))return Infinity;var e={computed:Infinity};j(a,function(a,b,h){b=c?c.call(d,a,b,h):a;b&lt;e.computed&amp;&amp;(e={value:a,computed:b})});
+return e.value}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="15" column="1" bodyfile="build/html/_static/underscore.js" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1aef7da2318afcc4412756e1d0624954c1" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b shuffle</definition>
+        <argsstring></argsstring>
+        <name>shuffle</name>
+        <initializer>=function(a){var b=[],d;j(a,function(a,f){f==0?b[0]=a:(d=Math.floor(Math.random()*(f+1)),b[f]=b[d],b[d]=a)});return b}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="16" column="1" bodyfile="build/html/_static/underscore.js" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a7cff7fe5f6a592de54ee5e11956c41d7" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b sortBy</definition>
+        <argsstring></argsstring>
+        <name>sortBy</name>
+        <initializer>=function(a,c,d){return b.pluck(b.map(a,function(a,b,g){return{value:a,criteria:c.call(d,a,b,g)}}).sort(function(a,b){var c=a.criteria,d=b.criteria;return c&lt;d?-1:c&gt;d?1:0}),&quot;value&quot;)}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="16" column="1" bodyfile="build/html/_static/underscore.js" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a6ea94572ff69e4618d415b422647a657" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b groupBy</definition>
+        <argsstring></argsstring>
+        <name>groupBy</name>
+        <initializer>=function(a,c){var d={},e=b.isFunction(c)?c:function(a){return a[c]};j(a,function(a,b){var c=e(a,b);(d[c]||(d[c]=[])).push(a)});return d}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="16" column="1" bodyfile="build/html/_static/underscore.js" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a4de5711e6cbd210c5b003921317b118d" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b sortedIndex</definition>
+        <argsstring></argsstring>
+        <name>sortedIndex</name>
+        <initializer>=function(a,
+c,d){d||(d=b.identity);for(var e=0,f=a.length;e&lt;f;){var g=e+f&gt;&gt;1;d(a[g])&lt;d(c)?e=g+1:f=g}return e}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="16" column="1" bodyfile="build/html/_static/underscore.js" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1ad036fe05d5bbcfa95ad50ee028a45a60" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b toArray</definition>
+        <argsstring></argsstring>
+        <name>toArray</name>
+        <initializer>=function(a){return!a?[]:a.toArray?a.toArray():b.isArray(a)?i.call(a):b.isArguments(a)?i.call(a):b.values(a)}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="17" column="1" bodyfile="build/html/_static/underscore.js" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1af41999b338e023c7ef0a4a2f55d9059f" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b size</definition>
+        <argsstring></argsstring>
+        <name>size</name>
+        <initializer>=function(a){return b.toArray(a).length}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="17" column="1" bodyfile="build/html/_static/underscore.js" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a63bb2babdabfb6444d4dcc710c67d753" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b first</definition>
+        <argsstring></argsstring>
+        <name>first</name>
+        <initializer>=b.head=function(a,b,d){return b!=null&amp;&amp;!d?i.call(a,0,b):a[0]}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="17" column="1" bodyfile="build/html/_static/underscore.js" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1aca11ea5bedcc515ce9112bd2367ca0ea" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b initial</definition>
+        <argsstring></argsstring>
+        <name>initial</name>
+        <initializer>=function(a,b,d){return i.call(a,0,a.length-(b==null||d?1:b))}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="17" column="1" bodyfile="build/html/_static/underscore.js" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a36e70607e386cb4352b4e6b6dbe7a16a" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b last</definition>
+        <argsstring></argsstring>
+        <name>last</name>
+        <initializer>=function(a,b,d){return b!=null&amp;&amp;!d?i.call(a,Math.max(a.length-b,0)):a[a.length-1]}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="17" column="1" bodyfile="build/html/_static/underscore.js" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a9a70c6f871249cf900d1a52eadbedf90" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b rest</definition>
+        <argsstring></argsstring>
+        <name>rest</name>
+        <initializer>=
+b.tail=function(a,b,d){return i.call(a,b==null||d?1:b)}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="17" column="1" bodyfile="build/html/_static/underscore.js" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a3d26f399eec08601f48d73d9d57fc7b6" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b compact</definition>
+        <argsstring></argsstring>
+        <name>compact</name>
+        <initializer>=function(a){return b.filter(a,function(a){return!!a})}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="18" column="1" bodyfile="build/html/_static/underscore.js" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1adb6fa7d98ec614bdb92b4ceb02a63206" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b flatten</definition>
+        <argsstring></argsstring>
+        <name>flatten</name>
+        <initializer>=function(a,c){return b.reduce(a,function(a,e){if(b.isArray(e))return a.concat(c?e:b.flatten(e));a[a.length]=e;return a},[])}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="18" column="1" bodyfile="build/html/_static/underscore.js" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a34dcd6b86f7af5bc91767c205c2715c7" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b without</definition>
+        <argsstring></argsstring>
+        <name>without</name>
+        <initializer>=function(a){return b.difference(a,i.call(arguments,1))}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="18" column="1" bodyfile="build/html/_static/underscore.js" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a5c5ca1fea8ae68feb3a8013cfcea2661" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b uniq</definition>
+        <argsstring></argsstring>
+        <name>uniq</name>
+        <initializer>=b.unique=function(a,c,d){var d=d?b.map(a,d):a,e=[];b.reduce(d,function(d,g,h){if(0==h||(c===true?b.last(d)!=g:!b.include(d,g)))d[d.length]=g,e[e.length]=a[h];return d},[]);
+return e}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="18" column="1" bodyfile="build/html/_static/underscore.js" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1ac84ab33daa8fdcf212f3b8ba805e3787" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b union</definition>
+        <argsstring></argsstring>
+        <name>union</name>
+        <initializer>=function(){return b.uniq(b.flatten(arguments,true))}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="19" column="1" bodyfile="build/html/_static/underscore.js" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a2b15744a52ca641e57dc6306cf16b092" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b intersection</definition>
+        <argsstring></argsstring>
+        <name>intersection</name>
+        <initializer>=b.intersect=function(a){var c=i.call(arguments,1);return b.filter(b.uniq(a),function(a){return b.every(c,function(c){return b.indexOf(c,a)&gt;=0})})}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="19" column="1" bodyfile="build/html/_static/underscore.js" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1ab7b36c436281ccbaa8d9f0f24215e5c0" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b difference</definition>
+        <argsstring></argsstring>
+        <name>difference</name>
+        <initializer>=function(a){var c=b.flatten(i.call(arguments,1));return b.filter(a,function(a){return!b.include(c,a)})}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="19" column="1" bodyfile="build/html/_static/underscore.js" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1ae6efd2be4d514fada53f66a7e4abcf50" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b zip</definition>
+        <argsstring></argsstring>
+        <name>zip</name>
+        <initializer>=function(){for(var a=i.call(arguments),c=b.max(b.pluck(a,&quot;length&quot;)),d=Array(c),e=0;e&lt;c;e++)d[e]=b.pluck(a,&quot;&quot;+e);return d}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="19" column="1" bodyfile="build/html/_static/underscore.js" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a792cc7b2c8eb3125cdf4e244c300ea4c" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b indexOf</definition>
+        <argsstring></argsstring>
+        <name>indexOf</name>
+        <initializer>=function(a,c,
+d){if(a==null)return-1;var e;if(d)return d=b.sortedIndex(a,c),a[d]===c?d:-1;if(p&amp;&amp;a.indexOf===p)return a.indexOf(c);for(d=0,e=a.length;d&lt;e;d++)if(d in a&amp;&amp;a[d]===c)return d;return-1}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="19" column="1" bodyfile="build/html/_static/underscore.js" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1abe28632119762d83c77313990412bf39" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b lastIndexOf</definition>
+        <argsstring></argsstring>
+        <name>lastIndexOf</name>
+        <initializer>=function(a,b){if(a==null)return-1;if(D&amp;&amp;a.lastIndexOf===D)return a.lastIndexOf(b);for(var d=a.length;d--;)if(d in a&amp;&amp;a[d]===b)return d;return-1}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="20" column="1" bodyfile="build/html/_static/underscore.js" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a8df4c9d8cebcb5fedc1630aa846a92d0" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b range</definition>
+        <argsstring></argsstring>
+        <name>range</name>
+        <initializer>=function(a,b,d){arguments.length&lt;=1&amp;&amp;(b=a||0,a=0);for(var d=arguments[2]||1,e=Math.max(Math.ceil((b-a)/d),0),f=0,g=Array(e);f&lt;e;)g[f++]=a,a+=d;return g}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="20" column="1" bodyfile="build/html/_static/underscore.js" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a04d9082506e3640041cd22bef9ab6566" prot="public" static="no" mutable="no">
+        <type>var</type>
+        <definition>var F</definition>
+        <argsstring></argsstring>
+        <name>F</name>
+        <initializer>=function(){}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="21" column="1" bodyfile="build/html/_static/underscore.js" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a9442edb4c79741f2601bb1cef18fc30f" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b bind</definition>
+        <argsstring></argsstring>
+        <name>bind</name>
+        <initializer>=function(a,c){var d,e;if(a.bind===s&amp;&amp;s)return s.apply(a,i.call(arguments,1));if(!b.isFunction(a))throw new TypeError;e=i.call(arguments,2);return d=function(){if(!(this instanceof d))return a.apply(c,e.concat(i.call(arguments)));F.prototype=a.prototype;var b=new F,g=a.apply(b,e.concat(i.call(arguments)));return Object(g)===g?g:b}}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="21" column="1" bodyfile="build/html/_static/underscore.js" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a644530dec93375014bbd0b95ceb903da" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b bindAll</definition>
+        <argsstring></argsstring>
+        <name>bindAll</name>
+        <initializer>=function(a){var c=i.call(arguments,1);c.length==0&amp;&amp;(c=b.functions(a));j(c,function(c){a[c]=b.bind(a[c],a)});return a}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="21" column="1" bodyfile="build/html/_static/underscore.js" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1abfc3eacbaf273b1d7cf621dded205446" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b memoize</definition>
+        <argsstring></argsstring>
+        <name>memoize</name>
+        <initializer>=function(a,
+c){var d={};c||(c=b.identity);return function(){var e=c.apply(this,arguments);return b.has(d,e)?d[e]:d[e]=a.apply(this,arguments)}}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="21" column="1" bodyfile="build/html/_static/underscore.js" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a6cb49c99f81a74fe4c550bc9bb9dc49b" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b delay</definition>
+        <argsstring></argsstring>
+        <name>delay</name>
+        <initializer>=function(a,b){var d=i.call(arguments,2);return setTimeout(function(){return a.apply(a,d)},b)}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="22" column="1" bodyfile="build/html/_static/underscore.js" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a10b1891f0dfc33c1056458ed0aafbf2d" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b defer</definition>
+        <argsstring></argsstring>
+        <name>defer</name>
+        <initializer>=function(a){return b.delay.apply(b,[a,1].concat(i.call(arguments,1)))}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="22" column="1" bodyfile="build/html/_static/underscore.js" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a2bf9b507b56023e2b30e9e83b2c54557" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b throttle</definition>
+        <argsstring></argsstring>
+        <name>throttle</name>
+        <initializer>=function(a,c){var d,e,f,g,h,i=b.debounce(function(){h=g=false},c);return function(){d=this;e=arguments;var b;f||(f=setTimeout(function(){f=null;h&amp;&amp;a.apply(d,e);i()},c));g?h=true:
+a.apply(d,e);i();g=true}}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="22" column="1" bodyfile="build/html/_static/underscore.js" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a7658f215842a2de7184c64b9e33543f7" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b debounce</definition>
+        <argsstring></argsstring>
+        <name>debounce</name>
+        <initializer>=function(a,b){var d;return function(){var e=this,f=arguments;clearTimeout(d);d=setTimeout(function(){d=null;a.apply(e,f)},b)}}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="23" column="1" bodyfile="build/html/_static/underscore.js" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a71b4187d13f2023f3d69cab87a2e974d" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b once</definition>
+        <argsstring></argsstring>
+        <name>once</name>
+        <initializer>=function(a){var b=false,d;return function(){if(b)return d;b=true;return d=a.apply(this,arguments)}}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="23" column="1" bodyfile="build/html/_static/underscore.js" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1ab16ba054cbdceb2a793821ae0600ecca" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b wrap</definition>
+        <argsstring></argsstring>
+        <name>wrap</name>
+        <initializer>=function(a,b){return function(){var d=[a].concat(i.call(arguments,0));return b.apply(this,d)}}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="23" column="1" bodyfile="build/html/_static/underscore.js" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1aa405d9f723913d89be4e5454bd9bdb79" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b compose</definition>
+        <argsstring></argsstring>
+        <name>compose</name>
+        <initializer>=function(){var a=arguments;return function(){for(var b=arguments,d=a.length-1;d&gt;=0;d--)b=[a[d].apply(this,b)];return b[0]}}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="23" column="1" bodyfile="build/html/_static/underscore.js" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a26669b0ec8c0e484f55bba8fe329ee29" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b after</definition>
+        <argsstring></argsstring>
+        <name>after</name>
+        <initializer>=function(a,b){return a&lt;=0?b():function(){if(--a&lt;1)return b.apply(this,arguments)}}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="24" column="1" bodyfile="build/html/_static/underscore.js" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a045ca5db0905811352e338af45b4a93d" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b keys</definition>
+        <argsstring></argsstring>
+        <name>keys</name>
+        <initializer>=J||function(a){if(a!==Object(a))throw new TypeError(&quot;Invalid object&quot;);var c=[],d;for(d in a)b.has(a,d)&amp;&amp;(c[c.length]=d);return c}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="24" column="1" bodyfile="build/html/_static/underscore.js" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a7f2daeea0b9079d54a18d6120d729cde" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b values</definition>
+        <argsstring></argsstring>
+        <name>values</name>
+        <initializer>=function(a){return b.map(a,b.identity)}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="24" column="1" bodyfile="build/html/_static/underscore.js" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a61aaaa87b59f1818d8366f0cfd7d086d" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b functions</definition>
+        <argsstring></argsstring>
+        <name>functions</name>
+        <initializer>=b.methods=function(a){var c=[],d;for(d in a)b.isFunction(a[d])&amp;&amp;c.push(d);return c.sort()}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="24" column="1" bodyfile="build/html/_static/underscore.js" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a44974abf0d697824db8c509a8e3d8a2a" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b extend</definition>
+        <argsstring></argsstring>
+        <name>extend</name>
+        <initializer>=function(a){j(i.call(arguments,1),function(b){for(var d in b)a[d]=b[d]});return a}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="24" column="1" bodyfile="build/html/_static/underscore.js" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1aeaac9d53256ff7d852e756826e3b4d91" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b defaults</definition>
+        <argsstring></argsstring>
+        <name>defaults</name>
+        <initializer>=function(a){j(i.call(arguments,
+1),function(b){for(var d in b)a[d]==null&amp;&amp;(a[d]=b[d])});return a}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="24" column="1" bodyfile="build/html/_static/underscore.js" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1ac8235ab7efa3a407f7a905ba7f35023b" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b clone</definition>
+        <argsstring></argsstring>
+        <name>clone</name>
+        <initializer>=function(a){return!b.isObject(a)?a:b.isArray(a)?a.slice():b.extend({},a)}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="25" column="1" bodyfile="build/html/_static/underscore.js" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1ac04a7b170398e8561d827cafc34b0292" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b tap</definition>
+        <argsstring></argsstring>
+        <name>tap</name>
+        <initializer>=function(a,b){b(a);return a}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="25" column="1" bodyfile="build/html/_static/underscore.js" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a171f311987ad1c52aeadd3f74d2289b1" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b isEqual</definition>
+        <argsstring></argsstring>
+        <name>isEqual</name>
+        <initializer>=function(a,b){return q(a,b,[])}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="25" column="1" bodyfile="build/html/_static/underscore.js" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1ae0fb8cad591f5cc7a88aa11a52b6c24c" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b isEmpty</definition>
+        <argsstring></argsstring>
+        <name>isEmpty</name>
+        <initializer>=function(a){if(b.isArray(a)||b.isString(a))return a.length===0;for(var c in a)if(b.has(a,c))return false;return true}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="25" column="1" bodyfile="build/html/_static/underscore.js" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a2bc16f6298a96cefbffee8b968001db2" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b isElement</definition>
+        <argsstring></argsstring>
+        <name>isElement</name>
+        <initializer>=function(a){return!!(a&amp;&amp;a.nodeType==1)}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="25" column="1" bodyfile="build/html/_static/underscore.js" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a2580f6d4bcfe2598c3f2abed694e6fdd" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b isArray</definition>
+        <argsstring></argsstring>
+        <name>isArray</name>
+        <initializer>=o||function(a){return l.call(a)==&quot;[object Array]&quot;}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="25" column="1" bodyfile="build/html/_static/underscore.js" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a875092d24c0b2cc7490f6bbac8fa1d78" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b isObject</definition>
+        <argsstring></argsstring>
+        <name>isObject</name>
+        <initializer>=function(a){return a===Object(a)}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="25" column="1" bodyfile="build/html/_static/underscore.js" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1addfe79d6348c7885bd56b7c8af2f8ace" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b isArguments</definition>
+        <argsstring></argsstring>
+        <name>isArguments</name>
+        <initializer>=function(a){return l.call(a)==&quot;[object Arguments]&quot;}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="26" column="1" bodyfile="build/html/_static/underscore.js" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1aa1dc89fd6d5f63d3b7cd7cd914e49111" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b isFunction</definition>
+        <argsstring></argsstring>
+        <name>isFunction</name>
+        <initializer>=function(a){return l.call(a)==&quot;[object Function]&quot;}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="26" column="1" bodyfile="build/html/_static/underscore.js" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1af055ec43b6ccabc9a61791387dd5a8f0" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b isString</definition>
+        <argsstring></argsstring>
+        <name>isString</name>
+        <initializer>=function(a){return l.call(a)==&quot;[object String]&quot;}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="26" column="1" bodyfile="build/html/_static/underscore.js" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1aa93b0abe08d38a646f1683c1343981ac" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b isNumber</definition>
+        <argsstring></argsstring>
+        <name>isNumber</name>
+        <initializer>=function(a){return l.call(a)==&quot;[object Number]&quot;}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="26" column="1" bodyfile="build/html/_static/underscore.js" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a2e9887111dd2ae16aa13d8d244060901" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b isNaN</definition>
+        <argsstring></argsstring>
+        <name>isNaN</name>
+        <initializer>=function(a){return a!==a}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="26" column="1" bodyfile="build/html/_static/underscore.js" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1aa27fac38f73b42c6680f057229727382" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b isBoolean</definition>
+        <argsstring></argsstring>
+        <name>isBoolean</name>
+        <initializer>=function(a){return a===true||a===false||l.call(a)==&quot;[object Boolean]&quot;}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="26" column="1" bodyfile="build/html/_static/underscore.js" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1af4e600fc27649bc920cff58d4ee02167" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b isDate</definition>
+        <argsstring></argsstring>
+        <name>isDate</name>
+        <initializer>=function(a){return l.call(a)==&quot;[object Date]&quot;}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="26" column="1" bodyfile="build/html/_static/underscore.js" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a4d9f684a1e2ebf56c3e84ede85a7a9b4" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b isRegExp</definition>
+        <argsstring></argsstring>
+        <name>isRegExp</name>
+        <initializer>=function(a){return l.call(a)==&quot;[object RegExp]&quot;}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="27" column="1" bodyfile="build/html/_static/underscore.js" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1ae2d679c193f5edf0b0276e07a2e16f2a" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b isNull</definition>
+        <argsstring></argsstring>
+        <name>isNull</name>
+        <initializer>=function(a){return a===null}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="27" column="1" bodyfile="build/html/_static/underscore.js" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1afa625625e6de6f235d08df8cf99602ca" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b isUndefined</definition>
+        <argsstring></argsstring>
+        <name>isUndefined</name>
+        <initializer>=function(a){return a===void 0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="27" column="1" bodyfile="build/html/_static/underscore.js" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a0b5424e11a75994692f03f98b5f02b9c" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b has</definition>
+        <argsstring></argsstring>
+        <name>has</name>
+        <initializer>=function(a,b){return I.call(a,b)}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="27" column="1" bodyfile="build/html/_static/underscore.js" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a2a9718a41896fd969eb78a2b3b3bf57a" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b noConflict</definition>
+        <argsstring></argsstring>
+        <name>noConflict</name>
+        <initializer>=function(){r._=G;return this}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="27" column="1" bodyfile="build/html/_static/underscore.js" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1af9d29d5a841ddf5f4474772b929cdd1a" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b identity</definition>
+        <argsstring></argsstring>
+        <name>identity</name>
+        <initializer>=function(a){return a}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="27" column="1" bodyfile="build/html/_static/underscore.js" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="underscore_8js_1a0f964f91072502cd3d1a7c5b34868f46" prot="public" static="no" mutable="no">
+        <type>b</type>
+        <definition>b times</definition>
+        <argsstring></argsstring>
+        <name>times</name>
+        <initializer>=function(a,b,d){for(var e=0;e&lt;a;e++)b.call(d,e)}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="27" column="1" bodyfile="build/html/_static/underscore.js" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="underscore_8js_1ad14090d81a82801b65ba6386e282324f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>function</type>
+        <definition>function if</definition>
+        <argsstring>(typeof exports!==&quot;undefined&quot;)</argsstring>
+        <name>if</name>
+        <param>
+          <type>typeof exports!</type>
+          <defname>typeof exports!</defname>
+          <defval>=&quot;undefined&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="10" column="1" bodyfile="build/html/_static/underscore.js" bodystart="10" bodyend="10"/>
+      </memberdef>
+      <memberdef kind="function" id="underscore_8js_1aeec3e70a22e4c096d5dbded6242fe3b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>if</definition>
+        <argsstring>(!b.isArguments(arguments)) b.isArguments</argsstring>
+        <name>if</name>
+        <param>
+          <type>!b.</type>
+          <declname>isArguments</declname>
+          <array>arguments</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/underscore.js" line="26" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//<sp/>Underscore.js<sp/>1.3.1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>(c)<sp/>2009-2012<sp/>Jeremy<sp/>Ashkenas,<sp/>DocumentCloud<sp/>Inc.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Underscore<sp/>is<sp/>freely<sp/>distributable<sp/>under<sp/>the<sp/>MIT<sp/>license.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Portions<sp/>of<sp/>Underscore<sp/>are<sp/>inspired<sp/>or<sp/>borrowed<sp/>from<sp/>Prototype,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Oliver<sp/>Steele&apos;s<sp/>Functional,<sp/>and<sp/>John<sp/>Resig&apos;s<sp/>Micro-Templating.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>For<sp/>all<sp/>details<sp/>and<sp/>documentation:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/>http://documentcloud.github.com/underscore</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal">(</highlight><highlight class="keyword">function</highlight><highlight class="normal">(){</highlight><highlight class="keyword">function</highlight><highlight class="normal"><sp/>q(a,c,d){</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(a===c)</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a!==0||1/a==1/c;</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(a==null||c==null)</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a===c;</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(a._chain)a=a._wrapped;</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(c._chain)c=c._wrapped;</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(a.isEqual&amp;&amp;b.isFunction(a.isEqual))</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a.isEqual(c);</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(c.isEqual&amp;&amp;b.isFunction(c.isEqual))</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>c.isEqual(a);var<sp/>e=l.call(a);</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(e!=l.call(c))</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight><highlight class="keywordflow">switch</highlight><highlight class="normal">(e){</highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;[object<sp/>String]&quot;</highlight><highlight class="normal">:</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a==String(c);</highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;[object<sp/>Number]&quot;</highlight><highlight class="normal">:</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a!=+a?c!=+c:a==0?1/a==1/c:a==+c;</highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;[object<sp/>Date]&quot;</highlight><highlight class="normal">:</highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;[object<sp/>Boolean]&quot;</highlight><highlight class="normal">:</highlight><highlight class="keywordflow">return</highlight><highlight class="normal">+a==+c;</highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;[object<sp/>RegExp]&quot;</highlight><highlight class="normal">:</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a.source==</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">c.source&amp;&amp;a.global==c.global&amp;&amp;a.multiline==c.multiline&amp;&amp;a.ignoreCase==c.ignoreCase}</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(typeof<sp/>a!=</highlight><highlight class="stringliteral">&quot;object&quot;</highlight><highlight class="normal">||typeof<sp/>c!=</highlight><highlight class="stringliteral">&quot;object&quot;</highlight><highlight class="normal">)</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(var<sp/>f=d.length;f--;)</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(d[f]==a)</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;d.push(a);var<sp/>f=0,g=</highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(e==</highlight><highlight class="stringliteral">&quot;[object<sp/>Array]&quot;</highlight><highlight class="normal">){</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(f=a.length,g=f==c.length)</highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(;f--;)</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!(g=f<sp/>in<sp/>a==f<sp/>in<sp/>c&amp;&amp;q(a[f],c[f],d)))</highlight><highlight class="keywordflow">break</highlight><highlight class="normal">}</highlight><highlight class="keywordflow">else</highlight><highlight class="normal">{</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(</highlight><highlight class="stringliteral">&quot;constructor&quot;</highlight><highlight class="normal">in<sp/>a!=</highlight><highlight class="stringliteral">&quot;constructor&quot;</highlight><highlight class="normal">in<sp/>c||a.constructor!=c.constructor)</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(var<sp/>h<sp/>in<sp/>a)</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(b.has(a,h)&amp;&amp;(f++,!(g=b.has(c,h)&amp;&amp;q(a[h],c[h],d))))</highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(g){</highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(h<sp/>in<sp/>c)</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(b.has(c,</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">h)&amp;&amp;!f--)</highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;g=!f}}d.pop();</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>g}var<sp/>r=</highlight><highlight class="keyword">this</highlight><highlight class="normal">,G=r._,n={},k=Array.prototype,o=Object.prototype,i=k.slice,H=k.unshift,l=o.toString,I=o.hasOwnProperty,w=k.forEach,x=k.map,y=k.reduce,z=k.reduceRight,A=k.filter,B=k.every,C=k.some,p=k.indexOf,D=k.lastIndexOf,o=Array.isArray,J=Object.keys,s=Function.prototype.bind,b=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>m(a)};</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(typeof<sp/>exports!==</highlight><highlight class="stringliteral">&quot;undefined&quot;</highlight><highlight class="normal">){</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(typeof<sp/>module!==</highlight><highlight class="stringliteral">&quot;undefined&quot;</highlight><highlight class="normal">&amp;&amp;module.exports)exports=module.exports=b;exports._=b}</highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>r._=b;b.VERSION=</highlight><highlight class="stringliteral">&quot;1.3.1&quot;</highlight><highlight class="normal">;var<sp/>j=b.each=</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">b.forEach=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,c,d){</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(a!=null)</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(w&amp;&amp;a.forEach===w)a.forEach(c,d);</highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(a.length===+a.length)</highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(var<sp/>e=0,f=a.length;e&lt;f;e++){</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(e<sp/>in<sp/>a&amp;&amp;c.call(d,a[e],e,a)===n)</highlight><highlight class="keywordflow">break</highlight><highlight class="normal">}</highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(e<sp/>in<sp/>a)</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(b.has(a,e)&amp;&amp;c.call(d,a[e],e,a)===n)</highlight><highlight class="keywordflow">break</highlight><highlight class="normal">};b.map=b.collect=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,c,b){var<sp/>e=[];</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(a==null)</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>e;</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(x&amp;&amp;a.map===x)</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a.map(c,b);j(a,</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,g,h){e[e.length]=c.call(b,a,g,h)});</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(a.length===+a.length)e.length=a.length;</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>e};b.reduce=b.foldl=b.inject=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,c,d,e){var<sp/>f=arguments.length&gt;2;a==</highlight></codeline>
+<codeline lineno="12"><highlight class="normal">null&amp;&amp;(a=[]);</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(y&amp;&amp;a.reduce===y)</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>e&amp;&amp;(c=b.bind(c,e)),f?a.reduce(c,d):a.reduce(c);j(a,</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,b,i){f?d=c.call(e,d,a,b,i):(d=a,f=</highlight><highlight class="keyword">true</highlight><highlight class="normal">)});</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!f)</highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>TypeError(</highlight><highlight class="stringliteral">&quot;Reduce<sp/>of<sp/>empty<sp/>array<sp/>with<sp/>no<sp/>initial<sp/>value&quot;</highlight><highlight class="normal">);</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>d};b.reduceRight=b.foldr=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,c,d,e){var<sp/>f=arguments.length&gt;2;a==null&amp;&amp;(a=[]);</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(z&amp;&amp;a.reduceRight===z)</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>e&amp;&amp;(c=b.bind(c,e)),f?a.reduceRight(c,d):a.reduceRight(c);var<sp/>g=b.toArray(a).reverse();e&amp;&amp;!f&amp;&amp;(c=b.bind(c,e));</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>f?b.reduce(g,c,d,e):b.reduce(g,c)};b.find=b.detect=</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,c,b){var<sp/>e;E(a,</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,g,h){</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(c.call(b,a,g,h))</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>e=a,</highlight><highlight class="keyword">true</highlight><highlight class="normal">});</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>e};b.filter=b.select=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,c,b){var<sp/>e=[];</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(a==null)</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>e;</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(A&amp;&amp;a.filter===A)</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a.filter(c,b);j(a,</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,g,h){c.call(b,a,g,h)&amp;&amp;(e[e.length]=a)});</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>e};b.reject=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,c,b){var<sp/>e=[];</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(a==null)</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>e;j(a,</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,g,h){c.call(b,a,g,h)||(e[e.length]=a)});</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>e};b.every=b.all=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,c,b){var<sp/>e=</highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(a==null)</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>e;</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(B&amp;&amp;a.every===B)</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a.every(c,b);j(a,</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,g,h){</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!(e=</highlight></codeline>
+<codeline lineno="14"><highlight class="normal">e&amp;&amp;c.call(b,a,g,h)))</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>n});</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>e};var<sp/>E=b.some=b.any=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,c,d){c||(c=b.identity);var<sp/>e=</highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(a==null)</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>e;</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(C&amp;&amp;a.some===C)</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a.some(c,d);j(a,</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,b,h){</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(e||(e=c.call(d,a,b,h)))</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>n});</highlight><highlight class="keywordflow">return</highlight><highlight class="normal">!!e};b.include=b.contains=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,c){var<sp/>b=</highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(a==null)</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>b;</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>p&amp;&amp;a.indexOf===p?a.indexOf(c)!=-1:b=E(a,</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a===c})};b.invoke=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,c){var<sp/>d=i.call(arguments,2);</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>b.map(a,</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(b.isFunction(c)?c||a:a[c]).apply(a,d)})};b.pluck=</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,c){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>b.map(a,</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a[c]})};b.max=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,c,d){</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!c&amp;&amp;b.isArray(a))</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>Math.max.apply(Math,a);</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!c&amp;&amp;b.isEmpty(a))</highlight><highlight class="keywordflow">return</highlight><highlight class="normal">-Infinity;var<sp/>e={computed:-Infinity};j(a,</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,b,h){b=c?c.call(d,a,b,h):a;b&gt;=e.computed&amp;&amp;(e={value:a,computed:b})});</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>e.value};b.min=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,c,d){</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!c&amp;&amp;b.isArray(a))</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>Math.min.apply(Math,a);</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!c&amp;&amp;b.isEmpty(a))</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>Infinity;var<sp/>e={computed:Infinity};j(a,</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,b,h){b=c?c.call(d,a,b,h):a;b&lt;e.computed&amp;&amp;(e={value:a,computed:b})});</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>e.value};b.shuffle=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){var<sp/>b=[],d;j(a,</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,f){f==0?b[0]=a:(d=Math.floor(Math.random()*(f+1)),b[f]=b[d],b[d]=a)});</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>b};b.sortBy=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,c,d){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>b.pluck(b.map(a,</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,b,g){return{value:a,criteria:c.call(d,a,b,g)}}).sort(</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,b){var<sp/>c=a.criteria,d=b.criteria;</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>c&lt;d?-1:c&gt;d?1:0}),</highlight><highlight class="stringliteral">&quot;value&quot;</highlight><highlight class="normal">)};b.groupBy=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,c){var<sp/>d={},e=b.isFunction(c)?c:</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a[c]};j(a,</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,b){var<sp/>c=e(a,b);(d[c]||(d[c]=[])).push(a)});</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>d};b.sortedIndex=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,</highlight></codeline>
+<codeline lineno="17"><highlight class="normal">c,d){d||(d=b.identity);</highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(var<sp/>e=0,f=a.length;e&lt;f;){var<sp/>g=e+f&gt;&gt;1;d(a[g])&lt;d(c)?e=g+1:f=g}</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>e};b.toArray=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal">!a?[]:a.toArray?a.toArray():b.isArray(a)?i.call(a):b.isArguments(a)?i.call(a):b.values(a)};b.size=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>b.toArray(a).length};b.first=b.head=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,b,d){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>b!=null&amp;&amp;!d?i.call(a,0,b):a[0]};b.initial=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,b,d){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>i.call(a,0,a.length-(b==null||d?1:b))};b.last=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,b,d){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>b!=null&amp;&amp;!d?i.call(a,Math.max(a.length-b,0)):a[a.length-1]};b.rest=</highlight></codeline>
+<codeline lineno="18"><highlight class="normal">b.tail=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,b,d){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>i.call(a,b==null||d?1:b)};b.compact=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>b.filter(a,</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal">!!a})};b.flatten=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,c){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>b.reduce(a,</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,e){</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(b.isArray(e))</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a.concat(c?e:b.flatten(e));a[a.length]=e;</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a},[])};b.without=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>b.difference(a,i.call(arguments,1))};b.uniq=b.unique=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,c,d){var<sp/>d=d?b.map(a,d):a,e=[];b.reduce(d,</highlight><highlight class="keyword">function</highlight><highlight class="normal">(d,g,h){</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(0==h||(c===</highlight><highlight class="keyword">true</highlight><highlight class="normal">?b.last(d)!=g:!b.include(d,g)))d[d.length]=g,e[e.length]=a[h];</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>d},[]);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>e};b.union=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>b.uniq(b.flatten(arguments,</highlight><highlight class="keyword">true</highlight><highlight class="normal">))};b.intersection=b.intersect=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){var<sp/>c=i.call(arguments,1);</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>b.filter(b.uniq(a),</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>b.every(c,</highlight><highlight class="keyword">function</highlight><highlight class="normal">(c){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>b.indexOf(c,a)&gt;=0})})};b.difference=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){var<sp/>c=b.flatten(i.call(arguments,1));</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>b.filter(a,</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal">!b.include(c,a)})};b.zip=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(){</highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(var<sp/>a=i.call(arguments),c=b.max(b.pluck(a,</highlight><highlight class="stringliteral">&quot;length&quot;</highlight><highlight class="normal">)),d=Array(c),e=0;e&lt;c;e++)d[e]=b.pluck(a,</highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">+e);</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>d};b.indexOf=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,c,</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">d){</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(a==null)</highlight><highlight class="keywordflow">return</highlight><highlight class="normal">-1;var<sp/>e;</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(d)</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>d=b.sortedIndex(a,c),a[d]===c?d:-1;</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(p&amp;&amp;a.indexOf===p)</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a.indexOf(c);</highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(d=0,e=a.length;d&lt;e;d++)</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(d<sp/>in<sp/>a&amp;&amp;a[d]===c)</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>d;</highlight><highlight class="keywordflow">return</highlight><highlight class="normal">-1};b.lastIndexOf=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,b){</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(a==null)</highlight><highlight class="keywordflow">return</highlight><highlight class="normal">-1;</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(D&amp;&amp;a.lastIndexOf===D)</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a.lastIndexOf(b);</highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(var<sp/>d=a.length;d--;)</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(d<sp/>in<sp/>a&amp;&amp;a[d]===b)</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>d;</highlight><highlight class="keywordflow">return</highlight><highlight class="normal">-1};b.range=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,b,d){arguments.length&lt;=1&amp;&amp;(b=a||0,a=0);</highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(var<sp/>d=arguments[2]||1,e=Math.max(Math.ceil((b-a)/d),0),f=0,g=Array(e);f&lt;e;)g[f++]=a,a+=d;</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>g};</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">var<sp/>F=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(){};b.bind=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,c){var<sp/>d,e;</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(a.bind===s&amp;&amp;s)</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>s.apply(a,i.call(arguments,1));</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!b.isFunction(a))</highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>TypeError;e=i.call(arguments,2);</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>d=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(){</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!(</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>instanceof<sp/>d))</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a.apply(c,e.concat(i.call(arguments)));F.prototype=a.prototype;var<sp/>b=</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>F,g=a.apply(b,e.concat(i.call(arguments)));</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>Object(g)===g?g:b}};b.bindAll=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){var<sp/>c=i.call(arguments,1);c.length==0&amp;&amp;(c=b.functions(a));j(c,</highlight><highlight class="keyword">function</highlight><highlight class="normal">(c){a[c]=b.bind(a[c],a)});</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a};b.memoize=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,</highlight></codeline>
+<codeline lineno="22"><highlight class="normal">c){var<sp/>d={};c||(c=b.identity);</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">(){var<sp/>e=c.apply(</highlight><highlight class="keyword">this</highlight><highlight class="normal">,arguments);</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>b.has(d,e)?d[e]:d[e]=a.apply(</highlight><highlight class="keyword">this</highlight><highlight class="normal">,arguments)}};b.delay=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,b){var<sp/>d=i.call(arguments,2);</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>setTimeout(</highlight><highlight class="keyword">function</highlight><highlight class="normal">(){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a.apply(a,d)},b)};b.defer=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>b.delay.apply(b,[a,1].concat(i.call(arguments,1)))};b.throttle=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,c){var<sp/>d,e,f,g,h,i=b.debounce(</highlight><highlight class="keyword">function</highlight><highlight class="normal">(){h=g=</highlight><highlight class="keyword">false</highlight><highlight class="normal">},c);</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">(){d=</highlight><highlight class="keyword">this</highlight><highlight class="normal">;e=arguments;var<sp/>b;f||(f=setTimeout(</highlight><highlight class="keyword">function</highlight><highlight class="normal">(){f=null;h&amp;&amp;a.apply(d,e);i()},c));g?h=</highlight><highlight class="keyword">true</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">a.apply(d,e);i();g=</highlight><highlight class="keyword">true</highlight><highlight class="normal">}};b.debounce=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,b){var<sp/>d;</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">(){var<sp/>e=</highlight><highlight class="keyword">this</highlight><highlight class="normal">,f=arguments;clearTimeout(d);d=setTimeout(</highlight><highlight class="keyword">function</highlight><highlight class="normal">(){d=null;a.apply(e,f)},b)}};b.once=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){var<sp/>b=</highlight><highlight class="keyword">false</highlight><highlight class="normal">,d;</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">(){</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(b)</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>d;b=</highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>d=a.apply(</highlight><highlight class="keyword">this</highlight><highlight class="normal">,arguments)}};b.wrap=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,b){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">(){var<sp/>d=[a].concat(i.call(arguments,0));</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>b.apply(</highlight><highlight class="keyword">this</highlight><highlight class="normal">,d)}};b.compose=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(){var<sp/>a=arguments;</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">(){</highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(var<sp/>b=arguments,d=a.length-1;d&gt;=0;d--)b=[a[d].apply(</highlight><highlight class="keyword">this</highlight><highlight class="normal">,b)];</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>b[0]}};</highlight></codeline>
+<codeline lineno="24"><highlight class="normal">b.after=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,b){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a&lt;=0?b():function(){</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(--a&lt;1)</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>b.apply(</highlight><highlight class="keyword">this</highlight><highlight class="normal">,arguments)}};b.keys=J||</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(a!==Object(a))</highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>TypeError(</highlight><highlight class="stringliteral">&quot;Invalid<sp/>object&quot;</highlight><highlight class="normal">);var<sp/>c=[],d;</highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(d<sp/>in<sp/>a)b.has(a,d)&amp;&amp;(c[c.length]=d);</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>c};b.values=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>b.map(a,b.identity)};b.functions=b.methods=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){var<sp/>c=[],d;</highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(d<sp/>in<sp/>a)b.isFunction(a[d])&amp;&amp;c.push(d);</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>c.sort()};b.extend=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){j(i.call(arguments,1),</highlight><highlight class="keyword">function</highlight><highlight class="normal">(b){</highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(var<sp/>d<sp/>in<sp/>b)a[d]=b[d]});</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a};b.defaults=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){j(i.call(arguments,</highlight></codeline>
+<codeline lineno="25"><highlight class="normal">1),</highlight><highlight class="keyword">function</highlight><highlight class="normal">(b){</highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(var<sp/>d<sp/>in<sp/>b)a[d]==null&amp;&amp;(a[d]=b[d])});</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a};b.clone=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal">!b.isObject(a)?a:b.isArray(a)?a.slice():b.extend({},a)};b.tap=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,b){b(a);</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a};b.isEqual=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,b){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>q(a,b,[])};b.isEmpty=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(b.isArray(a)||b.isString(a))</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a.length===0;</highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(var<sp/>c<sp/>in<sp/>a)</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(b.has(a,c))</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">};b.isElement=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal">!!(a&amp;&amp;a.nodeType==1)};b.isArray=o||</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>l.call(a)==</highlight><highlight class="stringliteral">&quot;[object<sp/>Array]&quot;</highlight><highlight class="normal">};b.isObject=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a===Object(a)};</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">b.isArguments=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>l.call(a)==</highlight><highlight class="stringliteral">&quot;[object<sp/>Arguments]&quot;</highlight><highlight class="normal">};</highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!b.isArguments(arguments))b.isArguments=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal">!(!a||!b.has(a,</highlight><highlight class="stringliteral">&quot;callee&quot;</highlight><highlight class="normal">))};b.isFunction=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>l.call(a)==</highlight><highlight class="stringliteral">&quot;[object<sp/>Function]&quot;</highlight><highlight class="normal">};b.isString=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>l.call(a)==</highlight><highlight class="stringliteral">&quot;[object<sp/>String]&quot;</highlight><highlight class="normal">};b.isNumber=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>l.call(a)==</highlight><highlight class="stringliteral">&quot;[object<sp/>Number]&quot;</highlight><highlight class="normal">};b.isNaN=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a!==a};b.isBoolean=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a===</highlight><highlight class="keyword">true</highlight><highlight class="normal">||a===</highlight><highlight class="keyword">false</highlight><highlight class="normal">||l.call(a)==</highlight><highlight class="stringliteral">&quot;[object<sp/>Boolean]&quot;</highlight><highlight class="normal">};b.isDate=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>l.call(a)==</highlight><highlight class="stringliteral">&quot;[object<sp/>Date]&quot;</highlight><highlight class="normal">};</highlight></codeline>
+<codeline lineno="27"><highlight class="normal">b.isRegExp=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>l.call(a)==</highlight><highlight class="stringliteral">&quot;[object<sp/>RegExp]&quot;</highlight><highlight class="normal">};b.isNull=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a===null};b.isUndefined=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a===</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>0};b.has=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,b){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>I.call(a,b)};b.noConflict=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(){r._=G;</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">};b.identity=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>a};b.times=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a,b,d){</highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(var<sp/>e=0;e&lt;a;e++)b.call(d,e)};b.escape=</highlight><highlight class="keyword">function</highlight><highlight class="normal">(a){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(</highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">+a).replace(/&amp;/g,</highlight><highlight class="stringliteral">&quot;&amp;amp;&quot;</highlight><highlight class="normal">).replace(/&lt;/g,</highlight><highlight class="stringliteral">&quot;&amp;lt;&quot;</highlight><highlight class="normal">).replace(/&gt;/g,</highlight><highlight class="stringliteral">&quot;&amp;gt;&quot;</highlight><highlight class="normal">).replace(/</highlight><highlight class="stringliteral">&quot;/g,&quot;</highlight><highlight class="normal">&amp;quot;</highlight><highlight class="stringliteral">&quot;).replace(/&apos;/g,&quot;</highlight><highlight class="normal">&amp;#x27;</highlight><highlight class="stringliteral">&quot;).replace(/\//g,&quot;</highlight><highlight class="normal">&amp;#x2F;</highlight><highlight class="stringliteral">&quot;)};b.mixin=function(a){j(b.functions(a),</highlight></codeline>
+<codeline lineno="28"><highlight class="stringliteral">function(c){K(c,b[c]=a[c])})};var<sp/>L=0;b.uniqueId=function(a){var<sp/>b=L++;return<sp/>a?a+b:b};b.templateSettings={evaluate:/&lt;%([\s\S]+?)%&gt;/g,interpolate:/&lt;%=([\s\S]+?)%&gt;/g,escape:/&lt;%-([\s\S]+?)%&gt;/g};var<sp/>t=/.^/,u=function(a){return<sp/>a.replace(/\\\\/g,&quot;</highlight><highlight class="normal">\\</highlight><highlight class="stringliteral">&quot;).replace(/\\&apos;/g,&quot;</highlight><highlight class="stringliteral">&apos;&quot;)};b.template=function(a,c){var<sp/>d=b.templateSettings,d=&quot;var<sp/>__p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push(&apos;</highlight><highlight class="stringliteral">&quot;+a.replace(/\\/g,&quot;</highlight><highlight class="normal">\\\\</highlight><highlight class="stringliteral">&quot;).replace(/&apos;/g,&quot;</highlight><highlight class="normal">\\</highlight><highlight class="stringliteral">&apos;&quot;).replace(d.escape||t,function(a,b){return&quot;&apos;</highlight><highlight class="normal">,_.escape(</highlight><highlight class="stringliteral">&quot;+</highlight></codeline>
+<codeline lineno="29"><highlight class="stringliteral">u(b)+&quot;</highlight><highlight class="normal">),</highlight><highlight class="stringliteral">&apos;&quot;}).replace(d.interpolate||t,function(a,b){return&quot;&apos;</highlight><highlight class="normal">,</highlight><highlight class="stringliteral">&quot;+u(b)+&quot;</highlight><highlight class="normal">,</highlight><highlight class="stringliteral">&apos;&quot;}).replace(d.evaluate||t,function(a,b){return&quot;&apos;</highlight><highlight class="normal">);</highlight><highlight class="stringliteral">&quot;+u(b).replace(/[\r\n\t]/g,&quot;</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;)+&quot;</highlight><highlight class="normal">;__p.push(</highlight><highlight class="stringliteral">&apos;&quot;}).replace(/\r/g,&quot;\\r&quot;).replace(/\n/g,&quot;\\n&quot;).replace(/\t/g,&quot;\\t&quot;)+&quot;&apos;</highlight><highlight class="normal">);}</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>__p.join(</highlight><highlight class="stringliteral">&apos;&apos;</highlight><highlight class="normal">);</highlight><highlight class="stringliteral">&quot;,e=new<sp/>Function(&quot;</highlight><highlight class="normal">obj</highlight><highlight class="stringliteral">&quot;,&quot;</highlight><highlight class="normal">_</highlight><highlight class="stringliteral">&quot;,d);return<sp/>c?e(c,b):function(a){return<sp/>e.call(this,a,b)}};b.chain=function(a){return<sp/>b(a).chain()};var<sp/>m=function(a){this._wrapped=a};b.prototype=m.prototype;var<sp/>v=function(a,c){return<sp/>c?b(a).chain():a},K=function(a,c){m.prototype[a]=</highlight></codeline>
+<codeline lineno="30"><highlight class="stringliteral">function(){var<sp/>a=i.call(arguments);H.call(a,this._wrapped);return<sp/>v(c.apply(b,a),this._chain)}};b.mixin(b);j(&quot;</highlight><highlight class="normal">pop,push,reverse,shift,sort,splice,unshift</highlight><highlight class="stringliteral">&quot;.split(&quot;</highlight><highlight class="normal">,</highlight><highlight class="stringliteral">&quot;),function(a){var<sp/>b=k[a];m.prototype[a]=function(){var<sp/>d=this._wrapped;b.apply(d,arguments);var<sp/>e=d.length;(a==&quot;</highlight><highlight class="normal">shift</highlight><highlight class="stringliteral">&quot;||a==&quot;</highlight><highlight class="normal">splice</highlight><highlight class="stringliteral">&quot;)&amp;&amp;e===0&amp;&amp;delete<sp/>d[0];return<sp/>v(d,this._chain)}});j([&quot;</highlight><highlight class="normal">concat</highlight><highlight class="stringliteral">&quot;,&quot;</highlight><highlight class="normal">join</highlight><highlight class="stringliteral">&quot;,&quot;</highlight><highlight class="normal">slice</highlight><highlight class="stringliteral">&quot;],function(a){var<sp/>b=k[a];m.prototype[a]=function(){return<sp/>v(b.apply(this._wrapped,arguments),this._chain)}});m.prototype.chain=function(){this._chain=</highlight></codeline>
+<codeline lineno="31"><highlight class="stringliteral">true;return<sp/>this};m.prototype.value=function(){return<sp/>this._wrapped}}).call(this);</highlight></codeline>
+    </programlisting>
+    <location file="build/html/_static/underscore.js"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="dir_fd60ec57c3e32b88a9aa9e8c081d7f2d" kind="dir">
+    <compoundname>build/html/_static/js</compoundname>
+    <innerfile refid="modernizr_8min_8js">modernizr.min.js</innerfile>
+    <innerfile refid="theme_8js">theme.js</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="build/html/_static/js/"/>
+  </compounddef>
+</doxygen>

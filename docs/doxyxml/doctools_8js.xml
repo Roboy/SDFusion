@@ -1,0 +1,448 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="doctools_8js" kind="file" language="Javascript">
+    <compoundname>doctools.js</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="doctools_8js_1ad9bcfd597eba04db946451e8368a1f05" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>$u</definition>
+        <argsstring></argsstring>
+        <name>$u</name>
+        <initializer>= _.noConflict()</initializer>
+        <briefdescription>
+<para>select a different prefix for underscore </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/doctools.js" line="15" column="1" bodyfile="build/html/_static/doctools.js" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="doctools_8js_1a6fe8c535920429aad34341e5251a6a86" prot="public" static="no" mutable="no">
+        <type>jQuery</type>
+        <definition>jQuery urldecode</definition>
+        <argsstring></argsstring>
+        <name>urldecode</name>
+        <initializer>= function(x) {
+  return decodeURIComponent(x).replace(/\+/g, &apos; &apos;);
+}</initializer>
+        <briefdescription>
+<para>make the code below compatible with browsers without an installed firebug like debugger if (!window.console || !console.firebug) { var names = [&quot;log&quot;, &quot;debug&quot;, &quot;info&quot;, &quot;warn&quot;, &quot;error&quot;, &quot;assert&quot;, &quot;dir&quot;, &quot;dirxml&quot;, &quot;group&quot;, &quot;groupEnd&quot;, &quot;time&quot;, &quot;timeEnd&quot;, &quot;count&quot;, &quot;trace&quot;, &quot;profile&quot;, &quot;profileEnd&quot;]; window.console = {}; for (var i = 0; i &lt; names.length; ++i) window.console[names[i]] = function() {}; } </para>        </briefdescription>
+        <detaileddescription>
+<para>small helper function to urldecode strings </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/doctools.js" line="33" column="1" bodyfile="build/html/_static/doctools.js" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="doctools_8js_1a8ad0128bd470dd7de4d5515b5e2d322d" prot="public" static="no" mutable="no">
+        <type>jQuery</type>
+        <definition>jQuery urlencode</definition>
+        <argsstring></argsstring>
+        <name>urlencode</name>
+        <initializer>= encodeURIComponent</initializer>
+        <briefdescription>
+<para>small helper function to urlencode strings </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/doctools.js" line="40" column="1" bodyfile="build/html/_static/doctools.js" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="doctools_8js_1a6c86fd85aed016ab07e2592698da7b8f" prot="public" static="no" mutable="no">
+        <type>jQuery</type>
+        <definition>jQuery getQueryParameters</definition>
+        <argsstring></argsstring>
+        <name>getQueryParameters</name>
+        <initializer>= function(s) {
+  if (typeof s == &apos;undefined&apos;)
+    s = document.location.search;
+  var parts = s.substr(s.indexOf(&apos;?&apos;) + 1).split(&apos;&amp;&apos;);
+  var result = {};
+  for (var i = 0; i &lt; parts.length; i++) {
+    var tmp = parts[i].split(&apos;=&apos;, 2);
+    var key = jQuery.urldecode(tmp[0]);
+    var value = jQuery.urldecode(tmp[1]);
+    if (key in result)
+      result[key].push(value);
+    else
+      result[key] = [value];
+  }
+  return result;
+}</initializer>
+        <briefdescription>
+<para>This function returns the parsed url parameters of the current request. </para>        </briefdescription>
+        <detaileddescription>
+<para>Multiple values per key are supported, it will always return arrays of strings for the value parts. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/doctools.js" line="47" column="1" bodyfile="build/html/_static/doctools.js" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="doctools_8js_1a2e71b63565071f6869c34fb6405fa1b5" prot="public" static="no" mutable="no">
+        <type>jQuery fn</type>
+        <definition>jQuery fn highlightText</definition>
+        <argsstring></argsstring>
+        <name>highlightText</name>
+        <initializer>= function(text, className) {
+  function highlight(node) {
+    if (node.nodeType == 3) {
+      var val = node.nodeValue;
+      var pos = val.toLowerCase().indexOf(text);
+      if (pos &gt;= 0 &amp;&amp; !jQuery(node.parentNode).hasClass(className)) {
+        var span = document.createElement(&quot;span&quot;);
+        span.className = className;
+        span.appendChild(document.createTextNode(val.substr(pos, text.length)));
+        node.parentNode.insertBefore(span, node.parentNode.insertBefore(
+          document.createTextNode(val.substr(pos + text.length)),
+          node.nextSibling));
+        node.nodeValue = val.substr(0, pos);
+      }
+    }
+    else if (!jQuery(node).is(&quot;button, select, textarea&quot;)) {
+      jQuery.each(node.childNodes, function() {
+        highlight(this);
+      });
+    }
+  }
+  return this.each(function() {
+    highlight(this);
+  });
+}</initializer>
+        <briefdescription>
+<para>highlight a given string on a jquery object by wrapping it in span elements with the given class name. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/doctools.js" line="68" column="1" bodyfile="build/html/_static/doctools.js" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="doctools_8js_1a02217f350f58eea1f41fcc9b47c1fca0" prot="public" static="no" mutable="no">
+        <type>var</type>
+        <definition>var Documentation</definition>
+        <argsstring></argsstring>
+        <name>Documentation</name>
+        <briefdescription>
+<para>Small JavaScript module for the documentation. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/doctools.js" line="121" column="1" bodyfile="build/html/_static/doctools.js" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="doctools_8js_1a30e4644a28019b7a7e03fbbfb07ab3ca" prot="public" static="no" mutable="no">
+        <type>var</type>
+        <definition>var initOnKeyListeners</definition>
+        <argsstring></argsstring>
+        <name>initOnKeyListeners</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/doctools.js" line="258" column="1" bodyfile="build/html/_static/doctools.js" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="doctools_8js_1a18f05aeddc212b523b40818fa2b87b33" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>_</definition>
+        <argsstring></argsstring>
+        <name>_</name>
+        <initializer>= Documentation.gettext</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/doctools.js" line="283" column="1" bodyfile="build/html/_static/doctools.js" bodystart="283" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="doctools_8js_1adbd695a57e19ac14f318c59a4e4d854e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>if</definition>
+        <argsstring>(!jQuery.browser)</argsstring>
+        <name>if</name>
+        <param>
+          <type>!jQuery.</type>
+          <declname>browser</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/doctools.js" line="98" column="1" bodyfile="build/html/_static/doctools.js" bodystart="98" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="doctools_8js_1ad7ed3fe012e63d0ddb0e726f5d84e883" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>if</definition>
+        <argsstring>(activeElementType!== &apos;TEXTAREA&apos;&amp;&amp;activeElementType!== &apos;INPUT&apos;&amp;&amp;activeElementType!== &apos;SELECT&apos;)</argsstring>
+        <name>if</name>
+        <param>
+          <type>activeElementType!</type>
+          <defname>activeElementType!</defname>
+          <defval>= &apos;TEXTAREA&apos;&amp;&amp;activeElementType!== &apos;INPUT&apos;&amp;&amp;activeElementType!== &apos;SELECT&apos;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/doctools.js" line="262" column="1" bodyfile="build/html/_static/doctools.js" bodystart="262" bodyend="277"/>
+      </memberdef>
+      <memberdef kind="function" id="doctools_8js_1aed7c9717fcf244e1b1a15762bd682f75" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>document</type>
+        <definition>document ready</definition>
+        <argsstring>(function(){Documentation.init();})</argsstring>
+        <name>ready</name>
+        <param>
+          <type>function(){Documentation.init();}</type>
+          <defname>function(){Documentation.init();}</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_static/doctools.js" line="285" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>doctools.js</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>~~~~~~~~~~~</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>Sphinx<sp/>JavaScript<sp/>utilities<sp/>for<sp/>all<sp/>documentation.</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>:copyright:<sp/>Copyright<sp/>2007-2017<sp/>by<sp/>the<sp/>Sphinx<sp/>team,<sp/>see<sp/>AUTHORS.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>:license:<sp/>BSD,<sp/>see<sp/>LICENSE<sp/>for<sp/>details.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">$u<sp/>=<sp/>_.noConflict();</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal">jQuery.urldecode<sp/>=<sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">(x)<sp/>{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>decodeURIComponent(x).replace(/\+/g,<sp/></highlight><highlight class="charliteral">&apos;<sp/>&apos;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal">jQuery.urlencode<sp/>=<sp/>encodeURIComponent;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal">jQuery.getQueryParameters<sp/>=<sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">(s)<sp/>{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(typeof<sp/>s<sp/>==<sp/></highlight><highlight class="stringliteral">&apos;undefined&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>s<sp/>=<sp/>document.location.search;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/>var<sp/>parts<sp/>=<sp/>s.substr(s.indexOf(</highlight><highlight class="charliteral">&apos;?&apos;</highlight><highlight class="normal">)<sp/>+<sp/>1).split(</highlight><highlight class="charliteral">&apos;&amp;&apos;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/>var<sp/>result<sp/>=<sp/>{};</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(var<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>parts.length;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>tmp<sp/>=<sp/>parts[i].split(</highlight><highlight class="charliteral">&apos;=&apos;</highlight><highlight class="normal">,<sp/>2);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>key<sp/>=<sp/>jQuery.urldecode(tmp[0]);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>value<sp/>=<sp/>jQuery.urldecode(tmp[1]);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(key<sp/>in<sp/>result)</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>result[key].push(value);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>result[key]<sp/>=<sp/>[value];</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal">jQuery.fn.highlightText<sp/>=<sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">(text,<sp/>className)<sp/>{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal"><sp/>highlight(node)<sp/>{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(node.nodeType<sp/>==<sp/>3)<sp/>{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>val<sp/>=<sp/>node.nodeValue;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>pos<sp/>=<sp/>val.toLowerCase().indexOf(text);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pos<sp/>&gt;=<sp/>0<sp/>&amp;&amp;<sp/>!jQuery(node.parentNode).hasClass(className))<sp/>{</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>span<sp/>=<sp/>document.createElement(</highlight><highlight class="stringliteral">&quot;span&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>span.className<sp/>=<sp/>className;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>span.appendChild(document.createTextNode(val.substr(pos,<sp/>text.length)));</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>node.parentNode.insertBefore(span,<sp/>node.parentNode.insertBefore(</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>document.createTextNode(val.substr(pos<sp/>+<sp/>text.length)),</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>node.nextSibling));</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>node.nodeValue<sp/>=<sp/>val.substr(0,<sp/>pos);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!jQuery(node).is(</highlight><highlight class="stringliteral">&quot;button,<sp/>select,<sp/>textarea&quot;</highlight><highlight class="normal">))<sp/>{</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>jQuery.each(node.childNodes,<sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">()<sp/>{</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>highlight(this);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this.each(</highlight><highlight class="keyword">function</highlight><highlight class="normal">()<sp/>{</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>highlight(</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/>});</highlight></codeline>
+<codeline lineno="92"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="95"><highlight class="comment"><sp/>*<sp/>backward<sp/>compatibility<sp/>for<sp/>jQuery.browser</highlight></codeline>
+<codeline lineno="96"><highlight class="comment"><sp/>*<sp/>This<sp/>will<sp/>be<sp/>supported<sp/>until<sp/>firefox<sp/>bug<sp/>is<sp/>fixed.</highlight></codeline>
+<codeline lineno="97"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!jQuery.browser)<sp/>{</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/>jQuery.uaMatch<sp/>=<sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">(ua)<sp/>{</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>ua<sp/>=<sp/>ua.toLowerCase();</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>match<sp/>=<sp/>/(chrome)[<sp/>\/]([\w.]+)/.exec(ua)<sp/>||</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>/(webkit)[<sp/>\/]([\w.]+)/.exec(ua)<sp/>||</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>/(opera)(?:.*version|)[<sp/>\/]([\w.]+)/.exec(ua)<sp/>||</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>/(msie)<sp/>([\w.]+)/.exec(ua)<sp/>||</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>ua.indexOf(</highlight><highlight class="stringliteral">&quot;compatible&quot;</highlight><highlight class="normal">)<sp/>&lt;<sp/>0<sp/>&amp;&amp;<sp/>/(mozilla)(?:.*?<sp/>rv:([\w.]+)|)/.exec(ua)<sp/>||</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>[];</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>browser:<sp/>match[<sp/>1<sp/>]<sp/>||<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>version:<sp/>match[<sp/>2<sp/>]<sp/>||<sp/></highlight><highlight class="stringliteral">&quot;0&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/>jQuery.browser<sp/>=<sp/>{};</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/>jQuery.browser[jQuery.uaMatch(navigator.userAgent).browser]<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal">var<sp/>Documentation<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/>init<sp/>:<sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">()<sp/>{</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>this.fixFirefoxAnchorBug();</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>this.highlightSearchWords();</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>this.initIndexTable();</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/>},</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/>TRANSLATIONS<sp/>:<sp/>{},</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/>PLURAL_EXPR<sp/>:<sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">(n)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>n<sp/>==<sp/>1<sp/>?<sp/>0<sp/>:<sp/>1;<sp/>},</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/>LOCALE<sp/>:<sp/></highlight><highlight class="stringliteral">&apos;unknown&apos;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>gettext<sp/>and<sp/>ngettext<sp/>don&apos;t<sp/>access<sp/>this<sp/>so<sp/>that<sp/>the<sp/>functions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>can<sp/>safely<sp/>bound<sp/>to<sp/>a<sp/>different<sp/>name<sp/>(_<sp/>=<sp/>Documentation.gettext)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/>gettext<sp/>:<sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">(string)<sp/>{</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>translated<sp/>=<sp/>Documentation.TRANSLATIONS[string];</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(typeof<sp/>translated<sp/>==<sp/></highlight><highlight class="stringliteral">&apos;undefined&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>string;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(typeof<sp/>translated<sp/>==<sp/></highlight><highlight class="stringliteral">&apos;string&apos;</highlight><highlight class="normal">)<sp/>?<sp/>translated<sp/>:<sp/>translated[0];</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/>},</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/>ngettext<sp/>:<sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">(singular,<sp/>plural,<sp/>n)<sp/>{</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>translated<sp/>=<sp/>Documentation.TRANSLATIONS[singular];</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(typeof<sp/>translated<sp/>==<sp/></highlight><highlight class="stringliteral">&apos;undefined&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(n<sp/>==<sp/>1)<sp/>?<sp/>singular<sp/>:<sp/>plural;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>translated[Documentation.PLURALEXPR(n)];</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/>},</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/>addTranslations<sp/>:<sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">(catalog)<sp/>{</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(var<sp/>key<sp/>in<sp/>catalog.messages)</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>this.TRANSLATIONS[key]<sp/>=<sp/>catalog.messages[key];</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/>this.PLURAL_EXPR<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Function(</highlight><highlight class="charliteral">&apos;n&apos;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&apos;return<sp/>+(&apos;</highlight><highlight class="normal"><sp/>+<sp/>catalog.plural_expr<sp/>+<sp/></highlight><highlight class="charliteral">&apos;)&apos;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>this.LOCALE<sp/>=<sp/>catalog.locale;</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/>},</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/>addContextElements<sp/>:<sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">()<sp/>{</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/>$(</highlight><highlight class="stringliteral">&apos;div[id]<sp/>&gt;<sp/>:header:first&apos;</highlight><highlight class="normal">).each(</highlight><highlight class="keyword">function</highlight><highlight class="normal">()<sp/>{</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>$(</highlight><highlight class="stringliteral">&apos;&lt;a<sp/>class=&quot;headerlink&quot;&gt;\u00B6&lt;/a&gt;&apos;</highlight><highlight class="normal">).</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>attr(</highlight><highlight class="stringliteral">&apos;href&apos;</highlight><highlight class="normal">,<sp/></highlight><highlight class="charliteral">&apos;#&apos;</highlight><highlight class="normal"><sp/>+<sp/>this.</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">).</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>attr(</highlight><highlight class="stringliteral">&apos;title&apos;</highlight><highlight class="normal">,<sp/>_(</highlight><highlight class="stringliteral">&apos;Permalink<sp/>to<sp/>this<sp/>headline&apos;</highlight><highlight class="normal">)).</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>appendTo(</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/>$(</highlight><highlight class="stringliteral">&apos;dt[id]&apos;</highlight><highlight class="normal">).each(</highlight><highlight class="keyword">function</highlight><highlight class="normal">()<sp/>{</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>$(</highlight><highlight class="stringliteral">&apos;&lt;a<sp/>class=&quot;headerlink&quot;&gt;\u00B6&lt;/a&gt;&apos;</highlight><highlight class="normal">).</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>attr(</highlight><highlight class="stringliteral">&apos;href&apos;</highlight><highlight class="normal">,<sp/></highlight><highlight class="charliteral">&apos;#&apos;</highlight><highlight class="normal"><sp/>+<sp/>this.</highlight><highlight class="keywordtype">id</highlight><highlight class="normal">).</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>attr(</highlight><highlight class="stringliteral">&apos;title&apos;</highlight><highlight class="normal">,<sp/>_(</highlight><highlight class="stringliteral">&apos;Permalink<sp/>to<sp/>this<sp/>definition&apos;</highlight><highlight class="normal">)).</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>appendTo(</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/>},</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/>fixFirefoxAnchorBug<sp/>:<sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">()<sp/>{</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(document.location.hash)</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>window.setTimeout(</highlight><highlight class="keyword">function</highlight><highlight class="normal">()<sp/>{</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>document.location.href<sp/>+=<sp/></highlight><highlight class="stringliteral">&apos;&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>},<sp/>10);</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/>},</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/>highlightSearchWords<sp/>:<sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">()<sp/>{</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>params<sp/>=<sp/>$.getQueryParameters();</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>terms<sp/>=<sp/>(params.highlight)<sp/>?<sp/>params.highlight[0].split(/\s+/)<sp/>:<sp/>[];</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(terms.length)<sp/>{</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>body<sp/>=<sp/>$(</highlight><highlight class="stringliteral">&apos;div.body&apos;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!body.length)<sp/>{</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>body<sp/>=<sp/>$(</highlight><highlight class="stringliteral">&apos;body&apos;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>window.setTimeout(</highlight><highlight class="keyword">function</highlight><highlight class="normal">()<sp/>{</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>$.each(terms,<sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">()<sp/>{</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>body.highlightText(this.toLowerCase(),<sp/></highlight><highlight class="stringliteral">&apos;highlighted&apos;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>},<sp/>10);</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>$(</highlight><highlight class="stringliteral">&apos;&lt;p<sp/>class=&quot;highlight-link&quot;&gt;&lt;a<sp/>href=&quot;javascript:Documentation.&apos;</highlight><highlight class="normal"><sp/>+</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&apos;hideSearchWords()&quot;&gt;&apos;</highlight><highlight class="normal"><sp/>+<sp/>_(</highlight><highlight class="stringliteral">&apos;Hide<sp/>Search<sp/>Matches&apos;</highlight><highlight class="normal">)<sp/>+<sp/></highlight><highlight class="stringliteral">&apos;&lt;/a&gt;&lt;/p&gt;&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.appendTo($(</highlight><highlight class="stringliteral">&apos;#searchbox&apos;</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/>},</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/>initIndexTable<sp/>:<sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">()<sp/>{</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>togglers<sp/>=<sp/>$(</highlight><highlight class="stringliteral">&apos;img.toggler&apos;</highlight><highlight class="normal">).click(</highlight><highlight class="keyword">function</highlight><highlight class="normal">()<sp/>{</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>src<sp/>=<sp/>$(</highlight><highlight class="keyword">this</highlight><highlight class="normal">).attr(</highlight><highlight class="stringliteral">&apos;src&apos;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>idnum<sp/>=<sp/>$(</highlight><highlight class="keyword">this</highlight><highlight class="normal">).attr(</highlight><highlight class="stringliteral">&apos;id&apos;</highlight><highlight class="normal">).substr(7);</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>$(</highlight><highlight class="stringliteral">&apos;tr.cg-&apos;</highlight><highlight class="normal"><sp/>+<sp/>idnum).toggle();</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(src.substr(-9)<sp/>==<sp/></highlight><highlight class="stringliteral">&apos;minus.png&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>$(</highlight><highlight class="keyword">this</highlight><highlight class="normal">).attr(</highlight><highlight class="stringliteral">&apos;src&apos;</highlight><highlight class="normal">,<sp/>src.substr(0,<sp/>src.length-9)<sp/>+<sp/></highlight><highlight class="stringliteral">&apos;plus.png&apos;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>$(</highlight><highlight class="keyword">this</highlight><highlight class="normal">).attr(</highlight><highlight class="stringliteral">&apos;src&apos;</highlight><highlight class="normal">,<sp/>src.substr(0,<sp/>src.length-8)<sp/>+<sp/></highlight><highlight class="stringliteral">&apos;minus.png&apos;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/>}).css(</highlight><highlight class="stringliteral">&apos;display&apos;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&apos;&apos;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(DOCUMENTATION_OPTIONS.COLLAPSE_INDEX)<sp/>{</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>togglers.click();</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/>},</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"></highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/>hideSearchWords<sp/>:<sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">()<sp/>{</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/>$(</highlight><highlight class="stringliteral">&apos;#searchbox<sp/>.highlight-link&apos;</highlight><highlight class="normal">).fadeOut(300);</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/>$(</highlight><highlight class="stringliteral">&apos;span.highlighted&apos;</highlight><highlight class="normal">).removeClass(</highlight><highlight class="stringliteral">&apos;highlighted&apos;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/>},</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"></highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/>makeURL<sp/>:<sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">(relativeURL)<sp/>{</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>DOCUMENTATION_OPTIONS.URL_ROOT<sp/>+<sp/></highlight><highlight class="charliteral">&apos;/&apos;</highlight><highlight class="normal"><sp/>+<sp/>relativeURL;</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/>},</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"></highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/>getCurrentURL<sp/>:<sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">()<sp/>{</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>path<sp/>=<sp/>document.location.pathname;</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>parts<sp/>=<sp/>path.split(/\</highlight><highlight class="comment">//);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/>$.each(DOCUMENTATION_OPTIONS.URL_ROOT.split(/\</highlight><highlight class="comment">//),<sp/>function()<sp/>{</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>==<sp/></highlight><highlight class="stringliteral">&apos;..&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>parts.pop();</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>url<sp/>=<sp/>parts.join(</highlight><highlight class="charliteral">&apos;/&apos;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>path.substring(url.lastIndexOf(</highlight><highlight class="charliteral">&apos;/&apos;</highlight><highlight class="normal">)<sp/>+<sp/>1,<sp/>path.length<sp/>-<sp/>1);</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/>},</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"></highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/>initOnKeyListeners:<sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">()<sp/>{</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/>$(document).keyup(</highlight><highlight class="keyword">function</highlight><highlight class="normal">(event)<sp/>{</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>activeElementType<sp/>=<sp/>document.activeElement.tagName;</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>don&apos;t<sp/>navigate<sp/>when<sp/>in<sp/>search<sp/>box<sp/>or<sp/>textarea</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(activeElementType<sp/>!==<sp/></highlight><highlight class="stringliteral">&apos;TEXTAREA&apos;</highlight><highlight class="normal"><sp/>&amp;&amp;<sp/>activeElementType<sp/>!==<sp/></highlight><highlight class="stringliteral">&apos;INPUT&apos;</highlight><highlight class="normal"><sp/>&amp;&amp;<sp/>activeElementType<sp/>!==<sp/></highlight><highlight class="stringliteral">&apos;SELECT&apos;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(event.keyCode)<sp/>{</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>37:<sp/></highlight><highlight class="comment">//<sp/>left</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>prevHref<sp/>=<sp/>$(</highlight><highlight class="stringliteral">&apos;link[rel=&quot;prev&quot;]&apos;</highlight><highlight class="normal">).prop(</highlight><highlight class="stringliteral">&apos;href&apos;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(prevHref)<sp/>{</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>window.location.href<sp/>=<sp/>prevHref;</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>39:<sp/></highlight><highlight class="comment">//<sp/>right</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>nextHref<sp/>=<sp/>$(</highlight><highlight class="stringliteral">&apos;link[rel=&quot;next&quot;]&apos;</highlight><highlight class="normal">).prop(</highlight><highlight class="stringliteral">&apos;href&apos;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(nextHref)<sp/>{</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>window.location.href<sp/>=<sp/>nextHref;</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="280"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="281"><highlight class="normal"></highlight></codeline>
+<codeline lineno="282"><highlight class="normal"></highlight><highlight class="comment">//<sp/>quick<sp/>alias<sp/>for<sp/>translations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="283"><highlight class="normal">_<sp/>=<sp/>Documentation.gettext;</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"></highlight></codeline>
+<codeline lineno="285"><highlight class="normal">$(document).ready(</highlight><highlight class="keyword">function</highlight><highlight class="normal">()<sp/>{</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/>Documentation.init();</highlight></codeline>
+<codeline lineno="287"><highlight class="normal">});</highlight></codeline>
+    </programlisting>
+    <location file="build/html/_static/doctools.js"/>
+  </compounddef>
+</doxygen>

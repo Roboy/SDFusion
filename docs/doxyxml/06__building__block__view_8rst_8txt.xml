@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="06__building__block__view_8rst_8txt" kind="file" language="C++">
+    <compoundname>06_building_block_view.rst.txt</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="06__building__block__view_8rst_8txt_1aa540d73055c098d4779345e187a438c7" prot="public" static="no" mutable="no">
+        <type>Building Block</type>
+        <definition>Building Block View</definition>
+        <argsstring></argsstring>
+        <name>View</name>
+        <initializer>===================
+Overview
+^^^^^^^^
+
+.. todo::
+  Inset a building block view:
+
+  - Static decomposition of the system into building blocks and the relationships thereof.
+  - Description of libraries and software used
+  -
+
+  We specify the system based on the blackbox view from :ref:`context_within_environment` by now considering it a whitebox and identifying the next layer of blackboxes inside it. We re-iterate this zoom-in until specific granularity is reached - 2 levels should be enough.
+
+  **Motivation.**
+
+  This is the most important view</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/development/06_building_block_view.rst.txt" line="1" column="1" bodyfile="build/html/_sources/development/06_building_block_view.rst.txt" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">Building<sp/>Block<sp/>View</highlight></codeline>
+<codeline lineno="2"><highlight class="normal">===================</highlight></codeline>
+<codeline lineno="3"><highlight class="normal">Overview</highlight></codeline>
+<codeline lineno="4"><highlight class="normal">^^^^^^^^</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal">..<sp/>todo::</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/>Inset<sp/>a<sp/>building<sp/>block<sp/>view:</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/>-<sp/>Static<sp/>decomposition<sp/>of<sp/>the<sp/>system<sp/>into<sp/>building<sp/>blocks<sp/>and<sp/>the<sp/>relationships<sp/>thereof.</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/>-<sp/>Description<sp/>of<sp/>libraries<sp/>and<sp/>software<sp/>used</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/>-</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/>We<sp/>specify<sp/>the<sp/>system<sp/>based<sp/>on<sp/>the<sp/>blackbox<sp/>view<sp/>from<sp/>:ref:`context_within_environment`<sp/>by<sp/>now<sp/>considering<sp/>it<sp/>a<sp/>whitebox<sp/>and<sp/>identifying<sp/>the<sp/>next<sp/>layer<sp/>of<sp/>blackboxes<sp/>inside<sp/>it.<sp/>We<sp/>re-iterate<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>zoom-in<sp/>until<sp/>specific<sp/>granularity<sp/>is<sp/>reached<sp/>-<sp/>2<sp/>levels<sp/>should<sp/>be<sp/>enough.</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/>**Motivation.**</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/>This<sp/>is<sp/>the<sp/>most<sp/>important<sp/>view,<sp/>that<sp/>must<sp/>be<sp/>part<sp/>of<sp/>each<sp/>architecture</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/>documentation.<sp/>In<sp/>building<sp/>construction<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>would<sp/>be<sp/>the<sp/>floor<sp/>plan.</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/>**Tool**</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/>-<sp/>Create<sp/>diagrams<sp/>as<sp/>below.</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal">..<sp/>_bb-l1-overview:</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal">The<sp/>white<sp/>box<sp/>view<sp/>of<sp/>the<sp/>first<sp/>level<sp/>of<sp/>your<sp/>code.</highlight></codeline>
+<codeline lineno="27"><highlight class="normal">This<sp/>is<sp/>a<sp/>white<sp/>box<sp/>view<sp/>of<sp/>your<sp/>system<sp/>as<sp/>shown<sp/>within<sp/>the<sp/>in<sp/>Context<sp/>in<sp/>figure:<sp/>:ref:`context_within_environment`.</highlight></codeline>
+<codeline lineno="28"><highlight class="normal">External<sp/>libraries<sp/>and<sp/>software<sp/>are<sp/>clearly<sp/>marked.</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal">..<sp/>_building-block-overview:</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal">..<sp/>figure::<sp/>images/05_building_blocks.png</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/>:alt:<sp/>Bulding<sp/>blocks<sp/>overview</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/>Building<sp/>blocks<sp/>overview</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal">..<sp/>_bb-l1-component-list:</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal">Level<sp/>1<sp/>-<sp/>Components</highlight></codeline>
+<codeline lineno="41"><highlight class="normal">^^^^^^^^^^^^^^^^^^^^^</highlight></codeline>
+<codeline lineno="42"><highlight class="normal">The<sp/>highest<sp/>level<sp/>components</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal">..<sp/>todo::</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>Define<sp/>your<sp/>groups<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>the<sp/>**/defgroup**<sp/>doxygen<sp/>command</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>Add<sp/>**@addtogroup**<sp/>tags<sp/>to<sp/>doxygen<sp/>blocks<sp/>of<sp/>components<sp/>in<sp/>code<sp/>as<sp/>described<sp/>here:<sp/>http:</highlight><highlight class="comment">//www.stack.nl/~dimitri/doxygen/manual/grouping.html#modules</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>Adapt<sp/>the<sp/>doxygencall<sp/>to<sp/>match<sp/>the<sp/>group<sp/>name</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal">..<sp/>_bb-l1-components:</highlight></codeline>
+<codeline lineno="50"><highlight class="normal">..<sp/>doxygengroup::<sp/>nuttygroup</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal">Level<sp/>2<sp/>-<sp/>Components<sp/>within<sp/>each<sp/>component<sp/>of<sp/>level<sp/>1</highlight></codeline>
+<codeline lineno="53"><highlight class="normal">^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal">..<sp/>todo::</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>Define<sp/>your<sp/>groups<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>the<sp/>**/defgroup**<sp/>doxygen<sp/>command</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>Add<sp/>**addtogroup**<sp/>tags<sp/>to<sp/>doxygen<sp/>blocks<sp/>of<sp/>components<sp/>in<sp/>code<sp/>as<sp/>described<sp/>here:<sp/>http:</highlight><highlight class="comment">//www.stack.nl/~dimitri/doxygen/manual/grouping.html#modules</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>Adapt<sp/>the<sp/>doxygencall<sp/>to<sp/>match<sp/>the<sp/>group<sp/>name</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal">..<sp/>_bb-l2-components:</highlight></codeline>
+<codeline lineno="61"><highlight class="normal">..<sp/>doxygengroup::<sp/>nuttygroup2</highlight></codeline>
+    </programlisting>
+    <location file="build/html/_sources/development/06_building_block_view.rst.txt"/>
+  </compounddef>
+</doxygen>

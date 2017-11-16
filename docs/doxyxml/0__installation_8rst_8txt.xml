@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="0__installation_8rst_8txt" kind="file" language="C++">
+    <compoundname>0_installation.rst.txt</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="0__installation_8rst_8txt_1af19a6c269db2c560f7f2ecf214a1d828" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>Installation</definition>
+        <argsstring></argsstring>
+        <name>Installation</name>
+        <initializer>=============
+
+Git clone the following repository: https:
+
+**Do NOT rename the folder/ the .py file or the .manifest file!**
+
+To make the script known to Fusion</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/Usage/0_installation.rst.txt" line="1" column="1" bodyfile="build/html/_sources/Usage/0_installation.rst.txt" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="0__installation_8rst_8txt_1aa6d3940705955395a229e84e720237ef" prot="public" static="no" mutable="no">
+        <type>run the Script and Add Ins command and click the green icon beside the My Scripts folder in the</type>
+        <definition>run the Script and Add Ins command and click the green icon beside the My Scripts folder in the dialog</definition>
+        <argsstring></argsstring>
+        <name>dialog</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/Usage/0_installation.rst.txt" line="8" column="1" bodyfile="build/html/_sources/Usage/0_installation.rst.txt" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="0__installation_8rst_8txt_1ae56a7d12d3c83b0e4c6f19951a00a057" prot="public" static="no" mutable="no">
+        <type>run the Script and Add Ins command and click the green icon beside the My Scripts folder in the as shown below Use the dialog to browse to the location of the script py file The script will now be listed in the Scripts and Add Ins dialog and you can</type>
+        <definition>run the Script and Add Ins command and click the green icon beside the My Scripts folder in the as shown below Use the dialog to browse to the location of the script py file The script will now be listed in the Scripts and Add Ins dialog and you can run</definition>
+        <argsstring></argsstring>
+        <name>run</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/Usage/0_installation.rst.txt" line="8" column="1" bodyfile="build/html/_sources/Usage/0_installation.rst.txt" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="0__installation_8rst_8txt_1a20d6d048d72264cba630a2e75bd78f6d" prot="public" static="no" mutable="no">
+        <type>run the Script and Add Ins command and click the green icon beside the My Scripts folder in the as shown below Use the dialog to browse to the location of the script py file The script will now be listed in the Scripts and Add Ins dialog and you can</type>
+        <definition>run the Script and Add Ins command and click the green icon beside the My Scripts folder in the as shown below Use the dialog to browse to the location of the script py file The script will now be listed in the Scripts and Add Ins dialog and you can edit</definition>
+        <argsstring></argsstring>
+        <name>edit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/Usage/0_installation.rst.txt" line="8" column="1" bodyfile="build/html/_sources/Usage/0_installation.rst.txt" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="0__installation_8rst_8txt_1aad49ce011d3c0764e82b874b770b2df9" prot="public" static="no" mutable="no">
+        <type>run the Script and Add Ins command and click the green icon beside the My Scripts folder in the as shown below Use the dialog to browse to the location of the script py file The script will now be listed in the Scripts and Add Ins dialog and you can and debug it from there the same as any other script or add in You only need to do this once and Fusion will remember the script or add in for all subsequent sessions If the script does not show up in the Fusion script</type>
+        <definition>run the Script and Add Ins command and click the green icon beside the My Scripts folder in the as shown below Use the dialog to browse to the location of the script py file The script will now be listed in the Scripts and Add Ins dialog and you can and debug it from there the same as any other script or add in You only need to do this once and Fusion will remember the script or add in for all subsequent sessions If the script does not show up in the Fusion script menu</definition>
+        <argsstring></argsstring>
+        <name>menu</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/Usage/0_installation.rst.txt" line="10" column="1" bodyfile="build/html/_sources/Usage/0_installation.rst.txt" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">Installation</highlight></codeline>
+<codeline lineno="2"><highlight class="normal">=============</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal">Git<sp/>clone<sp/>the<sp/>following<sp/>repository:<sp/>https:</highlight><highlight class="comment">//github.com/Roboy/SDFusion</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal">**Do<sp/>NOT<sp/>rename<sp/>the<sp/>folder/<sp/>the<sp/>.py<sp/>file<sp/>or<sp/>the<sp/>.manifest<sp/>file!**</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal">To<sp/>make<sp/>the<sp/>script<sp/>known<sp/>to<sp/>Fusion,<sp/>run<sp/>the<sp/>Script<sp/>and<sp/>Add-Ins<sp/>command<sp/>and<sp/>click<sp/>the<sp/>green<sp/></highlight><highlight class="stringliteral">&quot;+&quot;</highlight><highlight class="normal"><sp/>icon<sp/>beside<sp/>the<sp/></highlight><highlight class="stringliteral">&quot;My<sp/>Scripts&quot;</highlight><highlight class="normal"><sp/>folder<sp/>in<sp/>the<sp/>dialog,<sp/>as<sp/>shown<sp/>below.<sp/>Use<sp/>the<sp/>dialog<sp/>to<sp/>browse<sp/>to<sp/>the<sp/>location<sp/>of<sp/>the<sp/>script<sp/>.py<sp/>file.<sp/>The<sp/>script<sp/>will<sp/>now<sp/>be<sp/>listed<sp/>in<sp/>the<sp/>Scripts<sp/>and<sp/>Add-Ins<sp/>dialog<sp/>and<sp/>you<sp/>can<sp/>run,<sp/>edit,<sp/>and<sp/>debug<sp/>it<sp/>from<sp/>there<sp/>the<sp/>same<sp/>as<sp/>any<sp/>other<sp/>script<sp/>or<sp/>add-in.<sp/>You<sp/>only<sp/>need<sp/>to<sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>once<sp/>and<sp/>Fusion<sp/>will<sp/>remember<sp/>the<sp/>script<sp/>or<sp/>add-in<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>all<sp/>subsequent<sp/>sessions.</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal">If<sp/>the<sp/>script<sp/>does<sp/>not<sp/>show<sp/>up<sp/>in<sp/>the<sp/>Fusion<sp/>script<sp/>menu,<sp/>restart<sp/>Fusion.</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal">..<sp/>figure::<sp/>images/ScriptsAndAddInsBrowse.png</highlight></codeline>
+    </programlisting>
+    <location file="build/html/_sources/Usage/0_installation.rst.txt"/>
+  </compounddef>
+</doxygen>

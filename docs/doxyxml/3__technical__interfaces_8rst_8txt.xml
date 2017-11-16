@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="3__technical__interfaces_8rst_8txt" kind="file" language="C++">
+    <compoundname>3_technical_interfaces.rst.txt</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="3__technical__interfaces_8rst_8txt_1abebcce86360970218b3b950325a1d518" prot="public" static="no" mutable="no">
+        <type>_technical</type>
+        <definition>_technical interfaces</definition>
+        <argsstring></argsstring>
+        <name>interfaces</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="build/html/_sources/ScopeContext/3_technical_interfaces.rst.txt" line="1" column="1" bodyfile="build/html/_sources/ScopeContext/3_technical_interfaces.rst.txt" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">..<sp/>_technical-interfaces:</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal">Technical<sp/>Interfaces</highlight></codeline>
+<codeline lineno="4"><highlight class="normal">--------------------</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal">This<sp/>section<sp/>describes<sp/>the<sp/>data<sp/>interfaces<sp/>to<sp/>other<sp/>systems<sp/>around<sp/>it.<sp/>It<sp/>follows<sp/>3<sp/>of<sp/>the<sp/>`levels<sp/>of<sp/>interoperability<sp/>&lt;https:</highlight><highlight class="comment">//en.wikipedia.org/wiki/Conceptual_interoperability&gt;`_<sp/>(**IO**):</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal">..<sp/>todo::</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/>For<sp/>all<sp/>your<sp/>interfaces,<sp/>define<sp/>their<sp/>first<sp/>3<sp/>`levels<sp/>of<sp/>interoperability<sp/>&lt;https:</highlight><highlight class="comment">//en.wikipedia.org/wiki/Conceptual_interoperability&gt;`_.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/>You<sp/>can<sp/>use<sp/>your<sp/>doxygen<sp/>documented<sp/>source<sp/>code<sp/>to<sp/>i.e.<sp/>show<sp/>all<sp/>members<sp/>of<sp/>a<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal">.</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/>Find<sp/>more<sp/>on<sp/>the<sp/>`Breathe<sp/>Documentation<sp/>&lt;http:</highlight><highlight class="comment">//breathe.readthedocs.io/en/latest/directives.html#doxygenclass&gt;`_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">-<sp/>Technical<sp/>interoperability<sp/>-<sp/>Datastreams<sp/>btwn<sp/>systems.<sp/>i.e.<sp/>TCP/IP,<sp/>RS232,<sp/>...</highlight></codeline>
+<codeline lineno="14"><highlight class="normal">-<sp/>Syntactic<sp/>interoperability<sp/>-<sp/>Units<sp/>within<sp/>the<sp/>stream.<sp/>i.e.<sp/>XML,<sp/>CSV,<sp/>HL7,<sp/>DICOM</highlight></codeline>
+<codeline lineno="15"><highlight class="normal">-<sp/>Semantic<sp/>interoperability<sp/>-<sp/>Common<sp/>definition<sp/>of<sp/>unit<sp/>meaning.</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal">Powerlink<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>MotorControl</highlight></codeline>
+<codeline lineno="19"><highlight class="normal">^^^^^^^^^^^^^^^^^^^^^^^^^^</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">Technical<sp/>IO</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">##############</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">Powerlink</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">Syntactic<sp/>IO</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">##############</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal">SDO,<sp/>PDO,<sp/>NMT<sp/>messages</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal">Semantic<sp/>IO</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">##############</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal">The<sp/></highlight><highlight class="keyword">package<sp/></highlight><highlight class="normal">names<sp/>or<sp/>registers<sp/>or</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal">..<sp/>doxygenclass::<sp/>Nutshell</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/>:members:</highlight></codeline>
+    </programlisting>
+    <location file="build/html/_sources/ScopeContext/3_technical_interfaces.rst.txt"/>
+  </compounddef>
+</doxygen>

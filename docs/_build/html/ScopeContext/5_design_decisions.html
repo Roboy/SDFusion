@@ -1,0 +1,268 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Design Decisions &mdash; SDFusion 0.0. documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="SDFusion 0.0. documentation" href="../index.html"/>
+        <link rel="next" title="Public Interfaces" href="6_API.html"/>
+        <link rel="prev" title="User Interfaces" href="4_user_interface.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> SDFusion
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Usage and Installation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Usage/0_installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Usage/1_getting_started.html">Getting started</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Interfaces and Scope</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="0_system_scope_and_context.html">Context</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_conventions.html">Conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_architecture_constraints.html">Architecture Constraints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_technical_interfaces.html">Technical Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_user_interface.html">User Interfaces</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Design Decisions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#export-to-stl">Export to STL</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="6_API.html">Public Interfaces</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../development/0_solution_strategy.html">Solution Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/1_test_strategy.html">Test Strategy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/2_building_block_view.html">Building Block View</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/3_runtime_view.html">Runtime View</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/4_deployment_view.html">Deployment View</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/5_Libraries.html">Libraries and external Software</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about-arc42.html">About arc42</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SDFusion</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Design Decisions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/ScopeContext/5_design_decisions.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="design-decisions">
+<span id="id1"></span><h1>Design Decisions<a class="headerlink" href="#design-decisions" title="Permalink to this headline">¶</a></h1>
+<p>The script shall not modify the given Fusion Robot model at all.</p>
+<div class="section" id="export-to-stl">
+<h2>Export to STL<a class="headerlink" href="#export-to-stl" title="Permalink to this headline">¶</a></h2>
+<p>Fusion can only export single components to STL (so not numerous components to one STL file). The aim was to only have one STL file per robot link, therefore all components of this link needed to be concluded in one single component. There are two ways to archieve this. First, generate a new component and move all subcomponents of the link to this new component. Before the script finishes all these actions need to be reversed. Second, generate a new component, and copy all subcomponents of the link to the new component. Before the script finishes the new component simply needs to be deleted.</p>
+<p>The second option was implemented. Copying all components takes a lot of time, but the script does not need to be executed very often. Deleting a new component is easier than keeping track of how many actions need to be reversed to reach the goal of not modifying the robot model.</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="6_API.html" class="btn btn-neutral float-right" title="Public Interfaces" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="4_user_interface.html" class="btn btn-neutral" title="User Interfaces" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Anna Sesselmann, based on Template by Dr. Peter.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.0.',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
