@@ -21,7 +21,7 @@ design = None
 
 ## Global variable to make the output file directory accessible for
 # every function.
-fileDir = "C:/Users/roboy/Documents/roboy/roboy2.0"
+fileDir = "C:/Users/techtalents/Documents/roboy/roboy2.0"
 logfile = open(fileDir+'/logfile.txt', 'w')
 ui = None
 progressDialog = None
@@ -476,7 +476,7 @@ def run(context):
                 global progressDialog
                 progressDialog = app.userInterface.createProgressDialog()
                 progressDialog.isBackgroundTranslucent = False
-                progressDialog.show("copy bodies to new component", 'Copy Bodies to new component: %v/%m', 0, bodies, 1)
+                progressDialog.show(rig.name, 'Copy Bodies to new component: %v/%m', 0, bodies, 1)
                 global new_component                
                 new_component = rootOcc.addNewComponent(adsk.core.Matrix3D.create())
                 
