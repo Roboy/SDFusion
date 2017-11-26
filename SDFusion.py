@@ -26,7 +26,7 @@ logfile = open(fileDir+'/logfile.txt', 'w')
 ui = None
 progressDialog = None
 max_level = 0
-new_component = None
+# new_component = None
 exportMgr = None
 bodies = 0
 rootOcc = None
@@ -39,7 +39,7 @@ inputString = ''
 
 ## Global variable to make the robot model name accessible for
 # every function.
-modelName = "roboy2.0"
+modelName = "NSTarm"
 
 ## Global variable to make the root occurrence accessible for
 # every function.
@@ -188,10 +188,11 @@ def sdfInertia(physics):
 # This function builds the SDF link node for every link.
 #
 # @param lin the link to be exported
+# @param name of the link to be exported
 # @return the SDF link node
-def linkSDF(lin):
-    linkName = lin.component.name
-    link = ET.Element("link", name=linkName)
+def linkSDF(lin, name):
+    # linkName = lin.component.name
+    link = ET.Element("link", name=name)
     # build pose node
     matrix = gazeboMatrix(lin.transform)
     pose = sdfPoseMatrix(matrix)
@@ -202,7 +203,7 @@ def linkSDF(lin):
     inertial = sdfInertial(physics)
     link.append(inertial)
     # build collision node
-    collision = ET.Element("collision", name = linkName + "_collision")
+    collision = ET.Element("collision", name = name + "_collision")
     link.append(collision)
     # build geometry node
     geometry = ET.Element("geometry")
@@ -213,14 +214,14 @@ def linkSDF(lin):
     # build uri node
     uri = ET.Element("uri")
     global modelName
-    uri.text = "model://" + modelName + "/meshes/" + linkName + ".stl"
+    uri.text = "model://" + modelName + "/meshes/" + name + ".stl"
     mesh.append(uri)
     # scale the mesh from mm to m
     scale = ET.Element("scale")
     scale.text = "0.001 0.001 0.001"
     mesh.append(scale)
     # build visual node (equal to collision node)
-    visual = ET.Element("visual", name = linkName + "_visual")
+    visual = ET.Element("visual", name = name + "_visual")
     visual.append(geometry)
     link.append(visual)
     return link
@@ -257,7 +258,7 @@ def jointSDF(joi, name_parent, name_child):
     elif jType == 6:
         # SDFormat does not implement ball joint limits
         jointType = "ball"
-    name = joi.name
+    name = joi.name[7:]
     joint = ET.Element("joint", name=name, type=jointType)
     # build parent node
     parent = ET.Element("parent")
@@ -349,10 +350,11 @@ def bodiesInOccurrences(occurrences,currentLevel):
         if occurrence.childOccurrences:
             bodiesInOccurrences(occurrence.childOccurrences,currentLevel+1)
 
-def mergeBodiesOfEqualMaterial(densities):
+def mergeBodiesOfEqualMaterial(densities, new_component):
     global features
     global progressDialog
-    global new_component
+    # global new_component
+
     for density in densities:
         i = 0
         for body in densities[density]:
@@ -384,6 +386,7 @@ def mergeBodiesOfEqualMaterial(densities):
 #        except:
 #            print('could not combine bodies')
     progressDialog.hide()
+    return new_component
 
 ## Exports an single occurrence to STL.
 #
@@ -481,16 +484,17 @@ def run(context):
                 progressDialog = app.userInterface.createProgressDialog()
                 progressDialog.isBackgroundTranslucent = False
                 progressDialog.show(rig.name, 'Copy Bodies to new component: %v/%m', 0, bodies, 1)
-                global new_component                
+                # global new_component                
                 new_component = rootOcc.addNewComponent(adsk.core.Matrix3D.create())
                 
-                mergeBodiesOfEqualMaterial(densities)
+                new_component = mergeBodiesOfEqualMaterial(densities, new_component)
                 
                 if progressDialog.wasCancelled:
                     progressDialog.hide()
                 
                 exportToStl(new_component, rig.name[7:])
-                link = linkSDF(new_component)
+                # new_component.name = rig.name[7:]
+                link = linkSDF(new_component, rig.name[7:])
                 model.append(link)
                 # delete the temporary new occurrence
                 new_component.deleteMe()
@@ -531,9 +535,7 @@ def run(context):
                             if value_child is not None:
                                 name_child = rig.name[7:]
                                 missing_link = False
-                        joi_copy = joi        
-                        joi_copy.name = joi_copy.name[7:]
-                        joint = jointSDF(joi_copy, name_parent, name_child)
+                        joint = jointSDF(joi, name_parent, name_child)
                         model.append(joint)
                         # export missing links to SDF
                         if missing_link:
