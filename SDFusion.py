@@ -531,8 +531,9 @@ def run(context):
                             if value_child is not None:
                                 name_child = rig.name[7:]
                                 missing_link = False
-                        joi.name = joi.name[7:]
-                        joint = jointSDF(joi, name_parent, name_child)
+                        joi_copy = joi        
+                        joi_copy.name = joi_copy.name[7:]
+                        joint = jointSDF(joi_copy, name_parent, name_child)
                         model.append(joint)
                         # export missing links to SDF
                         if missing_link:
@@ -553,8 +554,8 @@ def run(context):
                                 viaPoint = ViaPoint()
                                 p = point.geometry
                                 viaPoint.coordinates = str(p.x*0.01) + " " + str(p.y*0.01) + " " + str(p.z*0.01)
-                                viaPoint.link = viaPointInfo[2]
-                                viaPoint.number = viaPointInfo[3]
+                                viaPoint.link = viaPointInfo[3]
+                                viaPoint.number = viaPointInfo[4]
                                 myoNumber = viaPointInfo[1][5:]
                                 myoMuscleList = list(filter(lambda x: x.number == myoNumber, pluginObj.myoMuscles))
                                 if not myoMuscleList:
