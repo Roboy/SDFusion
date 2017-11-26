@@ -21,7 +21,7 @@ design = None
 
 ## Global variable to make the output file directory accessible for
 # every function.
-fileDir = "C:/Users/techtalents/Documents/roboy/roboy2.0"
+fileDir = "C:/Users/roboy/Documents/roboy/NST-arm"
 logfile = open(fileDir+'/logfile.txt', 'w')
 ui = None
 progressDialog = None
@@ -471,6 +471,10 @@ def run(context):
                 global features
                 features = rootComp.features                        
                 global inputString
+                global densities
+                global bodies
+                bodies = 0
+                densities = defaultdict(list)
                 bodiesInOccurrences(rig.occurrences,0)
                 logfile.write(inputString)
                 global progressDialog
@@ -480,7 +484,6 @@ def run(context):
                 global new_component                
                 new_component = rootOcc.addNewComponent(adsk.core.Matrix3D.create())
                 
-                global densities
                 mergeBodiesOfEqualMaterial(densities)
                 
                 if progressDialog.wasCancelled:
@@ -517,17 +520,18 @@ def run(context):
                     if joi is not None and joi.name[:6] == "EXPORT":
                         one = joi.occurrenceOne
                         two = joi.occurrenceTwo
-                        name_parent = clearName(one.name)
-                        name_child = clearName(two.name)
+                        name_parent = clearName(one.name[7:])
+                        name_child = clearName(two.name[7:])
                         missing_link = True
                         for rig in allRigidGroups:
                             value_parent = rig.occurrences.itemByName(one.name)
                             value_child = rig.occurrences.itemByName(two.name)
                             if value_parent is not None:
-                                name_parent = rig.name
+                                name_parent = rig.name[7:]
                             if value_child is not None:
-                                name_child = rig.name
+                                name_child = rig.name[7:]
                                 missing_link = False
+                        joi.name = joi.name[7:]
                         joint = jointSDF(joi, name_parent, name_child)
                         model.append(joint)
                         # export missing links to SDF
