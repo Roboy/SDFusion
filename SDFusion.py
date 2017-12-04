@@ -5,6 +5,7 @@ import traceback
 import xml.etree.ElementTree as ET
 import math
 import xml.dom.minidom as DOM
+import os, errno
 
 ## @package SDFusion
 # This is an exporter for Autodesk Fusion 360 models to SDFormat.
@@ -21,8 +22,7 @@ design = None
 
 ## Global variable to make the output file directory accessible for
 # every function.
-fileDir = "C:/Users/roboy/Documents/roboy/NST-arm"
-logfile = open(fileDir+'/logfile.txt', 'w')
+fileDir = "C:/Users/techtalents/Documents/roboy/roboy2.0"
 ui = None
 progressDialog = None
 max_level = 0
@@ -39,7 +39,7 @@ inputString = ''
 
 ## Global variable to make the robot model name accessible for
 # every function.
-modelName = "NSTarm"
+modelName = "roboy2.0"
 
 ## Global variable to make the root occurrence accessible for
 # every function.
@@ -214,7 +214,7 @@ def linkSDF(lin, name):
     # build uri node
     uri = ET.Element("uri")
     global modelName
-    uri.text = "model://" + modelName + "/meshes/" + name + ".stl"
+    uri.text = "model://" + modelName + "/meshes/CAD/" + name + ".stl"
     mesh.append(uri)
     # scale the mesh from mm to m
     scale = ET.Element("scale")
@@ -322,7 +322,7 @@ def exportToStep(occ, linkname):
     # Get the ExportManager from the active design.
     exportMgr = design.exportManager
     # Create an STEPExportOptions object and do the export.
-    stepOptions = exportMgr.createSTEPExportOptions(fileDir+ '/meshes/' + linkname + '.step', occ.component)
+    stepOptions = exportMgr.createSTEPExportOptions(fileDir+ '/meshes/CAD/' + linkname + '.step', occ.component)
     res = exportMgr.execute(stepOptions)
     
 def exportToStl(occ, linkname):
@@ -332,7 +332,7 @@ def exportToStl(occ, linkname):
     # Get the ExportManager from the active design.
     exportMgr = design.exportManager
     # Create an STEPExportOptions object and do the export.
-    stlExportOptions = exportMgr.createSTLExportOptions(occ, fileDir+ '/meshes/' + linkname + '.stl')
+    stlExportOptions = exportMgr.createSTLExportOptions(occ, fileDir+ '/meshes/CAD/' + linkname + '.stl')
     stlExportOptions.meshRefinement = adsk.fusion.MeshRefinementSettings.MeshRefinementLow
     res = exportMgr.execute(stlExportOptions)
 
@@ -445,6 +445,32 @@ def run(context):
     try:        
         app = adsk.core.Application.get()
         ui  = app.userInterface
+        
+        fileDialog = ui.createFileDialog()
+        fileDialog.isMultiSelectEnabled = False
+        fileDialog.title = "Specify result filename"
+        fileDialog.filter = 'directory (*/*)'
+        fileDialog.filterIndex = 0
+        global fileDir
+        global modelName
+        global logfile
+        fileDialog.initialDirectory = fileDir
+        dialogResult = fileDialog.showSave()
+        if dialogResult == adsk.core.DialogResults.DialogOK:
+            fileDir = fileDialog.filename
+            tree = fileDir.split('/')
+            modelName = tree[-1]
+        else:
+            return
+            
+        try:
+            os.makedirs(fileDir)
+            os.makedirs(fileDir+'/meshes')
+            os.makedirs(fileDir+'/meshes/CAD')
+            logfile = open(fileDir+'/logfile.txt', 'w')
+        except OSError as e:
+            if e.errno != errno.EEXIST:
+                raise
         # get active design        
         product = app.activeProduct
         global design
@@ -461,6 +487,7 @@ def run(context):
         root = ET.Element("sdf", version="1.6")
         model = ET.Element("model", name=modelName)
         root.append(model)
+        
         # get all rigid groups of the root component
         allRigidGroups = rootComp.allRigidGroups
         numberOfRigidGroupsToExport = 0
@@ -528,13 +555,14 @@ def run(context):
                         name_child = clearName(two.name[7:])
                         missing_link = True
                         for rig in allRigidGroups:
-                            value_parent = rig.occurrences.itemByName(one.name)
-                            value_child = rig.occurrences.itemByName(two.name)
-                            if value_parent is not None:
-                                name_parent = rig.name[7:]
-                            if value_child is not None:
-                                name_child = rig.name[7:]
-                                missing_link = False
+                            if rig is not None and rig.name[:6] == "EXPORT":
+                                value_parent = rig.occurrences.itemByName(one.name)
+                                value_child = rig.occurrences.itemByName(two.name)
+                                if value_parent is not None:
+                                    name_parent = rig.name[7:]
+                                if value_child is not None:
+                                    name_child = rig.name[7:]
+                                    missing_link = False
                         joint = jointSDF(joi, name_parent, name_child)
                         model.append(joint)
                         # export missing links to SDF
@@ -556,8 +584,8 @@ def run(context):
                                 viaPoint = ViaPoint()
                                 p = point.geometry
                                 viaPoint.coordinates = str(p.x*0.01) + " " + str(p.y*0.01) + " " + str(p.z*0.01)
-                                viaPoint.link = viaPointInfo[3]
-                                viaPoint.number = viaPointInfo[4]
+                                viaPoint.link = '_'.join(viaPointInfo[3:-1])
+                                viaPoint.number = viaPointInfo[-1:]
                                 myoNumber = viaPointInfo[1][5:]
                                 myoMuscleList = list(filter(lambda x: x.number == myoNumber, pluginObj.myoMuscles))
                                 if not myoMuscleList:
@@ -598,6 +626,12 @@ def run(context):
         file = open(filename, "w")
         file.write(pretty)
         file.close()
+        file = open(fileDir + '/model.config', 'w')
+        file.write('<?xml version="1.0" ?>\n<model>\n<name>'+modelName+'</name>\n<version>1.0</version>\n')
+        file.write('<sdf version="1.6">model.sdf</sdf>\n<author>\n<name></name>\n<email></email>\n</author>\n')
+        file.write('<description>awesome</description>\n<changes>exported from fusion 360</changes>\n</model>\n')
+        file.close();        
+        
         ui.messageBox("SDF file of model " + modelName + " written to '" + fileDir + "'.")
         logfile.close()
     except:
