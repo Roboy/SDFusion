@@ -48,6 +48,7 @@ rootComp = None
 
 ## Global variable to specify if the exporter should export viaPoints.
 exportViaPoints = True
+exportLighthouseSensors = True
 
 ## Global variable to specify the file name of the plugin loaded by the SDF.
 # Only necessary if **exportViaPoints** is **True**.
@@ -446,9 +447,26 @@ def run(context):
         app = adsk.core.Application.get()
         ui  = app.userInterface
         
+        global exportViaPoints
+        returnvalue = ui.messageBox("Do yo wish to export ViaPoints aswell?", "export options", 3)
+        if returnvalue == 2:
+            exportViaPoints = True
+        elif returnvalue == 3:   
+            exportViaPoints = False
+        else:
+            return 
+        global exportLighthouseSensors 
+        returnvalue = ui.messageBox("Do yo wish to export DarkRoomSensors aswell?", "export options", 3)
+        if returnvalue == 2: #yes
+            exportLighthouseSensors = True
+        elif returnvalue == 3:   
+            exportLighthouseSensors = False
+        else:
+            return            
+        
         fileDialog = ui.createFileDialog()
         fileDialog.isMultiSelectEnabled = False
-        fileDialog.title = "Specify result filename"
+        fileDialog.title = "Specify result directory"
         fileDialog.filter = 'directory (*/*)'
         fileDialog.filterIndex = 0
         global fileDir
@@ -467,10 +485,13 @@ def run(context):
             os.makedirs(fileDir)
             os.makedirs(fileDir+'/meshes')
             os.makedirs(fileDir+'/meshes/CAD')
+            if exportLighthouseSensors:
+                os.makedirs(fileDir+'/lighthouseSensors')
             logfile = open(fileDir+'/logfile.txt', 'w')
         except OSError as e:
             if e.errno != errno.EEXIST:
                 raise
+        
         # get active design        
         product = app.activeProduct
         global design
@@ -544,6 +565,7 @@ def run(context):
         global exportViaPoints
         #get all joints of the design
         allComponents = design.allComponents
+        DarkRoomSensors = defaultdict(list)
         for com in allComponents:
             if com is not None:
                 allJoints = com.joints
@@ -594,6 +616,13 @@ def run(context):
                                     pluginObj.myoMuscles.append(myoMuscle)
                                 if myoMuscleList:
                                     myoMuscleList[0].viaPoints.append(viaPoint) 
+                if(exportLighthouseSensors):
+                    allConstructionPoints = com.constructionPoints
+                    for point in allConstructionPoints:
+                        if point.name[:2] == "LS":
+                            names = point.name.split('_')
+                            name = "_".join(names[1:-1])
+                            DarkRoomSensors[name].append(point)
         if(exportViaPoints):
             # create plugin node
             global pluginFileName
@@ -619,7 +648,19 @@ def run(context):
                     # TODO: rotate global coordinates into link frame coordinates
                     viaPoint.text=via.coordinates
                     link.append(viaPoint)
-
+        if(exportLighthouseSensors):
+            for name,sensors in DarkRoomSensors.items():
+                f = open(fileDir+'/lighthouseSensors/' + name+'.yaml', 'w')
+                f.write('name: ' + name + '\n');
+                f.write('ObjectID: 0\n');
+                f.write('mesh: ' + name + '\n');
+                f.write('sensor_relative_locations:\n');
+                i = 0
+                for point in sensors:
+                    line = '- [' + str (i) + ', ' + str(point.geometry.x/100) + ', ' + str(point.geometry.y/100) + ', ' + str(point.geometry.z/100) + ']\n'
+                    f.write(line);
+                    i = i+1
+                f.close()
         filename = fileDir + "/model.sdf"
         domxml = DOM.parseString(ET.tostring(root))
         pretty = domxml.toprettyxml()
