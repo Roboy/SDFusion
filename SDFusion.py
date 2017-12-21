@@ -509,6 +509,8 @@ def run(context):
         model = ET.Element("model", name=modelName)
         root.append(model)
         
+        new_component_poses = defaultdict(adsk.core.Matrix3D)        
+        
         # get all rigid groups of the root component
         allRigidGroups = rootComp.allRigidGroups
         numberOfRigidGroupsToExport = 0
@@ -544,6 +546,12 @@ def run(context):
                 # new_component.name = rig.name[7:]
                 link = linkSDF(new_component, rig.name[7:])
                 model.append(link)
+                
+                if(exportLighthouseSensors):
+                    # build pose node
+                    matrix = gazeboMatrix(new_component.transform)
+                    new_component_poses[rig.name[7:]] = matrix             
+                
                 # delete the temporary new occurrence
                 new_component.deleteMe()
                 # Call doEvents to give Fusion a chance to react.
@@ -553,12 +561,6 @@ def run(context):
                     progressDialog.hide()
                     logfile.close()
                     return
-#            # If progress dialog is cancelled, stop drawing.
-#            if progressDialog.wasCancelled:
-#                break
-#            i = i + 1
-#            # Update progress value of progress dialog
-#            progressDialog.progressValue = i
         # Hide the progress dialog at the end.
         progressDialog.hide()
         pluginObj = Plugin()
@@ -622,7 +624,10 @@ def run(context):
                         if point.name[:2] == "LS":
                             names = point.name.split('_')
                             name = "_".join(names[1:-1])
-                            DarkRoomSensors[name].append(point)
+                            vec = adsk.core.Vector3D.create(point.geometry.x*0.01,point.geometry.y*0.01,point.geometry.z*0.01)
+                            matrix = new_component_poses[name]
+                            vec.transformBy(matrix)
+                            DarkRoomSensors[name].append(vec)  
         if(exportViaPoints):
             # create plugin node
             global pluginFileName
@@ -657,7 +662,7 @@ def run(context):
                 f.write('sensor_relative_locations:\n');
                 i = 0
                 for point in sensors:
-                    line = '- [' + str (i) + ', ' + str(point.geometry.x/100) + ', ' + str(point.geometry.y/100) + ', ' + str(point.geometry.z/100) + ']\n'
+                    line = '- [' + str (i) + ', ' + str(point.x) + ', ' + str(point.y) + ', ' + str(point.z) + ']\n'
                     f.write(line);
                     i = i+1
                 f.close()
