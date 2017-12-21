@@ -31,6 +31,8 @@ exportMgr = None
 bodies = 0
 rootOcc = None
 rootComp = None
+cog = None
+totalMass = 0
 ui = None
 from collections import defaultdict
 densities = defaultdict(list)
@@ -235,7 +237,7 @@ def linkSDF(lin, name):
 # @param name_parent the name of the parent link
 # @param name_child the name of the child link
 # @return the SDF joint node
-def jointSDF(joi, name_parent, name_child):
+def jointSDF(joi, name_parent, name_child, transformMatrix):
     jointInfo = []
     jointType = ""
     jType = joi.jointMotion.jointType
@@ -270,7 +272,9 @@ def jointSDF(joi, name_parent, name_child):
     child.text = name_child
     joint.append(child)
     # build pose node
-    pose = sdfPoseVector(joi.geometryOrOriginOne.origin)
+    vec = joi.geometryOrOriginOne.origin
+    vec.transformBy(transformMatrix)
+    pose = sdfPoseVector(vec)
     joint.append(pose)
     joint.extend(jointInfo)
     return joint
@@ -341,10 +345,18 @@ def bodiesInOccurrences(occurrences,currentLevel):
     global bodies
     global densities
     global inputString
+    global cog
+    global totalMass
     for occurrence in occurrences:
 #        if occurrence is not None:
         bodies = bodies + occurrence.component.bRepBodies.count
         inputString += str(currentLevel) + '\tComponent: ' + occurrence.name + '\n'
+        physicalProperties = occurrence.component.getPhysicalProperties()
+        origin, xAxis, yAxis, zAxis = occurrence.transform.getAsCoordinateSystem()
+        originTimesMass = adsk.core.Vector3D.create(origin.x, origin.y, origin.z)
+        originTimesMass.scaleBy(physicalProperties.mass)
+        cog.add(originTimesMass)
+        totalMass = totalMass + physicalProperties.mass
         for body in occurrence.component.bRepBodies:
             densities[body.physicalProperties.density].append(body)
             inputString += '\t\t\t\tBody: ' + body.name + '\n'
@@ -509,7 +521,7 @@ def run(context):
         model = ET.Element("model", name=modelName)
         root.append(model)
         
-        new_component_poses = defaultdict(adsk.core.Matrix3D)        
+        transformMatrices = defaultdict(adsk.core.Matrix3D)        
         
         # get all rigid groups of the root component
         allRigidGroups = rootComp.allRigidGroups
@@ -518,6 +530,7 @@ def run(context):
             if rig is not None and rig.name[:6] == "EXPORT":
                 numberOfRigidGroupsToExport = numberOfRigidGroupsToExport+1
         global progressDialog
+        
         # exports all rigid groups to STL and SDF
         for rig in allRigidGroups:
             if rig is not None and rig.name[:6] == "EXPORT":
@@ -528,14 +541,30 @@ def run(context):
                 global bodies
                 bodies = 0
                 densities = defaultdict(list)
+                global cog
+                cog = adsk.core.Vector3D.create(0,0,0)
+                global totalMass
+                totalMass = 0
                 bodiesInOccurrences(rig.occurrences,0)
                 logfile.write(inputString)
                 global progressDialog
                 progressDialog = app.userInterface.createProgressDialog()
                 progressDialog.isBackgroundTranslucent = False
                 progressDialog.show(rig.name, 'Copy Bodies to new component: %v/%m', 0, bodies, 1)
+                
+                transformMatrix = adsk.core.Matrix3D.create()
+                origin, xAxis, yAxis, zAxis = transformMatrix.getAsCoordinateSystem()
+                origin = cog
+                origin.scaleBy(1/totalMass)
+                origin = adsk.core.Point3D.create(origin.x, origin.y, origin.z)
+
+                transformMatrix.setWithCoordinateSystem(origin, xAxis, yAxis, zAxis)
+                transformMatrix = gazeboMatrix(transformMatrix)
+                transformMatrices[rig.name[7:]] = transformMatrix    
+                print(transformMatrices[rig.name[7:]].asArray())
+                
                 # global new_component                
-                new_component = rootOcc.addNewComponent(adsk.core.Matrix3D.create())
+                new_component = rootOcc.addNewComponent(transformMatrix)
                 
                 new_component = mergeBodiesOfEqualMaterial(densities, new_component)
                 
@@ -545,12 +574,7 @@ def run(context):
                 exportToStl(new_component, rig.name[7:])
                 # new_component.name = rig.name[7:]
                 link = linkSDF(new_component, rig.name[7:])
-                model.append(link)
-                
-                if(exportLighthouseSensors):
-                    # build pose node
-                    matrix = gazeboMatrix(new_component.transform)
-                    new_component_poses[rig.name[7:]] = matrix             
+                model.append(link)       
                 
                 # delete the temporary new occurrence
                 new_component.deleteMe()
@@ -564,7 +588,6 @@ def run(context):
         # Hide the progress dialog at the end.
         progressDialog.hide()
         pluginObj = Plugin()
-        global exportViaPoints
         #get all joints of the design
         allComponents = design.allComponents
         DarkRoomSensors = defaultdict(list)
@@ -587,17 +610,10 @@ def run(context):
                                 if value_child is not None:
                                     name_child = rig.name[7:]
                                     missing_link = False
-                        joint = jointSDF(joi, name_parent, name_child)
+                        transformMatrix = transformMatrices[name_parent]
+                        print(transformMatrix.asArray())
+                        joint = jointSDF(joi, name_parent, name_child, transformMatrix)
                         model.append(joint)
-                        # export missing links to SDF
-                        if missing_link:
-                            linkOcc = occurrenceToSTL(two)
-                            link = linkSDF(linkOcc)
-                            model.append(link)
-                            # delete the temporary new occurrence
-                            linkOcc.deleteMe()
-                            # Call doEvents to give Fusion a chance to react.
-                            adsk.doEvents()
                 if(exportViaPoints):
                     # get all construction points that serve as viaPoints
                     allConstructionPoints = com.constructionPoints
@@ -606,9 +622,12 @@ def run(context):
                             if point.name[:2] == "VP":
                                 viaPointInfo = point.name.split("_")
                                 viaPoint = ViaPoint()
-                                p = point.geometry
-                                viaPoint.coordinates = str(p.x*0.01) + " " + str(p.y*0.01) + " " + str(p.z*0.01)
-                                viaPoint.link = '_'.join(viaPointInfo[3:-1])
+                                vec = adsk.core.Vector3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
+                                linkname = '_'.join(viaPointInfo[3:-1])
+                                matrix = transformMatrices[linkname]
+                                vec.transformBy(matrix)
+                                viaPoint.coordinates = str(vec.x*0.01) + " " + str(vec.y*0.01) + " " + str(vec.z*0.01)
+                                viaPoint.link = linkname
                                 viaPoint.number = viaPointInfo[-1:]
                                 myoNumber = viaPointInfo[1][5:]
                                 myoMuscleList = list(filter(lambda x: x.number == myoNumber, pluginObj.myoMuscles))
@@ -625,7 +644,7 @@ def run(context):
                             names = point.name.split('_')
                             name = "_".join(names[1:-1])
                             vec = adsk.core.Vector3D.create(point.geometry.x*0.01,point.geometry.y*0.01,point.geometry.z*0.01)
-                            matrix = new_component_poses[name]
+                            matrix = transformMatrices[name]
                             vec.transformBy(matrix)
                             DarkRoomSensors[name].append(vec)  
         if(exportViaPoints):
