@@ -146,13 +146,16 @@ class SDFExporter():
         self.COM[name] = adsk.core.Point3D.create(0,0,0)
         self.number_of_coms[name] = 0
         self.totalMass[name] = 0
+        self.logfile.write("mass[kg] \t COM[cm] \t\t\t component name\n")
         self.getbodiesAndCOM(name,rigidGroup.occurrences,0)
         # calculate COM -> dividing by totalMass
         scaledCOM = self.COM[name].asVector()
         scaledCOM.scaleBy(1/self.totalMass[name])
         self.COM[name] = scaledCOM.asPoint()
+        self.logfile.write("----------------------------------------------------------------\n")
         self.logfile.write("Mass of %s: %f\n" % (name, self.totalMass[name]))
         self.logfile.write("COM of %s: %f %f %f\n" % (name, self.COM[name].x, self.COM[name].y, self.COM[name].z))
+        self.logfile.write("----------------------------------------------------------------\n")
     
     def getbodiesAndCOM(self, name, occurrences, currentLevel):
         for occurrence in occurrences:
@@ -161,13 +164,13 @@ class SDFExporter():
             self.totalMass[name] = self.totalMass[name] + physicalProperties.mass
             centerOfMass = physicalProperties.centerOfMass
             #print(centerOfMass.asArray())
-            #centerOfMass.transformBy(occurrence.transform)
+            centerOfMass.transformBy(occurrence.transform)
             #print(centerOfMass.asArray())
             centerOfMass = centerOfMass.asVector()
             centerOfMass.scaleBy(physicalProperties.mass)
             self.COM[name].translateBy(centerOfMass)
             
-            self.logfile.write("%s: mass[kg] %f \t COM[cm] %f %f %f\n" % (occurrence.name, physicalProperties.mass, centerOfMass.x, centerOfMass.y, centerOfMass.z))            
+            self.logfile.write("%f \t %f %f %f \t\t %s\n" % (physicalProperties.mass, centerOfMass.x, centerOfMass.y, centerOfMass.z, occurrence.name))            
             
             self.numberOfBodies[name] = self.numberOfBodies[name] + occurrence.component.bRepBodies.count
             for body in occurrence.component.bRepBodies:
@@ -252,11 +255,12 @@ class SDFExporter():
                         if point.name[:2] == "VP":
                             viaPointInfo = point.name.split("_")
                             viaPoint = ViaPoint()
-                            vec = adsk.core.Vector3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
+                            vec = adsk.core.Point3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
                             linkname = '_'.join(viaPointInfo[3:-1])
-                            matrix = self.transformMatrices[linkname]
-                            vec.transformBy(matrix)
-                            viaPoint.coordinates = str(vec.x*0.01) + " " + str(vec.y*0.01) + " " + str(vec.z*0.01)
+                            origin = self.transformMatrices[linkname].translation
+                            origin = origin.asPoint()
+                            dist = origin.vectorTo(vec)
+                            viaPoint.coordinates = str(dist.x*0.01) + " " + str(dist.y*0.01) + " " + str(dist.z*0.01)
                             viaPoint.link = linkname
                             viaPoint.number = viaPointInfo[-1:]
                             myoNumber = viaPointInfo[1][5:]
@@ -299,8 +303,9 @@ class SDFExporter():
                     if point.name[:2] == "LS":
                         names = point.name.split('_')
                         linkname = "_".join(names[1:-1])
-                        vec = adsk.core.Vector3D.create(point.geometry.x*0.01,point.geometry.y*0.01,point.geometry.z*0.01)
-                        vec.transformBy(self.transformMatrices[linkname])
+                        sensor_position = adsk.core.Point3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
+                        # the lighthouse sensors shall be relative to COM, such that the pose estimation returns a pose for the COM
+                        vec = sensor_position.vectorTo(self.COM[linkname])
                         DarkRoomSensors[linkname].append(vec)  
         for name,sensors in DarkRoomSensors.items():
             file = open(self.fileDir+'/lighthouseSensors/' + name+'.yaml', 'w')
@@ -310,7 +315,7 @@ class SDFExporter():
             file.write('sensor_relative_locations:\n');
             i = 0
             for point in sensors:
-                line = '- [' + str (i) + ', ' + str(point.x) + ', ' + str(point.y) + ', ' + str(point.z) + ']\n'
+                line = '- [' + str (i) + ', ' + str(point.x*0.01) + ', ' + str(point.y*0.01) + ', ' + str(point.z*0.01) + ']\n'
                 file.write(line);
                 i = i+1
             file.close()
@@ -396,9 +401,9 @@ class SDFExporter():
     # @return the SDF inertial node
     def sdfInertial(self, physics):
         inertial = ET.Element("inertial")
-        # build pose node of COM
-        com = physics.centerOfMass
-        pose = self.sdfPoseVector(com)
+        # the link frame is located at the COM, therefor we use zero vector for pose
+        zeroVector = adsk.core.Point3D.create(0,0,0)
+        pose = self.sdfPoseVector(zeroVector)
         inertial.append(pose)
         # build mass node
         mass = ET.Element("mass")
@@ -606,8 +611,8 @@ def run(context):
     
     try:        
         exporter = SDFExporter()
-#        exporter.askForExportViaPoints()
-#        exporter.askForExportLighthouseSensors()
+        exporter.askForExportViaPoints()
+        exporter.askForExportLighthouseSensors()
         exporter.asKForExportDirectory()
         
         exporter.createDiectoryStructure()
