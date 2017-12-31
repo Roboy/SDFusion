@@ -75,6 +75,7 @@ def gazeboMatrix(self):
     matrix.setCell(1, 2, -1)
     matrix.setCell(2, 1, 1)
     matrix.setCell(2, 2, 0)
+    print(matrix.asArray())
     self.transformBy(matrix)
     return self
 
@@ -197,8 +198,8 @@ def linkSDF(lin, name):
     # linkName = lin.component.name
     link = ET.Element("link", name=name)
     # build pose node
-    matrix = gazeboMatrix(lin.transform)
-    pose = sdfPoseMatrix(matrix)
+    #matrix = gazeboMatrix()
+    pose = sdfPoseMatrix(lin.transform)
     link.append(pose)
     # get physical properties of occurrence
     physics = lin.physicalProperties
@@ -265,16 +266,20 @@ def jointSDF(joi, name_parent, name_child, transformMatrix):
     joint = ET.Element("joint", name=name, type=jointType)
     # build parent node
     parent = ET.Element("parent")
-    parent.text = name_parent
+    parent.text = name_child
     joint.append(parent)
     # build child node
     child = ET.Element("child")
-    child.text = name_child
+    child.text = name_parent
     joint.append(child)
     # build pose node
-    vec = joi.geometryOrOriginOne.origin
-    vec.transformBy(transformMatrix)
-    pose = sdfPoseVector(vec)
+    vec = joi.geometryOrOriginTwo.origin
+    print(vec.asArray())
+    origin = transformMatrix.translation
+    origin = origin.asPoint()
+    dist = origin.vectorTo(vec)
+    #print(transformMatrix.asArray())
+    pose = sdfPoseVector(dist)
     joint.append(pose)
     joint.extend(jointInfo)
     return joint
@@ -346,17 +351,14 @@ def bodiesInOccurrences(occurrences,currentLevel):
     global densities
     global inputString
     global cog
-    global totalMass
     for occurrence in occurrences:
 #        if occurrence is not None:
         bodies = bodies + occurrence.component.bRepBodies.count
         inputString += str(currentLevel) + '\tComponent: ' + occurrence.name + '\n'
         physicalProperties = occurrence.component.getPhysicalProperties()
-        origin, xAxis, yAxis, zAxis = occurrence.transform.getAsCoordinateSystem()
-        originTimesMass = adsk.core.Vector3D.create(origin.x, origin.y, origin.z)
-        originTimesMass.scaleBy(physicalProperties.mass)
-        cog.add(originTimesMass)
-        totalMass = totalMass + physicalProperties.mass
+        centerOfMass = physicalProperties.centerOfMass
+        centerOfMass.transformBy(occurrence.transform)
+        cog.translateBy(centerOfMass.asVector())
         for body in occurrence.component.bRepBodies:
             densities[body.physicalProperties.density].append(body)
             inputString += '\t\t\t\tBody: ' + body.name + '\n'
@@ -460,21 +462,21 @@ def run(context):
         ui  = app.userInterface
         
         global exportViaPoints
-        returnvalue = ui.messageBox("Do yo wish to export ViaPoints aswell?", "export options", 3)
-        if returnvalue == 2:
-            exportViaPoints = True
-        elif returnvalue == 3:   
-            exportViaPoints = False
-        else:
-            return 
+#        returnvalue = ui.messageBox("Do yo wish to export ViaPoints aswell?", "export options", 3)
+#        if returnvalue == 2:
+#            exportViaPoints = True
+#        elif returnvalue == 3:   
+#            exportViaPoints = False
+#        else:
+#            return 
         global exportLighthouseSensors 
-        returnvalue = ui.messageBox("Do yo wish to export DarkRoomSensors aswell?", "export options", 3)
-        if returnvalue == 2: #yes
-            exportLighthouseSensors = True
-        elif returnvalue == 3:   
-            exportLighthouseSensors = False
-        else:
-            return            
+#        returnvalue = ui.messageBox("Do yo wish to export DarkRoomSensors aswell?", "export options", 3)
+#        if returnvalue == 2: #yes
+#            exportLighthouseSensors = True
+#        elif returnvalue == 3:   
+#            exportLighthouseSensors = False
+#        else:
+#            return            
         
         fileDialog = ui.createFileDialog()
         fileDialog.isMultiSelectEnabled = False
@@ -542,9 +544,7 @@ def run(context):
                 bodies = 0
                 densities = defaultdict(list)
                 global cog
-                cog = adsk.core.Vector3D.create(0,0,0)
-                global totalMass
-                totalMass = 0
+                cog = adsk.core.Point3D.create(0,0,0)
                 bodiesInOccurrences(rig.occurrences,0)
                 logfile.write(inputString)
                 global progressDialog
@@ -553,13 +553,12 @@ def run(context):
                 progressDialog.show(rig.name, 'Copy Bodies to new component: %v/%m', 0, bodies, 1)
                 
                 transformMatrix = adsk.core.Matrix3D.create()
-                origin, xAxis, yAxis, zAxis = transformMatrix.getAsCoordinateSystem()
-                origin = cog
-                origin.scaleBy(1/totalMass)
+                origin = cog.asVector()
+                origin.scaleBy(1/bodies)
                 origin = adsk.core.Point3D.create(origin.x, origin.y, origin.z)
-
-                transformMatrix.setWithCoordinateSystem(origin, xAxis, yAxis, zAxis)
-                transformMatrix = gazeboMatrix(transformMatrix)
+                
+                print(origin.asArray())
+                transformMatrix.translation = origin.asVector()
                 transformMatrices[rig.name[7:]] = transformMatrix    
                 print(transformMatrices[rig.name[7:]].asArray())
                 
@@ -610,9 +609,11 @@ def run(context):
                                 if value_child is not None:
                                     name_child = rig.name[7:]
                                     missing_link = False
-                        transformMatrix = transformMatrices[name_parent]
-                        print(transformMatrix.asArray())
-                        joint = jointSDF(joi, name_parent, name_child, transformMatrix)
+                        matrix = transformMatrices[name_parent]
+                        print(one.transform.translation.asArray())
+#                        transformMatrix.transformBy(one.transform)
+                        #print(matrix.asArray())
+                        joint = jointSDF(joi, name_parent, name_child, matrix)
                         model.append(joint)
                 if(exportViaPoints):
                     # get all construction points that serve as viaPoints
@@ -642,11 +643,10 @@ def run(context):
                     for point in allConstructionPoints:
                         if point.name[:2] == "LS":
                             names = point.name.split('_')
-                            name = "_".join(names[1:-1])
+                            linkname = "_".join(names[1:-1])
                             vec = adsk.core.Vector3D.create(point.geometry.x*0.01,point.geometry.y*0.01,point.geometry.z*0.01)
-                            matrix = transformMatrices[name]
-                            vec.transformBy(matrix)
-                            DarkRoomSensors[name].append(vec)  
+                            vec.transformBy(transformMatrices[linkname])
+                            DarkRoomSensors[linkname].append(vec)  
         if(exportViaPoints):
             # create plugin node
             global pluginFileName
@@ -677,7 +677,7 @@ def run(context):
                 f = open(fileDir+'/lighthouseSensors/' + name+'.yaml', 'w')
                 f.write('name: ' + name + '\n');
                 f.write('ObjectID: 0\n');
-                f.write('mesh: ' + name + '\n');
+                f.write('mesh: ' + "../meshes/CAD/" + name + '.stl\n');
                 f.write('sensor_relative_locations:\n');
                 i = 0
                 for point in sensors:
