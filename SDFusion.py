@@ -305,7 +305,7 @@ class SDFExporter():
                         linkname = "_".join(names[1:-1])
                         sensor_position = adsk.core.Point3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
                         # the lighthouse sensors shall be relative to COM, such that the pose estimation returns a pose for the COM
-                        vec = sensor_position.vectorTo(self.COM[linkname])
+                        vec = self.COM[linkname].vectorTo(sensor_position)
                         DarkRoomSensors[linkname].append(vec)  
         for name,sensors in DarkRoomSensors.items():
             file = open(self.fileDir+'/lighthouseSensors/' + name+'.yaml', 'w')
