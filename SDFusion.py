@@ -62,6 +62,7 @@ class SDFExporter():
     COM = defaultdict(adsk.core.Point3D)
     totalMass = defaultdict()
     number_of_coms = defaultdict()
+    calculateCOMFlag = True
         
     transformMatrices = defaultdict(adsk.core.Matrix3D)  
 
@@ -147,36 +148,59 @@ class SDFExporter():
         self.number_of_coms[name] = 0
         self.totalMass[name] = 0
         self.logfile.write("mass[kg] \t COM[cm] \t\t\t component name\n")
-        self.getbodiesAndCOM(name,rigidGroup.occurrences,0)
-        # calculate COM -> dividing by totalMass
-        scaledCOM = self.COM[name].asVector()
-        scaledCOM.scaleBy(1/self.totalMass[name])
-        self.COM[name] = scaledCOM.asPoint()
+        self.getBodies(name,rigidGroup.occurrences,0)
+        self.getCOM(name,rigidGroup.occurrences)
+        if self.calculateCOMFlag == True:
+            # calculate COM -> dividing by totalMass
+            scaledCOM = self.COM[name].asVector()
+            scaledCOM.scaleBy(1/self.totalMass[name])
+            self.COM[name] = scaledCOM.asPoint()
         self.logfile.write("----------------------------------------------------------------\n")
         self.logfile.write("Mass of %s: %f\n" % (name, self.totalMass[name]))
         self.logfile.write("COM of %s: %f %f %f\n" % (name, self.COM[name].x, self.COM[name].y, self.COM[name].z))
         self.logfile.write("----------------------------------------------------------------\n")
     
-    def getbodiesAndCOM(self, name, occurrences, currentLevel):
+    def getBodies(self, name, occurrences, currentLevel):  
         for occurrence in occurrences:
-            physicalProperties = occurrence.component.getPhysicalProperties()
-            self.number_of_coms[name] = self.number_of_coms[name] + 1
-            self.totalMass[name] = self.totalMass[name] + physicalProperties.mass
-            centerOfMass = physicalProperties.centerOfMass
-            #print(centerOfMass.asArray())
-            centerOfMass.transformBy(occurrence.transform)
-            #print(centerOfMass.asArray())
-            centerOfMass = centerOfMass.asVector()
-            centerOfMass.scaleBy(physicalProperties.mass)
-            self.COM[name].translateBy(centerOfMass)
-            
-            self.logfile.write("%f \t %f %f %f \t\t %s\n" % (physicalProperties.mass, centerOfMass.x, centerOfMass.y, centerOfMass.z, occurrence.name))            
-            
             self.numberOfBodies[name] = self.numberOfBodies[name] + occurrence.component.bRepBodies.count
             for body in occurrence.component.bRepBodies:
                 self.bodies[name].append(body)
             if occurrence.childOccurrences:
-                self.getbodiesAndCOM(name,occurrence.childOccurrences,currentLevel+1)
+                self.getBodies(name,occurrence.childOccurrences,currentLevel+1)
+    def getCOM(self, name, occurrences):
+        # check if a COM point is defined
+        allComponents = self.design.allComponents
+        self.calculateCOMFlag = True
+        for com in allComponents:
+            if com is not None:
+                allConstructionPoints = com.constructionPoints
+                for point in allConstructionPoints:
+                    if point is not None:
+                        if point.name[:3] == "COM" and point.name[4:] == name:
+                            self.COM[name] = adsk.core.Point3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
+                            self.calculateCOMFlag = False
+        # if not, we calculate it
+        self.calculateCOM(name, occurrences, 0)
+        return False
+        
+    def calculateCOM(self, name, occurrences, currentLevel):
+        for occurrence in occurrences:
+            physicalProperties = occurrence.component.getPhysicalProperties()
+            self.totalMass[name] = self.totalMass[name] + physicalProperties.mass
+            if self.calculateCOMFlag == True:
+                self.number_of_coms[name] = self.number_of_coms[name] + 1
+                centerOfMass = physicalProperties.centerOfMass
+                #print(centerOfMass.asArray())
+                centerOfMass.transformBy(occurrence.transform)
+                #print(centerOfMass.asArray())
+                centerOfMass = centerOfMass.asVector()
+                centerOfMass.scaleBy(physicalProperties.mass)
+                self.COM[name].translateBy(centerOfMass)
+            
+                self.logfile.write("%f \t %f %f %f \t\t %s\n" % (physicalProperties.mass, centerOfMass.x, centerOfMass.y, centerOfMass.z, occurrence.name)) 
+            if occurrence.childOccurrences:
+                self.calculateCOM(name,occurrence.childOccurrences,currentLevel+1)
+        
     def copyBodiesToNewComponentAndExport(self, name):
         progressDialog = self.app.userInterface.createProgressDialog()
         progressDialog.isBackgroundTranslucent = False
@@ -307,10 +331,11 @@ class SDFExporter():
                         # the lighthouse sensors shall be relative to COM, such that the pose estimation returns a pose for the COM
                         vec = self.COM[linkname].vectorTo(sensor_position)
                         DarkRoomSensors[linkname].append(vec)  
+        objectID = 0
         for name,sensors in DarkRoomSensors.items():
             file = open(self.fileDir+'/lighthouseSensors/' + name+'.yaml', 'w')
             file.write('name: ' + name + '\n');
-            file.write('ObjectID: 0\n');
+            file.write('ObjectID: ' + str(objectID) + '\n');
             file.write('mesh: ' + "../meshes/CAD/" + name + '.stl\n');
             file.write('sensor_relative_locations:\n');
             i = 0
@@ -319,6 +344,7 @@ class SDFExporter():
                 file.write(line);
                 i = i+1
             file.close()
+            objectID = objectID + 1
     def finish(self):
         # write sdf
         filename = self.fileDir + "/model.sdf"
