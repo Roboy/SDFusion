@@ -294,7 +294,7 @@ class SDFExporter():
                                 myoMuscle.viaPoints.append(viaPoint)
                                 self.pluginObj.myoMuscles.append(myoMuscle)
                             if myoMuscleList:
-                                myoMuscleList[0].viaPoints.append(viaPoint)
+                                myoMuscleList[0].viaPoints.append(viaPoint) 
         plugin = ET.Element("plugin", filename=self.pluginFileName, name=self.pluginName)
         self.model.append(plugin)
         allMyoMuscles = self.pluginObj.myoMuscles
