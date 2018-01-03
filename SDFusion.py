@@ -298,7 +298,7 @@ class SDFExporter():
         plugin = ET.Element("plugin", filename=self.pluginFileName, name=self.pluginName)
         self.model.append(plugin)
         allMyoMuscles = self.pluginObj.myoMuscles
-        allMyoMuscles.sort(key=lambda x: x.number)
+        #allMyoMuscles.sort(key=lambda x: x.number)
         # create myoMuscle nodes
         for myo in allMyoMuscles:
             myoMuscle = ET.Element("myoMuscle", name="motor"+myo.number)
