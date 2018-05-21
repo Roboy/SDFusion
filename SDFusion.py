@@ -40,48 +40,51 @@ class SDFExporter():
     ui = None
     app = None
     product = None
-    design = None    
+    design = None
     exportMgr = None
     rootOcc = None
     rootComp = None
-    
+
     fileDir = "E:/roboy_models"
     modelName = "TestCube"
-    
+
     root = None
-    model = None    
-    
+    model = None
+
+    osimroot = None
+
     logfile = "log.txt"
-    
-    numberOfRigidGroupsToExport = 0    
-    
+
+    numberOfRigidGroupsToExport = 0
+
     progressDialog = None
-    
+
     numberOfBodies = defaultdict()
     bodies = defaultdict(list)
     COM = defaultdict(adsk.core.Point3D)
     totalMass = defaultdict()
     number_of_coms = defaultdict()
     calculateCOMFlag = True
-        
-    transformMatrices = defaultdict(adsk.core.Matrix3D)  
+
+    transformMatrices = defaultdict(adsk.core.Matrix3D)
 
     exportViaPoints = True
     exportLighthouseSensors = True
-    
+    exportOpenSimMuscles = False
+
     ## Global variable to specify the file name of the plugin loaded by the SDF.
     # Only necessary if **exportViaPoints** is **True**.
     pluginFileName = "libmyomuscle_plugin.so"
-    
+
     ## Global variable to specify the name of the plugin loaded by the SDF-
     # Only necessary if **exportViaPoints** id **True**.
     pluginName = "myomuscle_plugin"
     pluginObj = Plugin()
-    
+
     def __init__(self):
         self.app = adsk.core.Application.get()
         self.ui  = self.app.userInterface
-        # get active design        
+        # get active design
         self.product = self.app.activeProduct
         self.design = adsk.fusion.Design.cast(self.product)
         self.exportMgr = self.design.exportManager
@@ -89,25 +92,35 @@ class SDFExporter():
         self.rootComp = self.design.rootComponent
         # get all occurrences within the root component
         self.rootOcc = self.rootComp.occurrences
-    
+
     def askForExportViaPoints(self):
-        returnvalue = self.ui.messageBox("Do you want me to export ViaPoints aswell?", "export options", 3)
+        returnvalue = self.ui.messageBox("Do you want me to export ViaPoints?", "export options", 3)
         if returnvalue == 2:
             self.exportViaPoints = True
-        elif returnvalue == 3:   
+        elif returnvalue == 3:
             self.exportViaPoints = False
         else:
             return False
         return True
-            
+
+    def askForExportOsimMuscles(self):
+        returnvalue = self.ui.messageBox("Do you want me to export OpenSim muscles?", "export options", 3)
+        if returnvalue == 2:
+            self.exportOpenSimMuscles = True
+        elif returnvalue == 3:
+            self.exportOpenSimMuscles = False
+        else:
+            return False
+        return True
+
     def askForExportLighthouseSensors(self):
         returnvalue = self.ui.messageBox("Do you want me to export DarkRoomSensors aswell?", "export options", 3)
         if returnvalue == 2: #yes
             self.exportLighthouseSensors = True
-        elif returnvalue == 3:   
+        elif returnvalue == 3:
             self.exportLighthouseSensors = False
         else:
-            return     
+            return
     def asKForExportDirectory(self):
         fileDialog = self.ui.createFileDialog()
         fileDialog.isMultiSelectEnabled = False
@@ -141,7 +154,7 @@ class SDFExporter():
             if rig is not None and rig.name[:6] == "EXPORT":
                 self.numberOfRigidGroupsToExport = self.numberOfRigidGroupsToExport+1
         return allRigidGroups
-    
+
     def getAllBodiesInRigidGroup(self, name, rigidGroup):
         self.numberOfBodies[name] = 0
         self.COM[name] = adsk.core.Point3D.create(0,0,0)
@@ -159,8 +172,8 @@ class SDFExporter():
         self.logfile.write("Mass of %s: %f\n" % (name, self.totalMass[name]))
         self.logfile.write("COM of %s: %f %f %f\n" % (name, self.COM[name].x, self.COM[name].y, self.COM[name].z))
         self.logfile.write("----------------------------------------------------------------\n")
-    
-    def getBodies(self, name, occurrences, currentLevel):  
+
+    def getBodies(self, name, occurrences, currentLevel):
         for occurrence in occurrences:
             self.numberOfBodies[name] = self.numberOfBodies[name] + occurrence.component.bRepBodies.count
             for body in occurrence.component.bRepBodies:
@@ -182,7 +195,7 @@ class SDFExporter():
         # if not, we calculate it
         self.calculateCOM(name, occurrences, 0)
         return False
-        
+
     def calculateCOM(self, name, occurrences, currentLevel):
         for occurrence in occurrences:
             physicalProperties = occurrence.component.getPhysicalProperties()
@@ -196,22 +209,22 @@ class SDFExporter():
                 centerOfMass = centerOfMass.asVector()
                 centerOfMass.scaleBy(physicalProperties.mass)
                 self.COM[name].translateBy(centerOfMass)
-            
-                self.logfile.write("%f \t %f %f %f \t\t %s\n" % (physicalProperties.mass, centerOfMass.x, centerOfMass.y, centerOfMass.z, occurrence.name)) 
+
+                self.logfile.write("%f \t %f %f %f \t\t %s\n" % (physicalProperties.mass, centerOfMass.x, centerOfMass.y, centerOfMass.z, occurrence.name))
             if occurrence.childOccurrences:
                 self.calculateCOM(name,occurrence.childOccurrences,currentLevel+1)
-        
+
     def copyBodiesToNewComponentAndExport(self, name):
         progressDialog = self.app.userInterface.createProgressDialog()
         progressDialog.isBackgroundTranslucent = False
         progressDialog.show(name, 'Copy Bodies to new component: %v/%m', 0, self.numberOfBodies[name], 1)
-        
+
         transformMatrix = adsk.core.Matrix3D.create()
         transformMatrix.translation = self.COM[name].asVector()
-        self.transformMatrices[name] = transformMatrix    
+        self.transformMatrices[name] = transformMatrix
         print(self.transformMatrices[name].asArray())
-        
-        # global new_component                
+
+        # global new_component
         new_component = self.rootOcc.addNewComponent(transformMatrix)
         i = 0
         for body in self.bodies[name]:
@@ -222,21 +235,21 @@ class SDFExporter():
             if progressDialog.wasCancelled:
                 progressDialog.hide()
                 return False
-        
+
         self.exportToStl(new_component, name)
-        
+
         link = self.linkSDF(new_component, name)
-        self.model.append(link)    
-        
+        self.model.append(link)
+
         # delete the temporary new occurrence
         new_component.deleteMe()
         # Call doEvents to give Fusion a chance to react.
         adsk.doEvents()
-        
+
         progressDialog.hide()
-        
+
         return True
-        
+
     def exportJointsToSDF(self):
         #get all joints of the design
         allComponents = self.design.allComponents
@@ -294,7 +307,7 @@ class SDFExporter():
                                 myoMuscle.viaPoints.append(viaPoint)
                                 self.pluginObj.myoMuscles.append(myoMuscle)
                             if myoMuscleList:
-                                myoMuscleList[0].viaPoints.append(viaPoint) 
+                                myoMuscleList[0].viaPoints.append(viaPoint)
         plugin = ET.Element("plugin", filename=self.pluginFileName, name=self.pluginName)
         self.model.append(plugin)
         allMyoMuscles = self.pluginObj.myoMuscles
@@ -316,6 +329,70 @@ class SDFExporter():
                 # TODO: rotate global coordinates into link frame coordinates
                 viaPoint.text=via.coordinates
                 link.append(viaPoint)
+        if (self.exportOpenSimMuscles):
+            osimPlugin = ET.Element("plugin", filename="libgazebo_ros_muscle_interface.so", name="muscle_interface_plugin")
+            self.model.append(osimPlugin)
+            osimMuscles = ET.Element("muscles")
+            osimMuscles.text = "model://"+self.model.get("name")+"/muscles.osim"
+            self.model.append(osimMuscles)
+            self.osimroot = ET.Element("OpenSimDocument", Version="30000")
+            model = ET.Element("Model")
+            forceSet = ET.Element("ForceSet")
+            objects = ET.Element("objects")
+            forceSet.append(objects)
+            model.append(forceSet)
+            self.osimroot.append(model)
+
+            for myo in allMyoMuscles:
+                # TODO add bodies
+                muscle = ET.Element("Thelen2003Muscle", name="muscle" + myo.number)
+                objects.append(muscle)
+                gPath = ET.Element("GeometryPath")
+                ppSet = ET.Element("PathPointSet")
+                ppSetObjects = ET.Element("objects")
+                ppSet.append(ppSetObjects)
+                muscle.append(gPath)
+                gPath.append(ppSet)
+                pwSet = ET.Element("PathWrapSet")
+                pwObjects = ET.Element("objects")
+                pwSet.append(pwObjects)
+                pWrap = ET.Element("PathWrap",name="PathWrap_"+myo.number)
+                wrap_object = ET.Element("wrap_object") # TODO fix objects in pWrap
+                wrap_object.text = "WrapJoint"
+                pWrap.append(wrap_object)
+                method = ET.Element("method")
+                method.text = "midpoint"
+                pWrap.append(method)
+                gPath.append(pwSet)
+                max_isometric_force = ET.Element("max_isometric_force")
+                max_isometric_force.text=str(1000.0)
+                optimal_fiber_length = ET.Element("optimal_fiber_length")
+                optimal_fiber_length.text = str(0.14108090847730637)  # TODO calculate optiomal fiber length
+                tendon_slack_length = ET.Element("tendon_slack_length")
+                tendon_slack_length.text = str(0.015675656497478485) # TODO slack tendon_slack_length
+                stiffness = ET.Element("stiffness")
+                stiffness.text = str(100000)
+                dissipation = ET.Element("dissipation")
+                dissipation.text = str(1)
+                muscle.append(max_isometric_force)
+                muscle.append(optimal_fiber_length)
+                muscle.append(tendon_slack_length)
+                muscle.append(stiffness)
+                muscle.append(dissipation)
+
+                allViaPoints = myo.viaPoints
+                allViaPoints.sort(key=lambda x: x.number)
+                for point in allViaPoints:
+                    pathPoint = ET.Element("PathPoint", name=muscle.get("name")+"_node"+point.number[0])
+                    location = ET.Element("location")
+                    location.text = point.coordinates
+                    body = ET.Element("body")
+                    body.text = point.link
+                    pathPoint.append(location)
+                    pathPoint.append(body)
+                    ppSetObjects.append(pathPoint)
+
+
     def exportLighthouseSensorsToYAML(self):
         #get all joints of the design
         allComponents = self.design.allComponents
@@ -330,7 +407,7 @@ class SDFExporter():
                         sensor_position = adsk.core.Point3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
                         # the lighthouse sensors shall be relative to COM, such that the pose estimation returns a pose for the COM
                         vec = self.COM[linkname].vectorTo(sensor_position)
-                        DarkRoomSensors[linkname].append(vec)  
+                        DarkRoomSensors[linkname].append(vec)
         objectID = 0
         for name,sensors in DarkRoomSensors.items():
             file = open(self.fileDir+'/lighthouseSensors/' + name+'.yaml', 'w')
@@ -345,6 +422,7 @@ class SDFExporter():
                 i = i+1
             file.close()
             objectID = objectID + 1
+
     def finish(self):
         # write sdf
         filename = self.fileDir + "/model.sdf"
@@ -359,7 +437,14 @@ class SDFExporter():
         file.write('<sdf version="1.6">model.sdf</sdf>\n<author>\n<name></name>\n<email></email>\n</author>\n')
         file.write('<description>awesome</description>\n<changes>exported from fusion 360</changes>\n</model>\n')
         file.close();
-        
+
+        if (self.osimroot != None):
+            file = open(self.fileDir + '/muscles.osim', 'w')
+            domxml = DOM.parseString(ET.tostring(self.osimroot))
+            pretty = domxml.toprettyxml()
+            file.write(pretty)
+            file.close()
+
         self.logfile.close()
         self.ui.messageBox("SDF file of model " + self.modelName + " written to '" + self.fileDir + "'.")
     ## Converts three double values to string.
@@ -373,7 +458,7 @@ class SDFExporter():
     def vectorToString(self, x, y, z):
         string = str(x) + " " + str(y) + " " + str(z)
         return string
-    
+
     ## Builds SDF pose node from vector.
     #
     # This function builds the SDF pose node for every joint.
@@ -390,7 +475,7 @@ class SDFExporter():
         rot = self.vectorToString(0, 0, 0)
         pose.text = pos + " " + rot
         return pose
-        
+
     ## Builds SDF pose node from matrix.
     #
     # This function builds the SDF pose node for every link.
@@ -418,7 +503,7 @@ class SDFExporter():
         rot = self.vectorToString(roll, pitch, yaw)
         pose.text = pos + " " + rot
         return pose
-    
+
     ## Builds SDF inertial node from physical properties.
     #
     # This function builds the SDF inertial node for every link.
@@ -439,7 +524,7 @@ class SDFExporter():
         inertia = self.sdfInertia(physics)
         inertial.append(inertia)
         return inertial
-    
+
     ## Builds SDF node for one moment of inertia.
     #
     # This helper function builds the SDF node for one moment of inertia.
@@ -452,7 +537,7 @@ class SDFExporter():
         # convert from kg/cm^2 (Fusion 360) to kg/m^2 (SI)
         node.text = str(0.0001 * value)
         return node
-    
+
     ## Builds SDF inertia node from physical properties.
     #
     # This function builds the SDF inertia node for every link.
@@ -469,7 +554,7 @@ class SDFExporter():
         inertia.append(self.sdfMom("iyz", yz))
         inertia.append(self.sdfMom("izz", zz))
         return inertia
-        
+
     ## Builds SDF link node.
     #
     # This function builds the SDF link node for every link.
@@ -512,12 +597,12 @@ class SDFExporter():
         visual.append(geometry)
         link.append(visual)
         return link
-        
+
     ## Builds SDF joint node.
     #
     # This function builds the SDF joint node for every joint type.
     #
-    # @param joi the joint 
+    # @param joi the joint
     # @param name_parent the name of the parent link
     # @param name_child the name of the child link
     # @return the SDF joint node
@@ -566,7 +651,7 @@ class SDFExporter():
         joint.append(pose)
         joint.extend(jointInfo)
         return joint
-    
+
     ## Builds SDF axis node for revolute joints.
     #
     # This function builds the SDF axis node for revolute joint.
@@ -578,7 +663,7 @@ class SDFExporter():
         info = []
         # build axis node
         axis = ET.Element("axis")
-        xyz = ET.Element("xyz")    
+        xyz = ET.Element("xyz")
         vector = joi.jointMotion.rotationAxisVector
         xyz.text = self.vectorToString(vector.x, vector.y, vector.z)
         axis.append(xyz)
@@ -603,7 +688,7 @@ class SDFExporter():
         axis.append(frame)
         info.append(axis)
         return info
-        
+
     ## Plain STL export.
     ##
     # @param occ the occurrence to be exported
@@ -612,13 +697,13 @@ class SDFExporter():
         # Create an STEPExportOptions object and do the export.
         stepOptions = self.exportMgr.createSTEPExportOptions(self.fileDir+ '/meshes/CAD/' + linkname + '.step', occ.component)
         return self.exportMgr.execute(stepOptions)
-        
+
     def exportToStl(self, occ, linkname):
         # Create an STEPExportOptions object and do the export.
         stlExportOptions = self.exportMgr.createSTLExportOptions(occ, self.fileDir+ '/meshes/CAD/' + linkname + '.stl')
         stlExportOptions.meshRefinement = adsk.fusion.MeshRefinementSettings.MeshRefinementLow
         return self.exportMgr.execute(stlExportOptions)
-    
+
     ## Clear filenames of unwanted characters
     #
     # This function replaces all ':' with underscores and deletes spaces in filenames.
@@ -633,27 +718,29 @@ class SDFExporter():
 
 
 ## Exports a robot model from Fusion 360 to SDFormat.
-def run(context):        
-    
-    try:        
+def run(context):
+
+    try:
         exporter = SDFExporter()
         exporter.askForExportViaPoints()
+        if (exporter.exportViaPoints):
+            exporter.askForExportOsimMuscles()
         exporter.askForExportLighthouseSensors()
         exporter.asKForExportDirectory()
-        
+
         exporter.createDiectoryStructure()
-        
+
         # build sdf root node
         exporter.root = ET.Element("sdf", version="1.6")
         exporter.model = ET.Element("model", name=exporter.modelName)
         exporter.root.append(exporter.model)
-        
+
         allRigidGroups = exporter.getAllRigidGroups()
         # exports all rigid groups to STL and SDF
         for rig in allRigidGroups:
             if rig is not None and rig.name[:6] == "EXPORT":
                 name = rig.name[7:] # get rid of EXPORT_ tag
-                exporter.getAllBodiesInRigidGroup(name,rig)             
+                exporter.getAllBodiesInRigidGroup(name,rig)
                 if exporter.copyBodiesToNewComponentAndExport(name) == False:
                     return
 
