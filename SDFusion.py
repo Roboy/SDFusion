@@ -363,6 +363,7 @@ class SDFExporter():
                 method = ET.Element("method")
                 method.text = "midpoint"
                 pWrap.append(method)
+                pwObjects.append(pWrap)
                 gPath.append(pwSet)
                 max_isometric_force = ET.Element("max_isometric_force")
                 max_isometric_force.text=str(1000.0)
@@ -576,7 +577,8 @@ class SDFExporter():
         link.append(inertial)
         # build collision node
         collision = ET.Element("collision", name = name + "_collision")
-        link.append(collision)
+        if (not self.exportOpenSimMuscles):
+            link.append(collision)
         # build geometry node
         geometry = ET.Element("geometry")
         collision.append(geometry)
