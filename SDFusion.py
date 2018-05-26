@@ -16,6 +16,7 @@ import math
 import xml.dom.minidom as DOM
 import os, errno
 from collections import defaultdict
+from math import sqrt
 
 
 ## A class to hold information about all muscles.
@@ -35,6 +36,7 @@ class ViaPoint:
     coordinates = ""
     link = ""
     number = ""
+    global_coordinates = []
 
 class SDFExporter():
     ui = None
@@ -293,6 +295,7 @@ class SDFExporter():
                             viaPointInfo = point.name.split("_")
                             viaPoint = ViaPoint()
                             vec = adsk.core.Point3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
+                            viaPoint.global_coordinates = [point.geometry.x,point.geometry.y,point.geometry.z]
                             linkname = '_'.join(viaPointInfo[3:-1])
                             origin = self.transformMatrices[linkname].translation
                             origin = origin.asPoint()
@@ -309,7 +312,8 @@ class SDFExporter():
                             if myoMuscleList:
                                 myoMuscleList[0].viaPoints.append(viaPoint)
         plugin = ET.Element("plugin", filename=self.pluginFileName, name=self.pluginName)
-        self.model.append(plugin)
+        if (not self.exportOpenSimMuscles):
+            self.model.append(plugin)
         allMyoMuscles = self.pluginObj.myoMuscles
         #allMyoMuscles.sort(key=lambda x: x.number)
         # create myoMuscle nodes
@@ -356,21 +360,21 @@ class SDFExporter():
                 pwSet = ET.Element("PathWrapSet")
                 pwObjects = ET.Element("objects")
                 pwSet.append(pwObjects)
-                pWrap = ET.Element("PathWrap",name="PathWrap_"+myo.number)
-                wrap_object = ET.Element("wrap_object") # TODO fix objects in pWrap
-                wrap_object.text = "WrapJoint"
-                pWrap.append(wrap_object)
-                method = ET.Element("method")
-                method.text = "midpoint"
-                pWrap.append(method)
-                pwObjects.append(pWrap)
+                # pWrap = ET.Element("PathWrap",name="PathWrap_"+myo.number)
+                # wrap_object = ET.Element("wrap_object") # TODO fix objects in pWrap
+                # wrap_object.text = "WrapJoint"
+                # pWrap.append(wrap_object)
+                # method = ET.Element("method")
+                # method.text = "midpoint"
+                # pWrap.append(method)
+                # pwObjects.append(pWrap)
                 gPath.append(pwSet)
                 max_isometric_force = ET.Element("max_isometric_force")
                 max_isometric_force.text=str(1000.0)
                 optimal_fiber_length = ET.Element("optimal_fiber_length")
                 optimal_fiber_length.text = str(0.14108090847730637)  # TODO calculate optiomal fiber length
                 tendon_slack_length = ET.Element("tendon_slack_length")
-                tendon_slack_length.text = str(0.015675656497478485) # TODO slack tendon_slack_length
+
                 stiffness = ET.Element("stiffness")
                 stiffness.text = str(100000)
                 dissipation = ET.Element("dissipation")
@@ -383,6 +387,14 @@ class SDFExporter():
 
                 allViaPoints = myo.viaPoints
                 allViaPoints.sort(key=lambda x: x.number)
+
+                dist = 0
+                for i in range(len(allViaPoints)-1):
+                    squared_dist = (allViaPoints[i].global_coordinates[0] - allViaPoints[i+1].global_coordinates[0])**2 + (allViaPoints[i].global_coordinates[1] - allViaPoints[i+1].global_coordinates[1])**2 + (allViaPoints[i].global_coordinates[2] - allViaPoints[i+1].global_coordinates[2])**2 
+                    # np.sum(allViaPoints[i].global_coordinates**2 + allViaPoints[i+1].global_coordinates**2, axis=0)
+                    dist += sqrt(squared_dist)
+                tendon_slack_length.text = str(dist)    
+
                 for point in allViaPoints:
                     pathPoint = ET.Element("PathPoint", name=muscle.get("name")+"_node"+point.number[0])
                     location = ET.Element("location")
@@ -392,6 +404,11 @@ class SDFExporter():
                     pathPoint.append(location)
                     pathPoint.append(body)
                     ppSetObjects.append(pathPoint)
+            bodySet = ET.Element("BodySet", name="")
+            bodySetObjects = ET.Element("objects")
+            bodySet.append(bodySetObjects)
+            model.append(bodySet)
+
 
 
     def exportLighthouseSensorsToYAML(self):
