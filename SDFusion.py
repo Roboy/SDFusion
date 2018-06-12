@@ -59,15 +59,18 @@ class SDFExporter():
     
     numberOfBodies = defaultdict()
     bodies = defaultdict(list)
+    joints = defaultdict(list)
     COM = defaultdict(adsk.core.Point3D)
     totalMass = defaultdict()
+    inertias = defaultdict(list)
     number_of_coms = defaultdict()
     calculateCOMFlag = True
         
     transformMatrices = defaultdict(adsk.core.Matrix3D)  
 
-    exportViaPoints = True
-    exportLighthouseSensors = True
+    exportViaPoints = False
+    exportLighthouseSensors = False
+    exportCASPR = False
     
     ## Global variable to specify the file name of the plugin loaded by the SDF.
     # Only necessary if **exportViaPoints** is **True**.
@@ -107,8 +110,20 @@ class SDFExporter():
         elif returnvalue == 3:   
             self.exportLighthouseSensors = False
         else:
-            return     
-    def asKForExportDirectory(self):
+            return False
+        return True
+        
+    def askForExportCASPR(self):
+        returnvalue = self.ui.messageBox("Do you want me to export CASPR aswell?", "export options", 3)
+        if returnvalue == 2: #yes
+            self.exportCASPR = True
+        elif returnvalue == 3:   
+            self.exportCASPR = False
+        else:
+            return False
+        return True
+            
+    def askForExportDirectory(self):
         fileDialog = self.ui.createFileDialog()
         fileDialog.isMultiSelectEnabled = False
         fileDialog.title = "Specify result directory"
@@ -130,6 +145,8 @@ class SDFExporter():
             os.makedirs(self.fileDir+'/meshes/CAD')
             if self.exportLighthouseSensors:
                 os.makedirs(self.fileDir+'/lighthouseSensors')
+            if self.exportCASPR:
+                os.makedirs(self.fileDir+'/caspr')
             self.logfile = open(self.fileDir+'/logfile.txt', 'w')
         except OSError as e:
             if e.errno != errno.EEXIST:
@@ -264,6 +281,7 @@ class SDFExporter():
                             if missing_link==False:
                                 matrix = self.transformMatrices[name_parent]
                                 print(one.transform.translation.asArray())
+                                self.joints[name_parent] = (name_child,joi)
         #                        transformMatrix.transformBy(one.transform)
                                 #print(matrix.asArray())
                                 joint = self.jointSDF(joi, name_parent, name_child, matrix)
@@ -425,7 +443,7 @@ class SDFExporter():
     #
     # @param physics the physical properties of a link
     # @return the SDF inertial node
-    def sdfInertial(self, physics):
+    def sdfInertial(self, physics, name):
         inertial = ET.Element("inertial")
         # the link frame is located at the COM, therefor we use zero vector for pose
         zeroVector = adsk.core.Point3D.create(0,0,0)
@@ -436,7 +454,7 @@ class SDFExporter():
         mass.text = str(physics.mass)
         inertial.append(mass)
         # build inertia node
-        inertia = self.sdfInertia(physics)
+        inertia = self.sdfInertia(physics,name)
         inertial.append(inertia)
         return inertial
     
@@ -459,7 +477,7 @@ class SDFExporter():
     #
     # @param physics the physical properties of a link
     # @return the SDF inertia node
-    def sdfInertia(self, physics):
+    def sdfInertia(self, physics, name):
         inertia = ET.Element("inertia")
         (returnValue, xx, yy, zz, xy, yz, xz) = physics.getXYZMomentsOfInertia()
         inertia.append(self.sdfMom("ixx", xx))
@@ -468,6 +486,13 @@ class SDFExporter():
         inertia.append(self.sdfMom("iyy", yy))
         inertia.append(self.sdfMom("iyz", yz))
         inertia.append(self.sdfMom("izz", zz))
+        
+        self.inertias[name].append(xx)
+        self.inertias[name].append(yy)
+        self.inertias[name].append(zz)
+        self.inertias[name].append(xy)
+        self.inertias[name].append(yz)
+        self.inertias[name].append(xz)
         return inertia
         
     ## Builds SDF link node.
@@ -487,7 +512,7 @@ class SDFExporter():
         # get physical properties of occurrence
         physics = lin.physicalProperties
         # build inertial node
-        inertial = self.sdfInertial(physics)
+        inertial = self.sdfInertial(physics, name)
         link.append(inertial)
         # build collision node
         collision = ET.Element("collision", name = name + "_collision")
@@ -630,6 +655,122 @@ class SDFExporter():
         name = name.replace(":", "_")
         name = name.replace(" ", "")
         return name
+        
+    def prettify(self, elem):
+        """Return a pretty-printed XML string for the Element.
+        """
+        rough_string = ET.tostring(elem, 'utf-8')
+        reparsed = DOM.parseString(rough_string)
+        return reparsed.toprettyxml(indent="\t")
+    def exportCASPRcables(self):
+        file = open(self.fileDir + '/caspr/'+ self.modelName+'_cables.xml', 'w')
+        file.write('<?xml version="1.0" encoding="utf-8"?>\n')
+        file.write('<!DOCTYPE cables SYSTEM "../../../templates/cables.dtd">\n')
+        cables = ET.Element('cables')
+        cables.set('default_cable_set', 'WORKING')
+        cable_set = ET.SubElement(cables, 'cable_set')
+        cable_set.set('id','WORKING')
+        
+        allMyoMuscles = self.pluginObj.myoMuscles
+        # create myoMuscle nodes
+        i = 0
+        for myo in allMyoMuscles:
+            cable_ideal = ET.SubElement(cable_set, 'cable_ideal')
+            cable_ideal.set('name', 'cable ' + str(i))
+            cable_ideal.set('attachment_reference', 'com')
+            properties = ET.SubElement(cable_ideal, 'properties')
+            force_min = ET.SubElement(properties, 'force_min')
+            force_min.text = '10'
+            force_max = ET.SubElement(properties, 'force_max')
+            force_max.text = '80'
+            
+            attachments = ET.SubElement(cable_ideal, 'attachments')            
+            allViaPoints = myo.viaPoints
+            allViaPoints.sort(key=lambda x: x.number)
+            for via in allViaPoints:
+                attachment = ET.SubElement(attachments, 'attachment')
+                link = ET.SubElement(attachment, 'link')
+                link.text = via.link
+                location = ET.SubElement(attachment, 'location')
+                location.text=via.coordinates                
+        file.write(self.prettify(cables))
+        file.close()
+        
+    def exportCASPRbodies(self):
+        file = open(self.fileDir + '/caspr/'+ self.modelName+'_bodies.xml', 'w')
+        file.write('<?xml version="1.0" encoding="utf-8"?>\n')
+        file.write('<!DOCTYPE bodies_system SYSTEM "../../../templates/bodies.dtd">\n')
+        bodies_system = ET.Element('bodies_system')
+        links = ET.SubElement(bodies_system, 'links')
+        links.set('display_range','-0.3 0.3 0.0 1.0 -0.3 0.3')
+        links.set('view_angle','-37 32')
+        for (parent_name,(child_name, joint)) in self.joints.items():
+            link_rigid = ET.SubElement(links, 'link_rigid')
+            link_rigid.set('num','1')
+            link_rigid.set('name',parent_name)
+            joi = ET.SubElement(link_rigid, 'joint')
+            joi.set('type','R_xyx')
+            vector = joint.jointMotion.rotationAxisVector
+            joi.set('axis',self.vectorToString(vector.x, vector.y, vector.z))
+            joi.set('q_min', str(joint.jointMotion.rotationLimits.minimumValue))
+            joi.set('q_max', str(joint.jointMotion.rotationLimits.maximumValue))
+            physical = ET.SubElement(link_rigid, 'physical')
+            mass = ET.SubElement(physical, 'mass')
+            mass.text = str(self.totalMass[parent_name])
+            
+            joint_origin = joint.geometryOrOriginOne.origin            
+            
+            com_origin = self.COM[parent_name]
+            com_location = ET.SubElement(physical, 'com_location')
+            com_location.text = str((com_origin.x-joint_origin.x)/100.0) + ' ' + str((com_origin.y-joint_origin.y)/100.0) + ' ' + str((com_origin.z-joint_origin.z)/100.0)
+            
+            end_location = ET.SubElement(physical, 'end_location')
+            end_location.text = '0 0 0'
+            inertia = ET.SubElement(physical, 'inertia')
+            inertia.set('ref','com')
+            Ixx = ET.SubElement(inertia, 'Ixx')
+            Ixx.text = str(self.inertias[parent_name][0])
+            Iyy = ET.SubElement(inertia, 'Iyy')
+            Iyy.text = str(self.inertias[parent_name][1])
+            Izz = ET.SubElement(inertia, 'Izz')
+            Izz.text = str(self.inertias[parent_name][2])
+            Ixy = ET.SubElement(inertia, 'Ixy')
+            Ixy.text = str(self.inertias[parent_name][3])
+            Ixz = ET.SubElement(inertia, 'Ixz')
+            Ixz.text = str(self.inertias[parent_name][5])
+            Iyz = ET.SubElement(inertia, 'Iyz')
+            Iyz.text = str(self.inertias[parent_name][4])
+            
+            print(parent_name + ' ' + str(joint.geometryOrOriginOne.origin.asArray()))
+            print(child_name + ' ' + str(joint.geometryOrOriginTwo.origin.asArray()))
+#                transform_one = self.transformMatrices[name]
+#                transform_one.invert()
+#                #one.transform.transformBy(transform_one)
+#                print(one.transform.asArray())
+#                print(transform_one.asArray())
+                
+            parent = ET.SubElement(link_rigid, 'parent')
+            num = ET.SubElement(parent, 'num')
+            num.text = child_name
+            location = ET.SubElement(parent, 'location')
+            location.text = str(joint_origin.x/100.0) + ' ' + str(joint_origin.y/100.0) + ' ' + str(joint_origin.z/100.0)
+  
+        operational_spaces = ET.SubElement(bodies_system, 'operational_spaces')  
+        operational_spaces.set('default_operational_set', 'test')
+        operational_set = ET.SubElement(operational_spaces, 'operational_set')  
+        operational_set.set('id','test')
+        position = ET.SubElement(operational_set, 'position')  
+        position.set('marker_id','1')
+        position.set('name','test1')
+        link = ET.SubElement(position, 'link')  
+        link.text = '2'
+        offset = ET.SubElement(position, 'offset')  
+        offset.text = '0.0 0.0 0.0'
+        axes = ET.SubElement(position, 'axes')  
+        axes.set('active_axes','x')
+  
+        file.write(self.prettify(bodies_system))
+        file.close()
 
 
 ## Exports a robot model from Fusion 360 to SDFormat.
@@ -638,8 +779,10 @@ def run(context):
     try:        
         exporter = SDFExporter()
         exporter.askForExportViaPoints()
+        if exporter.exportViaPoints:
+            exporter.askForExportCASPR()
         exporter.askForExportLighthouseSensors()
-        exporter.asKForExportDirectory()
+        exporter.askForExportDirectory()
         
         exporter.createDiectoryStructure()
         
@@ -658,8 +801,14 @@ def run(context):
                     return
 
         exporter.exportJointsToSDF()
-        exporter.exportViaPointsToSDF()
-        exporter.exportLighthouseSensorsToYAML()
+        if exporter.exportViaPoints:
+            exporter.exportViaPointsToSDF()
+            if exporter.exportCASPR: # exporting caspr only makes sense if we export viaPoints aswell
+                exporter.exportCASPRcables()
+                exporter.exportCASPRbodies()
+        if exporter.exportLighthouseSensors:
+            exporter.exportLighthouseSensorsToYAML()
+        
         exporter.finish()
     except:
         if exporter.ui:
