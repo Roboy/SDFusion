@@ -72,6 +72,8 @@ class SDFExporter():
 
     transformMatrices = defaultdict(adsk.core.Matrix3D)
 
+    runCleanUp = False
+    exportMeshes = True
     exportViaPoints = False
     exportLighthouseSensors = False
     exportCASPR = False
@@ -97,6 +99,26 @@ class SDFExporter():
         self.rootComp = self.design.rootComponent
         # get all occurrences within the root component
         self.rootOcc = self.rootComp.occurrences
+
+    def askForCleanUp(self):
+        returnvalue = self.ui.messageBox("Do you want to remove components with mass less than 1 g?", "export options", 3)
+        if returnvalue == 2:
+            self.runCleanUp = True
+        elif returnvalue == 3:
+            self.runCleanUp = False
+        else:
+            return False
+        return True
+
+    def askForExportMeshes(self):
+        returnvalue = self.ui.messageBox("Do you want to export meshes to STL?", "export options", 3)
+        if returnvalue == 2:
+            self.exportMeshes = True
+        elif returnvalue == 3:
+            self.exportMeshes = False
+        else:
+            return False
+        return True
 
     def askForExportViaPoints(self):
         returnvalue = self.ui.messageBox("Do you want me to export ViaPoints?", "export options", 3)
@@ -127,17 +149,17 @@ class SDFExporter():
         else:
             return False
         return True
-        
+
     def askForExportCASPR(self):
         returnvalue = self.ui.messageBox("Do you want me to export CASPR aswell?", "export options", 3)
         if returnvalue == 2: #yes
             self.exportCASPR = True
-        elif returnvalue == 3:   
+        elif returnvalue == 3:
             self.exportCASPR = False
         else:
             return False
         return True
-            
+
     def askForExportDirectory(self):
         fileDialog = self.ui.createFileDialog()
         fileDialog.isMultiSelectEnabled = False
@@ -245,17 +267,29 @@ class SDFExporter():
 
         # global new_component
         new_component = self.rootOcc.addNewComponent(transformMatrix)
+        group = [g for g in self.rootComp.allRigidGroups if g.name == "EXPORT_"+name][0]
         i = 0
-        for body in self.bodies[name]:
-            new_body = body.copyToComponent(new_component)
-            new_body.name = 'body'+str(i)
-            progressDialog.progressValue = progressDialog.progressValue + 1
-            i = i+1
-            if progressDialog.wasCancelled:
-                progressDialog.hide()
-                return False
+        for occurrence in group.occurrences:
+            for b in occurrence.bRepBodies:
+                new_body = b.copyToComponent(new_component)
+                new_body.name = 'body'+str(i)
+                progressDialog.progressValue = progressDialog.progressValue + 1
+                i = i+1
+                if progressDialog.wasCancelled:
+                    progressDialog.hide()
+                    return False
 
-        self.exportToStl(new_component, name)
+        # for body in self.bodies[name]:
+        #     new_body = body.copyToComponent(new_component)
+        #     new_body.name = 'body'+str(i)
+        #     progressDialog.progressValue = progressDialog.progressValue + 1
+        #     i = i+1
+        #     if progressDialog.wasCancelled:
+        #         progressDialog.hide()
+        #         return False
+
+        if self.exportMeshes:
+            self.exportToStl(new_component, name)
 
         link = self.linkSDF(new_component, name)
         self.model.append(link)
@@ -408,10 +442,10 @@ class SDFExporter():
 
                 dist = 0
                 for i in range(len(allViaPoints)-1):
-                    squared_dist = (allViaPoints[i].global_coordinates[0] - allViaPoints[i+1].global_coordinates[0])**2 + (allViaPoints[i].global_coordinates[1] - allViaPoints[i+1].global_coordinates[1])**2 + (allViaPoints[i].global_coordinates[2] - allViaPoints[i+1].global_coordinates[2])**2 
+                    squared_dist = (allViaPoints[i].global_coordinates[0] - allViaPoints[i+1].global_coordinates[0])**2 + (allViaPoints[i].global_coordinates[1] - allViaPoints[i+1].global_coordinates[1])**2 + (allViaPoints[i].global_coordinates[2] - allViaPoints[i+1].global_coordinates[2])**2
                     # np.sum(allViaPoints[i].global_coordinates**2 + allViaPoints[i+1].global_coordinates**2, axis=0)
                     dist += sqrt(squared_dist)
-                tendon_slack_length.text = str(dist)    
+                tendon_slack_length.text = str(dist)
 
                 for point in allViaPoints:
                     pathPoint = ET.Element("PathPoint", name=muscle.get("name")+"_node"+point.number[0])
@@ -589,7 +623,7 @@ class SDFExporter():
         inertia.append(self.sdfMom("iyy", yy))
         inertia.append(self.sdfMom("iyz", yz))
         inertia.append(self.sdfMom("izz", zz))
-        
+
         self.inertias[name].append(xx)
         self.inertias[name].append(yy)
         self.inertias[name].append(zz)
@@ -759,13 +793,14 @@ class SDFExporter():
         name = name.replace(":", "_")
         name = name.replace(" ", "")
         return name
-        
+
     def prettify(self, elem):
         """Return a pretty-printed XML string for the Element.
         """
         rough_string = ET.tostring(elem, 'utf-8')
         reparsed = DOM.parseString(rough_string)
         return reparsed.toprettyxml(indent="\t")
+
     def exportCASPRcables(self):
         file = open(self.fileDir + '/caspr/'+ self.modelName+'_cables.xml', 'w')
         file.write('<?xml version="1.0" encoding="utf-8"?>\n')
@@ -774,7 +809,7 @@ class SDFExporter():
         cables.set('default_cable_set', 'WORKING')
         cable_set = ET.SubElement(cables, 'cable_set')
         cable_set.set('id','WORKING')
-        
+
         allMyoMuscles = self.pluginObj.myoMuscles
         # create myoMuscle nodes
         i = 0
@@ -788,8 +823,8 @@ class SDFExporter():
             force_min.text = '10'
             force_max = ET.SubElement(properties, 'force_max')
             force_max.text = '80'
-            
-            attachments = ET.SubElement(cable_ideal, 'attachments')            
+
+            attachments = ET.SubElement(cable_ideal, 'attachments')
             allViaPoints = myo.viaPoints
             allViaPoints.sort(key=lambda x: x.number)
             for via in allViaPoints:
@@ -797,10 +832,10 @@ class SDFExporter():
                 link = ET.SubElement(attachment, 'link')
                 link.text = via.link
                 location = ET.SubElement(attachment, 'location')
-                location.text=via.coordinates     
+                location.text=via.coordinates
         file.write(self.prettify(cables))
         file.close()
-        
+
     def exportCASPRbodies(self):
         file = open(self.fileDir + '/caspr/'+ self.modelName+'_bodies.xml', 'w')
         file.write('<?xml version="1.0" encoding="utf-8"?>\n')
@@ -822,13 +857,13 @@ class SDFExporter():
             physical = ET.SubElement(link_rigid, 'physical')
             mass = ET.SubElement(physical, 'mass')
             mass.text = str(self.totalMass[parent_name])
-            
-            joint_origin = joint.geometryOrOriginOne.origin            
-            
+
+            joint_origin = joint.geometryOrOriginOne.origin
+
             com_origin = self.COM[parent_name]
             com_location = ET.SubElement(physical, 'com_location')
             com_location.text = str((com_origin.x-joint_origin.x)/100.0) + ' ' + str((com_origin.y-joint_origin.y)/100.0) + ' ' + str((com_origin.z-joint_origin.z)/100.0)
-            
+
             end_location = ET.SubElement(physical, 'end_location')
             end_location.text = '0 0 0'
             inertia = ET.SubElement(physical, 'inertia')
@@ -845,7 +880,7 @@ class SDFExporter():
             Ixz.text = str(self.inertias[parent_name][5])
             Iyz = ET.SubElement(inertia, 'Iyz')
             Iyz.text = str(self.inertias[parent_name][4])
-            
+
             print(parent_name + ' ' + str(joint.geometryOrOriginOne.origin.asArray()))
             print(child_name + ' ' + str(joint.geometryOrOriginTwo.origin.asArray()))
 #                transform_one = self.transformMatrices[name]
@@ -853,27 +888,27 @@ class SDFExporter():
 #                #one.transform.transformBy(transform_one)
 #                print(one.transform.asArray())
 #                print(transform_one.asArray())
-                
+
             parent = ET.SubElement(link_rigid, 'parent')
             num = ET.SubElement(parent, 'num')
             num.text = child_name
             location = ET.SubElement(parent, 'location')
             location.text = str(joint_origin.x/100.0) + ' ' + str(joint_origin.y/100.0) + ' ' + str(joint_origin.z/100.0)
-  
-        operational_spaces = ET.SubElement(bodies_system, 'operational_spaces')  
+
+        operational_spaces = ET.SubElement(bodies_system, 'operational_spaces')
         operational_spaces.set('default_operational_set', 'test')
-        operational_set = ET.SubElement(operational_spaces, 'operational_set')  
+        operational_set = ET.SubElement(operational_spaces, 'operational_set')
         operational_set.set('id','test')
-        position = ET.SubElement(operational_set, 'position')  
+        position = ET.SubElement(operational_set, 'position')
         position.set('marker_id','1')
         position.set('name','test1')
-        link = ET.SubElement(position, 'link')  
+        link = ET.SubElement(position, 'link')
         link.text = '2'
-        offset = ET.SubElement(position, 'offset')  
+        offset = ET.SubElement(position, 'offset')
         offset.text = '0.0 0.0 0.0'
-        axes = ET.SubElement(position, 'axes')  
+        axes = ET.SubElement(position, 'axes')
         axes.set('active_axes','x')
-  
+
         file.write(self.prettify(bodies_system))
         file.close()
 
@@ -883,14 +918,31 @@ def run(context):
 
     try:
         exporter = SDFExporter()
+        exporter.askForCleanUp()
+        exporter.askForExportMeshes()
         exporter.askForExportViaPoints()
         if exporter.exportViaPoints:
             exporter.askForExportCASPR()
             exporter.askForExportOsimMuscles()
         exporter.askForExportLighthouseSensors()
         exporter.askForExportDirectory()
-        
+
         exporter.createDiectoryStructure()
+
+        if exporter.runCleanUp:
+            allComponents = exporter.design.allComponents
+            progressDialog = exporter.app.userInterface.createProgressDialog()
+            progressDialog.isBackgroundTranslucent = False
+            progressDialog.show("Clean up", 'Looking for small components', 0, len(allComponents), 0)
+            i = 0
+            for component in allComponents:
+                progressDialog.progressValue += 1
+                if component.physicalProperties.mass < 0.001:
+                    for o in component.occurrences:
+                        progressDialog.message = "Removing " + component.name
+                        o.deleteMe()
+
+            progressDialog.hide()
 
         # build sdf root node
         exporter.root = ET.Element("sdf", version="1.6")
@@ -914,7 +966,7 @@ def run(context):
                 exporter.exportCASPRbodies()
         if exporter.exportLighthouseSensors:
             exporter.exportLighthouseSensorsToYAML()
-        
+
         exporter.finish()
     except:
         if exporter.ui:
