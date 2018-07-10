@@ -258,7 +258,7 @@ class SDFExporter():
     def copyBodiesToNewComponentAndExport(self, name):
         progressDialog = self.app.userInterface.createProgressDialog()
         progressDialog.isBackgroundTranslucent = False
-        progressDialog.show(name, 'Copy Bodies to new component: %v/%m', 0, self.numberOfBodies[name], 1)
+        
 
         transformMatrix = adsk.core.Matrix3D.create()
         transformMatrix.translation = self.COM[name].asVector()
@@ -267,7 +267,9 @@ class SDFExporter():
 
         # global new_component
         new_component = self.rootOcc.addNewComponent(transformMatrix)
+        new_component.name = name
         group = [g for g in self.rootComp.allRigidGroups if g.name == "EXPORT_"+name][0]
+        progressDialog.show(name, 'Copy Bodies to new component: %v/%m', 0, len(group.occurrences), 1)
         i = 0
         for occurrence in group.occurrences:
             for b in occurrence.bRepBodies:
@@ -295,7 +297,7 @@ class SDFExporter():
         self.model.append(link)
 
         # delete the temporary new occurrence
-        new_component.deleteMe()
+        # new_component.deleteMe()
         # Call doEvents to give Fusion a chance to react.
         adsk.doEvents()
 
@@ -339,30 +341,34 @@ class SDFExporter():
         #get all joints of the design
         allComponents = self.design.allComponents
         for com in allComponents:
-            if com is not None:
-                allConstructionPoints = com.constructionPoints
-                for point in allConstructionPoints:
-                    if point is not None:
-                        if point.name[:2] == "VP":
-                            viaPointInfo = point.name.split("_")
-                            viaPoint = ViaPoint()
-                            vec = adsk.core.Point3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
-                            viaPoint.global_coordinates = [point.geometry.x,point.geometry.y,point.geometry.z]
-                            linkname = '_'.join(viaPointInfo[3:-1])
-                            origin = self.transformMatrices[linkname].translation
-                            origin = origin.asPoint()
-                            dist = origin.vectorTo(vec)
-                            viaPoint.coordinates = str(dist.x*0.01) + " " + str(dist.y*0.01) + " " + str(dist.z*0.01)
-                            viaPoint.link = linkname
-                            viaPoint.number = viaPointInfo[-1:]
-                            myoNumber = viaPointInfo[1][5:]
-                            myoMuscleList = list(filter(lambda x: x.number == myoNumber, self.pluginObj.myoMuscles))
-                            if not myoMuscleList:
-                                myoMuscle = MyoMuscle(myoNumber)
-                                myoMuscle.viaPoints.append(viaPoint)
-                                self.pluginObj.myoMuscles.append(myoMuscle)
-                            if myoMuscleList:
-                                myoMuscleList[0].viaPoints.append(viaPoint)
+            try:
+                if com is not None:
+                    allConstructionPoints = com.constructionPoints
+                    for point in allConstructionPoints:
+                        if point is not None:
+                            if point.name[:2] == "VP":
+                                viaPointInfo = point.name.split("_")
+                                viaPoint = ViaPoint()
+                                vec = adsk.core.Point3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
+                                viaPoint.global_coordinates = [point.geometry.x,point.geometry.y,point.geometry.z]
+                                linkname = '_'.join(viaPointInfo[3:-1])
+                                origin = self.transformMatrices[linkname].translation
+                                origin = origin.asPoint()
+                                dist = origin.vectorTo(vec)
+                                viaPoint.coordinates = str(dist.x*0.01) + " " + str(dist.y*0.01) + " " + str(dist.z*0.01)
+                                viaPoint.link = linkname
+                                viaPoint.number = viaPointInfo[-1:]
+                                myoNumber = viaPointInfo[1][5:]
+                                myoMuscleList = list(filter(lambda x: x.number == myoNumber, self.pluginObj.myoMuscles))
+                                if not myoMuscleList:
+                                    myoMuscle = MyoMuscle(myoNumber)
+                                    myoMuscle.viaPoints.append(viaPoint)
+                                    self.pluginObj.myoMuscles.append(myoMuscle)
+                                if myoMuscleList:
+                                    myoMuscleList[0].viaPoints.append(viaPoint)
+            except:
+                   self.ui.messageBox("Exception in " + point.name + '\n' +traceback.format_exc())
+                   pass
         plugin = ET.Element("plugin", filename=self.pluginFileName, name=self.pluginName)
         if (not self.exportOpenSimMuscles):
             self.model.append(plugin)
@@ -462,6 +468,32 @@ class SDFExporter():
             model.append(bodySet)
 
 
+
+    def traverseViaPoints(self):
+        #get all joints of the design
+        
+       
+        allComponents = self.design.allComponents
+
+        for com in allComponents:
+            if com is not None:
+                allConstructionPoints = com.constructionPoints
+                for point in allConstructionPoints:
+                    progressDialog = self.app.userInterface.createProgressDialog()
+                    progressDialog.isBackgroundTranslucent = False
+                    progressDialog.show("Traversing viaPoints", 'Checking', 0, len(allConstructionPoints), 0)
+                    if point is not None:
+                        if point.name[:2] == "VP":
+                            progressDialog.message = point.name
+                            progressDialog.progressValue += 1
+                            viaPointInfo = point.name.split("_")
+                            viaPoint = ViaPoint()
+                            vec = adsk.core.Point3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
+                            viaPoint.global_coordinates = [point.geometry.x,point.geometry.y,point.geometry.z]
+                            # linkname = '_'.join(viaPointInfo[3:-1])
+                            # origin = self.transformMatrices[linkname].translation
+                            # origin = origin.asPoint()
+                            # dist = origin.vectorTo(vec)
 
     def exportLighthouseSensorsToYAML(self):
         #get all joints of the design
@@ -928,6 +960,8 @@ def run(context):
         exporter.askForExportDirectory()
 
         exporter.createDiectoryStructure()
+
+        # exporter.traverseViaPoints()
 
         if exporter.runCleanUp:
             allComponents = exporter.design.allComponents
