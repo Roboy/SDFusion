@@ -223,6 +223,7 @@ class SDFExporter():
                 self.getBodies(name,occurrence.childOccurrences,currentLevel+1)
     def getCOM(self, name, occurrences):
         # check if a COM point is defined
+        self.logfile.write("COM: " + name + "\n")
         allComponents = self.design.allComponents
         self.calculateCOMFlag = True
         for com in allComponents:
@@ -256,6 +257,7 @@ class SDFExporter():
                 self.calculateCOM(name,occurrence.childOccurrences,currentLevel+1)
 
     def copyBodiesToNewComponentAndExport(self, name):
+        self.logfile.write("Body: " + name + "\n")
         progressDialog = self.app.userInterface.createProgressDialog()
         progressDialog.isBackgroundTranslucent = False
         progressDialog.show(name, 'Copy Bodies to new component: %v/%m', 0, self.numberOfBodies[name], 1)
@@ -304,14 +306,21 @@ class SDFExporter():
         return True
 
     def exportJointsToSDF(self):
+        progressDialog = self.app.userInterface.createProgressDialog()
+        progressDialog.isBackgroundTranslucent = False
+
         #get all joints of the design
         allComponents = self.design.allComponents
         allRigidGroups = self.rootComp.allRigidGroups
         for com in allComponents:
             if com is not None:
                 allJoints = com.joints
+                progressDialog.show("Joint", "Processing joints", 0, 30, 0)
                 for joi in allJoints:
                     if joi is not None and joi.name[:6] == "EXPORT":
+                        progressDialog.progressValue += 1
+                        progressDialog.message = joi.name
+                        self.logfile.write("Joint: " + joi.name + "\n")
                         one = joi.occurrenceOne
                         two = joi.occurrenceTwo
                         if one is not None and two is not None:
@@ -328,6 +337,7 @@ class SDFExporter():
                                         name_child = rig.name[7:]
                                         missing_link = False
                             if missing_link==False:
+                                print(joi.name)
                                 matrix = self.transformMatrices[name_parent]
                                 print(one.transform.translation.asArray())
                                 self.joints[name_parent] = (name_child,joi)
@@ -335,15 +345,28 @@ class SDFExporter():
                                 #print(matrix.asArray())
                                 joint = self.jointSDF(joi, name_parent, name_child, matrix)
                                 self.model.append(joint)
+        progressDialog.hide()
+
     def exportViaPointsToSDF(self):
+        progressDialog = self.app.userInterface.createProgressDialog()
+        progressDialog.isBackgroundTranslucent = False
+       
+
         #get all joints of the design
         allComponents = self.design.allComponents
+        progressDialog.show("Viapoint", 'Processing viapoints', 0, len(allComponents), 0)
         for com in allComponents:
+            progressDialog.progressValue += 1
             if com is not None:
                 allConstructionPoints = com.constructionPoints
+                
                 for point in allConstructionPoints:
                     if point is not None:
                         if point.name[:2] == "VP":
+                            progressDialog.message = point.name
+                            
+                            self.logfile.write("VP: " + point.name + "\n")
+                            print(point.name)
                             viaPointInfo = point.name.split("_")
                             viaPoint = ViaPoint()
                             vec = adsk.core.Point3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
@@ -363,6 +386,7 @@ class SDFExporter():
                                 self.pluginObj.myoMuscles.append(myoMuscle)
                             if myoMuscleList:
                                 myoMuscleList[0].viaPoints.append(viaPoint)
+        progressDialog.hide()
         plugin = ET.Element("plugin", filename=self.pluginFileName, name=self.pluginName)
         if (not self.exportOpenSimMuscles):
             self.model.append(plugin)
@@ -969,5 +993,6 @@ def run(context):
 
         exporter.finish()
     except:
+        exporter.finish()
         if exporter.ui:
             exporter.ui.messageBox('Failed:\n{}'.format(traceback.format_exc()))
