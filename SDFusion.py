@@ -78,6 +78,7 @@ class SDFExporter():
     exportLighthouseSensors = False
     exportCASPR = False
     exportOpenSimMuscles = False
+    updateRigidGroups = True
 
     ## Global variable to specify the file name of the plugin loaded by the SDF.
     # Only necessary if **exportViaPoints** is **True**.
@@ -96,6 +97,7 @@ class SDFExporter():
         self.design = adsk.fusion.Design.cast(self.product)
         self.exportMgr = self.design.exportManager
         # get root component in this design
+        # 
         self.rootComp = self.design.rootComponent
         # get all occurrences within the root component
         self.rootOcc = self.rootComp.occurrences
@@ -257,6 +259,8 @@ class SDFExporter():
                 self.calculateCOM(name,occurrence.childOccurrences,currentLevel+1)
 
     def copyBodiesToNewComponentAndExport(self, name):
+        
+
         self.logfile.write("Body: " + name + "\n")
         progressDialog = self.app.userInterface.createProgressDialog()
         progressDialog.isBackgroundTranslucent = False
@@ -266,23 +270,27 @@ class SDFExporter():
         transformMatrix.translation = self.COM[name].asVector()
         self.transformMatrices[name] = transformMatrix
         print(self.transformMatrices[name].asArray())
-
+        
+        if not self.design.allComponents.itemByName("EXPORT_" + name) and self.updateRigidGroups:
         # global new_component
-        new_component = self.rootOcc.addNewComponent(transformMatrix)
-        new_component.component.name = "EXPORT_" + name
-        group = [g for g in self.rootComp.allRigidGroups if g.name == "EXPORT_"+name][0]
-        progressDialog.show(name, 'Copy Bodies to new component: %v/%m', 0, len(group.occurrences), 1)
-        i = 0
-        for occurrence in group.occurrences:
-            for b in occurrence.bRepBodies:
-                new_body = b.copyToComponent(new_component)
-                new_body.name = 'body'+str(i)
-                progressDialog.progressValue = progressDialog.progressValue + 1
-                i = i+1
-                if progressDialog.wasCancelled:
-                    progressDialog.hide()
-                    return False
-
+            new_component = self.rootOcc.addNewComponent(transformMatrix)
+            new_component.component.name = "EXPORT_" + name
+            group = [g for g in self.rootComp.allRigidGroups if g.name == "EXPORT_"+name][0]
+            progressDialog.show(name, 'Copy Bodies to new component: %v/%m', 0, len(group.occurrences), 1)
+            i = 0
+            for occurrence in group.occurrences:
+                for b in occurrence.bRepBodies:
+                    new_body = b.copyToComponent(new_component)
+                    new_body.name = 'body'+str(i)
+                    progressDialog.progressValue = progressDialog.progressValue + 1
+                    i = i+1
+                    if progressDialog.wasCancelled:
+                        progressDialog.hide()
+                        return False
+            self.exportToStl(new_component, name)
+        else:
+            new_component =  self.rootOcc.itemByName("EXPORT_" + name + ":1") 
+            
         # for body in self.bodies[name]:
         #     new_body = body.copyToComponent(new_component)
         #     new_body.name = 'body'+str(i)
@@ -290,14 +298,11 @@ class SDFExporter():
         #     i = i+1
         #     if progressDialog.wasCancelled:
         #         progressDialog.hide()
-        #         return False
-
-        if self.exportMeshes:
-            self.exportToStl(new_component, name)
+        #         return False 
 
         link = self.linkSDF(new_component, name)
         self.model.append(link)
-
+        self.rootOcc.itemByName("EXPORT_" + name + ":1") .isLightBulbOn = False
         # delete the temporary new occurrence
         # new_component.deleteMe()
         # Call doEvents to give Fusion a chance to react.
@@ -493,11 +498,32 @@ class SDFExporter():
             model.append(bodySet)
 
 
-    def traverseViaPoints(self):
+    def traverseViaPoints(self): 
+        
+        app = adsk.core.Application.get()
+    
+        try:
+            #current product            
+            product = app.activeProduct
+            #current component
+            rootComp = product.rootComponent 
+            #get sketches collection
+            sketches = rootComp.sketches
+            #get one sketch
+            num = sketches.count - 1
+            while(num != -1):
+                print(num)
+                oneSketch = sketches.item(num)
+                oneSketch.deleteMe()
+                num -= 1
+           
+        except:
+            ui = app.userInterface
+            if ui:
+                ui.messageBox('Failed:\n{}'.format(traceback.format_exc()))  
+        
         allComponents = self.design.allComponents
-        sketches = self.rootComp.sketches
-        for s in sketches:
-            s.deleteMe()
+        sketches = adsk.fusion.Design.cast(adsk.core.Application.get().activeProduct).rootComponent.sketches 
         xyPlane = self.rootComp.xYConstructionPlane
         points = {}
 
@@ -989,11 +1015,12 @@ def run(context):
             exporter.askForExportOsimMuscles()
         exporter.askForExportLighthouseSensors()
         exporter.askForExportDirectory()
-
+    
         exporter.createDiectoryStructure()
-
+        
+        
         exporter.traverseViaPoints()
-
+    
         if exporter.runCleanUp:
             allComponents = exporter.design.allComponents
             progressDialog = exporter.app.userInterface.createProgressDialog()
@@ -1006,14 +1033,14 @@ def run(context):
                     for o in component.occurrences:
                         progressDialog.message = "Removing " + component.name
                         o.deleteMe()
-
+    
             progressDialog.hide()
-
+    
         # build sdf root node
         exporter.root = ET.Element("sdf", version="1.6")
         exporter.model = ET.Element("model", name=exporter.modelName)
         exporter.root.append(exporter.model)
-
+    
         allRigidGroups = exporter.getAllRigidGroups()
         # exports all rigid groups to STL and SDF
         for rig in allRigidGroups:
@@ -1022,7 +1049,7 @@ def run(context):
                 exporter.getAllBodiesInRigidGroup(name,rig)
                 if exporter.copyBodiesToNewComponentAndExport(name) == False:
                     return
-
+    
         exporter.exportJointsToSDF()
         if exporter.exportViaPoints:
             exporter.exportViaPointsToSDF()
@@ -1031,7 +1058,7 @@ def run(context):
                 exporter.exportCASPRbodies()
         if exporter.exportLighthouseSensors:
             exporter.exportLighthouseSensorsToYAML()
-
+    
         exporter.finish()
     except:
         exporter.finish()
