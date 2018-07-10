@@ -18,7 +18,329 @@ import os, errno
 from collections import defaultdict
 from math import sqrt
 
+commandId = 'SDFusionExporter'
+commandName = 'SDFusion'
+commandDescription = 'carflow exporter'
 
+# Global set of event handlers to keep them referenced for the duration of the command
+handlers = []
+
+model_name = None
+meshes = None
+sdf = None
+viapoints = None
+opensim = None
+caspr = None
+darkroom = None
+remove_small_parts = None
+
+## global variable to keep track of how many via points are created
+numberViaPoints = 0
+## global variable to specify the links that can be choosen
+links = []
+
+allVP = []
+
+rootComp = None
+
+def getLinkNames():
+    # Get all links of the robot (all rigid groups)
+    # get active design
+    global app
+    product = app.activeProduct
+    design = adsk.fusion.Design.cast(product)
+    # get root component in this design
+    global rootComp
+    rootComp = design.rootComponent
+    # get all rigid groups of the root component
+    links = []
+    allRigidGroups = rootComp.allRigidGroups
+    for rig in allRigidGroups:
+        if rig is not None and rig.name[:6] == "EXPORT":
+            links.append(rig.name)
+    return links
+
+class MyViaPoint():
+    motor = ''
+    number = ''
+    link = ''
+    edge =  None
+
+# Event handler that reacts to any changes the user makes to any of the command inputs.
+class MyCommandInputChangedHandler(adsk.core.InputChangedEventHandler):
+    def __init__(self):
+        super().__init__()
+    def notify(self, args):
+        try:      
+            command = args.firingEvent.sender
+            inputs = command.commandInputs
+            global model_name
+            global meshes
+            global sdf
+            global viapoints
+            global opensim
+            global caspr
+            global darkroom
+            global remove_small_parts
+
+            # We need access to the inputs within a command during the execute.
+            tabCmdInput1 = inputs.itemById(commandId + '_tab_1')
+            tab1ChildInputs = tabCmdInput1.children
+            model_name = tab1ChildInputs.itemById(commandId + '_model_name')
+            meshes = tab1ChildInputs.itemById(commandId + '_meshes')
+            sdf = tab1ChildInputs.itemById(commandId + '_sdf')
+            viapoints = tab1ChildInputs.itemById(commandId + '_viapoints')
+            opensim = tab1ChildInputs.itemById(commandId + '_opensim')
+            caspr = tab1ChildInputs.itemById(commandId + '_caspr')
+            darkroom = tab1ChildInputs.itemById(commandId + '_darkroom')
+            remove_small_parts = tab1ChildInputs.itemById(commandId + '_remove_small_parts')            
+            
+            eventArgs = adsk.core.InputChangedEventArgs.cast(args)
+            inputs = eventArgs.inputs
+            cmdInput = eventArgs.input
+            if cmdInput.id == 'selection0' and cmdInput.id != 'number0' :
+                muscleInput = inputs.itemById('muscle0')
+                muscle = muscleInput.value
+                selInput = inputs.itemById('selection0')
+                selection  = selInput.selection(0)
+                entity =  selection.entity
+                edge = adsk.fusion.BRepEdge.cast(entity)
+                numberInput = inputs.itemById('number0')
+                number = numberInput.value
+                # get link name
+                linkInput = inputs.itemById('link0').selectedItem
+                link = '?'
+                if linkInput:
+                    link = linkInput.name
+
+                global rootComp
+                conPoints = rootComp.constructionPoints
+                # Create construction point input
+                pointInput = conPoints.createInput()
+                # Create construction point by center
+                pointInput.setByCenter(edge)
+                point = conPoints.add(pointInput)
+                point.name = "VP_motor"+ muscle + "_" + link + "_" + number
+
+                vp = MyViaPoint()
+                vp.motor =  muscle
+                vp.link = link
+                vp.number = number
+                vp.edge =  edge
+
+                global allVP
+                allVP.append(vp)
+
+                # automatically increase VP number by 1
+                numberInput.value = str(int(number) + 1)
+                
+        except:
+            ui.messageBox('Failed:\n{}'.format(traceback.format_exc()))
+                        
+class MyCommandDestroyHandler(adsk.core.CommandEventHandler):
+    def __init__(self):
+        super().__init__()
+    def notify(self, args):
+        try:
+            # When the command is done, terminate the script
+            # This will release all globals which will remove all event handlers
+            global allVP
+            for vp in allVP:
+                muscle = vp.motor
+                link = vp.link
+                number = vp.number
+                edge =  vp.edge
+                global rootComp
+                conPoints = rootComp.constructionPoints
+                # Create construction point input
+                pointInput = conPoints.createInput()
+                # Create construction point by center
+                pointInput.setByCenter(edge)
+                point = conPoints.add(pointInput)
+                point.name = "VP_motor"+ muscle + "_" + link + "_" + number
+                adsk.doEvents()
+            # When the command is done, terminate the script
+            # This will release all globals which will remove all event handlers   
+            global model_name
+            global sdf
+            global meshes
+            global viapoints
+            global opensim
+            global caspr
+            global darkroom
+            global remove_small_parts
+            returnvalue = adsk.core.Application.get().userInterface.messageBox("for real?", "export?", 3)    
+            if returnvalue == 2:
+                try:
+                    exporter = SDFExporter()
+                    exporter.runCleanUp = remove_small_parts.value
+                    exporter.exportMeshes = meshes.value
+                    exporter.exportViaPoints = viapoints.value
+                    exporter.exportCASPR = caspr.value
+                    exporter.exportOpenSimMuscles = opensim.value
+                    exporter.exportLighthouseSensors = darkroom.value
+                    exporter.modelName = model_name.value
+                    if exporter.askForExportDirectory():
+                        exporter.createDiectoryStructure()
+                
+                        if exporter.runCleanUp:
+                            allComponents = exporter.design.allComponents
+                            progressDialog = exporter.app.userInterface.createProgressDialog()
+                            progressDialog.isBackgroundTranslucent = False
+                            progressDialog.show("Clean up", 'Looking for small components', 0, len(allComponents), 0)
+                            for component in allComponents:
+                                progressDialog.progressValue += 1
+                                if component.physicalProperties.mass < 0.001:
+                                    for o in component.occurrences:
+                                        progressDialog.message = "Removing " + component.name
+                                        o.deleteMe()
+                
+                            progressDialog.hide()
+                
+                        if exporter.exportViaPoints:
+                            exporter.traverseViaPoints()
+                        # build sdf root node
+                        exporter.root = ET.Element("sdf", version="1.6")
+                        exporter.model = ET.Element("model", name=exporter.modelName)
+                        exporter.root.append(exporter.model)
+                
+                        allRigidGroups = exporter.getAllRigidGroups()
+                        # exports all rigid groups to STL and SDF
+                        for rig in allRigidGroups:
+                            if rig is not None and rig.name[:6] == "EXPORT":
+                                name = rig.name[7:] # get rid of EXPORT_ tag
+                                exporter.getAllBodiesInRigidGroup(name,rig)
+                                if exporter.copyBodiesToNewComponentAndExport(name) == False:
+                                    return
+                
+                        exporter.exportJointsToSDF()
+                        if exporter.exportViaPoints:
+                            exporter.exportViaPointsToSDF()
+                            if exporter.exportCASPR: # exporting caspr only makes sense if we export viaPoints aswell
+                                exporter.exportCASPRcables()
+                                exporter.exportCASPRbodies()
+                        if exporter.exportLighthouseSensors:
+                            exporter.exportLighthouseSensorsToYAML()
+                
+                        exporter.finish()
+                except:
+                    exporter.finish()
+                    if exporter.ui:
+                        exporter.ui.messageBox('Failed:\n{}'.format(traceback.format_exc()))
+            adsk.terminate()
+        except:
+            if ui:
+                ui.messageBox('Failed:\n{}'.format(traceback.format_exc()))
+                
+                
+class MyCommandCreatedHandler(adsk.core.CommandCreatedEventHandler):
+    ui = None
+    app = None
+    product = None
+    design = None
+    exportMgr = None
+    rootOcc = None
+    def __init__(self):
+        super().__init__()
+        self.app = adsk.core.Application.get()
+        self.ui  = self.app.userInterface
+        # get active design
+        self.product = self.app.activeProduct
+        self.design = adsk.fusion.Design.cast(self.product)
+        self.exportMgr = self.design.exportManager
+        # get root component in this design
+        self.rootComp = self.design.rootComponent
+        global rootComp
+        rootComp = self.rootComp
+        # get all occurrences within the root component
+        self.rootOcc = self.rootComp.occurrences
+    def notify(self, args):
+        try:
+            cmd = args.command
+            
+             # Connect to the input changed event.           
+            onInputChanged = MyCommandInputChangedHandler()
+            cmd.inputChanged.add(onInputChanged)
+            handlers.append(onInputChanged)
+            
+            onDestroy = MyCommandDestroyHandler()
+            cmd.destroy.add(onDestroy)
+            # Keep the handler referenced beyond this function
+            handlers.append(onDestroy)
+            inputs = cmd.commandInputs
+            global commandId
+            
+            tabCmdInput1 = inputs.addTabCommandInput(commandId + '_tab_1', 'SDFusion')
+            tab1ChildInputs = tabCmdInput1.children
+            
+            tab1ChildInputs.addStringValueInput(commandId + '_model_name', 'Model Name:', self.rootComp.name)
+            tab1ChildInputs.addBoolValueInput(commandId + '_meshes', 'meshes', True, '', True)
+            tab1ChildInputs.addBoolValueInput(commandId + '_sdf', 'sdf', True, '', True)
+            tab1ChildInputs.addBoolValueInput(commandId + '_viapoints', 'viapoints', True, '', True)
+            tab1ChildInputs.addBoolValueInput(commandId + '_caspr', 'caspr', True, '', True)
+            tab1ChildInputs.addBoolValueInput(commandId + '_opensim', 'opensim', True, '', False)
+            tab1ChildInputs.addBoolValueInput(commandId + '_darkroom', 'darkroom', True, '', False)
+            tab1ChildInputs.addBoolValueInput(commandId + '_remove_small_parts', 'remove parts smaller 1g', True, '', False)
+            
+            tabCmdInput2 = inputs.addTabCommandInput(commandId + '_tab_2', 'ViaPoints')
+            # Get the CommandInputs object associated with the parent command.
+            cmdInputs = adsk.core.CommandInputs.cast(tabCmdInput2.children)
+            # add input for myomuscle number
+            muscleInput = cmdInputs.addStringValueInput('muscle{}'.format(numberViaPoints), 'Myomuscle Number [Int]', '0')
+            # add input for via point number
+            numberInput = cmdInputs.addStringValueInput('number{}'.format(numberViaPoints), 'Via-Point Number [Int]', '0')
+            # add input for link name
+            linkInput =  cmdInputs.addDropDownCommandInput('link{}'.format(numberViaPoints), 'Link Name', adsk.core.DropDownStyles.LabeledIconDropDownStyle);
+            dropdownItems = linkInput.listItems
+            # add a dropdown item for every link
+            global links
+            for lin in links:
+                dropdownItems.add(lin, False, '')
+            # Create a selection input.
+            selectionInput = cmdInputs.addSelectionInput('selection{}'.format(numberViaPoints), 'Select', 'Select a circle for the via-point.')
+            selectionInput.setSelectionLimits(1,1)
+            selectionInput.addSelectionFilter("CircularEdges")
+        except:
+            if ui:
+                ui.messageBox('Failed:\n{}'.format(traceback.format_exc()))
+                
+def run(context):
+    ui = None
+    try:
+        global app
+        app = adsk.core.Application.get()
+        global ui
+        ui = app.userInterface
+
+        global commandId
+        global commandName
+        global commandDescription
+        
+        # Create command defintion
+        cmdDef = ui.commandDefinitions.itemById(commandId)
+        if not cmdDef:
+            cmdDef = ui.commandDefinitions.addButtonDefinition(commandId, commandName, commandDescription)
+            
+        # Add command created event
+        onCommandCreated = MyCommandCreatedHandler()
+        cmdDef.commandCreated.add(onCommandCreated)
+        # Keep the handler referenced beyond this function
+        handlers.append(onCommandCreated)
+        
+        # Get all links the robot has
+        global links
+        links = getLinkNames()
+
+        # Execute command
+        cmdDef.execute()            
+
+        # Prevent this module from being terminate when the script returns, because we are waiting for event handlers to fire
+        adsk.autoTerminate(False)
+        
+    except:
+        if ui:
+            ui.messageBox('Failed:\n{}'.format(traceback.format_exc()))
+            
 ## A class to hold information about all muscles.
 class Plugin:
     myoMuscles = []
@@ -37,6 +359,10 @@ class ViaPoint:
     link = ""
     number = ""
     global_coordinates = []
+    
+class VisualMarker:
+    coordinates = ""
+    link = ""
 
 class SDFExporter():
     ui = None
@@ -78,7 +404,7 @@ class SDFExporter():
     exportLighthouseSensors = False
     exportCASPR = False
     exportOpenSimMuscles = False
-    updateRigidGroups = True
+    updateRigidGroups = False
 
     ## Global variable to specify the file name of the plugin loaded by the SDF.
     # Only necessary if **exportViaPoints** is **True**.
@@ -97,20 +423,9 @@ class SDFExporter():
         self.design = adsk.fusion.Design.cast(self.product)
         self.exportMgr = self.design.exportManager
         # get root component in this design
-        # 
         self.rootComp = self.design.rootComponent
         # get all occurrences within the root component
         self.rootOcc = self.rootComp.occurrences
-
-    def askForCleanUp(self):
-        returnvalue = self.ui.messageBox("Do you want to remove components with mass less than 1 g?", "export options", 3)
-        if returnvalue == 2:
-            self.runCleanUp = True
-        elif returnvalue == 3:
-            self.runCleanUp = False
-        else:
-            return False
-        return True
 
     def askForExportMeshes(self):
         returnvalue = self.ui.messageBox("Do you want to export meshes to STL?", "export options", 3)
@@ -169,11 +484,10 @@ class SDFExporter():
         fileDialog.filter = 'directory (*/*)'
         fileDialog.filterIndex = 0
         fileDialog.initialDirectory = self.fileDir
+        fileDialog.initialFilename = self.modelName
         dialogResult = fileDialog.showSave()
         if dialogResult == adsk.core.DialogResults.DialogOK:
             self.fileDir = fileDialog.filename
-            tree = self.fileDir.split('/')
-            self.modelName = tree[-1]
         else:
             return False
         return True
@@ -271,7 +585,7 @@ class SDFExporter():
         self.transformMatrices[name] = transformMatrix
         print(self.transformMatrices[name].asArray())
         
-        if not self.design.allComponents.itemByName("EXPORT_" + name) and self.updateRigidGroups:
+        if not self.design.allComponents.itemByName("EXPORT_" + name) or self.updateRigidGroups:
         # global new_component
             new_component = self.rootOcc.addNewComponent(transformMatrix)
             new_component.component.name = "EXPORT_" + name
@@ -361,6 +675,8 @@ class SDFExporter():
         # xyPlane = self.rootComp.xYConstructionPlane
         # sketch = sketches.add(xyPlane)
         # points = {}
+        EEs = []
+        VMs = []
 
         for com in allComponents:
             try:
@@ -392,6 +708,31 @@ class SDFExporter():
                                 # if myoNumber not in points:
                                 #     points[myoNumber] = adsk.core.ObjectCollection.create() 
                                 # points[myoNumber].add(vec)
+                            if point.name[:2] == "EE":
+                                eeInfo = point.name.split("_")
+                                vec = adsk.core.Point3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
+                                viaPoint.global_coordinates = [point.geometry.x,point.geometry.y,point.geometry.z]
+                                linkname = '_'.join(eeInfo[1:])
+                                origin = self.transformMatrices[linkname].translation
+                                origin = origin.asPoint()
+                                dist = origin.vectorTo(vec)
+                                ee = VisualMarker()
+                                ee.coordinates = str(dist.x*0.01) + " " + str(dist.y*0.01) + " " + str(dist.z*0.01)
+                                ee.link = linkname
+                                EEs.append(ee)
+                            if point.name[:2] == "VM":
+                                vmInfo = point.name.split("_")
+                                vec = adsk.core.Point3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
+                                viaPoint.global_coordinates = [point.geometry.x,point.geometry.y,point.geometry.z]
+                                linkname = '_'.join(vmInfo[1:])
+                                origin = self.transformMatrices[linkname].translation
+                                origin = origin.asPoint()
+                                dist = origin.vectorTo(vec)
+                                vm = VisualMarker()
+                                vm.coordinates = str(dist.x*0.01) + " " + str(dist.y*0.01) + " " + str(dist.z*0.01)
+                                vm.link = linkname
+                                VMs.append(vm)
+                                
             except:
                    self.ui.messageBox("Exception in " + point.name + '\n' +traceback.format_exc())
                    pass
@@ -421,6 +762,16 @@ class SDFExporter():
                 # TODO: rotate global coordinates into link frame coordinates
                 viaPoint.text=via.coordinates
                 link.append(viaPoint)
+        i = 0
+        for ee in EEs:
+            endeffector = ET.Element("endEffector", name="endeffector"+str(i), link=ee.link)
+            i = i+1
+            endeffector.text = ee.coordinates
+            plugin.append(endeffector)
+        for vm in VMs:
+            marker = ET.Element("marker", link=vm.link)
+            marker.text = vm.coordinates
+            plugin.append(marker)
         if (self.exportOpenSimMuscles):
             osimPlugin = ET.Element("plugin", filename="libgazebo_ros_muscle_interface.so", name="muscle_interface_plugin")
             self.model.append(osimPlugin)
@@ -1000,67 +1351,3 @@ class SDFExporter():
 
         file.write(self.prettify(bodies_system))
         file.close()
-
-
-## Exports a robot model from Fusion 360 to SDFormat.
-def run(context):
-
-    try:
-        exporter = SDFExporter()
-        exporter.askForCleanUp()
-        exporter.askForExportMeshes()
-        exporter.askForExportViaPoints()
-        if exporter.exportViaPoints:
-            exporter.askForExportCASPR()
-            exporter.askForExportOsimMuscles()
-        exporter.askForExportLighthouseSensors()
-        exporter.askForExportDirectory()
-    
-        exporter.createDiectoryStructure()
-        
-        
-        exporter.traverseViaPoints()
-    
-        if exporter.runCleanUp:
-            allComponents = exporter.design.allComponents
-            progressDialog = exporter.app.userInterface.createProgressDialog()
-            progressDialog.isBackgroundTranslucent = False
-            progressDialog.show("Clean up", 'Looking for small components', 0, len(allComponents), 0)
-            i = 0
-            for component in allComponents:
-                progressDialog.progressValue += 1
-                if component.physicalProperties.mass < 0.001:
-                    for o in component.occurrences:
-                        progressDialog.message = "Removing " + component.name
-                        o.deleteMe()
-    
-            progressDialog.hide()
-    
-        # build sdf root node
-        exporter.root = ET.Element("sdf", version="1.6")
-        exporter.model = ET.Element("model", name=exporter.modelName)
-        exporter.root.append(exporter.model)
-    
-        allRigidGroups = exporter.getAllRigidGroups()
-        # exports all rigid groups to STL and SDF
-        for rig in allRigidGroups:
-            if rig is not None and rig.name[:6] == "EXPORT":
-                name = rig.name[7:] # get rid of EXPORT_ tag
-                exporter.getAllBodiesInRigidGroup(name,rig)
-                if exporter.copyBodiesToNewComponentAndExport(name) == False:
-                    return
-    
-        exporter.exportJointsToSDF()
-        if exporter.exportViaPoints:
-            exporter.exportViaPointsToSDF()
-            if exporter.exportCASPR: # exporting caspr only makes sense if we export viaPoints aswell
-                exporter.exportCASPRcables()
-                exporter.exportCASPRbodies()
-        if exporter.exportLighthouseSensors:
-            exporter.exportLighthouseSensorsToYAML()
-    
-        exporter.finish()
-    except:
-        exporter.finish()
-        if exporter.ui:
-            exporter.ui.messageBox('Failed:\n{}'.format(traceback.format_exc()))
