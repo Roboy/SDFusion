@@ -352,10 +352,10 @@ class SDFExporter():
 
     def exportViaPointsToSDF(self):
         allComponents = self.design.allComponents
-        sketches = self.rootComp.sketches
-        xyPlane = self.rootComp.xYConstructionPlane
-        sketch = sketches.add(xyPlane)
-        points = {}
+        # sketches = self.rootComp.sketches
+        # xyPlane = self.rootComp.xYConstructionPlane
+        # sketch = sketches.add(xyPlane)
+        # points = {}
 
         for com in allComponents:
             try:
@@ -384,15 +384,15 @@ class SDFExporter():
                                 if myoMuscleList:
                                     myoMuscleList[0].viaPoints.append(viaPoint)
 
-                                if myoNumber not in points:
-                                    points[myoNumber] = adsk.core.ObjectCollection.create() 
-                                points[myoNumber].add(vec)
+                                # if myoNumber not in points:
+                                #     points[myoNumber] = adsk.core.ObjectCollection.create() 
+                                # points[myoNumber].add(vec)
             except:
                    self.ui.messageBox("Exception in " + point.name + '\n' +traceback.format_exc())
                    pass
 
-        for pointSet in points.values():
-            sketch.sketchCurves.sketchFittedSplines.add(pointSet)
+        # for pointSet in points.values():
+        #     sketch.sketchCurves.sketchFittedSplines.add(pointSet)
 
         plugin = ET.Element("plugin", filename=self.pluginFileName, name=self.pluginName)
         if (not self.exportOpenSimMuscles):
@@ -494,30 +494,37 @@ class SDFExporter():
 
 
     def traverseViaPoints(self):
-        #get all joints of the design
-        
-       
         allComponents = self.design.allComponents
+        sketches = self.rootComp.sketches
+        for s in sketches:
+            s.deleteMe()
+        xyPlane = self.rootComp.xYConstructionPlane
+        points = {}
+
 
         for com in allComponents:
-            if com is not None:
-                allConstructionPoints = com.constructionPoints
-                for point in allConstructionPoints:
-                    progressDialog = self.app.userInterface.createProgressDialog()
-                    progressDialog.isBackgroundTranslucent = False
-                    progressDialog.show("Traversing viaPoints", 'Checking', 0, len(allConstructionPoints), 0)
-                    if point is not None:
-                        if point.name[:2] == "VP":
-                            progressDialog.message = point.name
-                            progressDialog.progressValue += 1
-                            viaPointInfo = point.name.split("_")
-                            viaPoint = ViaPoint()
-                            vec = adsk.core.Point3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
-                            viaPoint.global_coordinates = [point.geometry.x,point.geometry.y,point.geometry.z]
-                            # linkname = '_'.join(viaPointInfo[3:-1])
-                            # origin = self.transformMatrices[linkname].translation
-                            # origin = origin.asPoint()
-                            # dist = origin.vectorTo(vec)
+            try:
+                if com is not None:
+                    allConstructionPoints = com.constructionPoints
+                    for point in allConstructionPoints:
+                        if point is not None:
+                            if point.name[:2] == "VP":
+                                viaPointInfo = point.name.split("_")
+                                vec = adsk.core.Point3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
+                                myoNumber = viaPointInfo[1][5:]
+
+                                if myoNumber not in points:
+
+                                    points[myoNumber] = adsk.core.ObjectCollection.create() 
+                                points[myoNumber].add(vec)
+            except:
+                   self.ui.messageBox("Exception in " + point.name + '\n' +traceback.format_exc())
+                   pass
+
+        for motorNumber in points:
+            sketch = sketches.add(xyPlane)
+            sketch.name = "tendon_" + motorNumber
+            sketch.sketchCurves.sketchFittedSplines.add(points[motorNumber])
 
     def exportLighthouseSensorsToYAML(self):
         #get all joints of the design
@@ -985,7 +992,7 @@ def run(context):
 
         exporter.createDiectoryStructure()
 
-        # exporter.traverseViaPoints()
+        exporter.traverseViaPoints()
 
         if exporter.runCleanUp:
             allComponents = exporter.design.allComponents
