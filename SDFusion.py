@@ -247,9 +247,9 @@ class ViaPoint:
     number = ""
     global_coordinates = []
     
-class EndEffectors:
-    coordinates = []
-    link = []
+class VisualMarker:
+    coordinates = ""
+    link = ""
 
 class SDFExporter():
     ui = None
@@ -558,6 +558,8 @@ class SDFExporter():
         xyPlane = self.rootComp.xYConstructionPlane
         sketch = sketches.add(xyPlane)
         points = {}
+        EEs = []
+        VMs = []
 
         for com in allComponents:
             try:
@@ -597,10 +599,22 @@ class SDFExporter():
                                 origin = self.transformMatrices[linkname].translation
                                 origin = origin.asPoint()
                                 dist = origin.vectorTo(vec)
-                                ee = EndEffectors()
-                                ee.coordinates.append(str(dist.x*0.01) + " " + str(dist.y*0.01) + " " + str(dist.z*0.01))
-                                ee.link.append(linkname)
-                                
+                                ee = VisualMarker()
+                                ee.coordinates = str(dist.x*0.01) + " " + str(dist.y*0.01) + " " + str(dist.z*0.01)
+                                ee.link = linkname
+                                EEs.append(ee)
+                            if point.name[:2] == "VM":
+                                vmInfo = point.name.split("_")
+                                vec = adsk.core.Point3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
+                                viaPoint.global_coordinates = [point.geometry.x,point.geometry.y,point.geometry.z]
+                                linkname = '_'.join(vmInfo[1:])
+                                origin = self.transformMatrices[linkname].translation
+                                origin = origin.asPoint()
+                                dist = origin.vectorTo(vec)
+                                vm = VisualMarker()
+                                vm.coordinates = str(dist.x*0.01) + " " + str(dist.y*0.01) + " " + str(dist.z*0.01)
+                                vm.link = linkname
+                                VMs.append(vm)
                                 
             except:
                    self.ui.messageBox("Exception in " + point.name + '\n' +traceback.format_exc())
@@ -631,6 +645,16 @@ class SDFExporter():
                 # TODO: rotate global coordinates into link frame coordinates
                 viaPoint.text=via.coordinates
                 link.append(viaPoint)
+        i = 0
+        for ee in EEs:
+            endeffector = ET.Element("endEffector", name="endeffector"+str(i), link=ee.link)
+            i = i+1
+            endeffector.text = ee.coordinates
+            plugin.append(endeffector)
+        for vm in VMs:
+            marker = ET.Element("marker", link=vm.link)
+            marker.text = vm.coordinates
+            plugin.append(marker)
         if (self.exportOpenSimMuscles):
             osimPlugin = ET.Element("plugin", filename="libgazebo_ros_muscle_interface.so", name="muscle_interface_plugin")
             self.model.append(osimPlugin)
