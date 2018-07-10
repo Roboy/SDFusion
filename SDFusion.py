@@ -269,7 +269,7 @@ class SDFExporter():
 
         # global new_component
         new_component = self.rootOcc.addNewComponent(transformMatrix)
-        new_component.name = name
+        new_component.component.name = "EXPORT_" + name
         group = [g for g in self.rootComp.allRigidGroups if g.name == "EXPORT_"+name][0]
         progressDialog.show(name, 'Copy Bodies to new component: %v/%m', 0, len(group.occurrences), 1)
         i = 0
@@ -317,9 +317,10 @@ class SDFExporter():
         for com in allComponents:
             if com is not None:
                 allJoints = com.joints
-                progressDialog.show("Joint", "Processing joints", 0, 30, 0)
+                
                 for joi in allJoints:
                     if joi is not None and joi.name[:6] == "EXPORT":
+                        progressDialog.show("Joint", "Processing joints", 0, 30, 0)
                         progressDialog.progressValue += 1
                         progressDialog.message = joi.name
                         self.logfile.write("Joint: " + joi.name + "\n")
@@ -347,16 +348,15 @@ class SDFExporter():
                                 #print(matrix.asArray())
                                 joint = self.jointSDF(joi, name_parent, name_child, matrix)
                                 self.model.append(joint)
-        progressDialog.hide()
+                        progressDialog.hide()
 
     def exportViaPointsToSDF(self):
-        progressDialog = self.app.userInterface.createProgressDialog()
-        progressDialog.isBackgroundTranslucent = False
-       
-
-        #get all joints of the design
         allComponents = self.design.allComponents
-        progressDialog.show("Viapoint", 'Processing viapoints', 0, len(allComponents), 0)
+        sketches = self.rootComp.sketches
+        xyPlane = self.rootComp.xYConstructionPlane
+        sketch = sketches.add(xyPlane)
+        points = {}
+
         for com in allComponents:
             try:
                 if com is not None:
@@ -383,9 +383,16 @@ class SDFExporter():
                                     self.pluginObj.myoMuscles.append(myoMuscle)
                                 if myoMuscleList:
                                     myoMuscleList[0].viaPoints.append(viaPoint)
+
+                                if myoNumber not in points:
+                                    points[myoNumber] = adsk.core.ObjectCollection.create() 
+                                points[myoNumber].add(vec)
             except:
                    self.ui.messageBox("Exception in " + point.name + '\n' +traceback.format_exc())
                    pass
+
+        for pointSet in points.values():
+            sketch.sketchCurves.sketchFittedSplines.add(pointSet)
 
         plugin = ET.Element("plugin", filename=self.pluginFileName, name=self.pluginName)
         if (not self.exportOpenSimMuscles):
@@ -484,7 +491,6 @@ class SDFExporter():
             bodySetObjects = ET.Element("objects")
             bodySet.append(bodySetObjects)
             model.append(bodySet)
-
 
 
     def traverseViaPoints(self):
