@@ -34,14 +34,46 @@ caspr = None
 darkroom = None
 remove_small_parts = None
 
-class MyCommandExecuteHandler(adsk.core.CommandEventHandler):    
+## global variable to keep track of how many via points are created
+numberViaPoints = 0
+## global variable to specify the links that can be choosen
+links = []
+
+allVP = []
+
+rootComp = None
+
+def getLinkNames():
+    # Get all links of the robot (all rigid groups)
+    # get active design
+    global app
+    product = app.activeProduct
+    design = adsk.fusion.Design.cast(product)
+    # get root component in this design
+    global rootComp
+    rootComp = design.rootComponent
+    # get all rigid groups of the root component
+    links = []
+    allRigidGroups = rootComp.allRigidGroups
+    for rig in allRigidGroups:
+        if rig is not None and rig.name[:6] == "EXPORT":
+            links.append(rig.name)
+    return links
+
+class MyViaPoint():
+    motor = ''
+    number = ''
+    link = ''
+    edge =  None
+
+# Event handler that reacts to any changes the user makes to any of the command inputs.
+class MyCommandInputChangedHandler(adsk.core.InputChangedEventHandler):
     def __init__(self):
         super().__init__()
     def notify(self, args):
-        try:
+        try:      
             command = args.firingEvent.sender
             inputs = command.commandInputs
-
             global model_name
             global meshes
             global sdf
@@ -61,18 +93,72 @@ class MyCommandExecuteHandler(adsk.core.CommandEventHandler):
             opensim = tab1ChildInputs.itemById(commandId + '_opensim')
             caspr = tab1ChildInputs.itemById(commandId + '_caspr')
             darkroom = tab1ChildInputs.itemById(commandId + '_darkroom')
-            remove_small_parts = tab1ChildInputs.itemById(commandId + '_remove_small_parts')
+            remove_small_parts = tab1ChildInputs.itemById(commandId + '_remove_small_parts')            
             
+            eventArgs = adsk.core.InputChangedEventArgs.cast(args)
+            inputs = eventArgs.inputs
+            cmdInput = eventArgs.input
+            if cmdInput.id == 'selection0' and cmdInput.id != 'number0' :
+                muscleInput = inputs.itemById('muscle0')
+                muscle = muscleInput.value
+                selInput = inputs.itemById('selection0')
+                selection  = selInput.selection(0)
+                entity =  selection.entity
+                edge = adsk.fusion.BRepEdge.cast(entity)
+                numberInput = inputs.itemById('number0')
+                number = numberInput.value
+                # get link name
+                linkInput = inputs.itemById('link0').selectedItem
+                link = '?'
+                if linkInput:
+                    link = linkInput.name
 
+                global rootComp
+                conPoints = rootComp.constructionPoints
+                # Create construction point input
+                pointInput = conPoints.createInput()
+                # Create construction point by center
+                pointInput.setByCenter(edge)
+                point = conPoints.add(pointInput)
+                point.name = "VP_motor"+ muscle + "_" + link + "_" + number
+
+                vp = MyViaPoint()
+                vp.motor =  muscle
+                vp.link = link
+                vp.number = number
+                vp.edge =  edge
+
+                global allVP
+                allVP.append(vp)
+
+                # automatically increase VP number by 1
+                numberInput.value = str(int(number) + 1)
+                
         except:
-            if ui:
-                ui.messageBox('Failed:\n{}'.format(traceback.format_exc()))
+            ui.messageBox('Failed:\n{}'.format(traceback.format_exc()))
                         
 class MyCommandDestroyHandler(adsk.core.CommandEventHandler):
     def __init__(self):
         super().__init__()
     def notify(self, args):
         try:
+            # When the command is done, terminate the script
+            # This will release all globals which will remove all event handlers
+            global allVP
+            for vp in allVP:
+                muscle = vp.motor
+                link = vp.link
+                number = vp.number
+                edge =  vp.edge
+                global rootComp
+                conPoints = rootComp.constructionPoints
+                # Create construction point input
+                pointInput = conPoints.createInput()
+                # Create construction point by center
+                pointInput.setByCenter(edge)
+                point = conPoints.add(pointInput)
+                point.name = "VP_motor"+ muscle + "_" + link + "_" + number
+                adsk.doEvents()
             # When the command is done, terminate the script
             # This will release all globals which will remove all event handlers   
             global model_name
@@ -83,7 +169,7 @@ class MyCommandDestroyHandler(adsk.core.CommandEventHandler):
             global caspr
             global darkroom
             global remove_small_parts
-            returnvalue = adsk.core.Application.get().userInterface.messageBox("export " + model_name.value + "?", "export", 3)    
+            returnvalue = adsk.core.Application.get().userInterface.messageBox("for real?", "export?", 3)    
             if returnvalue == 2:
                 try:
                     exporter = SDFExporter()
@@ -162,15 +248,18 @@ class MyCommandCreatedHandler(adsk.core.CommandCreatedEventHandler):
         self.exportMgr = self.design.exportManager
         # get root component in this design
         self.rootComp = self.design.rootComponent
+        global rootComp
+        rootComp = self.rootComp
         # get all occurrences within the root component
         self.rootOcc = self.rootComp.occurrences
     def notify(self, args):
         try:
             cmd = args.command
             
-            onExecute = MyCommandExecuteHandler()
-            cmd.execute.add(onExecute)
-            handlers.append(onExecute)
+             # Connect to the input changed event.           
+            onInputChanged = MyCommandInputChangedHandler()
+            cmd.inputChanged.add(onInputChanged)
+            handlers.append(onInputChanged)
             
             onDestroy = MyCommandDestroyHandler()
             cmd.destroy.add(onDestroy)
@@ -191,6 +280,24 @@ class MyCommandCreatedHandler(adsk.core.CommandCreatedEventHandler):
             tab1ChildInputs.addBoolValueInput(commandId + '_darkroom', 'darkroom', True, '', False)
             tab1ChildInputs.addBoolValueInput(commandId + '_remove_small_parts', 'remove parts smaller 1g', True, '', False)
             
+            tabCmdInput2 = inputs.addTabCommandInput(commandId + '_tab_2', 'ViaPoints')
+            # Get the CommandInputs object associated with the parent command.
+            cmdInputs = adsk.core.CommandInputs.cast(tabCmdInput2.children)
+            # add input for myomuscle number
+            muscleInput = cmdInputs.addStringValueInput('muscle{}'.format(numberViaPoints), 'Myomuscle Number [Int]', '0')
+            # add input for via point number
+            numberInput = cmdInputs.addStringValueInput('number{}'.format(numberViaPoints), 'Via-Point Number [Int]', '0')
+            # add input for link name
+            linkInput =  cmdInputs.addDropDownCommandInput('link{}'.format(numberViaPoints), 'Link Name', adsk.core.DropDownStyles.LabeledIconDropDownStyle);
+            dropdownItems = linkInput.listItems
+            # add a dropdown item for every link
+            global links
+            for lin in links:
+                dropdownItems.add(lin, False, '')
+            # Create a selection input.
+            selectionInput = cmdInputs.addSelectionInput('selection{}'.format(numberViaPoints), 'Select', 'Select a circle for the via-point.')
+            selectionInput.setSelectionLimits(1,1)
+            selectionInput.addSelectionFilter("CircularEdges")
         except:
             if ui:
                 ui.messageBox('Failed:\n{}'.format(traceback.format_exc()))
@@ -217,6 +324,10 @@ def run(context):
         cmdDef.commandCreated.add(onCommandCreated)
         # Keep the handler referenced beyond this function
         handlers.append(onCommandCreated)
+        
+        # Get all links the robot has
+        global links
+        links = getLinkNames()
 
         # Execute command
         cmdDef.execute()            
@@ -733,11 +844,7 @@ class SDFExporter():
 
 
     def traverseViaPoints(self):
-        #get all joints of the design
-        
-       
         allComponents = self.design.allComponents
-
         for com in allComponents:
             if com is not None:
                 allConstructionPoints = com.constructionPoints
@@ -753,10 +860,6 @@ class SDFExporter():
                             viaPoint = ViaPoint()
                             vec = adsk.core.Point3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
                             viaPoint.global_coordinates = [point.geometry.x,point.geometry.y,point.geometry.z]
-                            # linkname = '_'.join(viaPointInfo[3:-1])
-                            # origin = self.transformMatrices[linkname].translation
-                            # origin = origin.asPoint()
-                            # dist = origin.vectorTo(vec)
 
     def exportLighthouseSensorsToYAML(self):
         #get all joints of the design
