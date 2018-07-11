@@ -33,6 +33,7 @@ opensim = None
 caspr = None
 darkroom = None
 remove_small_parts = None
+self_collide = None
 
 ## global variable to keep track of how many via points are created
 numberViaPoints = 0
@@ -82,6 +83,7 @@ class MyCommandInputChangedHandler(adsk.core.InputChangedEventHandler):
             global caspr
             global darkroom
             global remove_small_parts
+            global self_collide
 
             # We need access to the inputs within a command during the execute.
             tabCmdInput1 = inputs.itemById(commandId + '_tab_1')
@@ -94,6 +96,7 @@ class MyCommandInputChangedHandler(adsk.core.InputChangedEventHandler):
             caspr = tab1ChildInputs.itemById(commandId + '_caspr')
             darkroom = tab1ChildInputs.itemById(commandId + '_darkroom')
             remove_small_parts = tab1ChildInputs.itemById(commandId + '_remove_small_parts')            
+            self_collide = tab1ChildInputs.itemById(commandId + '_self_collide')          
             
             eventArgs = adsk.core.InputChangedEventArgs.cast(args)
             inputs = eventArgs.inputs
@@ -169,6 +172,7 @@ class MyCommandDestroyHandler(adsk.core.CommandEventHandler):
             global caspr
             global darkroom
             global remove_small_parts
+            global self_collide
             returnvalue = adsk.core.Application.get().userInterface.messageBox("for real?", "export?", 3)    
             if returnvalue == 2:
                 try:
@@ -180,6 +184,7 @@ class MyCommandDestroyHandler(adsk.core.CommandEventHandler):
                     exporter.exportOpenSimMuscles = opensim.value
                     exporter.exportLighthouseSensors = darkroom.value
                     exporter.modelName = model_name.value
+                    exporter.self_collide = self_collide.value
                     if exporter.askForExportDirectory():
                         exporter.createDiectoryStructure()
                 
@@ -279,6 +284,7 @@ class MyCommandCreatedHandler(adsk.core.CommandCreatedEventHandler):
             tab1ChildInputs.addBoolValueInput(commandId + '_opensim', 'opensim', True, '', False)
             tab1ChildInputs.addBoolValueInput(commandId + '_darkroom', 'darkroom', True, '', False)
             tab1ChildInputs.addBoolValueInput(commandId + '_remove_small_parts', 'remove parts smaller 1g', True, '', False)
+            tab1ChildInputs.addBoolValueInput(commandId + '_self_collide', 'self_collide', True, '', False)
             
             tabCmdInput2 = inputs.addTabCommandInput(commandId + '_tab_2', 'ViaPoints')
             # Get the CommandInputs object associated with the parent command.
@@ -402,6 +408,7 @@ class SDFExporter():
     exportLighthouseSensors = False
     exportCASPR = False
     exportOpenSimMuscles = False
+    self_collide = False
 
     ## Global variable to specify the file name of the plugin loaded by the SDF.
     # Only necessary if **exportViaPoints** is **True**.
@@ -1040,6 +1047,13 @@ class SDFExporter():
     def linkSDF(self, lin, name):
         # linkName = lin.component.name
         link = ET.Element("link", name=name)
+        self_collide = ET.Element("self_collide")
+        if self.self_collide:
+            self_collide.text = "true"
+        else:
+            self_collide.text = "false"
+        link.append(self_collide)
+        
         # build pose node
         #matrix = gazeboMatrix()
         pose = self.sdfPoseMatrix(lin.transform)
