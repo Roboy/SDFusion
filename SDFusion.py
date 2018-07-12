@@ -25,23 +25,23 @@ commandDescription = 'carflow exporter'
 # Global set of event handlers to keep them referenced for the duration of the command
 handlers = []
 
-global model_name
-global updateRigidGroups
-global sdf
-global viapoints
-global opensim
-global caspr
-global darkroom
-global remove_small_parts
+# global model_name
+# global updateRigidGroups
+# global sdf
+# global viapoints
+# global opensim
+# global caspr
+# global darkroom
+# global remove_small_parts
 
-model_name = ""
-updateRigidGroups = False
-sdf = None
-viapoints = None
-opensim = False
-caspr = False
-darkroom = False
-remove_small_parts = False
+# model_name = ""
+# updateRigidGroups = False
+# sdf = None
+# viapoints = None
+# opensim = False
+# caspr = False
+# darkroom = False
+# remove_small_parts = False
 
 ## global variable to keep track of how many via points are created
 numberViaPoints = 0
@@ -93,16 +93,16 @@ class MyCommandInputChangedHandler(adsk.core.InputChangedEventHandler):
             # global remove_small_parts
 
             # We need access to the inputs within a command during the execute.
-            tabCmdInput1 = inputs.itemById(commandId + '_tab_1')
-            tab1ChildInputs = tabCmdInput1.children
-            model_name = tab1ChildInputs.itemById(commandId + '_model_name')
-            updateRigidGroups = tab1ChildInputs.itemById(commandId + '_updateRigidGroups')
-            sdf = tab1ChildInputs.itemById(commandId + '_sdf')
-            viapoints = tab1ChildInputs.itemById(commandId + '_viapoints')
-            opensim = tab1ChildInputs.itemById(commandId + '_opensim')
-            caspr = tab1ChildInputs.itemById(commandId + '_caspr')
-            darkroom = tab1ChildInputs.itemById(commandId + '_darkroom')
-            remove_small_parts = tab1ChildInputs.itemById(commandId + '_remove_small_parts')            
+#            tabCmdInput1 = inputs.itemById(commandId + '_tab_1')
+#            tab1ChildInputs = tabCmdInput1.children
+#            model_name = tab1ChildInputs.itemById(commandId + '_model_name')
+#            updateRigidGroups = tab1ChildInputs.itemById(commandId + '_updateRigidGroups')
+#            sdf = tab1ChildInputs.itemById(commandId + '_sdf')
+#            viapoints = tab1ChildInputs.itemById(commandId + '_viapoints')
+#            opensim = tab1ChildInputs.itemById(commandId + '_opensim')
+#            caspr = tab1ChildInputs.itemById(commandId + '_caspr')
+#            darkroom = tab1ChildInputs.itemById(commandId + '_darkroom')
+#            remove_small_parts = tab1ChildInputs.itemById(commandId + '_remove_small_parts')            
             
             eventArgs = adsk.core.InputChangedEventArgs.cast(args)
             inputs = eventArgs.inputs
@@ -188,7 +188,7 @@ class MyCommandDestroyHandler(adsk.core.CommandEventHandler):
 
             try:
                 exporter = SDFExporter()
-                exporter.runCleanUp = inputs.itemById(commandId + '_model_name').value
+                exporter.runCleanUp = inputs.itemById(commandId + '_remove_small_parts').value
                 exporter.updateRigidGroups = inputs.itemById(commandId + '_updateRigidGroups').value
                 exporter.exportViaPoints = inputs.itemById(commandId + '_viapoints').value
                 exporter.exportCASPR = inputs.itemById(commandId + '_caspr').value
@@ -603,8 +603,9 @@ class SDFExporter():
         self.transformMatrices[name] = transformMatrix
         print(self.transformMatrices[name].asArray())
         
-        if not self.design.allComponents.itemByName("EXPORT_" + name) or self.updateRigidGroups:
-        # global new_component
+        if not self.rootOcc.itemByName("EXPORT_" + name + ":1") or self.updateRigidGroups:
+        
+            self.rootOcc.itemByName("EXPORT_" + name + ":1").deleteMe()
             new_component = self.rootOcc.addNewComponent(transformMatrix)
             new_component.component.name = "EXPORT_" + name
             group = [g for g in self.rootComp.allRigidGroups if g.name == "EXPORT_"+name][0]
