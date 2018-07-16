@@ -34,6 +34,7 @@ caspr = None
 darkroom = None
 remove_small_parts = None
 self_collide = None
+dummy_inertia = None
 
 ## global variable to keep track of how many via points are created
 numberViaPoints = 0
@@ -97,6 +98,7 @@ class MyCommandInputChangedHandler(adsk.core.InputChangedEventHandler):
             darkroom = tab1ChildInputs.itemById(commandId + '_darkroom')
             remove_small_parts = tab1ChildInputs.itemById(commandId + '_remove_small_parts')            
             self_collide = tab1ChildInputs.itemById(commandId + '_self_collide')          
+            dummy_inertia = tab1ChildInputs.itemById(commandId + '_dummy_inertia')   
             
             eventArgs = adsk.core.InputChangedEventArgs.cast(args)
             inputs = eventArgs.inputs
@@ -173,6 +175,7 @@ class MyCommandDestroyHandler(adsk.core.CommandEventHandler):
             global darkroom
             global remove_small_parts
             global self_collide
+            global dummy_inertia
             returnvalue = adsk.core.Application.get().userInterface.messageBox("for real?", "export?", 3)    
             if returnvalue == 2:
                 try:
@@ -208,24 +211,60 @@ class MyCommandDestroyHandler(adsk.core.CommandEventHandler):
                         exporter.root.append(exporter.model)
                 
                         allRigidGroups = exporter.getAllRigidGroups()
+                        
+                        allComponents = exporter.design.allComponents
+                        progressDialog0 = exporter.app.userInterface.createProgressDialog()
+                        progressDialog0.isBackgroundTranslucent = False
+                        progressDialog0.isCancelButtonShown = True
+                        progressDialog0.show("Export Rigid Groups", 'Rigid Groups', 0, len(allRigidGroups), 1)
                         # exports all rigid groups to STL and SDF
+                        names = []
                         for rig in allRigidGroups:
+                            progressDialog0.progressValue += 1
                             if rig is not None and rig.name[:6] == "EXPORT":
                                 name = rig.name[7:] # get rid of EXPORT_ tag
+                                if name in names: # ignoring duplicate export
+                                    exporter.logfile.write("WARNING: ignroing duplicate export of " + name + ", check your model for duplicate EXPORT Rigid Groups\n")
+                                    continue
+                                progressDialog0.message = "%v/%m " + name
                                 exporter.getAllBodiesInRigidGroup(name,rig)
                                 if exporter.copyBodiesToNewComponentAndExport(name) == False:
                                     return
-                
+                            if progressDialog0.wasCancelled:
+                                    progressDialog0.hide()
+                                    return
+                        progressDialog0.hide()                                    
+                                    
+                        progressDialog1 = exporter.app.userInterface.createProgressDialog()
+                        progressDialog1.isBackgroundTranslucent = False
+                        progressDialog1.isCancelButtonShown = True
+                        progressDialog1.show("Export Robot Desciptions", 'Robot Desciptions', 0, len(allComponents), 0)
                         exporter.exportJointsToSDF()
                         if exporter.exportViaPoints:
+                            progressDialog1.message = "SDF"
                             exporter.exportViaPointsToSDF()
+                            if progressDialog1.wasCancelled:
+                                    progressDialog1.hide()
+                                    return
                             if exporter.exportCASPR: # exporting caspr only makes sense if we export viaPoints aswell
+                                progressDialog1.message = "CASPR"
                                 exporter.exportCASPRcables()
                                 exporter.exportCASPRbodies()
+                                if progressDialog1.wasCancelled:
+                                    progressDialog1.hide()
+                                    return
                         if exporter.exportLighthouseSensors:
+                            progressDialog1.message = "darkroom"
                             exporter.exportLighthouseSensorsToYAML()
-                
+                            
+                        if progressDialog1.wasCancelled:
+                            progressDialog1.hide()
+                            return    
+                        progressDialog1.hide()   
+                        progressDialog1.message = "finishing"
                         exporter.finish()
+                        progressDialog0.hide()
+                        progressDialog1.hide()
                 except:
                     exporter.finish()
                     if exporter.ui:
@@ -412,11 +451,11 @@ class SDFExporter():
 
     ## Global variable to specify the file name of the plugin loaded by the SDF.
     # Only necessary if **exportViaPoints** is **True**.
-    pluginFileName = "libmyomuscle_plugin.so"
+    pluginFileName = "libmusc_plugin.so"
 
     ## Global variable to specify the name of the plugin loaded by the SDF-
     # Only necessary if **exportViaPoints** id **True**.
-    pluginName = "myomuscle_plugin"
+    pluginName = "musc_plugin"
     pluginObj = Plugin()
 
     def __init__(self):
@@ -513,7 +552,7 @@ class SDFExporter():
         self.numberOfRigidGroupsToExport = 0
         for rig in allRigidGroups:
             if rig is not None and rig.name[:6] == "EXPORT":
-                self.numberOfRigidGroupsToExport = self.numberOfRigidGroupsToExport+1
+                self.numberOfRigidGroupsToExport = self.numberOfRigidGroupsToExport+1        
         return allRigidGroups
 
     def getAllBodiesInRigidGroup(self, name, rigidGroup):
@@ -578,10 +617,6 @@ class SDFExporter():
 
     def copyBodiesToNewComponentAndExport(self, name):
         self.logfile.write("Body: " + name + "\n")
-        progressDialog = self.app.userInterface.createProgressDialog()
-        progressDialog.isBackgroundTranslucent = False
-        
-
         transformMatrix = adsk.core.Matrix3D.create()
         transformMatrix.translation = self.COM[name].asVector()
         self.transformMatrices[name] = transformMatrix
@@ -591,17 +626,12 @@ class SDFExporter():
         new_component = self.rootOcc.addNewComponent(transformMatrix)
         new_component.component.name = "EXPORT_" + name
         group = [g for g in self.rootComp.allRigidGroups if g.name == "EXPORT_"+name][0]
-        progressDialog.show(name, 'Copy Bodies to new component: %v/%m', 0, len(group.occurrences), 1)
         i = 0
         for occurrence in group.occurrences:
             for b in occurrence.bRepBodies:
                 new_body = b.copyToComponent(new_component)
                 new_body.name = 'body'+str(i)
-                progressDialog.progressValue = progressDialog.progressValue + 1
                 i = i+1
-                if progressDialog.wasCancelled:
-                    progressDialog.hide()
-                    return False
 
         # for body in self.bodies[name]:
         #     new_body = body.copyToComponent(new_component)
@@ -622,8 +652,6 @@ class SDFExporter():
         new_component.deleteMe()
         # Call doEvents to give Fusion a chance to react.
         adsk.doEvents()
-
-        progressDialog.hide()
 
         return True
 
@@ -647,20 +675,19 @@ class SDFExporter():
                         one = joi.occurrenceOne
                         two = joi.occurrenceTwo
                         if one is not None and two is not None:
-                            name_parent = self.clearName(one.name[7:])
-                            name_child = self.clearName(two.name[7:])
-                            missing_link = True
+                            name_parent = None
+                            name_child = None
                             for rig in allRigidGroups:
                                 if rig is not None and rig.name[:6] == "EXPORT":
-                                    value_parent = rig.occurrences.itemByName(one.name)
-                                    value_child = rig.occurrences.itemByName(two.name)
+                                    value_child = rig.occurrences.itemByName(one.name)
+                                    value_parent = rig.occurrences.itemByName(two.name)
                                     if value_parent is not None:
                                         name_parent = rig.name[7:]
                                     if value_child is not None:
                                         name_child = rig.name[7:]
-                                        missing_link = False
-                            if missing_link==False:
-                                print(joi.name)
+                            if name_parent is not None and name_child is not None:
+                                self.logfile.write("\tparent: " + name_parent + "\n")
+                                self.logfile.write("\tchild: " + name_child + "\n")
                                 matrix = self.transformMatrices[name_parent]
                                 print(one.transform.translation.asArray())
                                 self.joints[name_parent] = (name_child,joi)
@@ -668,6 +695,8 @@ class SDFExporter():
                                 #print(matrix.asArray())
                                 joint = self.jointSDF(joi, name_parent, name_child, matrix)
                                 self.model.append(joint)
+                            else:
+                                self.logfile.write("\tERROR writing joint, check your rigid EXPORT groups, the parent/child link must be part of a rigid Export group!")
                         progressDialog.hide()
 
     def exportViaPointsToSDF(self):
@@ -685,9 +714,9 @@ class SDFExporter():
                     allConstructionPoints = com.constructionPoints
                     for point in allConstructionPoints:
                         if point is not None:
+                            viaPoint = ViaPoint()
                             if point.name[:2] == "VP":
                                 viaPointInfo = point.name.split("_")
-                                viaPoint = ViaPoint()
                                 vec = adsk.core.Point3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
                                 viaPoint.global_coordinates = [point.geometry.x,point.geometry.y,point.geometry.z]
                                 linkname = '_'.join(viaPointInfo[3:-1])
@@ -1124,11 +1153,11 @@ class SDFExporter():
         joint = ET.Element("joint", name=name, type=jointType)
         # build parent node
         parent = ET.Element("parent")
-        parent.text = name_child
+        parent.text = name_parent
         joint.append(parent)
         # build child node
         child = ET.Element("child")
-        child.text = name_parent
+        child.text = name_child
         joint.append(child)
         # build pose node
         vec = joi.geometryOrOriginTwo.origin
@@ -1138,6 +1167,8 @@ class SDFExporter():
         dist = origin.vectorTo(vec)
         #print(transformMatrix.asArray())
         pose = self.sdfPoseVector(dist)
+        self.logfile.write("\tpos: "+ str(dist.x) + "\t" + str(dist.y) + "\t" + str(dist.z) + "\n")        
+        
         joint.append(pose)
         joint.extend(jointInfo)
         return joint
@@ -1162,15 +1193,11 @@ class SDFExporter():
         maxi = joi.jointMotion.rotationLimits.maximumValue
         limit = ET.Element("limit")
         axis.append(limit)
-        # Lower and upper limit have to be switched and inverted,
-        # because Fusion 360 moves the parent link wrt to the
-        # child link and Gazebo moves the child link wrt to the
-        # parent link.
         lower = ET.Element("lower")
-        lower.text = str(-maxi)
+        lower.text = str(mini)
         limit.append(lower)
         upper = ET.Element("upper")
-        upper.text = str(-mini)
+        upper.text = str(maxi)
         limit.append(upper)
         # build frame node
         frame = ET.Element("use_parent_model_frame")
