@@ -189,6 +189,7 @@ class MyCommandDestroyHandler(adsk.core.CommandEventHandler):
                     exporter.exportLighthouseSensors = darkroom.value
                     exporter.modelName = model_name.value
                     exporter.self_collide = self_collide.value
+                    exporter.dummy_inertia = dummy_inertia.value
                     if exporter.askForExportDirectory():
                         exporter.createDiectoryStructure()
                 
@@ -1056,14 +1057,13 @@ class SDFExporter():
     # @return the SDF inertia node
     def sdfInertia(self, physics, name):
         inertia = ET.Element("inertia")
-        if self.dummy_inertia:
-            inertia.append(self.sdfMom("ixx", 0.1))
-            inertia.append(self.sdfMom("ixy", 0))
-            inertia.append(self.sdfMom("ixz", 0))
-            inertia.append(self.sdfMom("iyy", 0.1))
-            inertia.append(self.sdfMom("iyz", 0))
-            inertia.append(self.sdfMom("izz", 0.1))
-        else:
+        xx = 0.1
+        yy = 0.1
+        zz = 0.1
+        xy = 0
+        xz = 0
+        yz = 0
+        if not self.dummy_inertia:
             (returnValue, xx, yy, zz, xy, yz, xz) = physics.getXYZMomentsOfInertia()
             inertia.append(self.sdfMom("ixx", xx))
             inertia.append(self.sdfMom("ixy", xy))
