@@ -35,6 +35,7 @@ darkroom = None
 remove_small_parts = None
 self_collide = None
 dummy_inertia = None
+cache = None
 
 ## global variable to keep track of how many via points are created
 numberViaPoints = 0
@@ -86,6 +87,7 @@ class MyCommandInputChangedHandler(adsk.core.InputChangedEventHandler):
             global remove_small_parts
             global self_collide
             global dummy_inertia
+            global cache
 
             # We need access to the inputs within a command during the execute.
             tabCmdInput1 = inputs.itemById(commandId + '_tab_1')
@@ -100,6 +102,7 @@ class MyCommandInputChangedHandler(adsk.core.InputChangedEventHandler):
             remove_small_parts = tab1ChildInputs.itemById(commandId + '_remove_small_parts')            
             self_collide = tab1ChildInputs.itemById(commandId + '_self_collide')          
             dummy_inertia = tab1ChildInputs.itemById(commandId + '_dummy_inertia')   
+            cache = tab1ChildInputs.itemById(commandId + '_cache')   
             
             eventArgs = adsk.core.InputChangedEventArgs.cast(args)
             inputs = eventArgs.inputs
@@ -177,6 +180,7 @@ class MyCommandDestroyHandler(adsk.core.CommandEventHandler):
             global remove_small_parts
             global self_collide
             global dummy_inertia
+            global cache
             returnvalue = adsk.core.Application.get().userInterface.messageBox("for real?", "export?", 3)    
             if returnvalue == 2:
                 try:
@@ -190,6 +194,7 @@ class MyCommandDestroyHandler(adsk.core.CommandEventHandler):
                     exporter.modelName = model_name.value
                     exporter.self_collide = self_collide.value
                     exporter.dummy_inertia = dummy_inertia.value
+                    exporter.cache = cache.value
                     if exporter.askForExportDirectory():
                         exporter.createDiectoryStructure()
                 
@@ -327,6 +332,7 @@ class MyCommandCreatedHandler(adsk.core.CommandCreatedEventHandler):
             tab1ChildInputs.addBoolValueInput(commandId + '_remove_small_parts', 'remove parts smaller 1g', True, '', False)
             tab1ChildInputs.addBoolValueInput(commandId + '_self_collide', 'self_collide', True, '', False)
             tab1ChildInputs.addBoolValueInput(commandId + '_dummy_inertia', 'dummy_inertia', True, '', False)
+            tab1ChildInputs.addBoolValueInput(commandId + '_cache', 'cache', True, '', True)
             
             tabCmdInput2 = inputs.addTabCommandInput(commandId + '_tab_2', 'ViaPoints')
             # Get the CommandInputs object associated with the parent command.
@@ -452,6 +458,7 @@ class SDFExporter():
     exportOpenSimMuscles = False
     self_collide = False
     dummy_inertia = False
+    cache = False
 
     ## Global variable to specify the file name of the plugin loaded by the SDF.
     # Only necessary if **exportViaPoints** is **True**.
@@ -626,34 +633,35 @@ class SDFExporter():
         self.transformMatrices[name] = transformMatrix
         print(self.transformMatrices[name].asArray())
 
-        # global new_component
-        new_component = self.rootOcc.addNewComponent(transformMatrix)
-        new_component.component.name = "EXPORT_" + name
-        group = [g for g in self.rootComp.allRigidGroups if g.name == "EXPORT_"+name][0]
-        i = 0
-        for occurrence in group.occurrences:
-            for b in occurrence.bRepBodies:
-                new_body = b.copyToComponent(new_component)
-                new_body.name = 'body'+str(i)
-                i = i+1
+        new_occurence = None
 
-        # for body in self.bodies[name]:
-        #     new_body = body.copyToComponent(new_component)
-        #     new_body.name = 'body'+str(i)
-        #     progressDialog.progressValue = progressDialog.progressValue + 1
-        #     i = i+1
-        #     if progressDialog.wasCancelled:
-        #         progressDialog.hide()
-        #         return False
+        if self.cache:  
+            self.logfile.write("looking for cached " + name + "\n")
+            new_occurence = self.rootOcc.itemByName("EXPORT_" + name + ":1")      
+        
+        if new_occurence is None: # if not exported yet
+            self.logfile.write(name + "not found, copying bodies to new component\n")
+            # global new_component
+            new_occurence = self.rootOcc.addNewComponent(transformMatrix)
+            new_occurence.component.name = "EXPORT_" + name
+            group = [g for g in self.rootComp.allRigidGroups if g.name == "EXPORT_"+name][0]
+            i = 0
+            for occurrence in group.occurrences:
+                for b in occurrence.bRepBodies:
+                    new_body = b.copyToComponent(new_occurence)
+                    new_body.name = 'body'+str(i)
+                    i = i+1
 
         if self.exportMeshes:
-            self.exportToStl(new_component, name)
+            self.logfile.write("exporting stl of " + name + "\n")
+            self.exportToStl(new_occurence, name)
 
-        link = self.linkSDF(new_component, name)
+        link = self.linkSDF(new_occurence, name)
         self.model.append(link)
 
         # delete the temporary new occurrence
-        new_component.deleteMe()
+        if not self.cache:
+            new_occurence.deleteMe()
         # Call doEvents to give Fusion a chance to react.
         adsk.doEvents()
 
@@ -692,9 +700,9 @@ class SDFExporter():
                             if name_parent is not None and name_child is not None:
                                 self.logfile.write("\tparent: " + name_parent + "\n")
                                 self.logfile.write("\tchild: " + name_child + "\n")
-                                matrix = self.transformMatrices[name_parent]
+                                matrix = self.transformMatrices[name_child]
                                 print(one.transform.translation.asArray())
-                                self.joints[name_parent] = (name_child,joi)
+                                self.joints[name_child] = (name_parent,joi)
         #                        transformMatrix.transformBy(one.transform)
                                 #print(matrix.asArray())
                                 joint = self.jointSDF(joi, name_parent, name_child, matrix)
@@ -1057,9 +1065,9 @@ class SDFExporter():
     # @return the SDF inertia node
     def sdfInertia(self, physics, name):
         inertia = ET.Element("inertia")
-        xx = 0.1
-        yy = 0.1
-        zz = 0.1
+        xx = 1000
+        yy = 1000
+        zz = 1000
         xy = 0
         xz = 0
         yz = 0
