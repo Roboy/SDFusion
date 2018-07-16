@@ -85,6 +85,7 @@ class MyCommandInputChangedHandler(adsk.core.InputChangedEventHandler):
             global darkroom
             global remove_small_parts
             global self_collide
+            global dummy_inertia
 
             # We need access to the inputs within a command during the execute.
             tabCmdInput1 = inputs.itemById(commandId + '_tab_1')
@@ -319,11 +320,12 @@ class MyCommandCreatedHandler(adsk.core.CommandCreatedEventHandler):
             tab1ChildInputs.addBoolValueInput(commandId + '_meshes', 'meshes', True, '', True)
             tab1ChildInputs.addBoolValueInput(commandId + '_sdf', 'sdf', True, '', True)
             tab1ChildInputs.addBoolValueInput(commandId + '_viapoints', 'viapoints', True, '', True)
-            tab1ChildInputs.addBoolValueInput(commandId + '_caspr', 'caspr', True, '', True)
+            tab1ChildInputs.addBoolValueInput(commandId + '_caspr', 'caspr', True, '', False)
             tab1ChildInputs.addBoolValueInput(commandId + '_opensim', 'opensim', True, '', False)
             tab1ChildInputs.addBoolValueInput(commandId + '_darkroom', 'darkroom', True, '', False)
             tab1ChildInputs.addBoolValueInput(commandId + '_remove_small_parts', 'remove parts smaller 1g', True, '', False)
             tab1ChildInputs.addBoolValueInput(commandId + '_self_collide', 'self_collide', True, '', False)
+            tab1ChildInputs.addBoolValueInput(commandId + '_dummy_inertia', 'dummy_inertia', True, '', False)
             
             tabCmdInput2 = inputs.addTabCommandInput(commandId + '_tab_2', 'ViaPoints')
             # Get the CommandInputs object associated with the parent command.
@@ -448,6 +450,7 @@ class SDFExporter():
     exportCASPR = False
     exportOpenSimMuscles = False
     self_collide = False
+    dummy_inertia = False
 
     ## Global variable to specify the file name of the plugin loaded by the SDF.
     # Only necessary if **exportViaPoints** is **True**.
@@ -1022,7 +1025,10 @@ class SDFExporter():
         inertial.append(pose)
         # build mass node
         mass = ET.Element("mass")
-        mass.text = str(physics.mass)
+        if self.dummy_inertia:
+            mass.text = "0.1"
+        else:
+            mass.text = str(physics.mass)
         inertial.append(mass)
         # build inertia node
         inertia = self.sdfInertia(physics,name)
@@ -1050,13 +1056,21 @@ class SDFExporter():
     # @return the SDF inertia node
     def sdfInertia(self, physics, name):
         inertia = ET.Element("inertia")
-        (returnValue, xx, yy, zz, xy, yz, xz) = physics.getXYZMomentsOfInertia()
-        inertia.append(self.sdfMom("ixx", xx))
-        inertia.append(self.sdfMom("ixy", xy))
-        inertia.append(self.sdfMom("ixz", xz))
-        inertia.append(self.sdfMom("iyy", yy))
-        inertia.append(self.sdfMom("iyz", yz))
-        inertia.append(self.sdfMom("izz", zz))
+        if self.dummy_inertia:
+            inertia.append(self.sdfMom("ixx", 0.1))
+            inertia.append(self.sdfMom("ixy", 0))
+            inertia.append(self.sdfMom("ixz", 0))
+            inertia.append(self.sdfMom("iyy", 0.1))
+            inertia.append(self.sdfMom("iyz", 0))
+            inertia.append(self.sdfMom("izz", 0.1))
+        else:
+            (returnValue, xx, yy, zz, xy, yz, xz) = physics.getXYZMomentsOfInertia()
+            inertia.append(self.sdfMom("ixx", xx))
+            inertia.append(self.sdfMom("ixy", xy))
+            inertia.append(self.sdfMom("ixz", xz))
+            inertia.append(self.sdfMom("iyy", yy))
+            inertia.append(self.sdfMom("iyz", yz))
+            inertia.append(self.sdfMom("izz", zz))
 
         self.inertias[name].append(xx)
         self.inertias[name].append(yy)
