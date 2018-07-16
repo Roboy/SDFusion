@@ -1065,12 +1065,13 @@ class SDFExporter():
         yz = 0
         if not self.dummy_inertia:
             (returnValue, xx, yy, zz, xy, yz, xz) = physics.getXYZMomentsOfInertia()
-            inertia.append(self.sdfMom("ixx", xx))
-            inertia.append(self.sdfMom("ixy", xy))
-            inertia.append(self.sdfMom("ixz", xz))
-            inertia.append(self.sdfMom("iyy", yy))
-            inertia.append(self.sdfMom("iyz", yz))
-            inertia.append(self.sdfMom("izz", zz))
+            
+        inertia.append(self.sdfMom("ixx", xx))
+        inertia.append(self.sdfMom("ixy", xy))
+        inertia.append(self.sdfMom("ixz", xz))
+        inertia.append(self.sdfMom("iyy", yy))
+        inertia.append(self.sdfMom("iyz", yz))
+        inertia.append(self.sdfMom("izz", zz))
 
         self.inertias[name].append(xx)
         self.inertias[name].append(yy)
