@@ -20,7 +20,7 @@ from math import sqrt
 
 commandId = 'SDFusionExporter'
 commandName = 'SDFusion'
-commandDescription = 'carflow exporter'
+commandDescription = 'cardsflow exporter'
 
 # Global set of event handlers to keep them referenced for the duration of the command
 handlers = []
@@ -185,16 +185,26 @@ class MyCommandDestroyHandler(adsk.core.CommandEventHandler):
             if returnvalue == 2:
                 try:
                     exporter = SDFExporter()
-                    exporter.runCleanUp = remove_small_parts.value
-                    exporter.exportMeshes = meshes.value
-                    exporter.exportViaPoints = viapoints.value
-                    exporter.exportCASPR = caspr.value
-                    exporter.exportOpenSimMuscles = opensim.value
-                    exporter.exportLighthouseSensors = darkroom.value
-                    exporter.modelName = model_name.value
-                    exporter.self_collide = self_collide.value
-                    exporter.dummy_inertia = dummy_inertia.value
-                    exporter.cache = cache.value
+                    if remove_small_parts is not None:
+                        exporter.runCleanUp = remove_small_parts.value
+                    if meshes is not None:
+                        exporter.exportMeshes = meshes.value
+                    if viapoints is not None:
+                        exporter.exportViaPoints = viapoints.value
+                    if caspr is not None:
+                        exporter.exportCASPR = caspr.value
+                    if opensim is not None:
+                        exporter.exportOpenSimMuscles = opensim.value
+                    if darkroom is not None:
+                        exporter.exportLighthouseSensors = darkroom.value
+                    if model_name is not None:
+                        exporter.modelName = model_name.value
+                    if self_collide is not None:
+                        exporter.self_collide = self_collide.value
+                    if dummy_inertia is not None:
+                        exporter.dummy_inertia = dummy_inertia.value
+                    if cache is not None:
+                        exporter.cache = cache.value
                     if exporter.askForExportDirectory():
                         exporter.createDiectoryStructure()
                 
@@ -1152,24 +1162,66 @@ class SDFExporter():
         jointInfo = []
         jointType = ""
         jType = joi.jointMotion.jointType
-        if jType == 0:
+        if jType == 0: # fixed
             jointType = "fixed"
-        elif jType == 1:
-            jointInfo = self.revoluteJoint(joi)
+        elif jType == 1: # revolute joint
+            # build axis node
+            axis = ET.Element("axis")
+            xyz = ET.Element("xyz")
+            vector = joi.jointMotion.rotationAxisVector
+            xyz.text = self.vectorToString(vector.x, vector.y, vector.z)
+            axis.append(xyz)
+            # build limit node
+            mini = joi.jointMotion.rotationLimits.minimumValue
+            maxi = joi.jointMotion.rotationLimits.maximumValue
+            limit = ET.Element("limit")
+            axis.append(limit)
+            lower = ET.Element("lower")
+            lower.text = str(mini)
+            limit.append(lower)
+            upper = ET.Element("upper")
+            upper.text = str(maxi)
+            limit.append(upper)
+            # build frame node
+            frame = ET.Element("use_parent_model_frame")
+            frame.text = "0"
+            axis.append(frame)
+            jointInfo.append(axis)
             jointType = "revolute"
-        elif jType == 2:
+        elif jType == 2: # slider
+            # build axis node
+            axis = ET.Element("axis")
+            xyz = ET.Element("xyz")
+            vector = joi.jointMotion.slideDirectionVector
+            xyz.text = self.vectorToString(vector.x, vector.y, vector.z)
+            axis.append(xyz)
+            # build limit node, convert from cm to meter
+            mini = joi.jointMotion.slideLimits.minimumValue/100.0 
+            maxi = joi.jointMotion.slideLimits.maximumValue/100.0
+            limit = ET.Element("limit")
+            axis.append(limit)
+            lower = ET.Element("lower")
+            lower.text = str(mini)
+            limit.append(lower)
+            upper = ET.Element("upper")
+            upper.text = str(maxi)
+            limit.append(upper)
+            # build frame node
+            frame = ET.Element("use_parent_model_frame")
+            frame.text = "0"
+            axis.append(frame)
+            jointInfo.append(axis)
+            jointType = "prismatic"
+        elif jType == 3: # cylindrical
             # not implemented
             jointType = ""
-        elif jType == 3:
+        elif jType == 4: # pin slot
             # not implemented
             jointType = ""
-        elif jType == 4:
+        elif jType == 5: # planar
             # not implemented
             jointType = ""
-        elif jType == 5:
-            # not implemented
-            jointType = ""
-        elif jType == 6:
+        elif jType == 6: 
             # SDFormat does not implement ball joint limits
             jointType = "ball"
         name = joi.name[7:]
@@ -1195,39 +1247,6 @@ class SDFExporter():
         joint.append(pose)
         joint.extend(jointInfo)
         return joint
-
-    ## Builds SDF axis node for revolute joints.
-    #
-    # This function builds the SDF axis node for revolute joint.
-    #
-    # @param joi one revolute joint object
-    # @return a list of information nodes (here one axis node)
-    # for the revolute joint
-    def revoluteJoint(self, joi):
-        info = []
-        # build axis node
-        axis = ET.Element("axis")
-        xyz = ET.Element("xyz")
-        vector = joi.jointMotion.rotationAxisVector
-        xyz.text = self.vectorToString(vector.x, vector.y, vector.z)
-        axis.append(xyz)
-        # build limit node
-        mini = joi.jointMotion.rotationLimits.minimumValue
-        maxi = joi.jointMotion.rotationLimits.maximumValue
-        limit = ET.Element("limit")
-        axis.append(limit)
-        lower = ET.Element("lower")
-        lower.text = str(mini)
-        limit.append(lower)
-        upper = ET.Element("upper")
-        upper.text = str(maxi)
-        limit.append(upper)
-        # build frame node
-        frame = ET.Element("use_parent_model_frame")
-        frame.text = "0"
-        axis.append(frame)
-        info.append(axis)
-        return info
 
     ## Plain STL export.
     ##
