@@ -604,8 +604,8 @@ class SDFExporter():
         print(self.transformMatrices[name].asArray())
         
         if not self.rootOcc.itemByName("EXPORT_" + name + ":1") or self.updateRigidGroups:
-        
-            self.rootOcc.itemByName("EXPORT_" + name + ":1").deleteMe()
+            if self.rootOcc.itemByName("EXPORT_" + name + ":1"):
+                Sself.rootOcc.itemByName("EXPORT_" + name + ":1").deleteMe()
             new_component = self.rootOcc.addNewComponent(transformMatrix)
             new_component.component.name = "EXPORT_" + name
             group = [g for g in self.rootComp.allRigidGroups if g.name == "EXPORT_"+name][0]
@@ -830,32 +830,74 @@ class SDFExporter():
                 # pwObjects.append(pWrap)
                 gPath.append(pwSet)
                 max_isometric_force = ET.Element("max_isometric_force")
-                max_isometric_force.text=str(1000.0)
                 optimal_fiber_length = ET.Element("optimal_fiber_length")
-                optimal_fiber_length.text = str(0.14108090847730637)  # TODO calculate optiomal fiber length
                 tendon_slack_length = ET.Element("tendon_slack_length")
+                pennation_angle = ET.Element("pennation_angle")
+                activation_time_constant = ET.Element("activation_time_constant")
+                deactivation_time_constant = ET.Element("deactivation_time_constant")
+                Vmax = ET.Element("Vmax")
+                Vmax0 = ET.Element("Vmax0")
+                FmaxTendonStrain = ET.Element("FmaxTendonStrain")
+                FmaxMuscleStrain = ET.Element("FmaxMuscleStrain")
+                KshapeActive = ET.Element("KshapeActive")
+                KshapePassive = ET.Element("KshapePassive")
+                damping = ET.Element("damping")
+                Af = ET.Element("Af")
+                Flen = ET.Element("Flen")
 
-                stiffness = ET.Element("stiffness")
-                stiffness.text = str(100000)
-                dissipation = ET.Element("dissipation")
-                dissipation.text = str(1)
+                max_isometric_force.text = str(546.00000000)
+                optimal_fiber_length.text = str(0.05350000)
+                tendon_slack_length.text = str( 0.07800000)
+                pennation_angle.text = str(0.00000000)
+                activation_time_constant.text = str(0.01000000)
+                deactivation_time_constant.text = str(0.04000000)
+                Vmax.text = str(10.00000000)
+                Vmax0.text = str(5.00000000)
+                FmaxTendonStrain.text = str(0.03300000)
+                FmaxMuscleStrain.text = str(0.60000000)
+                KshapeActive.text = str(0.50000000)
+                KshapePassive.text = str(4.00000000)
+                damping.text = str(0.05000000)
+                Af.text = str(0.30000000)
+                Flen.text = str(1.80000000)
+
+                # max_isometric_force.text=str(546.0)
+                # stiffness.text = str(100000)
+                # dissipation.text = str(1)
+
                 muscle.append(max_isometric_force)
                 muscle.append(optimal_fiber_length)
                 muscle.append(tendon_slack_length)
-                muscle.append(stiffness)
-                muscle.append(dissipation)
+                muscle.append(pennation_angle)
+                muscle.append(activation_time_constant)
+                muscle.append(deactivation_time_constant)
+                muscle.append(Vmax)
+                muscle.append(Vmax0)
+                muscle.append(FmaxTendonStrain)
+                muscle.append(FmaxMuscleStrain)
+                muscle.append(KshapeActive)
+                muscle.append(KshapePassive)
+                muscle.append(damping)
+                muscle.append(Af)
+                muscle.append(Flen)
+
+                # muscle.append(stiffness)
+                # muscle.append(dissipation)
 
                 allViaPoints = myo.viaPoints
                 allViaPoints.sort(key=lambda x: x.number)
 
-                dist = 0
-                for i in range(len(allViaPoints)-1):
-                    squared_dist = (allViaPoints[i].global_coordinates[0] - allViaPoints[i+1].global_coordinates[0])**2 + (allViaPoints[i].global_coordinates[1] - allViaPoints[i+1].global_coordinates[1])**2 + (allViaPoints[i].global_coordinates[2] - allViaPoints[i+1].global_coordinates[2])**2
-                    # np.sum(allViaPoints[i].global_coordinates**2 + allViaPoints[i+1].global_coordinates**2, axis=0)
-                    dist += sqrt(squared_dist)
-                tendon_slack_length.text = str(dist)
+                # dist = 0
+                # for i in range(len(allViaPoints)-1):
+                #     squared_dist = (allViaPoints[i].global_coordinates[0] - allViaPoints[i+1].global_coordinates[0])**2 + (allViaPoints[i].global_coordinates[1] - allViaPoints[i+1].global_coordinates[1])**2 + (allViaPoints[i].global_coordinates[2] - allViaPoints[i+1].global_coordinates[2])**2
+                #     # np.sum(allViaPoints[i].global_coordinates**2 + allViaPoints[i+1].global_coordinates**2, axis=0)
+                #     dist += sqrt(squared_dist)
 
-                for point in allViaPoints:
+                # tendon_slack_length.text = str(0.02*dist)
+                # optimal_fiber_length.text = str(dist*0.98)#str(0.14108090847730637)  # TODO calculate optiomal fiber length
+
+                selectedViaPoints = [allViaPoints[0], allViaPoints[-1]]
+                for point in selectedViaPoints:
                     pathPoint = ET.Element("PathPoint", name=muscle.get("name")+"_node"+point.number[0])
                     location = ET.Element("location")
                     location.text = point.coordinates
@@ -870,6 +912,7 @@ class SDFExporter():
             model.append(bodySet)
 
 
+    
     def traverseViaPoints(self): 
         
         app = adsk.core.Application.get()
