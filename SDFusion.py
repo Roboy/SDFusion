@@ -718,7 +718,7 @@ class SDFExporter():
                                 joint = self.jointSDF(joi, name_parent, name_child, matrix)
                                 self.model.append(joint)
                             else:
-                                self.logfile.write("\tERROR writing joint, check your rigid EXPORT groups, the parent/child link must be part of a rigid Export group!")
+                                self.logfile.write("\tERROR writing joint " + joi.name + ", check your rigid EXPORT groups, the parent/child link must be part of a rigid Export group!\n")
                         progressDialog.hide()
 
     def exportViaPointsToSDF(self):
