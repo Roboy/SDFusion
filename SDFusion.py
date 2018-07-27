@@ -583,16 +583,16 @@ class SDFExporter():
         self.totalMass[name] = 0
         self.logfile.write("mass[kg] \t COM[cm] \t\t\t component name\n")
         self.getBodies(name,rigidGroup.occurrences,0)
-        self.getCOM(name,rigidGroup.occurrences)
-        if self.calculateCOMFlag == True:
-            # calculate COM -> dividing by totalMass
-            scaledCOM = self.COM[name].asVector()
-            scaledCOM.scaleBy(1/self.totalMass[name])
-            self.COM[name] = scaledCOM.asPoint()
-        self.logfile.write("----------------------------------------------------------------\n")
-        self.logfile.write("Mass of %s: %f\n" % (name, self.totalMass[name]))
-        self.logfile.write("COM of %s: %f %f %f\n" % (name, self.COM[name].x, self.COM[name].y, self.COM[name].z))
-        self.logfile.write("----------------------------------------------------------------\n")
+#        self.getCOM(name,rigidGroup.occurrences)
+#        if self.calculateCOMFlag == True:
+#            # calculate COM -> dividing by totalMass
+#            scaledCOM = self.COM[name].asVector()
+#            scaledCOM.scaleBy(1/self.totalMass[name])
+#            self.COM[name] = scaledCOM.asPoint()
+#        self.logfile.write("----------------------------------------------------------------\n")
+#        self.logfile.write("Mass of %s: %f\n" % (name, self.totalMass[name]))
+#        self.logfile.write("COM of %s: %f %f %f\n" % (name, self.COM[name].x, self.COM[name].y, self.COM[name].z))
+#        self.logfile.write("----------------------------------------------------------------\n")
 
     def getBodies(self, name, occurrences, currentLevel):
         for occurrence in occurrences:
@@ -639,9 +639,6 @@ class SDFExporter():
     def copyBodiesToNewComponentAndExport(self, name):
         self.logfile.write("Body: " + name + "\n")
         transformMatrix = adsk.core.Matrix3D.create()
-        transformMatrix.translation = self.COM[name].asVector()
-        self.transformMatrices[name] = transformMatrix
-        print(self.transformMatrices[name].asArray())
 
         new_occurence = None
 
@@ -652,15 +649,37 @@ class SDFExporter():
         if new_occurence is None: # if not exported yet
             self.logfile.write(name + "not found, copying bodies to new component\n")
             # global new_component
-            new_occurence = self.rootOcc.addNewComponent(transformMatrix)
-            new_occurence.component.name = "EXPORT_" + name
+            temp_occurence = self.rootOcc.addNewComponent(transformMatrix)
+            temp_occurence.component.name = "TEMP_EXPORT_" + name
             group = [g for g in self.rootComp.allRigidGroups if g.name == "EXPORT_"+name][0]
             i = 0
             for occurrence in group.occurrences:
                 for b in occurrence.bRepBodies:
-                    new_body = b.copyToComponent(new_occurence)
+                    new_body = b.copyToComponent(temp_occurence)
                     new_body.name = 'body'+str(i)
-                    i = i+1
+                    i = i+1                    
+                    
+            physicalProperties = temp_occurence.component.getPhysicalProperties()
+            if self.calculateCOMFlag == True:
+                centerOfMass = physicalProperties.centerOfMass
+                centerOfMass = centerOfMass.asVector()
+                #centerOfMass.scaleBy(physicalProperties.mass)
+                self.COM[name] = centerOfMass
+                self.totalMass[name] = physicalProperties.mass
+                transformMatrix = temp_occurence.transform
+                transformMatrix.translation = adsk.core.Vector3D.create( self.COM[name].x, self.COM[name].y, self.COM[name].z)
+                #temp_occurence.transform = transformMatrix
+                self.transformMatrices[name] = transformMatrix
+                adsk.doEvents() 
+                new_occurence = self.rootOcc.addNewComponent(transformMatrix)
+                new_occurence.component.name = "EXPORT_" + name
+                group = [g for g in self.rootComp.allRigidGroups if g.name == "EXPORT_"+name][0]
+                i = 0
+                for occurrence in group.occurrences:
+                    for b in occurrence.bRepBodies:
+                        new_body = b.copyToComponent(new_occurence)
+                        new_body.name = 'body'+str(i)
+                        i = i+1    
 
         if self.exportMeshes:
             self.logfile.write("exporting stl of " + name + "\n")
@@ -668,7 +687,8 @@ class SDFExporter():
 
         link = self.linkSDF(new_occurence, name)
         self.model.append(link)
-
+        
+        temp_occurence.deleteMe()
         # delete the temporary new occurrence
         if not self.cache:
             new_occurence.deleteMe()
