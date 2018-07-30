@@ -660,26 +660,39 @@ class SDFExporter():
                     i = i+1                    
                     
             physicalProperties = temp_occurence.component.getPhysicalProperties()
-            if self.calculateCOMFlag == True:
+            calculateCOM = True
+            for occurrence in self.rootOcc:
+                com = occurrence.component
+                if com is not None:
+                    allConstructionPoints = com.constructionPoints
+                    for point in allConstructionPoints:
+                        if point is not None:
+                            if point.name[:3] == "COM" and point.name[4:] == name:
+                                calculateCOM = False
+                                self.COM[name] = adsk.core.Point3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
+                                self.COM[name].transformBy(occurrence.transform)
+                                
+            if calculateCOM == True:
                 centerOfMass = physicalProperties.centerOfMass
                 centerOfMass = centerOfMass.asVector()
                 #centerOfMass.scaleBy(physicalProperties.mass)
                 self.COM[name] = centerOfMass
-                self.totalMass[name] = physicalProperties.mass
-                transformMatrix = temp_occurence.transform
-                transformMatrix.translation = adsk.core.Vector3D.create( self.COM[name].x, self.COM[name].y, self.COM[name].z)
-                #temp_occurence.transform = transformMatrix
-                self.transformMatrices[name] = transformMatrix
-                adsk.doEvents() 
-                new_occurence = self.rootOcc.addNewComponent(transformMatrix)
-                new_occurence.component.name = "EXPORT_" + name
-                group = [g for g in self.rootComp.allRigidGroups if g.name == "EXPORT_"+name][0]
-                i = 0
-                for occurrence in group.occurrences:
-                    for b in occurrence.bRepBodies:
-                        new_body = b.copyToComponent(new_occurence)
-                        new_body.name = 'body'+str(i)
-                        i = i+1    
+                
+            self.totalMass[name] = physicalProperties.mass
+            transformMatrix = temp_occurence.transform
+            transformMatrix.translation = adsk.core.Vector3D.create( self.COM[name].x, self.COM[name].y, self.COM[name].z)
+            #temp_occurence.transform = transformMatrix
+            self.transformMatrices[name] = transformMatrix
+            adsk.doEvents() 
+            new_occurence = self.rootOcc.addNewComponent(transformMatrix)
+            new_occurence.component.name = "EXPORT_" + name
+            group = [g for g in self.rootComp.allRigidGroups if g.name == "EXPORT_"+name][0]
+            i = 0
+            for occurrence in group.occurrences:
+                for b in occurrence.bRepBodies:
+                    new_body = b.copyToComponent(new_occurence)
+                    new_body.name = 'body'+str(i)
+                    i = i+1    
 
         if self.exportMeshes:
             self.logfile.write("exporting stl of " + name + "\n")
