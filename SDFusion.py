@@ -742,15 +742,15 @@ class SDFExporter():
                         progressDialog.hide()
 
     def exportViaPointsToSDF(self):
-        allComponents = self.design.allComponents
+        #allComponents = self.design.allComponents
         sketches = self.rootComp.sketches
         xyPlane = self.rootComp.xYConstructionPlane
         sketch = sketches.add(xyPlane)
         points = {}
         EEs = []
         VMs = []
-
-        for com in allComponents:
+        for occurrence in self.rootOcc:
+            com = occurrence.component
             try:
                 if com is not None:
                     allConstructionPoints = com.constructionPoints
@@ -760,7 +760,8 @@ class SDFExporter():
                             if point.name[:2] == "VP":
                                 viaPointInfo = point.name.split("_")
                                 vec = adsk.core.Point3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
-                                viaPoint.global_coordinates = [point.geometry.x,point.geometry.y,point.geometry.z]
+                                vec.transformBy(occurrence.transform)
+                                viaPoint.global_coordinates = [vec.x,vec.y,vec.z]
                                 linkname = '_'.join(viaPointInfo[3:-1])
                                 origin = self.transformMatrices[linkname].translation
                                 origin = origin.asPoint()
@@ -804,7 +805,7 @@ class SDFExporter():
                                 vm.coordinates = str(dist.x*0.01) + " " + str(dist.y*0.01) + " " + str(dist.z*0.01)
                                 vm.link = linkname
                                 VMs.append(vm)
-                                
+                                    
             except:
                    self.ui.messageBox("Exception in " + point.name + '\n' +traceback.format_exc())
                    pass
