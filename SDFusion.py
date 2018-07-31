@@ -671,6 +671,14 @@ class SDFExporter():
                                 calculateCOM = False
                                 self.COM[name] = adsk.core.Point3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
                                 self.COM[name].transformBy(occurrence.transform)
+            for com in self.design.allComponents:
+                if com is not None:
+                    allConstructionPoints = com.constructionPoints
+                    for point in allConstructionPoints:
+                        if point is not None:
+                            if point.name[:3] == "COM" and point.name[4:] == name:
+                                calculateCOM = False
+                                self.COM[name] = adsk.core.Point3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
                                 
             if calculateCOM == True:
                 centerOfMass = physicalProperties.centerOfMass
