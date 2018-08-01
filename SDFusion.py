@@ -671,14 +671,6 @@ class SDFExporter():
                                 calculateCOM = False
                                 self.COM[name] = adsk.core.Point3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
                                 self.COM[name].transformBy(occurrence.transform)
-            for com in self.design.allComponents:
-                if com is not None:
-                    allConstructionPoints = com.constructionPoints
-                    for point in allConstructionPoints:
-                        if point is not None:
-                            if point.name[:3] == "COM" and point.name[4:] == name:
-                                calculateCOM = False
-                                self.COM[name] = adsk.core.Point3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
                                 
             if calculateCOM == True:
                 centerOfMass = physicalProperties.centerOfMass
@@ -892,65 +884,6 @@ class SDFExporter():
                        self.ui.messageBox("Exception in " + point.name + '\n' +traceback.format_exc())
                        pass
 
-        for com in allComponents:
-            try:
-                if com is not None:
-                    allConstructionPoints = com.constructionPoints
-                    for point in allConstructionPoints:
-                        if point is not None:
-                            viaPoint = ViaPoint()
-                            if point.name[:2] == "VP":
-                                viaPointInfo = point.name.split("_")
-                                vec = adsk.core.Point3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
-                                viaPoint.global_coordinates = [point.geometry.x,point.geometry.y,point.geometry.z]
-                                linkname = '_'.join(viaPointInfo[3:-1])
-                                origin = self.transformMatrices[linkname].translation
-                                origin = origin.asPoint()
-                                dist = origin.vectorTo(vec)
-                                viaPoint.coordinates = str(dist.x*0.01) + " " + str(dist.y*0.01) + " " + str(dist.z*0.01)
-                                viaPoint.link = linkname
-                                viaPoint.number = viaPointInfo[-1:]
-                                myoNumber = viaPointInfo[1][5:]
-                                myoMuscleList = list(filter(lambda x: x.number == myoNumber, self.pluginObj.myoMuscles))
-                                if not myoMuscleList:
-                                    myoMuscle = MyoMuscle(myoNumber)
-                                    myoMuscle.viaPoints.append(viaPoint)
-                                    self.pluginObj.myoMuscles.append(myoMuscle)
-                                if myoMuscleList:
-                                    myoMuscleList[0].viaPoints.append(viaPoint)
-
-                                if myoNumber not in points:
-                                    points[myoNumber] = adsk.core.ObjectCollection.create() 
-                                points[myoNumber].add(vec)
-                            if point.name[:2] == "EE":
-                                eeInfo = point.name.split("_")
-                                vec = adsk.core.Point3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
-                                viaPoint.global_coordinates = [point.geometry.x,point.geometry.y,point.geometry.z]
-                                linkname = '_'.join(eeInfo[1:])
-                                origin = self.transformMatrices[linkname].translation
-                                origin = origin.asPoint()
-                                dist = origin.vectorTo(vec)
-                                ee = VisualMarker()
-                                ee.coordinates = str(dist.x*0.01) + " " + str(dist.y*0.01) + " " + str(dist.z*0.01)
-                                ee.link = linkname
-                                EEs.append(ee)
-                            if point.name[:2] == "VM":
-                                vmInfo = point.name.split("_")
-                                vec = adsk.core.Point3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
-                                viaPoint.global_coordinates = [point.geometry.x,point.geometry.y,point.geometry.z]
-                                linkname = '_'.join(vmInfo[1:])
-                                origin = self.transformMatrices[linkname].translation
-                                origin = origin.asPoint()
-                                dist = origin.vectorTo(vec)
-                                vm = VisualMarker()
-                                vm.coordinates = str(dist.x*0.01) + " " + str(dist.y*0.01) + " " + str(dist.z*0.01)
-                                vm.link = linkname
-                                VMs.append(vm)
-                                
-            except:
-                   self.ui.messageBox("Exception in " + point.name + '\n' +traceback.format_exc())
-                   pass               
-               
         for pointSet in points.values():
             sketch.sketchCurves.sketchFittedSplines.add(pointSet)
 
