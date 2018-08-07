@@ -581,7 +581,6 @@ class SDFExporter():
         self.COM[name] = adsk.core.Point3D.create(0,0,0)
         self.number_of_coms[name] = 0
         self.totalMass[name] = 0
-        self.logfile.write("mass[kg] \t COM[cm] \t\t\t component name\n")
         self.getBodies(name,rigidGroup.occurrences,0)
 #        self.getCOM(name,rigidGroup.occurrences)
 #        if self.calculateCOMFlag == True:
@@ -647,7 +646,7 @@ class SDFExporter():
             new_occurence = self.rootOcc.itemByName("EXPORT_" + name + ":1")      
         
         if new_occurence is None: # if not exported yet
-            self.logfile.write(name + "not found, copying bodies to new component\n")
+            self.logfile.write(name + " not found, copying bodies to new component\n")
             # global new_component
             temp_occurence = self.rootOcc.addNewComponent(transformMatrix)
             temp_occurence.component.name = "TEMP_EXPORT_" + name
@@ -671,6 +670,14 @@ class SDFExporter():
                                 calculateCOM = False
                                 self.COM[name] = adsk.core.Point3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
                                 self.COM[name].transformBy(occurrence.transform)
+            for com in self.design.allComponents:
+                if com is not None:
+                    allConstructionPoints = com.constructionPoints
+                    for point in allConstructionPoints:
+                        if point is not None:
+                            if point.name[:3] == "COM" and point.name[4:] == name:
+                                calculateCOM = False
+                                self.COM[name] = adsk.core.Point3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
                                 
             if calculateCOM == True:
                 centerOfMass = physicalProperties.centerOfMass
@@ -678,6 +685,7 @@ class SDFExporter():
                 #centerOfMass.scaleBy(physicalProperties.mass)
                 self.COM[name] = centerOfMass
                 
+            self.logfile.write(name + " mass[kg] " + str(physicalProperties.mass) + " \t COM[cm] " + str(self.COM[name].x) + " " + str(self.COM[name].y) + " " + str(self.COM[name].z) + "\n")
             self.totalMass[name] = physicalProperties.mass
             transformMatrix = temp_occurence.transform
             transformMatrix.translation = adsk.core.Vector3D.create( self.COM[name].x, self.COM[name].y, self.COM[name].z)
