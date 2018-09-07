@@ -892,9 +892,6 @@ class SDFExporter():
                        self.ui.messageBox("Exception in " + point.name + '\n' +traceback.format_exc())
                        pass
 
-        for pointSet in points.values():
-            sketch.sketchCurves.sketchFittedSplines.add(pointSet)
-
         plugin = ET.Element("plugin", filename=self.pluginFileName, name=self.pluginName)
         if (not self.exportOpenSimMuscles):
             self.model.append(plugin)
@@ -917,6 +914,8 @@ class SDFExporter():
                 # TODO: rotate global coordinates into link frame coordinates
                 viaPoint.text=via.coordinates
                 link.append(viaPoint)
+        for pointSet in points.values():
+            sketch.sketchCurves.sketchFittedSplines.add(pointSet)
         i = 0
         for ee in EEs:
             endeffector = ET.Element("endEffector", name="endeffector"+str(i), link=ee.link)
@@ -1002,7 +1001,6 @@ class SDFExporter():
             bodySetObjects = ET.Element("objects")
             bodySet.append(bodySetObjects)
             model.append(bodySet)
-
 
     def traverseViaPoints(self):
         allComponents = self.design.allComponents
