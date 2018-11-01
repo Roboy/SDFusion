@@ -80,7 +80,7 @@ class MyCommandInputChangedHandler(adsk.core.InputChangedEventHandler):
     def __init__(self):
         super().__init__()
     def notify(self, args):
-        try:      
+        try:
             command = args.firingEvent.sender
             inputs = command.commandInputs
             # global model_name
@@ -102,8 +102,8 @@ class MyCommandInputChangedHandler(adsk.core.InputChangedEventHandler):
 #            opensim = tab1ChildInputs.itemById(commandId + '_opensim')
 #            caspr = tab1ChildInputs.itemById(commandId + '_caspr')
 #            darkroom = tab1ChildInputs.itemById(commandId + '_darkroom')
-#            remove_small_parts = tab1ChildInputs.itemById(commandId + '_remove_small_parts')            
-            
+#            remove_small_parts = tab1ChildInputs.itemById(commandId + '_remove_small_parts')
+
             eventArgs = adsk.core.InputChangedEventArgs.cast(args)
             inputs = eventArgs.inputs
             cmdInput = eventArgs.input
@@ -142,10 +142,10 @@ class MyCommandInputChangedHandler(adsk.core.InputChangedEventHandler):
 
                 # automatically increase VP number by 1
                 numberInput.value = str(int(number) + 1)
-                
+
         except:
             ui.messageBox('Failed:\n{}'.format(traceback.format_exc()))
-                        
+
 class MyCommandDestroyHandler(adsk.core.CommandEventHandler):
     def __init__(self):
         super().__init__()
@@ -169,7 +169,7 @@ class MyCommandDestroyHandler(adsk.core.CommandEventHandler):
                 point.name = "VP_motor"+ muscle + "_" + link + "_" + number
                 adsk.doEvents()
             # When the command is done, terminate the script
-            # This will release all globals which will remove all event handlers   
+            # This will release all globals which will remove all event handlers
             # global model_name
             # global sdf
             # global updateRigidGroups
@@ -178,12 +178,12 @@ class MyCommandDestroyHandler(adsk.core.CommandEventHandler):
             # global caspr
             # global darkroom
             # global remove_small_parts
-            
-            # returnvalue = adsk.core.Application.get().userInterface.messageBox("for real?", "export?", 3)    
+
+            # returnvalue = adsk.core.Application.get().userInterface.messageBox("for real?", "export?", 3)
             # if returnvalue == 2:
             eventArgs = adsk.core.CommandEventArgs.cast(args)
 
-            # Get the values from the command inputs. 
+            # Get the values from the command inputs.
             inputs = eventArgs.command.commandInputs
 
             try:
@@ -197,7 +197,7 @@ class MyCommandDestroyHandler(adsk.core.CommandEventHandler):
                 exporter.modelName = inputs.itemById(commandId + '_model_name').value
                 if exporter.askForExportDirectory():
                     exporter.createDiectoryStructure()
-            
+
                     if exporter.runCleanUp:
                         allComponents = exporter.design.allComponents
                         progressDialog = exporter.app.userInterface.createProgressDialog()
@@ -209,16 +209,16 @@ class MyCommandDestroyHandler(adsk.core.CommandEventHandler):
                                 for o in component.occurrences:
                                     progressDialog.message = "Removing " + component.name
                                     o.deleteMe()
-            
+
                         progressDialog.hide()
-            
+
                     if exporter.exportViaPoints:
                         exporter.traverseViaPoints()
                     # build sdf root node
                     exporter.root = ET.Element("sdf", version="1.6")
                     exporter.model = ET.Element("model", name=exporter.modelName)
                     exporter.root.append(exporter.model)
-            
+
                     allRigidGroups = exporter.getAllRigidGroups()
                     # exports all rigid groups to STL and SDF
                     for rig in allRigidGroups:
@@ -227,7 +227,7 @@ class MyCommandDestroyHandler(adsk.core.CommandEventHandler):
                             exporter.getAllBodiesInRigidGroup(name,rig)
                             if exporter.copyBodiesToNewComponentAndExport(name) == False:
                                 return
-            
+
                     exporter.exportJointsToSDF()
                     if exporter.exportViaPoints:
                         exporter.exportViaPointsToSDF()
@@ -236,7 +236,7 @@ class MyCommandDestroyHandler(adsk.core.CommandEventHandler):
                             exporter.exportCASPRbodies()
                     if exporter.exportLighthouseSensors:
                         exporter.exportLighthouseSensorsToYAML()
-            
+
                     exporter.finish()
             except:
                 exporter.finish()
@@ -246,8 +246,8 @@ class MyCommandDestroyHandler(adsk.core.CommandEventHandler):
         except:
             if ui:
                 ui.messageBox('Failed:\n{}'.format(traceback.format_exc()))
-                
-                
+
+
 class MyCommandCreatedHandler(adsk.core.CommandCreatedEventHandler):
     ui = None
     app = None
@@ -271,24 +271,24 @@ class MyCommandCreatedHandler(adsk.core.CommandCreatedEventHandler):
         self.rootOcc = self.rootComp.occurrences
     def notify(self, args):
         try:
-           
+
             cmd = args.command
             cmd.okButtonText = "Export to SDF"
-             # Connect to the input changed event.           
+             # Connect to the input changed event.
             onInputChanged = MyCommandInputChangedHandler()
             cmd.inputChanged.add(onInputChanged)
             handlers.append(onInputChanged)
-            
+
             onDestroy = MyCommandDestroyHandler()
             cmd.destroy.add(onDestroy)
             # Keep the handler referenced beyond this function
             handlers.append(onDestroy)
             inputs = cmd.commandInputs
             global commandId
-            
+
             tabCmdInput1 = inputs.addTabCommandInput(commandId + '_tab_1', 'SDFusion')
             tab1ChildInputs = tabCmdInput1.children
-            
+
             tab1ChildInputs.addStringValueInput(commandId + '_model_name', 'Model Name:', self.rootComp.name)
             tab1ChildInputs.addBoolValueInput(commandId + '_updateRigidGroups', 'updateRigidGroups', True, '', False)
             tab1ChildInputs.addBoolValueInput(commandId + '_sdf', 'sdf', True, '', True)
@@ -297,7 +297,7 @@ class MyCommandCreatedHandler(adsk.core.CommandCreatedEventHandler):
             tab1ChildInputs.addBoolValueInput(commandId + '_opensim', 'opensim', True, '', False)
             tab1ChildInputs.addBoolValueInput(commandId + '_darkroom', 'darkroom', True, '', False)
             tab1ChildInputs.addBoolValueInput(commandId + '_remove_small_parts', 'remove parts smaller 1g', True, '', False)
-            
+
 #            tabCmdInput2 = inputs.addTabCommandInput(commandId + '_tab_2', 'ViaPoints')
 #            # Get the CommandInputs object associated with the parent command.
 #            cmdInputs = adsk.core.CommandInputs.cast(tabCmdInput2.children)
@@ -316,13 +316,13 @@ class MyCommandCreatedHandler(adsk.core.CommandCreatedEventHandler):
 #            selectionInput = cmdInputs.addSelectionInput('selection{}'.format(numberViaPoints), 'Select', 'Select a circle for the via-point.')
 #            selectionInput.setSelectionLimits(1,1)
 #            selectionInput.addSelectionFilter("CircularEdges")
-                
-        
-            
+
+
+
         except:
             if ui:
                 ui.messageBox('Failed:\n{}'.format(traceback.format_exc()))
-                
+
 def run(context):
     ui = None
     try:
@@ -334,32 +334,32 @@ def run(context):
         global commandId
         global commandName
         global commandDescription
-        
+
         # Create command defintion
         cmdDef = ui.commandDefinitions.itemById(commandId)
         if not cmdDef:
             cmdDef = ui.commandDefinitions.addButtonDefinition(commandId, commandName, commandDescription)
-            
+
         # Add command created event
         onCommandCreated = MyCommandCreatedHandler()
         cmdDef.commandCreated.add(onCommandCreated)
         # Keep the handler referenced beyond this function
         handlers.append(onCommandCreated)
-        
+
         # Get all links the robot has
         global links
         links = getLinkNames()
 
         # Execute command
-        cmdDef.execute()            
+        cmdDef.execute()
 
         # Prevent this module from being terminate when the script returns, because we are waiting for event handlers to fire
         adsk.autoTerminate(False)
-        
+
     except:
         if ui:
             ui.messageBox('Failed:\n{}'.format(traceback.format_exc()))
-            
+
 ## A class to hold information about all muscles.
 class Plugin:
     myoMuscles = []
@@ -378,7 +378,7 @@ class ViaPoint:
     link = ""
     number = ""
     global_coordinates = []
-    
+
 class VisualMarker:
     coordinates = ""
     link = ""
@@ -591,21 +591,21 @@ class SDFExporter():
                 self.calculateCOM(name,occurrence.childOccurrences,currentLevel+1)
 
     def copyBodiesToNewComponentAndExport(self, name):
-        
+
 
         self.logfile.write("Body: " + name + "\n")
         progressDialog = self.app.userInterface.createProgressDialog()
         progressDialog.isBackgroundTranslucent = False
-        
+
 
         transformMatrix = adsk.core.Matrix3D.create()
         transformMatrix.translation = self.COM[name].asVector()
         self.transformMatrices[name] = transformMatrix
         print(self.transformMatrices[name].asArray())
-        
+
         if not self.rootOcc.itemByName("EXPORT_" + name + ":1") or self.updateRigidGroups:
             if self.rootOcc.itemByName("EXPORT_" + name + ":1"):
-                Sself.rootOcc.itemByName("EXPORT_" + name + ":1").deleteMe()
+                self.rootOcc.itemByName("EXPORT_" + name + ":1").deleteMe()
             new_component = self.rootOcc.addNewComponent(transformMatrix)
             new_component.component.name = "EXPORT_" + name
             group = [g for g in self.rootComp.allRigidGroups if g.name == "EXPORT_"+name][0]
@@ -620,10 +620,10 @@ class SDFExporter():
                     if progressDialog.wasCancelled:
                         progressDialog.hide()
                         return False
-            
+
         else:
-            new_component =  self.rootOcc.itemByName("EXPORT_" + name + ":1") 
-            
+            new_component =  self.rootOcc.itemByName("EXPORT_" + name + ":1")
+
         # for body in self.bodies[name]:
         #     new_body = body.copyToComponent(new_component)
         #     new_body.name = 'body'+str(i)
@@ -631,7 +631,7 @@ class SDFExporter():
         #     i = i+1
         #     if progressDialog.wasCancelled:
         #         progressDialog.hide()
-        #         return False 
+        #         return False
 
         self.exportToStl(new_component, name)
 
@@ -657,7 +657,7 @@ class SDFExporter():
         for com in allComponents:
             if com is not None:
                 allJoints = com.joints
-                
+
                 for joi in allJoints:
                     if joi is not None and joi.name[:6] == "EXPORT":
                         progressDialog.show("Joint", "Processing joints", 0, 30, 0)
@@ -727,7 +727,7 @@ class SDFExporter():
                                     myoMuscleList[0].viaPoints.append(viaPoint)
 
                                 # if myoNumber not in points:
-                                #     points[myoNumber] = adsk.core.ObjectCollection.create() 
+                                #     points[myoNumber] = adsk.core.ObjectCollection.create()
                                 # points[myoNumber].add(vec)
                             if point.name[:2] == "EE":
                                 eeInfo = point.name.split("_")
@@ -753,7 +753,7 @@ class SDFExporter():
                                 vm.coordinates = str(dist.x*0.01) + " " + str(dist.y*0.01) + " " + str(dist.z*0.01)
                                 vm.link = linkname
                                 VMs.append(vm)
-                                
+
             except:
                    self.ui.messageBox("Exception in " + point.name + '\n' +traceback.format_exc())
                    pass
@@ -912,16 +912,16 @@ class SDFExporter():
             model.append(bodySet)
 
 
-    
-    def traverseViaPoints(self): 
-        
+
+    def traverseViaPoints(self):
+
         app = adsk.core.Application.get()
-    
+
         try:
-            #current product            
+            #current product
             product = app.activeProduct
             #current component
-            rootComp = product.rootComponent 
+            rootComp = product.rootComponent
             #get sketches collection
             sketches = rootComp.sketches
             #get one sketch
@@ -931,14 +931,14 @@ class SDFExporter():
                 oneSketch = sketches.item(num)
                 oneSketch.deleteMe()
                 num -= 1
-           
+
         except:
             ui = app.userInterface
             if ui:
-                ui.messageBox('Failed:\n{}'.format(traceback.format_exc()))  
-        
+                ui.messageBox('Failed:\n{}'.format(traceback.format_exc()))
+
         allComponents = self.design.allComponents
-        sketches = adsk.fusion.Design.cast(adsk.core.Application.get().activeProduct).rootComponent.sketches 
+        sketches = adsk.fusion.Design.cast(adsk.core.Application.get().activeProduct).rootComponent.sketches
         xyPlane = self.rootComp.xYConstructionPlane
         points = {}
 
@@ -956,7 +956,7 @@ class SDFExporter():
 
                                 if myoNumber not in points:
 
-                                    points[myoNumber] = adsk.core.ObjectCollection.create() 
+                                    points[myoNumber] = adsk.core.ObjectCollection.create()
                                 points[myoNumber].add(vec)
             except:
                    self.ui.messageBox("Exception in " + point.name + '\n' +traceback.format_exc())
