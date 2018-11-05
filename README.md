@@ -1,5 +1,5 @@
 # SDFusion
-SDFusion is an add-on for Fusion 360 that can automatically generate an SDF description of the model as well as export meshes or additional markers. Examples can be found [here](https://github.com/CARDSflow/robots/tree/master).
+SDFusion is an add-on for **Fusion 360** that can automatically generate an SDF description of the model as well as export meshes or additional markers. Examples can be found [here](https://github.com/CARDSflow/robots/tree/master).
 
 Table of contents
 =================
@@ -30,7 +30,7 @@ Usage
 
 Links
 -----
-SDFusion requires for all the link to be defined as rigid groups in Fusion 360. The script will automatically:
+SDFusion requires all the links to be defined as rigid groups in Fusion 360. The script will automatically:
 * create and export an STL mesh of the link
 * calculate intertia and center of mass
 * generate a `model.sdf` file with all rigid groups as links
@@ -43,11 +43,13 @@ In order to export a joint, it has to be
 * defined between components that belong to different rigid groups
 * called `EXPORT_joint_name`
 
+*When creating a joint in Fusion 360, make sure you select the child first and then the parent.*
 Currently, fixed, prismatic, revolute, and ball joint types are supported.
 
 Tendons
 -------
-SDFusion was allows to export cable-driven robot models with multiple attachment points (via-points). The naming scheme defined for the viapoints is the following: `VP_motornumber_EXPORT_linkname_viapointnumber` (e.g. `VP_motor0_EXPORT_base_0`). You can either add them manually as construction points in Fusion 360 or use `ViaPoints` tab from the plugin.
+SDFusion allows to export cable-driven robot models with multiple attachment points (via-points). 
+The naming scheme defined for the viapoints is the following: `VP_motornumber_EXPORT_linkname_viapointnumber` (e.g. `VP_motor0_EXPORT_base_0`). You can either add them manually as construction points in Fusion 360 or use `ViaPoints` tab from the plugin.
 
 ![SDFusion viapoints tab](https://github.com/Roboy/SDFusion/blob/master/images/viapointstab.png "Viapoints tab")
 
@@ -64,12 +66,12 @@ Configs
 
 Configuration | Explanation
 --- | ---
-updateRigidGroups | By default the script will *cache* your rigid groups, as each of them is copied to a new components. This is done to save time for the subsequent exports, since this step is time consuming. If you add or remove components from a rigid group, check this box to update it.
+updateRigidGroups | by default the script will *cache* your rigid groups, as each of them is copied to a new component. This is done to save time for the subsequent exports, since this step is time consuming. If you add or remove components from a rigid group, check this box to update it.
 exportMeshes | creates a folder with `stl` meshes for each rigid group
 sdf | `model.sdf` is created
 viapoints |`model.sdf` will include descriptions of viapoints
-caspr | Only valid when viapoints are defined and checked; genreates [CASPR](https://github.com/darwinlau/CASPR) files with definitions of bodies and cables, that are required for controlling the robot
-opensim | generates a separate `.osim` file with muscle descriptions compatible with OpenSim
+caspr | only valid when viapoints are defined and checked; generates [CASPR](https://github.com/darwinlau/CASPR) files with definitions of bodies and cables, that are required for controlling the robot
+opensim | generates a separate `muscles.osim` file with muscle descriptions in OpenSim format
 darkroom | exports visual markers defined on the robot
 remove parts smaller 1g | deletes all components in the design with mass less than 1g
 self_collide | `<self_collide>false</self_collide>` tag in `model.sdf`
