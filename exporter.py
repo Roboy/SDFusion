@@ -21,6 +21,7 @@ class SDFExporter():
     model = None
 
     osimroot = None
+    cardsflowroot = None
 
     logfile = "log.txt"
 
@@ -44,6 +45,7 @@ class SDFExporter():
     exportViaPoints = False
     exportLighthouseSensors = False
     exportCASPR = False
+    exportCardsflow = True
     exportOpenSimMuscles = False
     self_collide = False
     dummy_inertia = False
@@ -92,6 +94,7 @@ class SDFExporter():
         self.exportMeshes = inputs.itemById(commandId + '_meshes').value
         self.exportViaPoints = inputs.itemById(commandId + '_viapoints').value
         self.exportCASPR = inputs.itemById(commandId + '_caspr').value
+        self.exportCardsflow = inputs.itemById(commandId + '_cardsflow').value
         self.exportOpenSimMuscles = inputs.itemById(commandId + '_opensim').value
         self.exportLighthouseSensors = inputs.itemById(commandId + '_darkroom').value
         self.modelName = inputs.itemById(commandId + '_model_name').value
@@ -344,22 +347,7 @@ class SDFExporter():
             self.model.append(plugin)
         #allMyoMuscles.sort(key=lambda x: x.number)
         # create myoMuscle nodes
-        for myo in self.myoMuscles:
-            myoMuscle = ET.Element("myoMuscle", name="motor"+myo.number)
-            plugin.append(myoMuscle)
-            allViaPoints = myo.viaPoints
-            allViaPoints.sort(key=lambda x: x.number)
-            link = ET.Element("link", name="default")
-            # create viaPoint nodes as children of links
-            for via in allViaPoints:
-                if link.get("name") != via.link:
-                    link = ET.Element("link", name=via.link)
-                    myoMuscle.append(link)
-                # TODO: export more types of viaPoints
-                viaPoint = ET.Element("viaPoint", type="FIXPOINT")
-                # TODO: rotate global coordinates into link frame coordinates
-                viaPoint.text=via.coordinates
-                link.append(viaPoint)
+        self.contructViapointTree(plugin)
 
         i = 0
         for ee in EEs:
@@ -375,6 +363,23 @@ class SDFExporter():
         if (self.exportOpenSimMuscles):
             self.exportOpenSimMusclesToOsim()
 
+    def contructViapointTree(self, rootElement):
+        for myo in self.myoMuscles:
+            myoMuscle = ET.Element("myoMuscle", name="motor"+myo.number)
+            rootElement.append(myoMuscle)
+            allViaPoints = myo.viaPoints
+            allViaPoints.sort(key=lambda x: x.number)
+            link = ET.Element("link", name="default")
+            # create viaPoint nodes as children of links
+            for via in allViaPoints:
+                if link.get("name") != via.link:
+                    link = ET.Element("link", name=via.link)
+                    myoMuscle.append(link)
+                # TODO: export more types of viaPoints
+                viaPoint = ET.Element("viaPoint", type="FIXPOINT")
+                # TODO: rotate global coordinates into link frame coordinates
+                viaPoint.text=via.coordinates
+                link.append(viaPoint)
 
     def traverseViaPoints(self):
 
@@ -478,6 +483,13 @@ class SDFExporter():
         if (self.osimroot != None):
             file = open(self.fileDir + '/muscles.osim', 'w')
             domxml = DOM.parseString(ET.tostring(self.osimroot))
+            pretty = domxml.toprettyxml()
+            file.write(pretty)
+            file.close()
+
+        if (self.cardsflowroot != None):
+            file = open(self.fileDir + '/cardsflow.xml', 'w')
+            domxml = DOM.parseString(ET.tostring(self.cardsflowroot))
             pretty = domxml.toprettyxml()
             file.write(pretty)
             file.close()
@@ -869,6 +881,10 @@ class SDFExporter():
 
         file.write(prettify(bodies_system))
         file.close()
+
+    def exportToCardsflow(self):
+        self.cardsflowroot = ET.Element("cardsflow")
+        self.contructViapointTree(self.cardsflowroot)
 
     def exportOpenSimMusclesToOsim(self):
         osimPlugin = ET.Element("plugin", filename="libgazebo_ros_muscle_interface.so", name="muscle_interface_plugin")

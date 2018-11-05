@@ -125,7 +125,7 @@ class SDFusionDestroyHandler(adsk.core.CommandEventHandler):
                             if rig is not None and rig.name[:6] == "EXPORT":
                                 name = rig.name[7:] # get rid of EXPORT_ tag
                                 if name in names: # ignoring duplicate export
-                                    exporter.logfile.write("WARNING: ignroing duplicate export of " + name + ", check your model for duplicate EXPORT Rigid Groups\n")
+                                    exporter.logfile.write("WARNING: ignoring duplicate export of " + name + ", check your model for duplicate EXPORT Rigid Groups\n")
                                     continue
                                 progressDialog0.message = "%v/%m " + name
                                 exporter.getAllBodiesInRigidGroup(name,rig)
@@ -136,35 +136,24 @@ class SDFusionDestroyHandler(adsk.core.CommandEventHandler):
                                 return
 
                         adsk.doEvents()
-                        # progressDialog1 = exporter.app.userInterface.createProgressDialog()
-                        # progressDialog1.isBackgroundTranslucent = False
-                        # progressDialog1.isCancelButtonShown = True
-                        # progressDialog1.show("Export Robot Desciptions", 'Robot Desciptions', 0, len(exporter.design.allComponents), 0)
 
                         exporter.exportJointsToSDF()
                         if exporter.exportViaPoints:
-                            # progressDialog1.message = "Exporing viapoints"
                             exporter.exportViaPointsToSDF()
-                            # if progressDialog1.wasCancelled:
-                            #             progressDialog1.hide()
-                            #             return
+
                             if exporter.exportCASPR: # exporting caspr only makes sense if we export viaPoints aswell
-                                # progressDialog1.message = "Exporting CASPR"
                                 exporter.exportCASPRcables()
                                 exporter.exportCASPRbodies()
-                                # if progressDialog1.wasCancelled:
-                                #         progressDialog1.hide()
-                                #         return
+
+                            if exporter.exportCardsflow:
+                                exporter.exportToCardsflow()
+
                         if exporter.exportLighthouseSensors:
-                            # progressDialog1.message = "Exporting lighthouse sensors"
                             exporter.exportLighthouseSensorsToYAML()
-                            # if progressDialog1.wasCancelled:
-                            #         progressDialog1.hide()
-                            #         return
 
                         progressDialog0.hide()
                         adsk.doEvents()
-                        # progressDialog1.hide()
+
                         exporter.finish()
 
                 except:
@@ -235,6 +224,7 @@ class SDFusionCreatedHandler(adsk.core.CommandCreatedEventHandler):
         tab1ChildInputs.addBoolValueInput(commandId + '_sdf', 'sdf', True, '', True)
         tab1ChildInputs.addBoolValueInput(commandId + '_viapoints', 'viapoints', True, '', True)
         tab1ChildInputs.addBoolValueInput(commandId + '_caspr', 'caspr', True, '', False)
+        tab1ChildInputs.addBoolValueInput(commandId + '_cardsflow', 'CARDSflow', True, '', True)
         tab1ChildInputs.addBoolValueInput(commandId + '_opensim', 'opensim', True, '', False)
         tab1ChildInputs.addBoolValueInput(commandId + '_darkroom', 'darkroom', True, '', False)
         tab1ChildInputs.addBoolValueInput(commandId + '_remove_small_parts', 'remove parts smaller 1g', True, '', False)
