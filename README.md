@@ -19,7 +19,7 @@ Installation
 1. Clone or download the SDFusion repository
   `git clone https://github.com/Roboy/SDFusion.git`
 2. Open `Scripts and Add-Ins` dialog in Fusion 360 by pressing `Shift+S`
-3. Click on the `Add-Ins` tab and press the greep plus icon on the top
+3. Click on the `Add-Ins` tab and press the green plus icon on the top
 4. Navigate to the SDFusion folder and select it.
 You should be able to run/debug the add-in from the `Scripts and Add-Ins` dialog now:
 
@@ -52,6 +52,7 @@ SDFusion was allows to export cable-driven robot models with multiple attachment
 ![SDFusion viapoints tab](https://github.com/Roboy/SDFusion/blob/master/images/viapointstab.png "Viapoints tab")
 
 Here, you have to specify the motor number and the link name. Press `Select` and the viapont number will increment automatically as you click on *circular edges* in your design. The newly created attachement point are listed under the `Construction` in the Fusion 360 browser. 
+
 ![SDFusion viapoints](https://github.com/Roboy/SDFusion/blob/master/images/viapoints.png "Attachment points")
 
 Refer to [CARDSflow](https://github.com/CARDSflow/CARDSflow) to learn about possible options to control your cable robot. 
@@ -62,6 +63,7 @@ Configs
 ![SDFusion configs](https://github.com/Roboy/SDFusion/blob/master/images/configs.png "SDFusion configs")
 
 Configuration | Explanation
+--- | ---
 updateRigidGroups | By default the script will *cache* your rigid groups, as each of them is copied to a new components. This is done to save time for the subsequent exports, since this step is time consuming. If you add or remove components from a rigid group, check this box to update it.
 exportMeshes | creates a folder with `stl` meshes for each rigid group
 sdf | `model.sdf` is created
