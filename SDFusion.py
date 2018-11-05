@@ -141,6 +141,12 @@ class MyCommandInputChangedHandler(adsk.core.InputChangedEventHandler):
 
         except:
             ui.messageBox('Failed:\n{}'.format(traceback.format_exc()))
+            
+class MyCommandExecuteHandler(adsk.core.CommandEventHandler):
+    def __init__(self):
+        super().__init__()
+    def notify(self, args):
+        ui.messageBox('On execute')
 
 class MyCommandDestroyHandler(adsk.core.CommandEventHandler):
     def __init__(self):
@@ -178,100 +184,101 @@ class MyCommandDestroyHandler(adsk.core.CommandEventHandler):
             # returnvalue = adsk.core.Application.get().userInterface.messageBox("for real?", "export?", 3)
             # if returnvalue == 2:
             eventArgs = adsk.core.CommandEventArgs.cast(args)
+            if (eventArgs.terminationReason == 1):
 
-            # Get the values from the command inputs.
-            inputs = eventArgs.command.commandInputs
-
-            try:
-                exporter = SDFExporter()
-                exporter.runCleanUp = inputs.itemById(commandId + '_remove_small_parts').value
-                exporter.updateRigidGroups = inputs.itemById(commandId + '_updateRigidGroups').value
-                exporter.exportMeshes = inputs.itemById(commandId + '_meshes').value
-                exporter.exportViaPoints = inputs.itemById(commandId + '_viapoints').value
-                exporter.exportCASPR = inputs.itemById(commandId + '_caspr').value
-                exporter.exportOpenSimMuscles = inputs.itemById(commandId + '_opensim').value
-                exporter.exportLighthouseSensors = inputs.itemById(commandId + '_darkroom').value
-                exporter.modelName = inputs.itemById(commandId + '_model_name').value
-                if exporter.askForExportDirectory():
-                    exporter.createDiectoryStructure()
-
-                    if exporter.runCleanUp:
-                        allComponents = exporter.design.allComponents
-                        progressDialog = exporter.app.userInterface.createProgressDialog()
-                        progressDialog.isBackgroundTranslucent = False
-                        progressDialog.show("Clean up", 'Looking for small components', 0, len(allComponents), 0)
-                        for component in allComponents:
-                            progressDialog.progressValue += 1
-                            if component.physicalProperties.mass < 0.001:
-                                for o in component.occurrences:
-                                    progressDialog.message = "Removing " + component.name
-                                    o.deleteMe()
-
-                        progressDialog.hide()
-
-                    if exporter.exportViaPoints:
-                        exporter.traverseViaPoints()
-                    # build sdf root node
-                    exporter.root = ET.Element("sdf", version="1.6")
-                    exporter.model = ET.Element("model", name=exporter.modelName)
-                    exporter.root.append(exporter.model)
-
-                    allRigidGroups = exporter.getAllRigidGroups()
-
-                    # exports all rigid groups to STL and SDF
-                    names = []
-                    progressDialog0 = exporter.app.userInterface.createProgressDialog()
-                    progressDialog0.isBackgroundTranslucent = False
-                    progressDialog0.show("test", 'Copy Bodies to new component: %v/%m', 0, 7, 1)
-                    for rig in allRigidGroups:
-                        progressDialog0.progressValue += 1
-                        if rig is not None and rig.name[:6] == "EXPORT":
-                            name = rig.name[7:] # get rid of EXPORT_ tag
-                            if name in names: # ignoring duplicate export
-                                exporter.logfile.write("WARNING: ignroing duplicate export of " + name + ", check your model for duplicate EXPORT Rigid Groups\n")
-                                continue
-                            progressDialog0.message = "%v/%m " + name
-                            exporter.getAllBodiesInRigidGroup(name,rig)
-                            if exporter.copyBodiesToNewComponentAndExport(name) == False:
-                                return
-                        if progressDialog0.wasCancelled:
-                                progressDialog0.hide()
-                                return
-                    
-
-                    progressDialog1 = exporter.app.userInterface.createProgressDialog()
-                    progressDialog1.isBackgroundTranslucent = False
-                    progressDialog1.isCancelButtonShown = True
-                    progressDialog1.show("Export Robot Desciptions", 'Robot Desciptions', 0, len(exporter.design.allComponents), 0)
-
-                    exporter.exportJointsToSDF()
-                    if exporter.exportViaPoints:
-                        progressDialog1.message = "Exporing viapoints"
-                        exporter.exportViaPointsToSDF()
-                        if progressDialog1.wasCancelled:
-                                    progressDialog1.hide()
+                # Get the values from the command inputs.
+                inputs = eventArgs.command.commandInputs
+    
+                try:
+                    exporter = SDFExporter()
+                    exporter.runCleanUp = inputs.itemById(commandId + '_remove_small_parts').value
+                    exporter.updateRigidGroups = inputs.itemById(commandId + '_updateRigidGroups').value
+                    exporter.exportMeshes = inputs.itemById(commandId + '_meshes').value
+                    exporter.exportViaPoints = inputs.itemById(commandId + '_viapoints').value
+                    exporter.exportCASPR = inputs.itemById(commandId + '_caspr').value
+                    exporter.exportOpenSimMuscles = inputs.itemById(commandId + '_opensim').value
+                    exporter.exportLighthouseSensors = inputs.itemById(commandId + '_darkroom').value
+                    exporter.modelName = inputs.itemById(commandId + '_model_name').value
+                    if exporter.askForExportDirectory():
+                        exporter.createDiectoryStructure()
+    
+                        if exporter.runCleanUp:
+                            allComponents = exporter.design.allComponents
+                            progressDialog = exporter.app.userInterface.createProgressDialog()
+                            progressDialog.isBackgroundTranslucent = False
+                            progressDialog.show("Clean up", 'Looking for small components', 0, len(allComponents), 0)
+                            for component in allComponents:
+                                progressDialog.progressValue += 1
+                                if component.physicalProperties.mass < 0.001:
+                                    for o in component.occurrences:
+                                        progressDialog.message = "Removing " + component.name
+                                        o.deleteMe()
+    
+                            progressDialog.hide()
+    
+                        if exporter.exportViaPoints:
+                            exporter.traverseViaPoints()
+                        # build sdf root node
+                        exporter.root = ET.Element("sdf", version="1.6")
+                        exporter.model = ET.Element("model", name=exporter.modelName)
+                        exporter.root.append(exporter.model)
+    
+                        allRigidGroups = exporter.getAllRigidGroups()
+    
+                        # exports all rigid groups to STL and SDF
+                        names = []
+                        progressDialog0 = exporter.app.userInterface.createProgressDialog()
+                        progressDialog0.isBackgroundTranslucent = False
+                        progressDialog0.show("test", 'Copy Bodies to new component: %v/%m', 0, 7, 1)
+                        for rig in allRigidGroups:
+                            progressDialog0.progressValue += 1
+                            if rig is not None and rig.name[:6] == "EXPORT":
+                                name = rig.name[7:] # get rid of EXPORT_ tag
+                                if name in names: # ignoring duplicate export
+                                    exporter.logfile.write("WARNING: ignroing duplicate export of " + name + ", check your model for duplicate EXPORT Rigid Groups\n")
+                                    continue
+                                progressDialog0.message = "%v/%m " + name
+                                exporter.getAllBodiesInRigidGroup(name,rig)
+                                if exporter.copyBodiesToNewComponentAndExport(name) == False:
                                     return
-                        if exporter.exportCASPR: # exporting caspr only makes sense if we export viaPoints aswell
-                            progressDialog1.message = "Exporting CASPR"
-                            exporter.exportCASPRcables()
-                            exporter.exportCASPRbodies()
+                            if progressDialog0.wasCancelled:
+                                    progressDialog0.hide()
+                                    return
+                        
+    
+                        progressDialog1 = exporter.app.userInterface.createProgressDialog()
+                        progressDialog1.isBackgroundTranslucent = False
+                        progressDialog1.isCancelButtonShown = True
+                        progressDialog1.show("Export Robot Desciptions", 'Robot Desciptions', 0, len(exporter.design.allComponents), 0)
+    
+                        exporter.exportJointsToSDF()
+                        if exporter.exportViaPoints:
+                            progressDialog1.message = "Exporing viapoints"
+                            exporter.exportViaPointsToSDF()
+                            if progressDialog1.wasCancelled:
+                                        progressDialog1.hide()
+                                        return
+                            if exporter.exportCASPR: # exporting caspr only makes sense if we export viaPoints aswell
+                                progressDialog1.message = "Exporting CASPR"
+                                exporter.exportCASPRcables()
+                                exporter.exportCASPRbodies()
+                                if progressDialog1.wasCancelled:
+                                        progressDialog1.hide()
+                                        return
+                        if exporter.exportLighthouseSensors:
+                            progressDialog1.message = "Exporting lighthouse sensors"
+                            exporter.exportLighthouseSensorsToYAML()
                             if progressDialog1.wasCancelled:
                                     progressDialog1.hide()
                                     return
-                    if exporter.exportLighthouseSensors:
-                        progressDialog1.message = "Exporting lighthouse sensors"
-                        exporter.exportLighthouseSensorsToYAML()
-                        if progressDialog1.wasCancelled:
-                                progressDialog1.hide()
-                                return
-
-                    progressDialog0.hide()
-                    progressDialog1.hide()
+    
+                        progressDialog0.hide()
+                        progressDialog1.hide()
+                        exporter.finish()
+                except:
                     exporter.finish()
-            except:
-                exporter.finish()
-                if exporter.ui:
-                    exporter.ui.messageBox('Failed:\n{}'.format(traceback.format_exc()))
+                    if exporter.ui:
+                        exporter.ui.messageBox('Failed:\n{}'.format(traceback.format_exc()))
             adsk.terminate()
         except:
             if ui:
@@ -305,6 +312,11 @@ class MyCommandCreatedHandler(adsk.core.CommandCreatedEventHandler):
             cmd = args.command
             cmd.okButtonText = "Export to SDF"
              # Connect to the input changed event.
+            
+            onExecute = MyCommandExecuteHandler()
+            cmd.execute.add(onExecute)
+            handlers.append(onExecute)
+            
             onInputChanged = MyCommandInputChangedHandler()
             cmd.inputChanged.add(onInputChanged)
             handlers.append(onInputChanged)
@@ -758,7 +770,7 @@ class SDFExporter():
                             if point.name[:2] == "VP":
                                 viaPointInfo = point.name.split("_")
                                 vec = adsk.core.Point3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
-                                #vec.transformBy(com.occurrences[0].transform)
+                                vec.transformBy(com.occurrences[0].transform)
                                 viaPoint.global_coordinates = [vec.x,vec.y,vec.z]
                                 linkname = '_'.join(viaPointInfo[3:-1])
                                 origin = self.transformMatrices[linkname].translation
