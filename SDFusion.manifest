@@ -2,9 +2,9 @@
 	"autodeskProduct":	"Fusion360",
 	"type":	"addin",
 	"id":	"fbde49ad-e490-41fa-84c3-3733ef03d20c",
-	"author":	"Anna Sesselmann, Simon Trendel",
+	"author":	"Anna Sesselmann, Simon Trendel, Alona Kharchenko",
 	"description":	{
-		"":	""
+		"":	"Fusion 360 to SDF format exporter"
 	},
 	"version":	"",
 	"runOnStartup":	false,
