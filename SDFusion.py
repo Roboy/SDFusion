@@ -35,7 +35,7 @@ darkroom = None
 remove_small_parts = None
 self_collide = None
 dummy_inertia = None
-cache = None
+#cache = None
 
 ## global variable to keep track of how many via points are created
 numberViaPoints = 0
@@ -332,7 +332,7 @@ class MyCommandCreatedHandler(adsk.core.CommandCreatedEventHandler):
             tabCmdInput1 = inputs.addTabCommandInput(commandId + '_tab_1', 'SDFusion')
             tab1ChildInputs = tabCmdInput1.children
 
-            tab1ChildInputs.addStringValueInput(commandId + '_model_name', 'Model Name:', self.rootComp.name)
+            tab1ChildInputs.addStringValueInput(commandId + '_model_name', 'Model Name:', '')#self.rootComp.name)
             tab1ChildInputs.addBoolValueInput(commandId + '_updateRigidGroups', 'updateRigidGroups', True, '', False)
             tab1ChildInputs.addBoolValueInput(commandId + '_meshes', 'exportMeshes', True, '', True)
             tab1ChildInputs.addBoolValueInput(commandId + '_sdf', 'sdf', True, '', True)
@@ -343,7 +343,7 @@ class MyCommandCreatedHandler(adsk.core.CommandCreatedEventHandler):
             tab1ChildInputs.addBoolValueInput(commandId + '_remove_small_parts', 'remove parts smaller 1g', True, '', False)
             tab1ChildInputs.addBoolValueInput(commandId + '_self_collide', 'self_collide', True, '', False)
             tab1ChildInputs.addBoolValueInput(commandId + '_dummy_inertia', 'dummy_inertia', True, '', False)
-            tab1ChildInputs.addBoolValueInput(commandId + '_cache', 'cache', True, '', True)
+            #tab1ChildInputs.addBoolValueInput(commandId + '_cache', 'cache', True, '', True)
 
             tabCmdInput2 = inputs.addTabCommandInput(commandId + '_tab_2', 'ViaPoints')
             # Get the CommandInputs object associated with the parent command.
@@ -478,7 +478,7 @@ class SDFExporter():
     exportOpenSimMuscles = False
     self_collide = False
     dummy_inertia = False
-    cache = False
+    #cache = False
     updateRigidGroups = False
 
     ## Global variable to specify the file name of the plugin loaded by the SDF.
