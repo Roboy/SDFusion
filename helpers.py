@@ -1,7 +1,6 @@
 import xml.etree.ElementTree as ET
 import xml.dom.minidom as DOM
 
-
 ## A class to hold information about all viaPoints of a muscle.
 class MyoMuscle:
     number = ""
@@ -18,11 +17,17 @@ class ViaPoint:
     global_coordinates = []
     motor = ''
     edge = None
+    def __init__(self, coordinates='', motor='', link='', number='', edge='', global_coordinates=[]):
+        self.motor = motor
+        self.link = link
+        self.number = number
+        self.edge = edge
+        self.coordinates = coordinates
+        self.global_coordinates = global_coordinates
 
 class VisualMarker:
     coordinates = ""
     link = ""
-
 
 def getRobotLinkNames(rootComp):
     # Get all links of the robot (all rigid groups)

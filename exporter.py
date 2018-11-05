@@ -86,6 +86,16 @@ class SDFExporter():
             return False
         return True
 
+    def updateFlags(self, inputs, commandId):
+        self.runCleanUp = inputs.itemById(commandId + '_remove_small_parts').value
+        self.updateRigidGroups = inputs.itemById(commandId + '_updateRigidGroups').value
+        self.exportMeshes = inputs.itemById(commandId + '_meshes').value
+        self.exportViaPoints = inputs.itemById(commandId + '_viapoints').value
+        self.exportCASPR = inputs.itemById(commandId + '_caspr').value
+        self.exportOpenSimMuscles = inputs.itemById(commandId + '_opensim').value
+        self.exportLighthouseSensors = inputs.itemById(commandId + '_darkroom').value
+        self.modelName = inputs.itemById(commandId + '_model_name').value
+
     def createDiectoryStructure(self):
         try:
             os.makedirs(self.fileDir)
@@ -99,6 +109,19 @@ class SDFExporter():
         except OSError as e:
             if e.errno != errno.EEXIST:
                 raise
+
+    def removeSmallParts(self):
+        allComponents = self.design.allComponents
+        progressDialog = self.app.userInterface.createProgressDialog()
+        progressDialog.isBackgroundTranslucent = False
+        progressDialog.show("Clean up", 'Looking for small components', 0, len(allComponents), 0)
+        for component in allComponents:
+            progressDialog.progressValue += 1
+            if component.physicalProperties.mass < 0.001:
+                for o in component.occurrences:
+                    progressDialog.message = "Removing " + component.name
+                    o.deleteMe()
+        progressDialog.hide()
 
     def getAllRigidGroups(self):
         allRigidGroups = self.rootComp.allRigidGroups
@@ -337,8 +360,7 @@ class SDFExporter():
                 # TODO: rotate global coordinates into link frame coordinates
                 viaPoint.text=via.coordinates
                 link.append(viaPoint)
-        #for pointSet in points.values():
-        #    sketch.sketchCurves.sketchFittedSplines.add(pointSet)
+
         i = 0
         for ee in EEs:
             endeffector = ET.Element("endEffector", name="endeffector"+str(i), link=ee.link)
@@ -349,123 +371,9 @@ class SDFExporter():
             marker = ET.Element("marker", link=vm.link)
             marker.text = vm.coordinates
             plugin.append(marker)
+
         if (self.exportOpenSimMuscles):
-            osimPlugin = ET.Element("plugin", filename="libgazebo_ros_muscle_interface.so", name="muscle_interface_plugin")
-            self.model.append(osimPlugin)
-            osimMuscles = ET.Element("muscles")
-            osimMuscles.text = "model://"+self.model.get("name")+"/muscles.osim"
-            self.model.append(osimMuscles)
-            self.osimroot = ET.Element("OpenSimDocument", Version="30000")
-            model = ET.Element("Model")
-            forceSet = ET.Element("ForceSet")
-            objects = ET.Element("objects")
-            forceSet.append(objects)
-            model.append(forceSet)
-            self.osimroot.append(model)
-
-            for myo in self.myoMuscles:
-                # TODO add bodies
-                muscle = ET.Element("Thelen2003Muscle", name="muscle" + myo.number)
-                objects.append(muscle)
-                gPath = ET.Element("GeometryPath")
-                ppSet = ET.Element("PathPointSet")
-                ppSetObjects = ET.Element("objects")
-                ppSet.append(ppSetObjects)
-                muscle.append(gPath)
-                gPath.append(ppSet)
-                pwSet = ET.Element("PathWrapSet")
-                pwObjects = ET.Element("objects")
-                pwSet.append(pwObjects)
-                # pWrap = ET.Element("PathWrap",name="PathWrap_"+myo.number)
-                # wrap_object = ET.Element("wrap_object") # TODO fix objects in pWrap
-                # wrap_object.text = "WrapJoint"
-                # pWrap.append(wrap_object)
-                # method = ET.Element("method")
-                # method.text = "midpoint"
-                # pWrap.append(method)
-                # pwObjects.append(pWrap)
-                gPath.append(pwSet)
-                max_isometric_force = ET.Element("max_isometric_force")
-                optimal_fiber_length = ET.Element("optimal_fiber_length")
-                tendon_slack_length = ET.Element("tendon_slack_length")
-                pennation_angle = ET.Element("pennation_angle")
-                activation_time_constant = ET.Element("activation_time_constant")
-                deactivation_time_constant = ET.Element("deactivation_time_constant")
-                Vmax = ET.Element("Vmax")
-                Vmax0 = ET.Element("Vmax0")
-                FmaxTendonStrain = ET.Element("FmaxTendonStrain")
-                FmaxMuscleStrain = ET.Element("FmaxMuscleStrain")
-                KshapeActive = ET.Element("KshapeActive")
-                KshapePassive = ET.Element("KshapePassive")
-                damping = ET.Element("damping")
-                Af = ET.Element("Af")
-                Flen = ET.Element("Flen")
-
-                max_isometric_force.text = str(546.00000000)
-                optimal_fiber_length.text = str(0.05350000)
-                tendon_slack_length.text = str( 0.07800000)
-                pennation_angle.text = str(0.00000000)
-                activation_time_constant.text = str(0.01000000)
-                deactivation_time_constant.text = str(0.04000000)
-                Vmax.text = str(10.00000000)
-                Vmax0.text = str(5.00000000)
-                FmaxTendonStrain.text = str(0.03300000)
-                FmaxMuscleStrain.text = str(0.60000000)
-                KshapeActive.text = str(0.50000000)
-                KshapePassive.text = str(4.00000000)
-                damping.text = str(0.05000000)
-                Af.text = str(0.30000000)
-                Flen.text = str(1.80000000)
-
-                # max_isometric_force.text=str(546.0)
-                # stiffness.text = str(100000)
-                # dissipation.text = str(1)
-
-                muscle.append(max_isometric_force)
-                muscle.append(optimal_fiber_length)
-                muscle.append(tendon_slack_length)
-                muscle.append(pennation_angle)
-                muscle.append(activation_time_constant)
-                muscle.append(deactivation_time_constant)
-                muscle.append(Vmax)
-                muscle.append(Vmax0)
-                muscle.append(FmaxTendonStrain)
-                muscle.append(FmaxMuscleStrain)
-                muscle.append(KshapeActive)
-                muscle.append(KshapePassive)
-                muscle.append(damping)
-                muscle.append(Af)
-                muscle.append(Flen)
-
-                # muscle.append(stiffness)
-                # muscle.append(dissipation)
-
-                allViaPoints = myo.viaPoints
-                allViaPoints.sort(key=lambda x: x.number)
-
-                # dist = 0
-                # for i in range(len(allViaPoints)-1):
-                #     squared_dist = (allViaPoints[i].global_coordinates[0] - allViaPoints[i+1].global_coordinates[0])**2 + (allViaPoints[i].global_coordinates[1] - allViaPoints[i+1].global_coordinates[1])**2 + (allViaPoints[i].global_coordinates[2] - allViaPoints[i+1].global_coordinates[2])**2
-                #     # np.sum(allViaPoints[i].global_coordinates**2 + allViaPoints[i+1].global_coordinates**2, axis=0)
-                #     dist += sqrt(squared_dist)
-
-                # tendon_slack_length.text = str(0.02*dist)
-                # optimal_fiber_length.text = str(dist*0.98)#str(0.14108090847730637)  # TODO calculate optiomal fiber length
-
-                selectedViaPoints = [allViaPoints[0], allViaPoints[-1]]
-                for point in selectedViaPoints:
-                    pathPoint = ET.Element("PathPoint", name=muscle.get("name")+"_node"+point.number[0])
-                    location = ET.Element("location")
-                    location.text = point.coordinates
-                    body = ET.Element("body")
-                    body.text = point.link
-                    pathPoint.append(location)
-                    pathPoint.append(body)
-                    ppSetObjects.append(pathPoint)
-            bodySet = ET.Element("BodySet", name="")
-            bodySetObjects = ET.Element("objects")
-            bodySet.append(bodySetObjects)
-            model.append(bodySet)
+            self.exportOpenSimMusclesToOsim()
 
 
     def traverseViaPoints(self):
@@ -961,3 +869,121 @@ class SDFExporter():
 
         file.write(prettify(bodies_system))
         file.close()
+
+    def exportOpenSimMusclesToOsim(self):
+        osimPlugin = ET.Element("plugin", filename="libgazebo_ros_muscle_interface.so", name="muscle_interface_plugin")
+        self.model.append(osimPlugin)
+        osimMuscles = ET.Element("muscles")
+        osimMuscles.text = "model://" + self.model.get("name") + "/muscles.osim"
+        self.model.append(osimMuscles)
+        self.osimroot = ET.Element("OpenSimDocument", Version="30000")
+        model = ET.Element("Model")
+        forceSet = ET.Element("ForceSet")
+        objects = ET.Element("objects")
+        forceSet.append(objects)
+        model.append(forceSet)
+        self.osimroot.append(model)
+
+        for myo in self.myoMuscles:
+            # TODO add bodies
+            muscle = ET.Element("Thelen2003Muscle", name="muscle" + myo.number)
+            objects.append(muscle)
+            gPath = ET.Element("GeometryPath")
+            ppSet = ET.Element("PathPointSet")
+            ppSetObjects = ET.Element("objects")
+            ppSet.append(ppSetObjects)
+            muscle.append(gPath)
+            gPath.append(ppSet)
+            pwSet = ET.Element("PathWrapSet")
+            pwObjects = ET.Element("objects")
+            pwSet.append(pwObjects)
+            # pWrap = ET.Element("PathWrap",name="PathWrap_"+myo.number)
+            # wrap_object = ET.Element("wrap_object") # TODO fix objects in pWrap
+            # wrap_object.text = "WrapJoint"
+            # pWrap.append(wrap_object)
+            # method = ET.Element("method")
+            # method.text = "midpoint"
+            # pWrap.append(method)
+            # pwObjects.append(pWrap)
+            gPath.append(pwSet)
+            max_isometric_force = ET.Element("max_isometric_force")
+            optimal_fiber_length = ET.Element("optimal_fiber_length")
+            tendon_slack_length = ET.Element("tendon_slack_length")
+            pennation_angle = ET.Element("pennation_angle")
+            activation_time_constant = ET.Element("activation_time_constant")
+            deactivation_time_constant = ET.Element("deactivation_time_constant")
+            Vmax = ET.Element("Vmax")
+            Vmax0 = ET.Element("Vmax0")
+            FmaxTendonStrain = ET.Element("FmaxTendonStrain")
+            FmaxMuscleStrain = ET.Element("FmaxMuscleStrain")
+            KshapeActive = ET.Element("KshapeActive")
+            KshapePassive = ET.Element("KshapePassive")
+            damping = ET.Element("damping")
+            Af = ET.Element("Af")
+            Flen = ET.Element("Flen")
+
+            max_isometric_force.text = str(546.00000000)
+            optimal_fiber_length.text = str(0.05350000)
+            tendon_slack_length.text = str(0.07800000)
+            pennation_angle.text = str(0.00000000)
+            activation_time_constant.text = str(0.01000000)
+            deactivation_time_constant.text = str(0.04000000)
+            Vmax.text = str(10.00000000)
+            Vmax0.text = str(5.00000000)
+            FmaxTendonStrain.text = str(0.03300000)
+            FmaxMuscleStrain.text = str(0.60000000)
+            KshapeActive.text = str(0.50000000)
+            KshapePassive.text = str(4.00000000)
+            damping.text = str(0.05000000)
+            Af.text = str(0.30000000)
+            Flen.text = str(1.80000000)
+
+            # max_isometric_force.text=str(546.0)
+            # stiffness.text = str(100000)
+            # dissipation.text = str(1)
+
+            muscle.append(max_isometric_force)
+            muscle.append(optimal_fiber_length)
+            muscle.append(tendon_slack_length)
+            muscle.append(pennation_angle)
+            muscle.append(activation_time_constant)
+            muscle.append(deactivation_time_constant)
+            muscle.append(Vmax)
+            muscle.append(Vmax0)
+            muscle.append(FmaxTendonStrain)
+            muscle.append(FmaxMuscleStrain)
+            muscle.append(KshapeActive)
+            muscle.append(KshapePassive)
+            muscle.append(damping)
+            muscle.append(Af)
+            muscle.append(Flen)
+
+            # muscle.append(stiffness)
+            # muscle.append(dissipation)
+
+            allViaPoints = myo.viaPoints
+            allViaPoints.sort(key=lambda x: x.number)
+
+            # dist = 0
+            # for i in range(len(allViaPoints)-1):
+            #     squared_dist = (allViaPoints[i].global_coordinates[0] - allViaPoints[i+1].global_coordinates[0])**2 + (allViaPoints[i].global_coordinates[1] - allViaPoints[i+1].global_coordinates[1])**2 + (allViaPoints[i].global_coordinates[2] - allViaPoints[i+1].global_coordinates[2])**2
+            #     # np.sum(allViaPoints[i].global_coordinates**2 + allViaPoints[i+1].global_coordinates**2, axis=0)
+            #     dist += sqrt(squared_dist)
+
+            # tendon_slack_length.text = str(0.02*dist)
+            # optimal_fiber_length.text = str(dist*0.98)#str(0.14108090847730637)  # TODO calculate optiomal fiber length
+
+            selectedViaPoints = [allViaPoints[0], allViaPoints[-1]]
+            for point in selectedViaPoints:
+                pathPoint = ET.Element("PathPoint", name=muscle.get("name") + "_node" + point.number[0])
+                location = ET.Element("location")
+                location.text = point.coordinates
+                body = ET.Element("body")
+                body.text = point.link
+                pathPoint.append(location)
+                pathPoint.append(body)
+                ppSetObjects.append(pathPoint)
+        bodySet = ET.Element("BodySet", name="")
+        bodySetObjects = ET.Element("objects")
+        bodySet.append(bodySetObjects)
+        model.append(bodySet)
