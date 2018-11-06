@@ -296,7 +296,7 @@ class SDFExporter():
                             if point.name[:2] == "VP":
                                 viaPointInfo = point.name.split("_")
                                 vec = adsk.core.Point3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
-                                vec.transformBy(com.occurrences[0].transform)
+                                # vec.transformBy(com.occurrences[0].transform)
                                 viaPoint.global_coordinates = [vec.x,vec.y,vec.z]
                                 linkname = '_'.join(viaPointInfo[3:-1])
                                 origin = self.transformMatrices[linkname].translation
