@@ -223,7 +223,7 @@ class SDFExporter():
             new_component = self.rootOcc.addNewComponent(self.transformMatrices[name])
             new_component.component.name = "EXPORT_" + name
             group = [g for g in self.rootComp.allRigidGroups if g.name == "EXPORT_"+name][0]
-            progressDialog.show(name, 'Copy Bodies to new component, again...: %v/%m', 0, len(group.occurrences), 1)
+            progressDialog.show(name, 'Exporting STL: %v/%m', 0, len(group.occurrences), 1)
             i = 0
             for occurrence in group.occurrences:
                 for b in occurrence.bRepBodies:
