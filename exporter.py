@@ -149,40 +149,35 @@ class SDFExporter():
             if occurrence.childOccurrences:
                 self.getBodies(name,occurrence.childOccurrences,currentLevel+1)
 
-    def getCOM(self, name, occurrences):
+    def getCOM(self, name, component):
         # check if a COM point is defined
-        self.logfile.write("COM: " + name + "\n")
-        allComponents = self.design.allComponents
-        self.calculateCOMFlag = True
-        for com in allComponents:
+        calculateCOM = True
+        for occurrence in self.rootOcc:
+            com = occurrence.component
             if com is not None:
                 allConstructionPoints = com.constructionPoints
                 for point in allConstructionPoints:
                     if point is not None:
                         if point.name[:3] == "COM" and point.name[4:] == name:
+                            calculateCOM = False
                             self.COM[name] = adsk.core.Point3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
-                            self.calculateCOMFlag = False
-        # if not, we calculate it
-        self.calculateCOM(name, occurrences, 0)
-        return False
-
-    def calculateCOM(self, name, occurrences, currentLevel):
-        for occurrence in occurrences:
-            physicalProperties = occurrence.component.getPhysicalProperties()
-            self.totalMass[name] = self.totalMass[name] + physicalProperties.mass
-            if self.calculateCOMFlag == True:
-                self.number_of_coms[name] = self.number_of_coms[name] + 1
-                centerOfMass = physicalProperties.centerOfMass
-                #print(centerOfMass.asArray())
-                centerOfMass.transformBy(occurrence.transform)
-                #print(centerOfMass.asArray())
-                centerOfMass = centerOfMass.asVector()
-                centerOfMass.scaleBy(physicalProperties.mass)
-                self.COM[name].translateBy(centerOfMass)
-
-                self.logfile.write("%f \t %f %f %f \t\t %s\n" % (physicalProperties.mass, centerOfMass.x, centerOfMass.y, centerOfMass.z, occurrence.name))
-            if occurrence.childOccurrences:
-                self.calculateCOM(name,occurrence.childOccurrences,currentLevel+1)
+                            self.COM[name].transformBy(occurrence.transform)
+        for com in self.design.allComponents:
+            if com is not None:
+                allConstructionPoints = com.constructionPoints
+                for point in allConstructionPoints:
+                    if point is not None:
+                        if point.name[:3] == "COM" and point.name[4:] == name:
+                            calculateCOM = False
+                            self.COM[name] = adsk.core.Point3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
+                            
+        if calculateCOM == True:
+            centerOfMass = component.getPhysicalProperties().centerOfMass
+            centerOfMass = centerOfMass.asVector()
+            #centerOfMass.scaleBy(physicalProperties.mass)
+            self.COM[name] = centerOfMass
+        
+        self.logfile.write("COM: " + name + " " + str(self.COM[name].x) + " " + str(self.COM[name].y) + " " + str(self.COM[name].z) + "\n")
 
     def copyBodiesToNewComponentAndExport(self, name):
 
@@ -216,7 +211,7 @@ class SDFExporter():
                         progressDialog.hide()
                         return False
             progressDialog.hide()
-
+            self.getCOM(name,new_component)
         else:
             new_component =  self.rootOcc.itemByName("EXPORT_" + name + ":1")
 
