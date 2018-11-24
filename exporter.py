@@ -181,18 +181,14 @@ class SDFExporter():
 
     def copyBodiesToNewComponentAndExport(self, name):
 
-
         self.logfile.write("Body: " + name + "\n")
-
-
 
         transformMatrix = adsk.core.Matrix3D.create()
         self.transformMatrices[name] = transformMatrix 
-
+        progressDialog = self.app.userInterface.createProgressDialog()
         if not self.rootOcc.itemByName("EXPORT_" + name + ":1") or self.updateRigidGroups:
             if self.rootOcc.itemByName("EXPORT_" + name + ":1"):
                 self.rootOcc.itemByName("EXPORT_" + name + ":1").deleteMe()
-            progressDialog = self.app.userInterface.createProgressDialog()
             progressDialog.isBackgroundTranslucent = False
             temp_component = self.rootOcc.addNewComponent(transformMatrix)
             temp_component.component.name = "TEMP_" + name
@@ -215,26 +211,27 @@ class SDFExporter():
             print(self.transformMatrices[name].asArray())
             self.rootOcc.itemByName("TEMP_" + name + ":1").deleteMe()
             adsk.doEvents() 
+            if self.exportMeshes:
+                self.logfile.write("exporting stl of " + name + "\n")
+                new_component = self.rootOcc.addNewComponent(self.transformMatrices[name])
+                new_component.component.name = "EXPORT_" + name
+                group = [g for g in self.rootComp.allRigidGroups if g.name == "EXPORT_"+name][0]
+                progressDialog.show(name, 'Exporting STL: %v/%m', 0, len(group.occurrences), 1)
+                i = 0
+                for occurrence in group.occurrences:
+                    for b in occurrence.bRepBodies:
+                        new_body = b.copyToComponent(new_component)
+                        new_body.name = 'body'+str(i)
+                        progressDialog.progressValue = progressDialog.progressValue + 1
+                        i = i+1 
+                        if progressDialog.wasCancelled:
+                            progressDialog.hide()
+                            return False
+                progressDialog.hide()
         else:
             new_component =  self.rootOcc.itemByName("EXPORT_" + name + ":1")
 
         if self.exportMeshes:
-            self.logfile.write("exporting stl of " + name + "\n")
-            new_component = self.rootOcc.addNewComponent(self.transformMatrices[name])
-            new_component.component.name = "EXPORT_" + name
-            group = [g for g in self.rootComp.allRigidGroups if g.name == "EXPORT_"+name][0]
-            progressDialog.show(name, 'Exporting STL: %v/%m', 0, len(group.occurrences), 1)
-            i = 0
-            for occurrence in group.occurrences:
-                for b in occurrence.bRepBodies:
-                    new_body = b.copyToComponent(new_component)
-                    new_body.name = 'body'+str(i)
-                    progressDialog.progressValue = progressDialog.progressValue + 1
-                    i = i+1 
-                    if progressDialog.wasCancelled:
-                        progressDialog.hide()
-                        return False
-            progressDialog.hide()
             self.exportToStl(new_component, name)
 
 
