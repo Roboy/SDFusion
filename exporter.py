@@ -54,11 +54,11 @@ class SDFExporter():
 
     ## Global variable to specify the file name of the plugin loaded by the SDF.
     # Only necessary if **exportViaPoints** is **True**.
-    pluginFileName = "libmusc_plugin.so"
+    pluginFileName = "libcardsflow_gazebo_plugin.so"
 
     ## Global variable to specify the name of the plugin loaded by the SDF-
     # Only necessary if **exportViaPoints** id **True**.
-    pluginName = "musc_plugin"
+    pluginName = "cardsflow_gazebo_plugin"
     myoMuscles = []
 
     def __init__(self):
@@ -170,13 +170,13 @@ class SDFExporter():
                         if point.name[:3] == "COM" and point.name[4:] == name:
                             calculateCOM = False
                             self.COM[name] = adsk.core.Point3D.create(point.geometry.x,point.geometry.y,point.geometry.z)
-                            
+
         if calculateCOM == True:
             centerOfMass = component.getPhysicalProperties().centerOfMass
             centerOfMass = centerOfMass.asVector()
             #centerOfMass.scaleBy(physicalProperties.mass)
             self.COM[name] = centerOfMass
-        
+
         self.logfile.write("COM: " + name + " " + str(self.COM[name].x) + " " + str(self.COM[name].y) + " " + str(self.COM[name].z) + "\n")
 
     def copyBodiesToNewComponentAndExport(self, name):
@@ -184,7 +184,7 @@ class SDFExporter():
         self.logfile.write("Body: " + name + "\n")
 
         transformMatrix = adsk.core.Matrix3D.create()
-        self.transformMatrices[name] = transformMatrix 
+        self.transformMatrices[name] = transformMatrix
         progressDialog = self.app.userInterface.createProgressDialog()
         if not self.rootOcc.itemByName("EXPORT_" + name + ":1") or self.updateRigidGroups:
             if self.rootOcc.itemByName("EXPORT_" + name + ":1"):
@@ -210,7 +210,7 @@ class SDFExporter():
             self.transformMatrices[name] = transformMatrix
             print(self.transformMatrices[name].asArray())
             self.rootOcc.itemByName("TEMP_" + name + ":1").deleteMe()
-            adsk.doEvents() 
+            adsk.doEvents()
             if self.exportMeshes:
                 self.logfile.write("exporting stl of " + name + "\n")
                 new_component = self.rootOcc.addNewComponent(self.transformMatrices[name])
@@ -223,7 +223,7 @@ class SDFExporter():
                         new_body = b.copyToComponent(new_component)
                         new_body.name = 'body'+str(i)
                         progressDialog.progressValue = progressDialog.progressValue + 1
-                        i = i+1 
+                        i = i+1
                         if progressDialog.wasCancelled:
                             progressDialog.hide()
                             return False
