@@ -186,6 +186,7 @@ class SDFExporter():
         transformMatrix = adsk.core.Matrix3D.create()
         self.transformMatrices[name] = transformMatrix
         progressDialog = self.app.userInterface.createProgressDialog()
+        new_component = None
         if not self.rootOcc.itemByName("EXPORT_" + name + ":1") or self.updateRigidGroups:
             if self.rootOcc.itemByName("EXPORT_" + name + ":1"):
                 self.rootOcc.itemByName("EXPORT_" + name + ":1").deleteMe()
@@ -439,11 +440,14 @@ class SDFExporter():
             except:
                    self.ui.messageBox("Exception in " + point.name + '\n' +traceback.format_exc())
                    pass
-
-        for motorNumber in points:
-            sketch = sketches.add(xyPlane)
-            sketch.name = "tendon_" + motorNumber
-            sketch.sketchCurves.sketchFittedSplines.add(points[motorNumber])
+        try:
+            for motorNumber in points:
+                sketch = sketches.add(xyPlane)
+                sketch.name = "tendon_" + motorNumber
+                sketch.sketchCurves.sketchFittedSplines.add(points[motorNumber])
+        except: 
+            self.ui.messageBox("Exception in " + point.name + '\n' +traceback.format_exc())
+            pass
 
     def exportLighthouseSensorsToYAML(self):
         #get all joints of the design
