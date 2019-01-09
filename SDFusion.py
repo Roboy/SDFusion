@@ -11,6 +11,7 @@ import adsk.core
 import adsk.fusion
 import traceback
 import xml.etree.ElementTree as ET
+from threading import Thread
 
 from .exporter import SDFExporter
 from .helpers import *
@@ -120,6 +121,8 @@ class SDFusionDestroyHandler(adsk.core.CommandEventHandler):
                         progressDialog0.isBackgroundTranslucent = False
                         progressDialog0.show("SDFusion", 'Processing rigid groups: %v/%m', 0, len(allRigidGroups), 1)
 
+                        #create a list of threads
+                        threads = []
                         for rig in allRigidGroups:
                             progressDialog0.progressValue += 1
                             if rig is not None and rig.name[:6] == "EXPORT":
@@ -129,12 +132,20 @@ class SDFusionDestroyHandler(adsk.core.CommandEventHandler):
                                     continue
                                 progressDialog0.message = "%v/%m " + name
                                 exporter.getAllBodiesInRigidGroup(name,rig)
-                                if not exporter.copyBodiesToNewComponentAndExport(name):
-                                    return
+                                if not exporter.exportMeshes:
+                                    # We start one thread per url present.
+                                    process = Thread(target=exporter.copyBodiesToNewComponentAndExport, args=[name])
+                                    process.start()
+                                    threads.append(process)
+                                else:
+                                    exporter.copyBodiesToNewComponentAndExport(name)
                             if progressDialog0.wasCancelled:
                                 progressDialog0.hide()
                                 return
-
+                        # We now pause execution on the main thread by 'joining' all of our started threads.
+                        # This ensures that each has finished processing the urls.
+                        for process in threads:
+                            process.join()
                         adsk.doEvents()
 
                         exporter.exportJointsToSDF()
