@@ -140,6 +140,7 @@ class SDFusionDestroyHandler(adsk.core.CommandEventHandler):
                                 else:
                                     exporter.copyBodiesToNewComponentAndExport(name)
                             if progressDialog0.wasCancelled:
+                                exporter.logfile.close()
                                 progressDialog0.hide()
                                 return
                         # We now pause execution on the main thread by 'joining' all of our started threads.
@@ -150,7 +151,7 @@ class SDFusionDestroyHandler(adsk.core.CommandEventHandler):
 
                         exporter.exportJointsToSDF()
                         if exporter.exportViaPoints:
-                            exporter.exportViaPointsToSDF()
+                            #exporter.exportViaPointsToSDF()
 
                             if exporter.exportCASPR: # exporting caspr only makes sense if we export viaPoints aswell
                                 exporter.exportCASPRcables()

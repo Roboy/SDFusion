@@ -440,14 +440,16 @@ class SDFExporter():
             except:
                    self.ui.messageBox("Exception in " + point.name + '\n' +traceback.format_exc())
                    pass
-        try:
-            for motorNumber in points:
+    
+        for motorNumber in points:
+            try:
                 sketch = sketches.add(xyPlane)
                 sketch.name = "tendon_" + motorNumber
                 sketch.sketchCurves.sketchFittedSplines.add(points[motorNumber])
-        except: 
-            self.ui.messageBox("Exception in " + point.name + '\n' +traceback.format_exc())
-            pass
+            except: 
+                self.logfile.write("Error in motor"  + str(motorNumber))
+                self.ui.messageBox("Exception in motor" + str(motorNumber) + '\n' +traceback.format_exc())
+                pass
 
     def exportLighthouseSensorsToYAML(self):
         #get all joints of the design
