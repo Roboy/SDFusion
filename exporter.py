@@ -358,7 +358,7 @@ class SDFExporter():
             self.model.append(plugin)
         #allMyoMuscles.sort(key=lambda x: x.number)
         # create myoMuscle nodes
-        self.contructViapointTree(plugin)
+        # self.contructViapointTree(plugin)
 
         i = 0
         for ee in EEs:

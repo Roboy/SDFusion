@@ -151,7 +151,7 @@ class SDFusionDestroyHandler(adsk.core.CommandEventHandler):
 
                         exporter.exportJointsToSDF()
                         if exporter.exportViaPoints:
-                            #exporter.exportViaPointsToSDF()
+                            exporter.exportViaPointsToSDF()
 
                             if exporter.exportCASPR: # exporting caspr only makes sense if we export viaPoints aswell
                                 exporter.exportCASPRcables()
