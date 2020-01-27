@@ -440,13 +440,13 @@ class SDFExporter():
             except:
                    self.ui.messageBox("Exception in " + point.name + '\n' +traceback.format_exc())
                    pass
-    
+
         for motorNumber in points:
             try:
                 sketch = sketches.add(xyPlane)
                 sketch.name = "tendon_" + motorNumber
                 sketch.sketchCurves.sketchFittedSplines.add(points[motorNumber])
-            except: 
+            except:
                 self.logfile.write("Error in motor"  + str(motorNumber))
                 self.ui.messageBox("Exception in motor" + str(motorNumber) + '\n' +traceback.format_exc())
                 pass
@@ -577,7 +577,7 @@ class SDFExporter():
         if self.dummy_inertia:
             mass.text = "0.1"
         else:
-            mass.text = str(physics.mass)
+            mass.text = str(physics.mass) # * 0.1)
         inertial.append(mass)
         # build inertia node
         inertia = self.sdfInertia(physics,name)
@@ -594,7 +594,7 @@ class SDFExporter():
     def sdfMom(self, tag, value):
         node = ET.Element(tag)
         # convert from kg/cm^2 (Fusion 360) to kg/m^2 (SI)
-        node.text = str(0.0001 * value)
+        node.text = str(0.0001 * value) # * 0.1)
         return node
 
     ## Builds SDF inertia node from physical properties.
