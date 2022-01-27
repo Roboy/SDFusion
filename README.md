@@ -44,7 +44,7 @@ In order to export a joint, it has to be
 * called `EXPORT_joint_name`
 
 *When creating a joint in Fusion 360, make sure you select the child first and then the parent.*
-Currently, fixed, prismatic, revolute, and ball joint types are supported.
+Currently, fixed, prismatic, revolute joint types are supported. A ball-and-socket joint can be emulated as a gimbal joint - a series of three 1-DoF revolute joints nested in each other.
 
 Tendons
 -------
