@@ -53,7 +53,7 @@ The naming scheme defined for the viapoints is the following: `VP_motornumber_EX
 
 ![SDFusion viapoints tab](https://github.com/Roboy/SDFusion/blob/master/images/viapointstab.png "Viapoints tab")
 
-Here, you have to specify the motor number and the link name. Press `Select` and the viapont number will increment automatically as you click on *circular edges* in your design. The newly created attachement point are listed under the `Construction` in the Fusion 360 browser. 
+Here, you have to specify the motor number and the link name. Press `Select` and the viapont number will increment automatically as you click on *circular edges* in your design. The newly created attachement points are listed under the `Construction` in the Fusion 360 browser. 
 
 ![SDFusion viapoints](https://github.com/Roboy/SDFusion/blob/master/images/viapoints.png "Attachment points")
 
