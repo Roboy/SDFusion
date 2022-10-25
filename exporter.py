@@ -522,7 +522,7 @@ class SDFExporter():
     # @param vector the vector pointing to the origin of the joint.
     # @return the SDF pose node
     def sdfPoseVector(self, vector):
-        pose = ET.Element("pose", frame="")
+        pose = ET.Element("pose") #, frame="")
         # convert from cm (Fusion 360) to m (SI)
         x = 0.01 * vector.x
         y = 0.01 * vector.y
@@ -539,7 +539,7 @@ class SDFExporter():
     # @param matrix the transformation matrix of the link
     # @return the SDF pose node
     def sdfPoseMatrix(self, matrix):
-        pose = ET.Element("pose", frame="")
+        pose = ET.Element("pose") #, frame="")
         # convert from cm (Fusion 360) to m (SI)
         trans = matrix.translation
         x = 0.01 * trans.x
