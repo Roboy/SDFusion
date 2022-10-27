@@ -584,6 +584,17 @@ class SDFExporter():
         inertial.append(inertia)
         return inertial
 
+    # converts the moment of inertia from world frame to
+    # link's center of mass frame
+    def inertiaToLinkFrame(self, inertia, CoM, mass):
+        x = CoM.x
+        y = CoM.y
+        z = CoM.z
+        translation_matrix = [y**2+z**2, x**2+z**2, x**2+y**2,
+                            -x*y, -y*z, -x*z]
+        return [ round(i - mass*t, 6) for i, t in zip(inertia, translation_matrix)]
+
+
     ## Builds SDF node for one moment of inertia.
     #
     # This helper function builds the SDF node for one moment of inertia.
@@ -612,7 +623,8 @@ class SDFExporter():
         xz = 0
         yz = 0
         if not self.dummy_inertia:
-            (returnValue, xx, yy, zz, xy, yz, xz) = physics.getXYZMomentsOfInertia()
+            # (returnValue, xx, yy, zz, xy, yz, xz) = physics.getXYZMomentsOfInertia()
+            (xx, yy, zz, xy, yz, xz) = self.inertiaToLinkFrame(physics.getXYZMomentsOfInertia(),physics.centerOfMass.asVector(), physics.mass )
 
         inertia.append(self.sdfMom("ixx", xx))
         inertia.append(self.sdfMom("ixy", xy))
