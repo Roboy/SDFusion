@@ -4,9 +4,11 @@ import traceback
 import xml.etree.ElementTree as ET
 import math
 import xml.dom.minidom as DOM
-import os, errno
+import os, errno, sys
 from collections import defaultdict
 from .helpers import *
+
+#import numpy as np
 
 class SDFExporter():
     ui = None
@@ -566,7 +568,9 @@ class SDFExporter():
     #
     # @param physics the physical properties of a link
     # @return the SDF inertial node
-    def sdfInertial(self, physics, name):
+    def sdfInertial(self, link):
+        physics = link.physicalProperties
+        name = link.name
         inertial = ET.Element("inertial")
         # the link frame is located at the COM, therefor we use zero vector for pose
         zeroVector = adsk.core.Point3D.create(0,0,0)
@@ -580,9 +584,25 @@ class SDFExporter():
             mass.text = str(physics.mass) # * 0.1)
         inertial.append(mass)
         # build inertia node
-        inertia = self.sdfInertia(physics,name)
+        inertia = self.sdfInertia(link) #physics,name)
         inertial.append(inertia)
         return inertial
+
+    # converts the moment of inertia from world frame to
+    # link's center of mass frame
+    def inertiaToLinkFrame(self, link):
+        [x,y,z] = link.transform.translation.asArray()
+        (_, xx, yy, zz, xy, yz, xz) = link.physicalProperties.getXYZMomentsOfInertia()
+        i_world = [xx,yy,zz,xy,yz,xz]
+        mass = link.physicalProperties.mass
+        xx_t = mass*(y*y+z*z)
+        yy_t = mass*(x*x+z*z)
+        zz_t = mass*(x*x+y*y)
+        xy_t = -mass*x*y
+        xz_t = -mass*x*z
+        yz_t = -mass*y*z
+        i_transform = [xx_t, yy_t, zz_t, xy_t, yz_t, xz_t]
+        return (i-t for (i,t) in zip(i_world,i_transform))
 
     ## Builds SDF node for one moment of inertia.
     #
@@ -603,7 +623,9 @@ class SDFExporter():
     #
     # @param physics the physical properties of a link
     # @return the SDF inertia node
-    def sdfInertia(self, physics, name):
+    def sdfInertia(self, link): #physics, name):
+        physics = link.physicalProperties
+        name = link.name
         inertia = ET.Element("inertia")
         xx = 1000
         yy = 1000
@@ -612,7 +634,10 @@ class SDFExporter():
         xz = 0
         yz = 0
         if not self.dummy_inertia:
-            (returnValue, xx, yy, zz, xy, yz, xz) = physics.getXYZMomentsOfInertia()
+            # (returnValue, xx, yy, zz, xy, yz, xz) = physics.getXYZMomentsOfInertia()
+            (xx, yy, zz, xy, yz, xz) = self.inertiaToLinkFrame(link)
+            
+            self.logfile.write(f"link {name}\ninertia local frame: {(xx, yy, zz, xy, yz, xz)}\ninertia world frame {physics.getXYZMomentsOfInertia()[1:]}\n")
 
         inertia.append(self.sdfMom("ixx", xx))
         inertia.append(self.sdfMom("ixy", xy))
@@ -653,7 +678,8 @@ class SDFExporter():
         # get physical properties of occurrence
         physics = lin.physicalProperties
         # build inertial node
-        inertial = self.sdfInertial(physics, name)
+        inertial = self.sdfInertial(lin) #physics, name)
+        # self.debugMoI(physics,lin.transform)
         link.append(inertial)
         # build collision node
         collision = ET.Element("collision", name = name + "_collision")
