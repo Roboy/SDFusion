@@ -28,6 +28,12 @@ You should be able to run/debug the add-in from the `Scripts and Add-Ins` dialog
 Usage
 =====
 
+Quick video tutorial
+-----
+Check out this video on the links and joints.
+
+https://youtu.be/8gYoT98WmWI
+
 Links
 -----
 SDFusion requires all the links to be defined as rigid groups in Fusion 360. The script will automatically:
