@@ -34,7 +34,7 @@ Preparing the robot in Fusion360
 1. Switch Fusion360 design configuration to Z-axis up (default is Y up).
 2. Break all links in the design at all hierarchy levels.
 3. Create rigid groups for all links of the robot and call them `EXPORT_link_name`. For example, select all components that belong to `base` link, create a rigid group called `EXPORT_base`.
-4. Define all joints between the links and call them `EXPORT_joint_name`. Select child as `Component1` and parent as `Component2`. Child and parent component must belong to two different rigid groups, e.g. links. Supported joint types are: _fixed, revolute, prismatic_ and _ball_.
+4. Define all joints between the links and call them `EXPORT_joint_name`. Select child as `Component1` and parent as `Component2`. Child and parent component must belong to two different rigid groups, e.g. links. Supported joint types are: _fixed, revolute, prismatic_ and _ball_. Other joints that are defined in the design, but are not used for export are known to cause issues, so it's recommended to remove from the design all other joints without `EXPORT_` in their name.
 5. Define joint limits for the joints. Otherwise, min and max joint limit will be exported as 0.
 
 Now the model is ready to be exported.
